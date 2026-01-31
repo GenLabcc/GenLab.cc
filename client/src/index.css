@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* max-width: 100wh;x */
+  /* background-color: aliceblue; */
+}
+
+@font-face {
+  font-family: "Clash Display";
+  src: url("./fonts/ClashDisplay-Variable.ttf") format("truetype");
+  font-weight: 200 700;
+  font-display: swap;
+}
+
+body {
+  /* font-family: Inter, system-ui, sans-serif; */
+  font-family: "Clash Display", sans-serif;
+}
+

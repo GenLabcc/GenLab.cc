@@ -1,0 +1,358 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  color: #fff;
+}
+
+/* =========================
+   HERO WRAPPER
+========================= */
+.hero {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  /* CHANGED: replaced fixed padding with clamp() for responsiveness */
+  padding: clamp(24px, 5vw, 64px);
+
+  position: relative;
+  overflow: hidden; /* keeps blobs inside hero */
+  background: black;
+}
+
+/* =========================
+   BACKGROUND BLOBS
+========================= */
+.bg-shapes {
+  position: absolute;
+  inset: 0;
+  z-index: 0; /* CHANGED: background must stay behind content */
+  pointer-events: none; /* ADDED: prevents accidental interaction */
+}
+
+.shape {
+  position: absolute;
+  filter: blur(160px);
+  opacity: 1;
+  will-change: transform; /* removed width, height */
+  pointer-events: none;
+}
+
+.circle1 {
+  background: #bcf000;
+  border-radius: 50%; 
+  /* CHANGED: animation name + duration simplified */
+  animation: float1 20s ease-in-out infinite;
+}
+
+.circle2 {
+  background: #eff4de;
+  border-radius: 50%; 
+  animation: float2 22s ease-in-out infinite;
+}
+
+/* =========================
+   CONTENT WRAPPER
+========================= */
+.hero-content {
+  display: flex;
+  flex-direction: column; /* CHANGED: mobile-first */
+  gap: clamp(40px, 6vw, 80px);
+  padding-top: clamp(32px, 6vh, 64px);
+  z-index: 1; /* ADDED: above blobs */
+  /* ADDED: max-width constraint for ultra-wide screens */
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+/* =========================
+   LEFT COLUMN
+========================= */
+.hero-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 6vw, 72px);
+}
+
+.logo {
+  display: flex;
+  /* align-items: center; */
+  gap: 10px;
+}
+
+.logo-img {
+  width: clamp(120px, 15vw, 250px); /* CHANGED: fluid scaling */
+  height: auto;                     /* CHANGED: preserve aspect ratio */
+  max-width: 100%;                  /* CHANGED: prevent overflow */
+  object-fit: contain;              /* CHANGED: safe for any logo shape */
+}
+
+.hero-left .headline {
+  font-size: clamp(36px, 6vw, 56px);
+  line-height: 1; /*0.8*/
+  font-weight: 300;
+}
+
+.hero-left .headline .green,
+.hero-left .headline .gbold {
+  color: #bcf000;
+
+  /* CHANGED: remove fixed font-size: 50px, inherit from parent */
+}
+
+.hero-left .headline .gbold {
+  font-weight: 600; /* CHANGED: valid font-weight from 550 */
+}
+
+.hero-left .headline span {
+  font-weight: 200; 
+  /* font-size: 45px; */
+}
+
+/* =========================
+   BUTTON RESET
+========================= */
+button {
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+/* =========================
+   CTA BUTTON
+========================= */
+.cta {
+  width: fit-content;
+  /* CHANGED: responsive padding from padding: 14px 24px;*/
+  padding: clamp(12px, 2vw, 16px) clamp(20px, 3vw, 28px);
+  border-radius: 999px;
+  border: 1px solid #fff;
+  background: rgba(255, 255, 255, 0.151); /* translucent */
+  /* backdrop-filter: blur(14px); */
+  /* -webkit-backdrop-filter: blur(14px);  */
+  /* safari */
+  color: white;
+  font-size: clamp(20px, 4vw, 40px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cta span {
+  width: 1.9em;               /* CHANGED: equal width */
+  height: 1.9em;              /* CHANGED: equal height */
+  min-width: 1.9em;           /* CHANGED: prevents collapse */
+  min-height: 1.9em;
+
+  background: #bcf000;
+  color: #000;
+  border-radius: 50%;
+
+  display: inline-flex;       /* CHANGED: center arrow */
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0.9em;           /* CHANGED: scale with button text */
+  line-height: 1;             /* CHANGED: avoid vertical distortion */
+}
+
+/* =========================
+   RIGHT COLUMN
+========================= */
+.hero-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* CHANGED: content-based spacing */
+  gap: clamp(32px, 5vw, 60px);
+  padding-top: clamp(40px, 10vh, 130px);
+  /* justify-content: space-between; */
+}
+
+/* CHANGED: readable line length + fluid size */
+.description {
+  max-width: 60ch;
+  font-size: clamp(16px, 2.5vw, 24px);
+  font-weight: 300;
+  opacity: 0.85;
+}
+
+.services {
+  list-style: none;
+  max-width: 60ch;
+
+  /* CHANGED: fluid font size */
+  font-size: clamp(16px, 2vw, 19px);
+}
+
+.services li {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.services span {
+  opacity: 0.5;
+}
+
+/* =========================
+   FOOTER (CONTACT + SOCIALS)
+========================= */
+.hero-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  z-index: 1;
+
+  /* CHANGED: fluid spacing */
+  padding: clamp(24px, 5vh, 40px) 0;
+}
+
+.contact {
+  display: flex;
+  gap: 24px;
+  /* CHANGED: fluid font size */
+  font-size: clamp(14px, 2vw, 19px);
+}
+
+.socials {
+  display: flex;
+  gap: 12px;
+}
+
+.socials span {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #000;
+  background: #fff;
+}
+
+/* =========================
+   RESPONSIVE LAYOUT SWITCH
+========================= */
+@media (min-width: 1024px) {
+  .hero-content {
+    flex-direction: row; /* CHANGED: desktop layout */
+    align-items: flex-start;
+  }
+}
+
+/* =========================
+   MOBILE OVERRIDES
+   Keep blobs visible + centered
+========================= */
+@media (max-width: 768px) {
+  .shape {
+    filter: blur(120px);   
+    /* opacity: 0.75;         */
+  }
+
+  .hero-content {
+    gap: 0px;            /* CHANGED: reduce vertical spacing */
+  }
+
+  .contact{
+    flex-direction: column;      
+    /* align-items: flex-start; */
+    gap: 6px;
+  }
+
+  @keyframes float1 {
+    0% {
+      width: 70vw;         /* CHANGED: explicit mobile sizing */
+      height: 70vw;
+      transform: translate(5vw, 55vh);
+    }
+    50% {
+      width: 55vw;
+      height: 55vw;
+      transform: translate(20vw, 45vh);
+    }
+    100% {
+      width: 70vw;
+      height: 70vw;
+      transform: translate(5vw, 55vh);
+    }
+  }
+
+  @keyframes float2 {
+    0% {
+      width: 60vw;
+      height: 60vw;
+      transform: translate(35vw, 25vh);
+    }
+    50% {
+      width: 48vw;
+      height: 48vw;
+      transform: translate(20vw, 40vh);
+    }
+    100% {
+      width: 60vw;
+      height: 60vw;
+      transform: translate(35vw, 25vh);
+    }
+  }
+}
+
+/* =========================
+   RESPONSIVE BLOB ANIMATION
+========================= */
+@keyframes float1 {
+  0% {
+    width: clamp(280px, 40vw, 620px);   /* CHANGED: clamp for all screens */
+    height: clamp(280px, 40vw, 620px);
+    transform: translate(8vw, 45vh);
+  }
+  50% {
+    width: clamp(220px, 28vw, 480px);
+    height: clamp(220px, 28vw, 480px);
+    transform: translate(32vw, 40vh);
+  }
+  100% {
+    width: clamp(280px, 40vw, 620px);
+    height: clamp(280px, 40vw, 620px);
+    transform: translate(8vw, 45vh);
+  }
+}
+
+@keyframes float2 {
+  0% {
+    width: clamp(260px, 35vw, 560px);
+    height: clamp(260px, 35vw, 560px);
+    transform: translate(55vw, 28vh);
+  }
+  50% {
+    width: clamp(200px, 26vw, 420px);
+    height: clamp(200px, 26vw, 420px);
+    transform: translate(38vw, 52vh);
+  }
+  100% {
+    width: clamp(260px, 35vw, 560px);
+    height: clamp(260px, 35vw, 560px);
+    transform: translate(55vw, 28vh);
+  }
+}
+
+/* =========================
+   ACCESSIBILITY (production)
+========================= */
+@media (prefers-reduced-motion: reduce) {
+  .shape {
+    animation: none;
+  }
+}
