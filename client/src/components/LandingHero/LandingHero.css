@@ -117,14 +117,6 @@ body {
 }
 
 /* =========================
-   BUTTON RESET
-========================= */
-button {
-  font-family: inherit;
-  font-weight: inherit;
-}
-
-/* =========================
    CTA BUTTON
 ========================= */
 .cta {

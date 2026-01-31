@@ -1,5 +1,5 @@
-import "./Hero.css";
-import logo from "../assets/logo.png";
+import "./LandingHero.css";
+import logo from "@/assets/logo.png";
 import { FaLinkedinIn, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 
