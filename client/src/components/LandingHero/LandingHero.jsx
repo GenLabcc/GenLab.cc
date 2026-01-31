@@ -46,8 +46,8 @@ export default function Hero() {
 
                     <ul className="services">
                         <li><span>01</span> GenLab.Launchpad</li>
-                        <li><span>02</span> GenLab.Brand Studio</li>
-                        <li><span>03</span> GenLab.AI Forge</li>
+                        <li><span>02</span> GenLab.AI Forge</li>
+                        <li><span>03</span> GenLab.Brand Studio</li>
                     </ul>
                 </div>
             </div>
