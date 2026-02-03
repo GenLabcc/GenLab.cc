@@ -1,13 +1,12 @@
-// import Navbar from "./components/Navbar";
 import LandingHero from "./components/LandingHero/LandingHero";
-// import HeroSection from "./components/HeroSection";
+// import Home from "@/pages/Home/Home.jsx"
+import "./App.css";
 
 function App() {
   return (
     <>
-      {/* <Navbar /> */}
       <LandingHero />
-      {/* <HeroSection/> */}
+      {/* <Home/> */}
     </>
   );
 }

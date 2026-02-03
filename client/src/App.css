@@ -10,9 +10,18 @@
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  letter-spacing: 2px;
 }
 
 button {
   font-family: inherit;
-  font-weight: inherit;
+  /* font-weight: inherit; */
 }
+
+/* Doesn't break Landing page */
+
+/* *,
+*::before,
+*::after {
+  box-sizing: border-box;
+} */
