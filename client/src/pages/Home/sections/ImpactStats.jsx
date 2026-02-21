@@ -10,7 +10,7 @@ const ImpactStats = () => {
         <div className={styles.headingWrapper}>
           <div className={styles.topRow}>
             <div className={styles.logo}>
-              <img src="public/black.png" alt="GenLab Logo" />
+              <img src="/black.png" alt="GenLab Logo" />
             </div>
             <h2 className={styles.lineOne}>Gen Z Powered</h2>
           </div>
