@@ -1,0 +1,111 @@
+.impactSection {
+  background: #EEEEEE;
+   padding: clamp(80px, 10vw, 140px)
+           clamp(24px, 8vw, 120px);
+  color: #111;
+}
+
+.container {
+  max-width: 1200px;
+  /* margin: 0 auto; */
+}
+
+/* Eyebrow */
+.eyebrow {
+  font-size: clamp(12px, 1vw, 14px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: clamp(20px, 3vw, 40px);
+  color: #444;
+}
+
+/* Main Heading */
+.headingWrapper {
+  margin-bottom: clamp(24px, 4vw, 50px);
+}
+
+/* Logo + first line */
+.topRow {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  /* flex-wrap: wrap; */
+}
+
+.logo img {
+  width: clamp(40px, 5vw, 70px);
+  height: clamp(40px, 5vw, 70px);
+  object-fit: contain;
+}
+
+.lineOne,
+.lineTwo {
+  font-size: clamp(28px, 6vw, 72px);
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.1;
+}
+
+/* No margin-left here anymore */
+.lineTwo {
+  margin-top: clamp(6px, 1vw, 12px);
+}
+
+/* Description */
+.description {
+  max-width: 950px;
+  font-size: clamp(14px, 1.2vw, 18px);
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: clamp(50px, 8vw, 100px);
+}
+
+/* Stats Section */
+.statsWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;  
+}
+
+.stat {
+  text-align: center;
+  flex: 1 1 0;               /* shrink properly */
+  min-width: 0;              /* allow shrinking */flex: 1;
+}
+
+.stat h3 {
+  font-size: clamp(20px, 4vw, 56px);
+  font-weight: 500;
+  margin-bottom: clamp(4px, 0.8vw, 12px);
+  line-height: 1.1;
+}
+
+.stat p {
+  font-size: clamp(9px, 0.9vw, 14px);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #444;
+}
+
+/* Vertical Divider */
+.divider {
+  width: 1px;
+  height: clamp(40px, 6vw, 100px);
+  background: #bfbfbf;
+  flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .headingRow {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .logo img {
+    width: 55px;
+    height: 55px;
+  }
+
+}

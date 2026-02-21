@@ -1,0 +1,100 @@
+.partnersSection {
+  background: #EEEEEE;
+  padding: clamp(3rem, 8vw, 6rem) 0;
+  color: #111;
+}
+
+/* Top label */
+.eyebrow {
+  text-align: center;
+  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: clamp(2rem, 6vw, 4rem);
+  color: #444;
+}
+
+/* Each block */
+.block {
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+/* Section title */
+.title {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 500;
+  margin-left: clamp(1rem, 6vw, 8%);
+  margin-bottom: clamp(1.2rem, 3vw, 2rem);
+}
+
+/* Marquee outer spacing */
+.marqueeOuter {
+  padding: 0 clamp(1rem, 6vw, 8%);
+}
+
+/* Marquee container */
+.marqueeWrapper {
+  overflow: hidden;
+  border-top: 1px solid #bfbfbf;
+  border-bottom: 1px solid #bfbfbf;
+}
+
+/* Moving row */
+.marquee {
+  display: flex;
+  width: max-content;
+}
+
+/* Logo box */
+.logoBox {
+  width: clamp(140px, 18vw, 240px);
+  height: clamp(90px, 12vw, 160px);
+  border-right: 1px solid #bfbfbf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.8rem, 2vw, 1.5rem);
+}
+
+/* Logo image */
+.logoBox img {
+  max-width: clamp(70px, 8vw, 120px);
+  max-height: clamp(50px, 6vw, 80px);
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.8;
+  transition: 0.3s ease;
+}
+
+.logoBox img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* Animations */
+.left {
+  animation: scrollLeft 25s linear infinite;
+}
+
+.right {
+  animation: scrollRight 25s linear infinite;
+}
+
+/* Keyframes */
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollRight {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

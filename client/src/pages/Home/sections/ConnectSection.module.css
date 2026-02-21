@@ -1,0 +1,176 @@
+.connectSection {
+  min-height: 100vh;
+  background: #050505;
+  color: #eaeaea;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(60px, 8vw, 120px) clamp(20px, 8vw, 8%);
+  gap: clamp(40px, 6vw, 80px);
+}
+
+/* ================= LEFT SIDE ================= */
+
+.left {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+}
+
+.heading {
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 300; /* unchanged */
+  line-height: 1.05;
+  letter-spacing: 2px;
+}
+
+/* ================= RIGHT SIDE ================= */
+
+.right {
+  flex: 1.2;
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vw, 32px);
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  gap: clamp(16px, 2.5vw, 32px);
+}
+
+/* Inputs */
+.form input,
+.form textarea {
+  flex: 1;
+  background: #FFFFFF1A;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: clamp(14px, 1.2vw, 18px) clamp(16px, 1.5vw, 20px);
+  color: #ffffff;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.form textarea {
+  resize: none;
+  min-height: clamp(120px, 10vw, 160px);
+}
+
+.form input::placeholder,
+.form textarea::placeholder {
+  color: #F0F0F0;
+  opacity: 1;
+}
+
+.form input:focus,
+.form textarea:focus {
+  border: 1px solid #BCF000;
+}
+
+/* ================= CHECKBOX ================= */
+
+.customCheckbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  cursor: pointer;
+  font-size: clamp(0.8rem, 0.9vw, 0.9rem);
+  color: #bdbdbd;
+  position: relative;
+}
+
+.customCheckbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #b4ff00;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  transition: all 0.3s ease;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.customCheckbox input:checked + .checkmark {
+  background: #b4ff00;
+  border-color: #b4ff00;
+}
+
+.customCheckbox input:checked + .checkmark::after {
+  content: "✓";
+  position: absolute;
+  color: #000;
+  font-size: 12px;
+  font-weight: bold; /* unchanged */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.customCheckbox:hover .checkmark {
+  border-color: #b4ff00;
+}
+
+.checkboxText {
+  line-height: 1.4;
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 1024px) {
+
+  .connectSection {
+    flex-direction: column;
+    align-items: flex-start;
+    /* padding: clamp(60px, 8vw, 100px) 6%; */
+  }
+
+  .left {
+    width: 100%;
+  }
+
+  .heading {
+    font-size: clamp(2.8rem, 8vw, 4rem);
+  }
+
+  .right {
+    width: 100%;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .submitBtn {
+    align-self: flex-start;
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+  .connectSection {
+    /* padding: clamp(60px, 12vw, 80px) clamp(24px, 6vw, 40px); */
+    gap: 40px;
+  }
+
+  .heading {
+    font-size: clamp(2.2rem, 10vw, 3rem);
+  }
+
+  .form {
+    gap: 20px;
+  }
+
+}

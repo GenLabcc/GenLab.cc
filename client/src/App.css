@@ -13,10 +13,27 @@
   letter-spacing: 2px;
 }
 
-button {
+button, h1, h2, h3, h4, input, textarea, checkbox {
   font-family: inherit;
   /* font-weight: inherit; */
 }
+
+/* Hide scrollbar for Chrome, Safari, Edge */
+/* ::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+} */
+
+/* Hide scrollbar for Firefox */
+/* html {
+  scrollbar-width: none;
+} */
+
+/* Hide scrollbar for IE/Edge legacy */
+/* body {
+  -ms-overflow-style: none;
+} */
+
 
 /* Doesn't break Landing page */
 

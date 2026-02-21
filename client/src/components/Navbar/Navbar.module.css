@@ -1,32 +1,35 @@
 .navbar {
   position: absolute;
-  z-index: 10;
-  top: clamp(12px, 3vw, 24px);
+  z-index: 100;
+  top: clamp(15px, 3vw, 28px);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: clamp(12px, 3vw, 24px);
+  gap: clamp(10px, 2.5vw, 24px);
   color: white;
   letter-spacing: 0.08em;
-  white-space: nowrap;
+  /* width: min(95%, 1200px); */
 }
 
-/* Shared glass style */
+/* Shared glass effect */
 .glass {
   background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-radius: 999px;
 }
 
 /* Logo */
 .navbarLogo {
-  padding: clamp(8px, 2vw, 12px)
-           clamp(8px, 2vw, 12px);
+  padding: clamp(10px, 1.5vw, 15px)
+           clamp(10px, 1.5vw, 15px);
+  display: flex;
+  align-items: center;
 }
 
 .navbarLogo img {
-  height: clamp(22px, 4vw, 30px);
+  height: clamp(22px, 3vw, 34px);
   width: auto;
   display: block;
 }
@@ -36,25 +39,79 @@
   display: flex;
   align-items: center;
   list-style: none;
-  gap: clamp(10px, 2vw, 18px);
+  gap: clamp(12px, 2vw, 24px);
   padding: clamp(6px, 1.5vw, 8px)
-           clamp(10px, 2.5vw, 14px);
-  font-size: clamp(12px, 2.5vw, 14px);
+           clamp(10px, 3vw, 15px);
+  font-size: clamp(13px, 1.4vw, 15px);
+  transition: all 0.3s ease;
 }
 
 .navbarLinks li {
   cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
 .navbarLinks li:hover {
+  opacity: 0.7;
+  margin-bottom: 2px;
   text-decoration: underline;
 }
 
 /* CTA */
 .navbarCta {
-  padding: clamp(6px, 1.5vw, 8px)
-           clamp(12px, 3vw, 18px);
+  padding: clamp(6px, 1.2vw, 10px)
+           clamp(14px, 2.5vw, 20px);
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  font-size: clamp(12px, 2.5vw, 14px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Mobile Toggle Button */
+.menuToggle {
+  display: none;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  border: none;
+  border-radius: 999px;
+  padding:clamp(5px, 1.5vw, 15px)
+           clamp(10px, 3vw, 20px);
+  font-size: clamp(20px, 4vw, 28px);
+  cursor: pointer;
+  color: white;
+  margin: 0;
+}
+
+/* ========================= */
+/* Responsive Behavior */
+/* ========================= */
+
+@media (max-width: 900px) {
+  .navbar {
+    justify-content: space-between;
+    width: 90%;
+    /* gap: 200px; */
+  }
+
+  .menuToggle {
+    display: block;
+  }
+
+  .navbarLinks {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    border-radius: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+  }
+
+  .navbarLinks.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
 }

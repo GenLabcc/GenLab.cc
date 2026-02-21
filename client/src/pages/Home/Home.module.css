@@ -4,4 +4,54 @@
   box-sizing: border-box;
 }
 
+button {
+  /* margin-top: 1rem; */
+  margin-top: clamp(12px, 2vw, 24px);
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  /* gap: 1.2rem; */
+  gap: clamp(12px, 2vw, 20px);
+  /* padding: 0.8rem 1.5rem; */
+  padding: clamp(12px, 1.5vw, 18px)
+           clamp(18px, 3vw, 32px);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.03)
+  );
+  border: 1.5px solid #C4C4C4;
+  /* border-radius: 40px; */
+  border-radius: 999px;
+  color: #eaeaea;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
 
+button span {
+  letter-spacing: 0.08em;
+  font-size: clamp(12px, 1.2vw, 15px);
+}
+
+button div {
+  width: clamp(28px, 3vw, 36px);
+  height: clamp(28px, 3vw, 36px);
+  background: #BCF000;
+  color: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: 0.3s ease;
+  /*  */
+  font-size: clamp(14px, 1.5vw, 16px);
+}
+
+button:hover {
+  border-color: #BCF000;
+}
+
+button:hover .arrow {
+  transform: translateX(4px);
+}

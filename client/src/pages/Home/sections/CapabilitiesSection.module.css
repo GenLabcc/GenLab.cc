@@ -1,0 +1,212 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+  background: black;
+  color: white;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* ========================= */
+/* LEFT — STICKY IMAGES */
+/* ========================= */
+
+.imageColumn {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.image.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* Hide mobile images on desktop */
+.mobileImage {
+  display: none;
+}
+
+/* ========================= */
+/* RIGHT — TEXT */
+/* ========================= */
+
+.textColumn {
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  padding: clamp(60px, 8vw, 120px) 0;
+
+  /* Hide scrollbar for Chrome, Safari, Edge */
+  /* scrollbar-width: none; Firefox */
+  /* -ms-overflow-style: none; IE/Edge */
+}
+
+/* hide scrollbar */
+.textColumn::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* thin black */
+.textColumn {
+   /* Firefox scrollbar */
+  scrollbar-width: thin; /* thin scrollbar */
+  scrollbar-color: #444444 #0a0a0a; /* thumb color / track color */
+}
+
+
+.block {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  padding: clamp(40px, 6vw, 100px);
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 4vw, 40px);
+  width: 100%;
+}
+
+/* ========================= */
+/* TYPOGRAPHY */
+/* ========================= */
+
+.textContent h3 {
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  font-weight: 400;
+  opacity: 0.6;
+  letter-spacing: 1px;
+}
+
+.textContent h2 {
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: 1px;
+}
+
+/* ========================= */
+/* LIST */
+/* ========================= */
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listItems {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0.6rem 0;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 3vw, 30px);
+}
+
+.listItem.clickable {
+  cursor: pointer;
+}
+
+.number {
+  font-size: clamp(0.75rem, 1vw, 0.85rem);
+  opacity: 0.5;
+  min-width: 32px;
+}
+
+.itemText {
+  flex: 1;
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  font-weight: 200;
+}
+
+.listItems .arrow {
+  opacity: 0.6;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.listItem.clickable:hover .arrow {
+  transform: translateX(6px);
+  opacity: 1;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+  .container {
+    display: block;
+    height: auto;
+    overflow: visible;
+    padding: 0 30px; /* 👈 horizontal breathing room */
+  }
+
+  /* Hide sticky image column */
+  .imageColumn {
+    display: none;
+  }
+
+  /* Image inside each block */
+  .mobileImage {
+    display: block;
+    width: 100%;
+    height: clamp(280px, 60vw, 480px);
+    object-fit: cover;
+    margin-bottom: 32px;
+    border-radius: 12px; 
+  }
+
+  .textColumn {
+    height: auto;
+    overflow: visible;
+    padding: 0;
+  }
+
+  .block {
+    height: auto;
+    padding: 60px 0; /* remove side padding */
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 680px;     /* 👈 prevents stretch */
+    margin: 0 auto;       /* 👈 center content */
+  }
+
+  .textContent {
+    gap: 28px;
+    width: 100%;
+  }
+
+  .textContent h2 {
+    max-width: 32ch; /* 👈 better readable heading width */
+  }
+
+}
+

@@ -1,0 +1,172 @@
+.footer {
+  position: relative;
+  background-color: #000;
+  color: #fff;
+  padding: clamp(70px, 10vw, 120px) clamp(24px, 6vw, 8%);
+  overflow: hidden;
+}
+
+/* ================= GRID CONTAINER ================= */
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(40px, 5vw, 80px);
+  position: relative;
+  z-index: 2;
+}
+
+/* ================= LOGO ================= */
+
+.navbarLogo {
+  padding: clamp(6px, 1.5vw, 12px);
+}
+
+.navbarLogo img {
+  height: clamp(24px, 3.5vw, 35px);
+  width: auto;
+  display: block;
+}
+
+/* ================= HEADINGS ================= */
+
+.col h4 {
+  font-weight: 300; /* unchanged */
+  margin-bottom: clamp(16px, 2vw, 24px);
+  opacity: 0.8;
+  font-size: clamp(14px, 1vw, 16px);
+}
+
+/* ================= LINKS ================= */
+
+.links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.links li {
+  /* margin-bottom: clamp(2px, 1vw, 5px); */
+  cursor: pointer;
+  opacity: 0.8;
+  transition: 0.3s;
+  font-size: clamp(14px, 1vw, 15px);
+}
+
+.links li:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* ================= SOCIALS ================= */
+
+.socials {
+  display: flex;
+  gap: clamp(12px, 2vw, 20px);
+  margin-top: clamp(10px, 1.5vw, 16px);
+}
+
+.socials a {
+  width: clamp(34px, 3vw, 42px);
+  height: clamp(34px, 3vw, 42px);
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: #000000;
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  transition: 0.3s;
+}
+
+.socials a:hover {
+  background: #b6ff00;
+  color: #000;
+}
+
+/* ================= ADDRESS ================= */
+
+.col p {
+  opacity: 0.7;
+  line-height: 1.6;
+  font-size: clamp(13px, 1vw, 15px);
+}
+
+.phone {
+  margin-top: clamp(12px, 1.5vw, 18px);
+  font-weight: 500; /* unchanged */
+}
+
+/* ================= BOTTOM ROW ================= */
+
+.bottom {
+  margin-top: clamp(50px, 8vw, 100px);
+  display: flex;
+  gap: clamp(20px, 3vw, 40px);
+  opacity: 0.6;
+  font-size: clamp(13px, 1vw, 14px);
+  position: relative;
+  z-index: 2;
+  flex-wrap: wrap;
+}
+
+.bottom span {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.bottom span:hover {
+  opacity: 1;
+}
+
+/* ================= GLOW ================= */
+
+.glow {
+  position: absolute;
+  bottom: -200px;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  background: radial-gradient(
+    ellipse 100% 70% at center,
+    #BCF00080 0%,
+    #bcf00097 25%,
+    transparent 70%
+  );
+  filter: blur(120px);
+  z-index: 1;
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 992px) {
+
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(40px, 6vw, 60px);
+  }
+
+  .bottom {
+    margin-top: clamp(40px, 6vw, 80px);
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+  .container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+
+  .bottom {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .socials {
+    margin-top: 12px;
+  }
+}
