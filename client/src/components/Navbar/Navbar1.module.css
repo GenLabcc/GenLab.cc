@@ -1,0 +1,374 @@
+.navbar {
+  position: absolute;
+  z-index: 10;
+  top: clamp(12px, 3vw, 24px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 3vw, 24px);
+  color: white;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+/* Shared glass style */
+.glass {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  border-radius: 999px;
+}
+
+/* Logo */
+.navbarLogo {
+  padding: clamp(8px, 2vw, 12px)
+           clamp(8px, 2vw, 12px);
+}
+
+.navbarLogo img {
+  height: clamp(22px, 4vw, 30px);
+  width: auto;
+  display: block;
+}
+
+/* Links */
+.navbarLinks {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: clamp(10px, 2vw, 18px);
+  padding: clamp(6px, 1.5vw, 8px)
+           clamp(10px, 2.5vw, 14px);
+  font-size: clamp(12px, 2.5vw, 14px);
+}
+
+.navbarLinks li {
+  cursor: pointer;
+}
+
+.navbarLinks li:hover {
+  text-decoration: underline;
+}
+
+/* CTA */
+.navbarCta {
+  padding: clamp(6px, 1.5vw, 8px)
+           clamp(12px, 3vw, 18px);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  font-size: clamp(12px, 2.5vw, 14px);
+}
+
+
+/* Heroo prev buttonnn */
+/* .hero .heroBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  cursor: pointer;
+}
+
+.hero .heroBtn span {
+  background: #b6ff00;
+  color: black;
+  border-radius: 50%;
+  padding: 4px 8px;
+} */
+
+.hero {
+  position: relative;
+  min-height: 140vh;
+  background: #0b0b0b;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 0px 150px;
+  color: white;
+  padding-top: 100px;
+}
+
+.hero .bgShapes {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero .shape {
+  position: absolute;
+  filter: blur(170px);
+  opacity: 1;
+  will-change: transform, width, height;
+}
+
+.hero .circle {
+  background: #bcf000;
+  border-radius: 50%;
+  animation: circleMove 18s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.hero .triangle {
+  width: 0;
+  height: 0;
+  border-left: 402.53px solid transparent;
+  border-right: 402.53px solid transparent;
+  border-bottom: 805.06px solid #6fa800;
+  animation: triangleMove 18s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.hero .square {
+  background: #f1f1f1;
+  animation: squareMove 18s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.hero .heroContent {
+  position: relative;
+  z-index: 2;
+  font-weight: 700;
+  /* padding-left: 100px; */
+  /* top: 10%;
+  transform: translateY(-50%); */
+}
+
+.hero .heroContent h1 {
+  font-weight: 450;
+}
+
+.hero .title {
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 32px;
+}
+
+/* =========================
+   Button (Override global safely)
+========================= */
+
+.submitBtn {
+  margin-top: clamp(12px, 2vw, 24px);
+  gap: clamp(12px, 2vw, 20px);
+  padding: clamp(12px, 1.5vw, 18px)
+           clamp(18px, 3vw, 32px);
+  border-radius: 999px;
+}
+
+.submitBtn span {
+  font-size: clamp(12px, 1.2vw, 15px);
+  letter-spacing: 0.08em;
+}
+
+.submitBtn .arrow {
+  width: clamp(28px, 3vw, 36px);
+  height: clamp(28px, 3vw, 36px);
+  font-size: clamp(14px, 1.5vw, 16px);
+}
+
+/* Animations stay GLOBAL SAFE — modules do NOT break keyframes */
+
+@keyframes circleMove {
+  0% {
+    width: 458.86px;
+    height: 458.86px;
+    transform: translate(960px, 343.14px) rotate(0deg);
+  }
+  33% {
+    width: 443.79px;
+    height: 443.79px;
+    transform: translate(755.61px, 411.02px) rotate(17.98deg);
+  }
+  66% {
+    width: 453.81px;
+    height: 453.81px;
+    transform: translate(599.88px, 571.43px) rotate(0deg);
+  }
+  100% {
+    width: 458.86px;
+    height: 458.86px;
+    transform: translate(960px, 343.14px) rotate(0deg);
+  }
+}
+
+@keyframes triangleMove {
+  0% {
+    transform: translate(1167.86px, 285.25px) rotate(0deg);
+  }
+  33% {
+    transform: translate(1075px, 200.51px) rotate(17.98deg);
+  }
+  66% {
+    transform: translate(-76px, 149px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1167.86px, 285.25px) rotate(0deg);
+  }
+}
+
+@keyframes squareMove {
+  0% {
+    width: 417.66px;
+    height: 417.66px;
+    transform: translate(1361.56px, -199px) rotate(0deg);
+  }
+  33% {
+    width: 403.94px;
+    height: 403.94px;
+    transform: translate(882.02px, -81.81px) rotate(17.98deg);
+  }
+  66% {
+    width: 413.06px;
+    height: 413.06px;
+    transform: translate(387.46px, 571.43px) rotate(0deg);
+  }
+  100% {
+    width: 417.66px;
+    height: 417.66px;
+    transform: translate(1361.56px, -199px) rotate(0deg);
+  }
+}
+
+/* =========================
+   Smooth Floating Animations
+========================= */
+@keyframes circleMove {
+  0% {
+    width: clamp(260px, 31.8vw, 458.86px);
+    height: clamp(260px, 31.8vw, 458.86px);
+    transform: translate(66.7vw, 38vh) rotate(0deg);
+  }
+
+  33% {
+    width: clamp(250px, 30.8vw, 443.79px);
+    height: clamp(250px, 30.8vw, 443.79px);
+    transform: translate(52.5vw, 45.6vh) rotate(18deg);
+  }
+
+  66% {
+    width: clamp(255px, 31.5vw, 453.81px);
+    height: clamp(255px, 31.5vw, 453.81px);
+    transform: translate(41.6vw, 63.5vh) rotate(0deg);
+  }
+
+  100% {
+    width: clamp(260px, 31.8vw, 458.86px);
+    height: clamp(260px, 31.8vw, 458.86px);
+    transform: translate(66.7vw, 38vh) rotate(0deg);
+  }
+}
+
+/* =========================
+   Triangle Animation
+========================= */
+
+@keyframes triangleMove {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  33% {
+    transform: translate3d(-8vw, -5vh, 0) rotate(12deg);
+  }
+
+  66% {
+    transform: translate3d(-20vw, 6vh, 0) rotate(0deg);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+}
+
+
+/* =========================
+   Square Animation
+========================= */
+
+@keyframes squareMove {
+  0% {
+    width: clamp(240px, 29vw, 417.66px);
+    height: clamp(240px, 29vw, 417.66px);
+    transform: translate(94.5vw, -22vh) rotate(0deg);
+  }
+
+  33% {
+    width: clamp(235px, 28vw, 403.94px);
+    height: clamp(235px, 28vw, 403.94px);
+    transform: translate(61.2vw, -9vh) rotate(18deg);
+  }
+
+  66% {
+    width: clamp(238px, 28.7vw, 413.06px);
+    height: clamp(238px, 28.7vw, 413.06px);
+    transform: translate(26.9vw, 63.5vh) rotate(0deg);
+  }
+
+  100% {
+    width: clamp(240px, 29vw, 417.66px);
+    height: clamp(240px, 29vw, 417.66px);
+    transform: translate(94.5vw, -22vh) rotate(0deg);
+  }
+}
+
+/* =========================
+   Section 2 : White bg
+========================= */
+
+.white {
+  background: white;
+  color: #000000;
+}
+
+.ethos {
+  padding: 200px 150px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 32px;
+  text-align: center;
+}
+
+.white h3 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.white h2 {
+  font-size: 2.25rem;
+  font-weight: 400;
+}
+.white h2 span {
+  font-weight: 500;
+}
+.white h1 {
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+/* =========================
+   Section 3 : Black bg
+========================= */
+
+.black {
+  background: rgb(0, 0, 0);
+  color: #ffffff;
+  padding: 200px 150px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 32px;
+  text-align: center;
+}
+
+.black h3 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.black h1 {
+  font-size: 3rem;
+  font-weight: 500;
+}

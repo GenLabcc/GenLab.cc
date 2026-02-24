@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styles from "./FAQ.module.css";
-import s1_1 from "@/assets/images/s1_1.png";
+import ArrowIcon from "@/components/ui/ArrowIcon.jsx";
+
+import photo1 from "@/assets/images/henrich1.png";
 
 const faqs = [
   {
@@ -40,21 +42,30 @@ export default function FAQ() {
   return (
     <div>
       {/* meet */}
-      <section className={`${styles.white} ${styles.meet}`}>
+      <section id="capabilities" className={`${styles.white} ${styles.meet}`}>
         <div className={styles.left}>
-          <img src={s1_1} alt={"altText"} />
+          <img src={photo1} alt={"altText"} />
         </div>
 
         <div className={styles.right}>
           <h3>MEET THE GEN Z MINDS BEHIND THE WORK</h3>
+          <div>
+            <h1>Henrich P</h1>
+            <h2>Founder</h2>
+          </div>
+
           <p>
-            We are a small group of creative thinkers, sharp creators, and doers
-            who care deeply about quality. This is a team that blends creativity
-            with clarity, ideas with execution, and ambition with
-            responsibility.
+            From India's southern tip in Nagercoil, where big dreams start
+            small. Building the world's largest Gen Z hub for creativity and AI.
+            Scaling to global stages, turning young creators' raw ideas into
+            real-world solutions that truly matter. Because every Gen Z deserves
+            to be a design thinker.
           </p>
           <button className={styles.heroBtn}>
-            MEET THE TEAM <span>→</span>
+            MEET THE TEAM{" "}
+            <span>
+              <ArrowIcon />
+            </span>
           </button>
         </div>
       </section>

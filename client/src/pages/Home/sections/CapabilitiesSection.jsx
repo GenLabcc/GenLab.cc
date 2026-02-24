@@ -93,7 +93,7 @@ export default function CapabilitiesSection() {
   }, []);
 
   return (
-    <section ref={containerRef} className={styles.container}>
+    <section id="verticals" ref={containerRef} className={styles.container}>
       {/* <div className={styles.sticky}> */}
       {/* Sticky Image Column */}
       <div className={styles.imageColumn}>

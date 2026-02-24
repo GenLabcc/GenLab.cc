@@ -2,6 +2,7 @@ import styles from "./Home.module.css";
 import Navbar from "@/components/Navbar/Navbar.jsx";
 import HeroSection from "@/pages/Home/sections/HeroSection.jsx";
 import CapabilitiesSection from "@/pages/Home/sections/CapabilitiesSection.jsx";
+// import CapabilitiesSectionTwo from "@/pages/Home/sections/CapabilitiesSectionTwo.jsx";
 import CardSequence from "@/pages/Home/sections/CardSequence.jsx";
 import ImpactStats from "@/pages/Home/sections/ImpactStats.jsx";
 import PartnersSection from "@/pages/Home/sections/PartnersSection.jsx";
@@ -15,8 +16,9 @@ import Footer from "@/components/Footer/Footer.jsx";
 export default function Home() {
   return (
     <div className={styles.home}>
-      <Navbar />
+      
       <HeroSection />
+      {/* <CapabilitiesSectionTwo /> */}
 
       <CardSequence />
       
@@ -28,7 +30,7 @@ export default function Home() {
       <FAQ />
       <ConnectSection />
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

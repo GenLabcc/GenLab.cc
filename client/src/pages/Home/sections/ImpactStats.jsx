@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./ImpactStats.module.css";
+import circle from "@/assets/images/green_sphere.webp";
 
 const ImpactStats = () => {
   return (
@@ -10,7 +11,7 @@ const ImpactStats = () => {
         <div className={styles.headingWrapper}>
           <div className={styles.topRow}>
             <div className={styles.logo}>
-              <img src="/black.png" alt="GenLab Logo" />
+              <img src="/logo-black.svg" alt="GenLab Logo" />
             </div>
             <h2 className={styles.lineOne}>Gen Z Powered</h2>
           </div>
@@ -53,6 +54,11 @@ const ImpactStats = () => {
           </div>
         </div>
       </div>
+
+      <div className={styles.sphereContainer}>
+      <img src={circle} className={styles.rotateAnticlockwise} alt="Rotating Sphere" />
+    </div>
+
     </section>
   );
 };

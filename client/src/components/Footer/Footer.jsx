@@ -17,11 +17,21 @@ export default function Footer() {
         {/* Column 2 - Navigation */}
         <div className={styles.col}>
           <ul className={styles.links}>
-            <li>About</li>
-            <li>Verticals</li>
-            <li>People</li>
-            <li>Careers</li>
-            <li>Contact</li>
+            <li>
+              <a href="#about">About</a>
+            </li>
+            <li>
+              <a href="#verticals">Verticals</a>
+            </li>
+            <li>
+              <a href="#capabilities">People</a>
+            </li>
+            <li>
+              <a href="#connect">Careers</a>
+            </li>
+            <li>
+              <a href="#connect">Contact</a>
+            </li>
           </ul>
         </div>
 
@@ -29,13 +39,25 @@ export default function Footer() {
         <div className={styles.col}>
           <h4>Connect with us</h4>
           <div className={styles.socials}>
-            <a href="#">
+            <a
+              href="https://in.linkedin.com/company/genlabz"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaLinkedinIn />
             </a>
-            <a href="#">
+            <a
+              href="https://www.instagram.com/genlab.cc/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaInstagram />
             </a>
-            <a href="#">
+            <a
+              href="https://wa.me/919994535120"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaWhatsapp />
             </a>
           </div>
@@ -49,7 +71,11 @@ export default function Footer() {
             <br />
             Tamil Nadu 629001
           </p>
-          <p className={styles.phone}>+91 99945 35120</p>
+          <p className={styles.phone}>
+            <a href="tel:+91999435120">
+              +91 99945 35120
+            </a>
+          </p>
         </div>
       </div>
 

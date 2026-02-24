@@ -1,0 +1,5 @@
+.icon {
+  width: clamp(14px, 1.6vw, 18px);
+  height: auto;
+  transition: transform 0.3s ease;
+}

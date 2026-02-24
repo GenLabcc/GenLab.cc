@@ -4,6 +4,7 @@
   min-height: clamp(500px, 80vh, 900px);
   display: grid;
   grid-template-columns: 0.9fr 1fr;
+  background: #BCF000;
 }
 
 .meet .left img {
@@ -16,7 +17,7 @@
   padding: clamp(40px, 6vw, 95px);
   display: flex;
   flex-direction: column;
-  gap: clamp(20px, 3vw, 40px);
+  gap: clamp(20px, 3vw, 35px);
   align-self: center;
 }
 
@@ -27,12 +28,22 @@
   font-weight: 400;
 }
 
+.meet .right h1 {
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 500;
+}
+
+.meet .right h2 {
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: 500;
+}
+
 /* Main paragraph */
 .meet .right p {
-  font-size: clamp(16px, 2.2vw, 25px);
-  line-height: 1.6;
-  font-weight: 500;
-  max-width: 650px;
+  font-size: clamp(16px, 2.2vw, 19px);
+  /* line-height: 1; */
+  letter-spacing: 1px;
+  max-width: 600px;
 }
 
 /* Button */
@@ -53,15 +64,20 @@
 
 .meet .right .heroBtn span {
   background: #000;
-  color: #fff;
   border-radius: 50%;
   width: clamp(26px, 2vw, 32px);
   height: clamp(26px, 2vw, 32px);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
   transition: 0.3s ease;
+
+  /* color: #fff;
+  font-weight: bold; */
+}
+
+.meet .right .heroBtn span svg {
+  stroke: #fff;
 }
 
 .meet .right .heroBtn span:hover {
@@ -159,7 +175,9 @@
   }
 
   .meet .left {
-    height: clamp(300px, 50vw, 450px);
+    width: 100%;
+    height: auto;
+    /* height: clamp(300px, 50vw, 500px); */
   }
 
   .meet .right {
@@ -169,6 +187,10 @@
 
   .meet .right p {
     max-width: 600px;
+  }
+
+  .meet .right .heroBtn {
+    align-self: center;
   }
 
   .open {

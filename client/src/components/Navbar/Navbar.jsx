@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './Navbar.module.css';
-import logo from '@/assets/white.png';
+import logo from '@/assets/logo-white.svg';
+// import logo from '/logo-black.svg';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -24,11 +25,11 @@ export default function Navbar() {
           open ? styles.active : ''
         }`}
       >
-        <li>About</li>
-        <li>Verticals</li>
-        <li>People</li>
-        <li>Careers</li>
-        <li className={styles.navbarCta}>Contact us</li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#verticals">Verticals</a></li>
+        <li><a href="#capabilities">People</a></li>
+        <li><a href="#connect">Careers</a></li>
+        <li className={styles.navbarCta}><a href="#connect">Contact us</a></li>
       </ul>
     </nav>
   );

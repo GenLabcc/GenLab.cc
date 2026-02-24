@@ -45,7 +45,8 @@
 
 /* Inputs */
 .form input,
-.form textarea {
+.form textarea,
+.form select {
   flex: 1;
   background: #FFFFFF1A;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -56,19 +57,37 @@
   transition: 0.3s ease;
 }
 
+.form select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color: #fff;  
+
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23fff' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center; /* ⬅ controls arrow position */
+}
+
+.form select option {
+  background-color: #FFFFFF1A;
+  color: #fff;
+}
+
 .form textarea {
   resize: none;
   min-height: clamp(120px, 10vw, 160px);
 }
 
 .form input::placeholder,
-.form textarea::placeholder {
+.form textarea::placeholder,
+.form select::placeholder {
   color: #F0F0F0;
   opacity: 1;
 }
 
 .form input:focus,
-.form textarea:focus {
+.form textarea:focus,
+.form select:focus {
   border: 1px solid #BCF000;
 }
 

@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./ConnectSection.module.css";
+import ArrowIcon from "@/components/ui/ArrowIcon.jsx";
 
 const ConnectSection = () => {
   return (
-    <section className={styles.connectSection}>
+    <section id="connect" className={styles.connectSection}>
       <div className={styles.left}>
         <h2 className={styles.heading}>
           LET’S <br /> CONNECT
@@ -19,7 +20,14 @@ const ConnectSection = () => {
 
           <div className={styles.row}>
             <input type="text" placeholder="Phone (Optional)" />
-            <input type="text" placeholder="How did you hear about GenLab?" />
+            <select defaultValue="" className={styles.select}>
+              <option value="" disabled>
+                Reason
+              </option>
+              <option value="career">Career</option>
+              <option value="product">Product Enquiry</option>
+              <option value="branding">Branding</option>
+            </select>
           </div>
 
           <textarea
@@ -38,7 +46,9 @@ const ConnectSection = () => {
 
           <button type="submit" className={styles.submitBtn}>
             <span>SUBMIT</span>
-            <div className={styles.arrow}>→</div>
+            <div className={styles.arrow}>
+              <ArrowIcon />
+            </div>
           </button>
         </form>
       </div>
