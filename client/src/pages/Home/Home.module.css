@@ -66,6 +66,10 @@ button div {
   transition: 0.3s ease;
 }
 
+/* button div svg{
+  stroke: #000;
+} */
+
 button .arrow {
   display: block;
   /* line-height: 1; */

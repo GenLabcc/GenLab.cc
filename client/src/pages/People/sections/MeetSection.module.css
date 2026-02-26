@@ -1,0 +1,60 @@
+/* ================= MEET SECTION ================= */
+
+.meet {
+  min-height: clamp(500px, 80vh, 900px);
+  display: grid;
+  grid-template-columns: 0.9fr 1fr;
+}
+
+.meet .left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.meet .right {
+  padding: clamp(40px, 6vw, 95px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vw, 40px);
+  align-self: center;
+}
+
+/* Small heading */
+.meet .right h3 {
+  font-size: clamp(12px, 1.2vw, 16px);
+  letter-spacing: 0.08em;
+  font-weight: 400;
+}
+
+/* Main paragraph */
+.meet .right p {
+  font-size: clamp(16px, 2.2vw, 25px);
+  line-height: 1.4;
+  letter-spacing: 1px;
+  font-weight: 500;
+  max-width: 650px;
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 1024px) {
+
+  .meet {
+    grid-template-columns: 1fr;
+  }
+
+  .meet .left {
+    height: clamp(300px, 50vw, 450px);
+  }
+
+  .meet .right {
+    text-align: center;
+    align-items: center;
+  }
+
+  .meet .right p {
+    max-width: 600px;
+  }
+
+}

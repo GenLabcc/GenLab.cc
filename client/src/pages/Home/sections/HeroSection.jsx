@@ -17,12 +17,28 @@ export default function Hero() {
             Creative Powerhouse
           </h1>
 
-          <button type="submit" className={styles.submitBtn}>
+          {/* <button type="submit" className={styles.submitBtn}>
+            <span>JOIN US</span>
+            <div className={styles.arrow}>
+              <ArrowIcon />
+            </div>
+          </button> */}
+          <button
+            type="button"
+            className={styles.submitBtn}
+            onClick={() =>
+              window.open(
+                "https://chat.whatsapp.com/L0n2kNQfSbR3lwhmN5mNVJ",
+                "_blank",
+              )
+            }
+          >
             <span>JOIN US</span>
             <div className={styles.arrow}>
               <ArrowIcon />
             </div>
           </button>
+          
         </div>
       </section>
 

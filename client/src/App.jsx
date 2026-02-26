@@ -1,9 +1,15 @@
 import Navbar from "@/components/Navbar/Navbar.jsx";
-
-// import LandingHero from "./components/LandingHero/LandingHero";
-import Home from "@/pages/Home/Home.jsx"
-
 import Footer from "@/components/Footer/Footer.jsx";
+// import LandingHero from "./components/LandingHero/LandingHero";
+
+import ScrollToTop from "@/components/ScrollToTop";
+import Home from "@/pages/Home/Home.jsx"
+import People from "@/pages/People/People.jsx";
+
+
+
+import { Routes, Route } from "react-router-dom";
+
 import "./App.css";
 
 function App() {
@@ -11,8 +17,15 @@ function App() {
     <>
       {/* <LandingHero /> */}
 
+      <ScrollToTop />
+      
       <Navbar />
-      <Home/>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/people" element={<People />} />
+      </Routes>
+
       <Footer />
     </>
   );

@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./FAQ.module.css";
 import ArrowIcon from "@/components/ui/ArrowIcon.jsx";
 
-import photo1 from "@/assets/images/henrich1.png";
+import photo1 from "@/assets/images/people/henrich2.png";
 
 const faqs = [
   {

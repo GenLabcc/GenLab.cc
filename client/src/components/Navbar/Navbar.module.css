@@ -7,7 +7,6 @@
   display: flex;
   align-items: center;
   gap: clamp(10px, 2.5vw, 24px);
-  /* color: white; */
   letter-spacing: 0.08em;
   /* width: min(95%, 1200px); */
 }
@@ -46,7 +45,7 @@
   transition: all 0.3s ease;
 }
 
-.navbarLinks a {
+/* .navbarLinks a {
   text-decoration: none;
   color: #fff;
   display: block;
@@ -57,6 +56,39 @@
 .navbarLinks a:hover {
   opacity: 0.7;
   margin-bottom: 2px;
+  text-decoration: underline;
+} */
+
+.navbarLinks a,
+.navbarLinks a:visited {
+  position: relative;
+  text-decoration: none;
+  color: white;
+  padding: 4px 0;
+}
+
+/* Animated underline */
+.navbarLinks a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: white;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+
+/* Hover animation */
+.navbarLinks a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Active link underline */
+.activeLink::after {
+  transform: scaleX(1);
   text-decoration: underline;
 }
 
@@ -82,6 +114,50 @@
   color: white;
   margin: 0;
 }
+
+/* ========================= */
+/* People */
+/* ========================= */
+
+.peopleNavbar {
+  position: absolute;
+  z-index: 100;
+  top: clamp(15px, 3vw, 28px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 2.5vw, 24px);
+  letter-spacing: 0.08em;
+}
+
+.peopleNavbar .glass {
+  background: #1010101A;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 999px;
+}
+
+.peopleNavbar .navbarLogo img{
+  filter: invert(1);
+}
+
+.peopleNavbar .navbarLinks a {
+  color: #222;
+}
+
+.peopleNavbar .navbarLinks a::after {
+  background: black;
+}
+
+.peopleNavbar .navbarCta {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+/* .peopleNavbar .navbarLinks a:hover {
+  opacity: 0.7;
+  text-decoration: underline;
+} */
 
 /* ========================= */
 /* Responsive Behavior */

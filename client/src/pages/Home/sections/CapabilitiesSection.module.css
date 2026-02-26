@@ -1,22 +1,22 @@
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 100vh;
-  background: black;
-  color: white;
-  width: 100%;
-  overflow: hidden;
+.gallery {
+  display: flex;
 }
 
 /* ========================= */
 /* LEFT — STICKY IMAGES */
 /* ========================= */
 
-.imageColumn {
-  position: sticky;
-  top: 0;
+.left {
+  width: 50%;
   height: 100vh;
+  position: relative;
   overflow: hidden;
+}
+
+.imageStack {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .image {
@@ -26,76 +26,52 @@
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-.image.active {
-  opacity: 1;
-  z-index: 1;
-}
-
-/* Hide mobile images on desktop */
-.mobileImage {
-  display: none;
 }
 
 /* ========================= */
 /* RIGHT — TEXT */
 /* ========================= */
 
-.textColumn {
-  height: 100vh;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
-  padding: clamp(60px, 8vw, 120px) 0;
-
-  /* Hide scrollbar for Chrome, Safari, Edge */
-  /* scrollbar-width: none; Firefox */
-  /* -ms-overflow-style: none; IE/Edge */
+.right {
+  width: 50%;
 }
 
-/* hide scrollbar */
-.textColumn::-webkit-scrollbar {
-  width: 0px;
-  background: transparent;
-}
+.textSection {
+  /* height: 100vh; */
+  /* min-height: 100vh; */
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 4vw, 40px);
+  /* padding: clamp(60px, 8vw, 120px) 0; */
+  padding: clamp(40px, 6vw, 80px) clamp(40px, 6vw, 100px);
+  color: white;
+  background: black;
 
-/* thin black */
-.textColumn {
-   /* Firefox scrollbar */
+  /* Firefox scrollbar */
   scrollbar-width: thin; /* thin scrollbar */
   scrollbar-color: #444444 #0a0a0a; /* thumb color / track color */
 }
 
-
-.block {
-  height: 100vh;
-  scroll-snap-align: start;
-  display: flex;
-  align-items: center;
-  padding: clamp(40px, 6vw, 100px);
-}
-
-.textContent {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(24px, 4vw, 40px);
-  width: 100%;
+/* hide scrollbar */
+.textSection::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
 }
 
 /* ========================= */
 /* TYPOGRAPHY */
 /* ========================= */
 
-.textContent h3 {
+.textSection h3 {
   font-size: clamp(0.75rem, 1vw, 0.9rem);
   font-weight: 400;
   opacity: 0.6;
   letter-spacing: 1px;
 }
 
-.textContent h2 {
-  font-size: clamp(1.6rem, 3vw, 2.6rem);
+.textSection h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
   font-weight: 300;
   line-height: 1.2;
   letter-spacing: 1px;
@@ -142,7 +118,9 @@
 
 .listItems .arrow {
   opacity: 0.6;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .listItem.clickable:hover .arrow {
@@ -156,56 +134,35 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
+.mobileImage {
+  display: none;
+}
+
+.mobileImage img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  margin-bottom: 24px;
+}
+
 /* ========================= */
 /* MOBILE */
 /* ========================= */
 
-@media (max-width: 768px) {
-
-  .container {
-    display: block;
-    height: auto;
-    overflow: visible;
-    padding: 0 30px; /* 👈 horizontal breathing room */
+@media (max-width: 1023px) {
+  .gallery {
+    flex-direction: column;
   }
 
-  /* Hide sticky image column */
-  .imageColumn {
+  .left {
     display: none;
   }
 
-  /* Image inside each block */
   .mobileImage {
     display: block;
-    width: 100%;
-    height: clamp(280px, 60vw, 480px);
-    object-fit: cover;
-    margin-bottom: 32px;
-    border-radius: 12px; 
   }
 
-  .textColumn {
-    height: auto;
-    overflow: visible;
-    padding: 0;
-  }
-
-  .block {
-    height: auto;
-    padding: 60px 0; /* remove side padding */
-    flex-direction: column;
-    align-items: flex-start;
-    max-width: 680px;     /* 👈 prevents stretch */
-    margin: 0 auto;       /* 👈 center content */
-  }
-
-  .textContent {
-    gap: 28px;
+  .right {
     width: 100%;
   }
-
-  .textContent h2 {
-    max-width: 32ch; /* 👈 better readable heading width */
-  }
-
 }

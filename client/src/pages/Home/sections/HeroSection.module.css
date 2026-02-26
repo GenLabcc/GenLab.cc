@@ -52,7 +52,7 @@
   top: 20%;
 
   transform-origin: center;
-  animation: triangleMove 18s ease-in-out infinite;
+  /* animation: triangleMove 18s ease-in-out infinite; */
 }
 
 .triangle {
@@ -65,7 +65,7 @@
   top: 15%;
   left: -5%;
 
-  animation: triangleMove 24s ease-in-out infinite;
+  /* animation: triangleMove 24s ease-in-out infinite; */
 }
 
 @keyframes triangleMove {
@@ -92,7 +92,7 @@
   background: #bcf000;
   top: -10%;
   right: -5%;
-  animation: circleMove 24s ease-in-out infinite;
+  /* animation: circleMove 24s ease-in-out infinite; */
 }
 
 @keyframes circleMove {

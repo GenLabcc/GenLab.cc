@@ -1,18 +1,23 @@
 import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./CapabilitiesSection.module.css";
+import ArrowIcon from "@/components/ui/ArrowIcon.jsx";
 
 import s1_1 from "@/assets/images/s1_1.png";
-
-import s1_2 from "@/assets/images/s1_2.png";
+import s1_2 from "@/assets/images/s1_4.png";
 import s1_3 from "@/assets/images/s1_3.png";
-import s1_4 from "@/assets/images/s1_4.png";
+import s1_4 from "@/assets/images/s1_2.png";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function CapabilitiesSection() {
-  const containerRef = useRef(null);
+  const galleryRef = useRef(null);
 
   const sections = [
     {
       image: s1_1,
+      id: "",
       label: "OUR CAPABILITIES",
       heading:
         "We’re a Gen Z team of strategists, designers and AI builders. We blend bold branding, smart automation and future-ready upskilling to help you launch what’s next.",
@@ -22,21 +27,21 @@ export default function CapabilitiesSection() {
     },
     {
       image: s1_2,
-      heading: "GenLab.Brand Studio",
+      id: "launchpad",
+      heading: "GenLab.Launchpad",
       list: [
-        "Brand Strategy",
-        "Creative Direction",
-        "Identity Design",
-        "Packaging Design",
-        "UX / UI",
-        "Video & Animation",
-        "Content Production & 3D",
-        "Social Media Management",
+        "Upskilling Programs",
+        "Campus & Corporate Training",
+        "Innovation & Incubation Support",
+        "Hackathons & Build Sprints",
+        "Career & Portfolio Labs",
+        "Community & Events",
       ],
       showButton: true,
     },
     {
       image: s1_3,
+      id: "ai",
       heading: "GenLab.AI Forge",
       list: [
         "AI Product Discovery & Strategy",
@@ -51,116 +56,145 @@ export default function CapabilitiesSection() {
     },
     {
       image: s1_4,
-      heading: "GenLab.Launchpad",
+      id: "brand",
+      heading: "GenLab.Brand Studio",
       list: [
-        "Upskilling Programs",
-        "Campus & Corporate Training",
-        "Innovation & Incubation Support",
-        "Hackathons & Build Sprints",
-        "Career & Portfolio Labs",
-        "Community & Events",
+        "Brand Strategy",
+        "Creative Direction",
+        "Identity Design",
+        "Packaging Design",
+        "UX / UI",
+        "Video & Animation",
+        "Content Production & 3D",
+        "Social Media Management",
       ],
       showButton: true,
     },
   ];
 
   useEffect(() => {
-    const blocks = containerRef.current.querySelectorAll(`.${styles.block}`);
-    const images = containerRef.current.querySelectorAll(`.${styles.image}`);
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = Array.from(blocks).indexOf(entry.target);
+      // =========================
+      // DESKTOP
+      // =========================
+      mm.add("(min-width: 1024px)", () => {
+        const textSections = gsap.utils.toArray(`.${styles.textSection}`);
+        const images = gsap.utils.toArray(`.${styles.image}`);
 
-            images.forEach((img) => img.classList.remove(styles.active));
+        gsap.set(images, { opacity: 0 });
+        gsap.set(images[0], { opacity: 1 });
 
-            if (images[index]) {
-              images[index].classList.add(styles.active);
-            }
-          }
+        ScrollTrigger.create({
+          trigger: galleryRef.current,
+          start: "top top",
+          end: "bottom bottom",
+          pin: `.${styles.left}`,
         });
-      },
-      {
-        threshold: 0.6,
-      },
-    );
 
-    blocks.forEach((block) => observer.observe(block));
+        textSections.forEach((section, index) => {
+          const heading = section.querySelector("h2");
 
-    return () => observer.disconnect();
+          ScrollTrigger.create({
+            trigger: heading,
+            start: "top 60%",
+            end: "top 40%",
+            scrub: true,
+            onEnter: () => {
+              gsap.to(images, { opacity: 0, duration: 0.4 });
+              gsap.to(images[index], { opacity: 1, duration: 0.4 });
+            },
+            onEnterBack: () => {
+              gsap.to(images, { opacity: 0, duration: 0.4 });
+              gsap.to(images[index], { opacity: 1, duration: 0.4 });
+            },
+          });
+        });
+      });
+
+      // =========================
+      // MOBILE
+      // =========================
+      mm.add("(max-width: 1023px)", () => {
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      });
+    }, galleryRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section id="verticals" ref={containerRef} className={styles.container}>
-      {/* <div className={styles.sticky}> */}
-      {/* Sticky Image Column */}
-      <div className={styles.imageColumn}>
-        {sections.map((section, index) => (
-          <img
-            key={index}
-            src={section.image}
-            alt={section.heading}
-            className={`${styles.image} ${index === 0 ? styles.active : ""}`}
-          />
-        ))}
+    <section id="verticals" ref={galleryRef} className={styles.gallery}>
+      {/* ========================= */}
+      {/* LEFT — STICKY IMAGES */}
+      {/* ========================= */}
+
+      <div className={styles.left}>
+        <div className={styles.imageStack}>
+          {sections.map((section, index) => (
+            <img
+              key={index}
+              src={section.image}
+              alt={section.heading}
+              // ✅ CHANGED: use activeIndex instead of index === 0
+              className={styles.image}
+            />
+          ))}
+        </div>
       </div>
 
-      {/* Scrollable Text Column */}
-      <div className={styles.textColumn}>
+      {/* ========================= */}
+      {/* RIGHT — SCROLLABLE TEXT */}
+      {/* ========================= */}
+
+      <div className={styles.right}>
         {sections.map((section, index) => (
-          <div key={index} className={styles.block}>
-            <div className={styles.textContent}>
-              {/* Mobile Image */}
-              <img
-                src={section.image}
-                alt={section.heading}
-                className={styles.mobileImage}
-              />
-
-              {section.label && <h3>{section.label}</h3>}
-
-              <h2>{section.heading}</h2>
-
-              <ul className={styles.list}>
-                {section.list.map((item, i) => (
-                  <li key={i} className={styles.listItems}>
-                    <div
-                      className={`${styles.listItem} ${
-                        section.clickableList ? styles.clickable : ""
-                      }`}
-                    >
-                      <span className={styles.number}>
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-
-                      <span className={styles.itemText}>{item}</span>
-
-                      {section.clickableList && (
-                        <span className={styles.arrow}>{">"}</span>
-                      )}
-                    </div>
-
-                    <span className={styles.line}></span>
-                  </li>
-                ))}
-              </ul>
-
-              {section.showButton && (
-                // <button className={styles.cta}>
-                //   START WITH US <span>→</span>
-                // </button>
-                <button type="submit" className={styles.submitBtn}>
-                  <span>START WITH US</span>
-                  <div className={styles.arrow}>→</div>
-                </button>
-              )}
+          <div key={index} className={styles.textSection}>
+            {/* MOBILE IMAGE */}
+            <div className={styles.mobileImage}>
+              <img src={section.image} alt={section.heading} />
             </div>
+
+            {section.label && <h3>{section.label}</h3>}
+
+            <h2>{section.heading}</h2>
+
+            <ul className={styles.list}>
+              {section.list.map((item, i) => (
+                <li key={i} id={section.id} className={styles.listItems}>
+                  <div
+                    className={`${styles.listItem} ${
+                      section.clickableList ? styles.clickable : ""
+                    }`}
+                  >
+                    <span className={styles.number}>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+
+                    <span className={styles.itemText}>{item}</span>
+
+                    {section.clickableList && (
+                      <span className={styles.arrow}>{">"}</span>
+                    )}
+                  </div>
+
+                  <span className={styles.line}></span>
+                </li>
+              ))}
+            </ul>
+
+            {section.showButton && (
+              <button type="submit" className={styles.submitBtn}>
+                <span>START WITH US</span>
+                <div className={styles.arrow}>
+                  <ArrowIcon />
+                </div>
+              </button>
+            )}
           </div>
         ))}
       </div>
-      {/* </div> */}
     </section>
   );
 }

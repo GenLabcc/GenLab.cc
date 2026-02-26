@@ -1,4 +1,5 @@
 import styles from "./Footer.module.css";
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 import { FaLinkedinIn, FaInstagram, FaWhatsapp } from "react-icons/fa";
@@ -12,32 +13,6 @@ export default function Footer() {
           <div className={styles.navbarLogo}>
             <img src={logo} alt="GenLab logo" />
           </div>
-        </div>
-
-        {/* Column 2 - Navigation */}
-        <div className={styles.col}>
-          <ul className={styles.links}>
-            <li>
-              <a href="#about">About</a>
-            </li>
-            <li>
-              <a href="#verticals">Verticals</a>
-            </li>
-            <li>
-              <a href="#capabilities">People</a>
-            </li>
-            <li>
-              <a href="#connect">Careers</a>
-            </li>
-            <li>
-              <a href="#connect">Contact</a>
-            </li>
-          </ul>
-        </div>
-
-        {/* Column 3 - Social */}
-        <div className={styles.col}>
-          <h4>Connect with us</h4>
           <div className={styles.socials}>
             <a
               href="https://in.linkedin.com/company/genlabz"
@@ -63,12 +38,51 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Column 2 - Navigation */}
+        <div className={styles.col}>
+          <ul className={styles.links}>
+            <li>
+              <a href="#about">About</a>
+            </li>
+            <li>
+              <a href="#verticals">Verticals</a>
+            </li>
+            {/* <li>
+              <Link to="/people">People</Link>
+            </li> */}
+            <li>
+              <a href="#capabilities">People</a>
+            </li>
+            <li>
+              <a href="#connect">Careers</a>
+            </li>
+            <li>
+              <a href="#connect">Contact</a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Column 3 - Social */}
+        <div className={styles.col}>
+          <ul className={styles.links}>
+            <li>
+              <a href="#launchpad">Launchpad</a>
+            </li>
+            <li>
+              <a href="#ai">AI Forge</a>
+            </li>
+            <li> 
+              <a href="#brand">Brand Studio</a>
+            </li>
+          </ul>
+          
+        </div>
+
         {/* Column 4 - Address */}
         <div className={styles.col}>
-          <h4>Head Office</h4>
+          {/* <h4>Head Office</h4> */}
           <p>
             121/C, Chetti Kulam, Simon Nagar, Nagercoil,
-            <br />
             Tamil Nadu 629001
           </p>
           <p className={styles.phone}>
@@ -76,13 +90,19 @@ export default function Footer() {
               +91 99945 35120
             </a>
           </p>
+          <p className={styles.phone}>
+            <a href="mailto:info@genlab.cc">
+              info@genlab.cc
+            </a>
+          </p>
         </div>
       </div>
 
       {/* Bottom Row */}
       <div className={styles.bottom}>
-        <span>Privacy Policy</span>
-        <span>Terms and Conditions</span>
+        {/* <span>Privacy Policy</span>
+        <span>Terms and Conditions</span> */}
+        <span>© 2026, GenLab Pvt. Ltd. All rights reserved.</span>
       </div>
 
       {/* Gradient Glow */}
