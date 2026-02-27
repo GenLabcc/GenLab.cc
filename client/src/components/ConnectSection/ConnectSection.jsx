@@ -166,12 +166,17 @@ const ConnectSection = () => {
                   errors.reason ? styles.inputError : ""
                 }`}
               >
-                <option value="" disabled>
-                  Reason
-                </option>
-                <option value="career">Career</option>
-                <option value="product">Product Enquiry</option>
-                <option value="branding">Branding</option>
+                <option value="" disabled>Reason</option>
+                <option value="careers">Careers</option>
+                <option value="internships">Internships</option>
+                <option value="training_programs_courses">Training programs / Courses</option>
+                <option value="incubation_support">Incubation support</option>
+                <option value="guest_lectures_campus_visits">Guest lectures / Campus visits</option>
+                <option value="collaborations_partnerships">Collaborations / Partnerships</option>
+                <option value="branding_and_design_services">Branding and design services</option>
+                <option value="digital_marketing_services">Digital marketing services</option>
+                <option value="ai_solutions_automation">AI solutions / Automation</option>
+                <option value="software_development_tech_projects">Software development / Tech projects</option>
               </select>
               {errors.reason && (
                 <span className={styles.fieldError}>{errors.reason}</span>
