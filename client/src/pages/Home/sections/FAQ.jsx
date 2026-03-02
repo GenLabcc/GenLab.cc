@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./FAQ.module.css";
 import ArrowIcon from "@/components/ui/ArrowIcon.jsx";
 
@@ -8,32 +9,33 @@ const faqs = [
   {
     question: "What services does GenLab offer?",
     answer:
-      "GenLab provides brand strategy, creative direction, UI/UX, video and animation, content production and 3D, and social media management. In AI we deliver product discovery and strategy, custom AI product development, AI business automation.",
+      "GenLab offers three core verticals: Brand Studio for branding, content, and design, AI Forge for AI solutions and automation, and Launchpad for Gen Z upskilling, hackathons, and startup incubation.",
   },
   {
     question: "Do you work with clients outside Tamil Nadu or India?",
     answer:
-      "GenLab serves clients across India from Tamil Nadu (Nagercoil base) to throughout India with scalable, global-ready AI solutions.",
+      "Yes. GenLab works with clients across India and globally through remote collaboration, online reviews, and virtual workshops.",
   },
   {
     question: "Will you also help with development?",
     answer:
-      "Yes, GenLab builds custom AI products, agentic workflows, and full-stack solutions, handling everything from strategy to UI/UX and web or mobile app development.",
+      "Yes. Beyond strategy and design, GenLab supports end-to-end execution, including AI implementation, software development, and campaign rollout where required.",
   },
   {
     question: "What kind of support does GenLab Launchpad give to startups?",
     answer:
-      "GenLab Launchpad supports startups with incubation, hackathons, and mentorship, accelerating ideas through AI automation and real-world projects.",
+      "Launchpad supports startups with mentorship, idea validation, branding help, MVP building support, pitch preparation, and connections to potential partners, early talent, and networks.",
   },
   {
-    question: "What kind of support does GenLab Launchpad give to startups?",
+    question: "Can students and working professionals both join GenLab programs?",
     answer:
-      "GenLab Launchpad supports startups with incubation, hackathons, and mentorship, accelerating ideas through AI automation and real-world projects.",
+      "Yes. GenLab programs are designed for students, recent graduates, and working professionals who want to upskill, switch careers, or start their own ventures.",
   },
 ];
 
 export default function FAQ() {
   const [activeIndex, setActiveIndex] = useState(null);
+  const navigate = useNavigate();
 
   const toggleFAQ = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -51,7 +53,7 @@ export default function FAQ() {
           <h3>MEET THE GEN Z MINDS BEHIND THE WORK</h3>
           <div>
             <h1>Henrich P</h1>
-            <h2>Founder</h2>
+            <h2>Visionary</h2>
           </div>
 
           <p>
@@ -61,6 +63,8 @@ export default function FAQ() {
             real-world solutions that truly matter. Because every Gen Z deserves
             to be a design thinker.
           </p>
+
+          {/* onClick={() => navigate("/people")} */}
           <button className={styles.heroBtn}>
             MEET THE TEAM{" "}
             <span>

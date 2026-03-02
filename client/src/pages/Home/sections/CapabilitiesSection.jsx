@@ -150,7 +150,7 @@ export default function CapabilitiesSection() {
 
       <div className={styles.right}>
         {sections.map((section, index) => (
-          <div key={index} className={styles.textSection}>
+          <div key={index} id={section.id} className={styles.textSection}>
             {/* MOBILE IMAGE */}
             <div className={styles.mobileImage}>
               <img src={section.image} alt={section.heading} />
@@ -162,7 +162,7 @@ export default function CapabilitiesSection() {
 
             <ul className={styles.list}>
               {section.list.map((item, i) => (
-                <li key={i} id={section.id} className={styles.listItems}>
+                <li key={i} className={styles.listItems}>
                   <div
                     className={`${styles.listItem} ${
                       section.clickableList ? styles.clickable : ""
@@ -185,7 +185,11 @@ export default function CapabilitiesSection() {
             </ul>
 
             {section.showButton && (
-              <button type="submit" className={styles.submitBtn}>
+              <button type="button" className={styles.submitBtn}
+              onClick={() => {
+                const section = document.getElementById("connect");
+                section?.scrollIntoView({ behavior: "smooth" });
+              }}>
                 <span>START WITH US</span>
                 <div className={styles.arrow}>
                   <ArrowIcon />

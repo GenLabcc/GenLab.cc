@@ -88,7 +88,7 @@
 /* ================= FAQ SECTION ================= */
 
 .faqSection {
-  background: #0c0c0c;
+  background: #101010;
   color: #e5e5e5;
   padding: clamp(60px, 8vw, 120px) clamp(20px, 8vw, 8%);
 }

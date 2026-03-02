@@ -6,10 +6,10 @@ import styles from "./People.module.css";
 import personImg from "@/assets/images/people/henrich2.png";
 
 const people = [
-  { id: 1, name: "Henrich P", role: "Founder", image: personImg },
-  { id: 2, name: "Henrich P", role: "Founder", image: personImg },
-  { id: 3, name: "Henrich P", role: "Founder", image: personImg },
-  { id: 4, name: "Henrich P", role: "Founder", image: personImg },
+  { id: 1, name: "Henrich P", role: "Visionary", image: personImg },
+  { id: 2, name: "Ashvin V S", role: "Chief Operating Officer", image: personImg },
+  { id: 3, name: "Ranjit Pratap Singh N", role: "Head of Business", image: personImg },
+  { id: 4, name: "Bency P", role: "Operations Manager", image: personImg },
   { id: 5, name: "Henrich P", role: "Founder", image: personImg },
   { id: 6, name: "Henrich P", role: "Founder", image: personImg },
   { id: 7, name: "Henrich P", role: "Founder", image: personImg },

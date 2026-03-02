@@ -4,6 +4,7 @@
   min-height: clamp(500px, 80vh, 900px);
   display: grid;
   grid-template-columns: 0.9fr 1fr;
+  background: #EEEEEE;
 }
 
 .meet .left img {

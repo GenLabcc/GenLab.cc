@@ -13,32 +13,13 @@
   letter-spacing: 2px;
 }
 
+.page-wrapper {
+  position: relative;
+  z-index: 10; /* Above footer */
+  background: #101010 /* Important; change to white for footer bug fixes */
+}
+
 button, h1, h2, h3, h4, input, textarea, select {
   font-family: inherit;
   /* font-weight: inherit; */
 }
-
-/* Hide scrollbar for Chrome, Safari, Edge */
-/* ::-webkit-scrollbar {
-  width: 0px;
-  background: transparent;
-} */
-
-/* Hide scrollbar for Firefox */
-/* html {
-  scrollbar-width: none;
-} */
-
-/* Hide scrollbar for IE/Edge legacy */
-/* body {
-  -ms-overflow-style: none;
-} */
-
-
-/* Doesn't break Landing page */
-
-/* *,
-*::before,
-*::after {
-  box-sizing: border-box;
-} */

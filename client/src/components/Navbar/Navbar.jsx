@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
-import { Link, useLocation } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import logo from "@/assets/logo-white.svg";
 // import logo from '/logo-black.svg';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const isPeoplePage = location.pathname === "/people";
   const [activeSection, setActiveSection] = useState("");
 
@@ -33,6 +34,26 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleSectionClick = (id) => {
+    const section = document.getElementById(id);
+
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate(`/#${id}`);
+    }
+  };
+
+  // Close on path (page) change
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+
+  // CLose on #change
+  useEffect(() => {
+    setOpen(false);
+  }, [location]);
+
   return (
     <nav
       className={`${styles.navbar} ${isPeoplePage ? styles.peopleNavbar : ""}`}
@@ -54,27 +75,35 @@ export default function Navbar() {
           open ? styles.active : ""
         }`}
       >
+        {/* button is used to navigate to # (in home) from other pages */}
         <li>
-          <a
-            href="#about"
+          <button
+            onClick={() => {
+              handleSectionClick("about");
+              setOpen(false);
+            }}
             className={activeSection === "about" ? styles.activeLink : ""}
           >
             About
-          </a>
+          </button>
         </li>
 
         <li>
-          <a
-            href="#verticals"
+          <button
+            onClick={() => {
+              handleSectionClick("verticals");
+              setOpen(false);
+            }}
             className={activeSection === "verticals" ? styles.activeLink : ""}
           >
             Verticals
-          </a>
+          </button>
         </li>
 
         {/* <li>
           <Link
             to="/people"
+            onClick={() => setOpen(false)}
             className={location.pathname === "/people" ? styles.activeLink : ""}
           >
             People
@@ -82,23 +111,41 @@ export default function Navbar() {
         </li> */}
 
         <li>
-          <a
-            href="#capabilities"
-            className={activeSection === "capabilities" ? styles.activeLink : ""}
+          <button
+            onClick={() => {
+              handleSectionClick("capabilities");
+              setOpen(false);
+            }}
+            className={
+              activeSection === "capabilities" ? styles.activeLink : ""
+            }
           >
             People
-          </a>
+          </button>
         </li>
 
+        {/* Navigate to # of same page. So <a> is used. */}
         <li>
-          <a
-            href="#connect"
+          <button
+            onClick={() => {
+              handleSectionClick("connect");
+              setOpen(false);
+            }}
             className={activeSection === "connect" ? styles.activeLink : ""}
           >
             Careers
-          </a>
+          </button>
         </li>
-        <li className={styles.navbarCta}><a href="#connect">Contact us</a></li>
+        <li className={styles.navbarCta}>
+          <button
+            onClick={() => {
+              handleSectionClick("connect");
+              setOpen(false);
+            }}
+          >
+            Contact us
+          </button>
+        </li>
       </ul>
     </nav>
   );
