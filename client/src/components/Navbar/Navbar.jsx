@@ -71,9 +71,8 @@ export default function Navbar() {
       </button>
 
       <ul
-        className={`${styles.navbarLinks} ${styles.glass} ${
-          open ? styles.active : ""
-        }`}
+        className={`${styles.navbarLinks} ${styles.glass} ${open ? styles.active : ""
+          }`}
       >
         {/* button is used to navigate to # (in home) from other pages */}
         <li>
@@ -135,6 +134,15 @@ export default function Navbar() {
           >
             Careers
           </button>
+        </li>
+        <li>
+          <Link
+            to="/verify-certificate"
+            onClick={() => setOpen(false)}
+            className={location.pathname === "/verify-certificate" ? styles.activeLink : ""}
+          >
+            Certificate
+          </Link>
         </li>
         <li className={styles.navbarCta}>
           <button

@@ -5,6 +5,7 @@ import Footer from "@/components/Footer/Footer.jsx";
 import ScrollToTop from "@/components/ScrollToTop";
 import Home from "@/pages/Home/Home.jsx";
 import People from "@/pages/People/People.jsx";
+import VerifyCertificate from "@/pages/VerifyCertificate.jsx";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/people" element={<People />} />
+          <Route path="/verify-certificate" element={<VerifyCertificate />} />
         </Routes>
       </div>
 

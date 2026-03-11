@@ -1,3 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --color-custom-dark: #0b0b0b;
+  --color-custom-lime: #32CD32;
+  --font-clash: "Clash Display", sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -21,4 +29,3 @@ body {
   /* font-family: Inter, system-ui, sans-serif; */
   font-family: "Clash Display", sans-serif;
 }
-
