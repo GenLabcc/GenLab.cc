@@ -86,9 +86,13 @@ const VerifyCertificate = () => {
                         exit="exit"
                         className="w-full max-w-[480px] z-10 text-center"
                     >
-                        <div className="flex justify-center mb-6 sm:mb-12">
+                        <div className="flex justify-center" style={{ marginBottom: '11.29px' }}>
                             <Link to="/">
-                                <img src={logoWithSparkle} alt="GenLab" className="h-[36px] sm:h-[50px] w-auto" />
+                                <img 
+                                    src={logoWithSparkle} 
+                                    alt="GenLab" 
+                                    style={{ width: '200px', height: '47.037px', opacity: 1, transform: 'rotate(0deg)' }} 
+                                />
                             </Link>
                         </div>
 
@@ -151,8 +155,12 @@ const VerifyCertificate = () => {
                         exit="exit"
                         className="w-full max-w-[520px] z-10 text-center"
                     >
-                        <div className="flex justify-center mb-6 sm:mb-10">
-                            <img src={logoWithSparkle} alt="GenLab" className="h-[32px] sm:h-[45px] w-auto" />
+                        <div className="flex justify-center" style={{ marginBottom: '11.29px' }}>
+                            <img 
+                                src={logoWithSparkle} 
+                                alt="GenLab" 
+                                style={{ width: '200px', height: '47.037px', opacity: 1, transform: 'rotate(0deg)' }} 
+                            />
                         </div>
 
                         <div className="mb-10 sm:mb-26 px-4">
