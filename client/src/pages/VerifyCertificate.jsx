@@ -14,21 +14,47 @@ const VerifyCertificate = () => {
     const [certificateId, setCertificateId] = useState('');
     const [email, setEmail] = useState('');
 
-    // Mock data for verified state
-    const [verifiedData, setVerifiedData] = useState({
-        name: 'John Doe',
-        program: 'AI Automation Engineer',
-        startDate: '10/01/2025',
-        endDate: '12/02/2025',
-        certId: 'GL/INT/123'
-    });
+    const [loading, setLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [verifiedData, setVerifiedData] = useState(null);
 
     const isRequestValid = certificateId.trim().length > 0 && email.trim().length > 0;
 
-    const handleVerify = (e) => {
+    const handleVerify = async (e) => {
         e.preventDefault();
-        if (isRequestValid) {
-            setStep('verified');
+        if (!isRequestValid) return;
+
+        setLoading(true);
+        setErrorMessage('');
+
+        try {
+            const scriptUrl = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
+            const params = new URLSearchParams({
+                action: 'verifyCertificate',
+                certId: certificateId.trim(),
+                email: email.trim().toLowerCase()
+            });
+
+            const response = await fetch(`${scriptUrl}?${params.toString()}`);
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                setVerifiedData({
+                    name: result.data.name,
+                    program: result.data.program,
+                    startDate: result.data.startDate,
+                    endDate: result.data.endDate,
+                    certId: result.data.certId
+                });
+                setStep('verified');
+            } else {
+                setErrorMessage(result.message || 'Certificate not found. Please check your details.');
+            }
+        } catch (error) {
+            console.error('Verification error:', error);
+            setErrorMessage('An error occurred during verification. Please try again later.');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -87,16 +113,29 @@ const VerifyCertificate = () => {
                                 type="email"
                                 placeholder=""
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e) => {
+                                    setEmail(e.target.value);
+                                    if (errorMessage) setErrorMessage('');
+                                }}
                             />
+
+                            {errorMessage && (
+                                <motion.p 
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    className="text-red-400 text-sm mt-2 font-medium"
+                                >
+                                    {errorMessage}
+                                </motion.p>
+                            )}
 
                             <div className="pt-10 sm:pt-16">
                                 <Button
                                     type="submit"
-                                    disabled={!isRequestValid}
+                                    disabled={!isRequestValid || loading}
                                     variant="secondary"
                                 >
-                                    Verify Certificate
+                                    {loading ? 'Verifying...' : 'Verify Certificate'}
                                 </Button>
                             </div>
                         </form>
@@ -123,16 +162,16 @@ const VerifyCertificate = () => {
                         </div>
 
                         <div className="flex flex-col gap-4 sm:gap-6 text-left px-5 sm:px-12">
-                            <InputField label="Name" value={verifiedData.name} readOnly />
+                            <InputField label="Name" value={verifiedData?.name || ''} readOnly />
 
-                            <InputField label="Program" value={verifiedData.program} readOnly />
+                            <InputField label="Program" value={verifiedData?.program || ''} readOnly />
 
                             <div className="flex flex-col sm:flex-row gap-6 sm:gap-5">
-                                <InputField label="Start Date" value={verifiedData.startDate} readOnly />
-                                <InputField label="End Date" value={verifiedData.endDate} readOnly />
+                                <InputField label="Start Date" value={verifiedData?.startDate || ''} readOnly />
+                                <InputField label="End Date" value={verifiedData?.endDate || ''} readOnly />
                             </div>
 
-                            <InputField label="Certificate ID" value={verifiedData.certId} readOnly />
+                            <InputField label="Certificate ID" value={verifiedData?.certId || ''} readOnly />
 
                             <div className="pt-10 sm:pt-14">
                                 <Button variant="primary" onClick={() => navigate('/')}>
