@@ -108,14 +108,23 @@
 .logo-verified .logo-img {
   height: 24px;
 }
+
 @media (min-width: 640px) {
-  .logo-verified .logo-img { height: 36px; }
+  .logo-verified .logo-img {
+    height: 36px;
+  }
 }
+
 @media (min-width: 768px) {
-  .logo-verified .logo-img { height: 48px; }
+  .logo-verified .logo-img {
+    height: 48px;
+  }
 }
+
 @media (min-width: 1024px) {
-  .logo-verified .logo-img { height: 56px; }
+  .logo-verified .logo-img {
+    height: 56px;
+  }
 }
 
 /* Container for the page title */
@@ -212,7 +221,7 @@
 
 /* Styling for error messages */
 .error-message {
-  color: #f87171;
+  color: #ff54cf;
   font-size: 0.875rem;
   margin-top: 0.5rem;
   font-weight: 500;
