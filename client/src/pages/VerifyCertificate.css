@@ -236,6 +236,7 @@
 /* Wider spacing for the 'Done' button */
 .verified-btn-wrapper {
   padding-top: 0.5rem;
+  width: 100%;
 }
 
 @media (min-width: 640px) {
@@ -246,7 +247,7 @@
 
 /* Specific styling for the Done button as per Figma request */
 .done-btn {
-  width: 460px;
+  width: 100%;
   max-width: 460px;
   height: 52px;
   border-radius: 12px;
