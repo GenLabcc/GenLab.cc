@@ -243,6 +243,11 @@ const VerifyCertificate = () => {
 
     try {
       const scriptUrl = import.meta.env.VITE_CERTIFICATE_VERIFY_URL;
+      
+      if (!scriptUrl) {
+        console.error('Verification Error: VITE_CERTIFICATE_VERIFY_URL is not defined in environment variables.');
+        throw new Error('Script URL missing');
+      }
 
       const params = new URLSearchParams({
         action: 'verifyCertificate',
@@ -250,7 +255,13 @@ const VerifyCertificate = () => {
         email: email.trim().toLowerCase()
       });
 
+      console.log('Fetching verification from:', scriptUrl);
       const response = await fetch(`${scriptUrl}?${params.toString()}`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const result = await response.json();
 
       if (result.status === 'success') {
@@ -265,7 +276,7 @@ const VerifyCertificate = () => {
         setIsSuccess(true);
         setTimeout(() => {
           setStep('verified');
-        }, 3200); // Wait for scan + tick animation
+        }, 3200); 
       } else {
         setIsSuccess(false);
         setErrorMessage(result.message || 'Certificate not found. Please check your details.');
@@ -275,7 +286,11 @@ const VerifyCertificate = () => {
       }
 
     } catch (error) {
-      console.error('Verification error:', error);
+      console.error('Detailed Verification Error:', {
+        message: error.message,
+        stack: error.stack,
+        env_url: import.meta.env.VITE_CERTIFICATE_VERIFY_URL
+      });
       setIsSuccess(false);
       setErrorMessage('An error occurred during verification. Please try again later.');
       setTimeout(() => {

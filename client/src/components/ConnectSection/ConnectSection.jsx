@@ -77,7 +77,15 @@ const ConnectSection = () => {
     setStatus("loading");
 
     try {
-      await fetch(import.meta.env.VITE_USER_DATA_COLLECTION_URL, {
+      const contactUrl = import.meta.env.VITE_USER_DATA_COLLECTION_URL;
+      
+      if (!contactUrl) {
+        console.error('Submit Error: VITE_USER_DATA_COLLECTION_URL is not defined in environment variables.');
+        throw new Error('Script URL missing');
+      }
+
+      console.log('Submitting to:', contactUrl);
+      await fetch(contactUrl, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
@@ -96,7 +104,11 @@ const ConnectSection = () => {
 
       setTimeout(() => setStatus(""), 4000);
     } catch (error) {
-      console.error(error);
+      console.error('Detailed Submission Error:', {
+        message: error.message,
+        stack: error.stack,
+        env_url: import.meta.env.VITE_USER_DATA_COLLECTION_URL
+      });
       setStatus("error");
       setTimeout(() => setStatus(""), 4000);
     }
