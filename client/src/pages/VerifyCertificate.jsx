@@ -265,11 +265,24 @@ const VerifyCertificate = () => {
       const result = await response.json();
 
       if (result.status === 'success') {
+        // Simple date formatting: "Jun 02, 2025" or similar, excluding day and time
+        const formatDate = (dateInput) => {
+          if (!dateInput || dateInput === 'Ongoing') return dateInput || '';
+          const date = new Date(dateInput);
+          if (isNaN(date.getTime())) return dateInput; 
+          
+          return date.toLocaleDateString('en-US', {
+            month: 'short',
+            day: '2-digit',
+            year: 'numeric'
+          });
+        };
+
         setVerifiedData({
           name: result.data.name,
           program: result.data.program,
-          startDate: result.data.startDate,
-          endDate: result.data.endDate,
+          startDate: formatDate(result.data.startDate),
+          endDate: formatDate(result.data.endDate) || 'Ongoing',
           certId: result.data.certId
         });
 
