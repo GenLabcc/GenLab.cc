@@ -18,7 +18,6 @@ const people = [
   { id: 4, name: "Bency", role: "Operations Manager", image: personImg4 },
   { id: 5, name: "Moorthy", role: "AI Product Developer", image: personImg5 },
   { id: 6, name: "Esther", role: "HR Executive", image: personImg6 },
-
 ];
 
 const People = () => {
