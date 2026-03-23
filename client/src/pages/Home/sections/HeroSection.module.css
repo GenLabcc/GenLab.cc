@@ -46,7 +46,7 @@
 
   border-left: clamp(120px, 18vw, 400px) solid transparent;
   border-right: clamp(120px, 18vw, 400px) solid transparent;
-  border-bottom: clamp(240px, 36vw, 800px) solid #6fa800;
+  border-bottom: clamp(240px, 36vw, 800px) solid #bcf000;
 
   left: 60%;
   top: 20%;
@@ -60,7 +60,7 @@
 
   border-left: clamp(120px, 18vw, 420px) solid transparent;
   border-right: clamp(120px, 18vw, 420px) solid transparent;
-  border-bottom: clamp(240px, 36vw, 840px) solid #6fa800;
+  border-bottom: clamp(240px, 36vw, 840px) solid #bcf000;
 
   top: 15%;
   left: -5%;

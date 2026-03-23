@@ -9,6 +9,8 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const isPeoplePage = location.pathname === "/people";
+  const isProductsPage = location.pathname === "/products";
+  const isLightPage = isPeoplePage || isProductsPage;
   const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
@@ -56,7 +58,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`${styles.navbar} ${isPeoplePage ? styles.peopleNavbar : ""}`}
+      className={`${styles.navbar} ${isLightPage ? styles.peopleNavbar : ""}`}
     >
       <Link to="/" className={`${styles.navbarLogo} ${styles.glass}`}>
         <img src={logo} alt="GenLab logo" />
@@ -125,17 +127,6 @@ export default function Navbar() {
 
         {/* Navigate to # of same page. So <a> is used. */}
         <li>
-          <button
-            onClick={() => {
-              handleSectionClick("connect");
-              setOpen(false);
-            }}
-            className={activeSection === "connect" ? styles.activeLink : ""}
-          >
-            Careers
-          </button>
-        </li>
-        <li>
           <Link
             to="/verify-certificate"
             onClick={() => setOpen(false)}
@@ -145,14 +136,12 @@ export default function Navbar() {
           </Link>
         </li>
         <li className={styles.navbarCta}>
-          <button
-            onClick={() => {
-              handleSectionClick("connect");
-              setOpen(false);
-            }}
+          <Link
+            to="/products"
+            onClick={() => setOpen(false)}
           >
-            Contact us
-          </button>
+            Products
+          </Link>
         </li>
       </ul>
     </nav>

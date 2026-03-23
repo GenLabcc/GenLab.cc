@@ -41,21 +41,21 @@ const VerifiedTick = () => {
           strokeLinejoin="round"
           initial={{ pathLength: 0, scale: 0.5, opacity: 0 }}
           animate={{ pathLength: 1, scale: 1, opacity: 1 }}
-          transition={{ 
+          transition={{
             pathLength: { duration: 0.3, delay: 0.6 },
             scale: { type: "spring", stiffness: 400, damping: 10, delay: 0.6 },
             opacity: { duration: 0.1, delay: 0.6 }
           }}
         />
       </svg>
-      
+
       {/* Modern Sparkle Pop */}
       {Array.from({ length: sparkleCount }).map((_, i) => (
         <motion.div
           key={i}
           initial={{ scale: 0, opacity: 0, x: 0, y: 0 }}
-          animate={{ 
-            scale: [0, 1, 0], 
+          animate={{
+            scale: [0, 1, 0],
             opacity: [0, 1, 0],
             x: Math.cos((i * (360 / sparkleCount)) * Math.PI / 180) * 80,
             y: Math.sin((i * (360 / sparkleCount)) * Math.PI / 180) * 80
@@ -109,21 +109,21 @@ const ErrorMark = () => {
           strokeLinejoin="round"
           initial={{ pathLength: 0, scale: 0.5, opacity: 0 }}
           animate={{ pathLength: 1, scale: 1, opacity: 1 }}
-          transition={{ 
+          transition={{
             pathLength: { duration: 0.3, delay: 0.6 },
             scale: { type: "spring", stiffness: 400, damping: 10, delay: 0.6 },
             opacity: { duration: 0.1, delay: 0.6 }
           }}
         />
       </svg>
-      
+
       {/* Red Sparkle Pop */}
       {Array.from({ length: sparkleCount }).map((_, i) => (
         <motion.div
           key={i}
           initial={{ scale: 0, opacity: 0, x: 0, y: 0 }}
-          animate={{ 
-            scale: [0, 1, 0], 
+          animate={{
+            scale: [0, 1, 0],
             opacity: [0, 1, 0],
             x: Math.cos((i * (360 / sparkleCount)) * Math.PI / 180) * 80,
             y: Math.sin((i * (360 / sparkleCount)) * Math.PI / 180) * 80
@@ -149,10 +149,10 @@ const VerifyingState = ({ isSuccess }) => {
   React.useEffect(() => {
     // Show scanner for at least 1.5s
     const timer = setTimeout(() => {
-        // Only stop scanning if we have a result
-        if (isSuccess !== null) {
-            setIsScanning(false);
-        }
+      // Only stop scanning if we have a result
+      if (isSuccess !== null) {
+        setIsScanning(false);
+      }
     }, 1500);
     return () => clearTimeout(timer);
   }, [isSuccess]);
@@ -236,14 +236,14 @@ const VerifyCertificate = () => {
 
     setErrorMessage('');
     setIsSuccess(null);
-    
+
     // START ANIMATION IMMEDIATELY
     setStep('verifying');
     setLoading(true);
 
     try {
       const scriptUrl = import.meta.env.VITE_CERTIFICATE_VERIFY_URL;
-      
+
       if (!scriptUrl) {
         console.error('Verification Error: VITE_CERTIFICATE_VERIFY_URL is not defined in environment variables.');
         throw new Error('Script URL missing');
@@ -257,7 +257,7 @@ const VerifyCertificate = () => {
 
       console.log('Fetching verification from:', scriptUrl);
       const response = await fetch(`${scriptUrl}?${params.toString()}`);
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -269,8 +269,8 @@ const VerifyCertificate = () => {
         const formatDate = (dateInput) => {
           if (!dateInput || dateInput === 'Ongoing') return dateInput || '';
           const date = new Date(dateInput);
-          if (isNaN(date.getTime())) return dateInput; 
-          
+          if (isNaN(date.getTime())) return dateInput;
+
           return date.toLocaleDateString('en-US', {
             month: 'short',
             day: '2-digit',
@@ -289,13 +289,13 @@ const VerifyCertificate = () => {
         setIsSuccess(true);
         setTimeout(() => {
           setStep('verified');
-        }, 3200); 
+        }, 3200);
       } else {
         setIsSuccess(false);
         setErrorMessage(result.message || 'Certificate not found. Please check your details.');
         setTimeout(() => {
           setStep('request');
-        }, 3200); 
+        }, 3200);
       }
 
     } catch (error) {
@@ -378,7 +378,7 @@ const VerifyCertificate = () => {
                 <InputField
                   label="Certificate ID"
                   id="cert-id"
-                  placeholder="GL/INT/123"
+                  placeholder="Enter your Certificate ID"
                   value={certificateId}
                   onChange={handleCertIdChange}
                 />
@@ -386,6 +386,7 @@ const VerifyCertificate = () => {
                 <InputField
                   label="Registered Email"
                   id="reg-email"
+                  placeholder="Enter your Registered Email"
                   type="email"
                   value={email}
                   onChange={handleEmailChange}
