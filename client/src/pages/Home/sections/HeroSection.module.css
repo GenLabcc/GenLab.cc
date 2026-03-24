@@ -161,18 +161,34 @@
 
 @media (max-width: 768px) {
   .hero {
-    align-items: flex-start;
-    padding-top: clamp(120px, 20vw, 160px);
+    align-items: center;
+    padding-top: 100px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   .heroContent {
     max-width: 100%;
-    
+    text-align: left;
   }
 
   .title {
+    font-size: clamp(36px, 10vw, 56px);
+    line-height: 1.1;
+    margin-bottom: 32px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 32px;
     line-height: 1.2;
-    margin-bottom: 50px;
+  }
+
+  .hero {
+    padding-top: 80px;
   }
 }
 

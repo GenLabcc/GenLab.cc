@@ -15,8 +15,7 @@ export default function Hero() {
 
         <div className={styles.heroContent}>
           <h1 className={styles.title}>
-            World’s First Gen Z AI <br />
-            Creative Powerhouse
+            World’s First Gen Z AI Creative Powerhouse
           </h1>
 
           <div className="flex flex-wrap gap-4 mt-8">

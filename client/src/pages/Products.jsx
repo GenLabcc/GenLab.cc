@@ -11,12 +11,19 @@ const Products = () => {
 
   // Data for the sticky left side to swap smoothly
   const productData = {
-    1: { id: "01", title: ["Custom", "Website", "Chatbots"], link: "https://sns-chatbot.vercel.app/" },
+    1: { id: "01", title: ["Custom", "Website", "Chatbot"], link: "https://sns-chatbot.vercel.app/" },
     2: { id: "02", title: ["Campus", "Hub AI"], link: "#" }
   };
 
   return (
     <div className={styles.productsPage}>
+      <header className={styles.heroSection}>
+        <h1 className={styles.heroTitle}>
+          GenZ AI Products.<br />
+          Innovation you can feel.
+        </h1>
+      </header>
+
       <section className={styles.productSection}>
         <div className={styles.pageLayout}>
 
@@ -45,7 +52,7 @@ const Products = () => {
                     rel="noopener noreferrer"
                     className={styles.exploreBtn}
                   >
-                    Try
+                    Try now
                   </a>
                 </motion.div>
               </AnimatePresence>
@@ -61,6 +68,12 @@ const Products = () => {
               onViewportEnter={() => setActiveProduct(1)}
               viewport={{ amount: 0.5 }}
             >
+              <div className={styles.mobileHeader}>
+                <span className={styles.num}>{productData[1].id}</span>
+                <h2 className={styles.mobileTitle}>
+                  {productData[1].title.join(' ')}
+                </h2>
+              </div>
               <div className={styles.imageContainer}>
                 <video
                   src={snsVideo}
@@ -97,6 +110,12 @@ const Products = () => {
               onViewportEnter={() => setActiveProduct(2)}
               viewport={{ amount: 0.5 }}
             >
+              <div className={styles.mobileHeader}>
+                <span className={styles.num}>{productData[2].id}</span>
+                <h2 className={styles.mobileTitle}>
+                  {productData[2].title.join(' ')}
+                </h2>
+              </div>
               <div className={styles.imageContainer}>
                 <img src={heroImage} alt="Product view 2" className={styles.mainImage} />
               </div>
