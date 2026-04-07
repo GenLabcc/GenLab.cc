@@ -8,6 +8,7 @@ import People from "@/pages/People/People.jsx";
 import Products from "@/pages/Products.jsx";
 import ProductDetail from "@/pages/ProductDetail/ProductDetail.jsx";
 import VerifyCertificate from "@/pages/VerifyCertificate.jsx";
+// import VoiceAgent from "@/pages/VoiceAgent/VoiceAgent.jsx";
 
 import { Routes, Route, useLocation } from "react-router-dom";
 
@@ -27,6 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/people" element={<People />} />
+          {/* <Route path="/voice-agent" element={<VoiceAgent />} /> */}
           <Route path="/products" element={<Products />} />
           <Route path="/products/custom-website-chatbots" element={<ProductDetail />} />
           <Route path="/verify-certificate" element={<VerifyCertificate />} />

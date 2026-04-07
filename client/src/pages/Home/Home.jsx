@@ -3,6 +3,9 @@ import { useLocation } from "react-router-dom";
 
 import styles from "./Home.module.css";
 import HeroSection from "@/pages/Home/sections/HeroSection.jsx";
+import AIAgents from "@/pages/Home/sections/AIAgents.jsx";
+import EthosSection from "@/pages/Home/sections/EthosSection.jsx";
+import CreativityEngine from "@/pages/Home/sections/CreativityEngine.jsx";
 import CapabilitiesSection from "@/pages/Home/sections/CapabilitiesSection.jsx";
 import CardSequence from "@/pages/Home/sections/CardSequence.jsx";
 import ImpactStats from "@/pages/Home/sections/ImpactStats.jsx";
@@ -33,6 +36,12 @@ export default function Home() {
     <div className={styles.home}>
       
       <HeroSection />
+      
+      {/* <AIAgents /> */}
+
+      <EthosSection />
+
+      <CreativityEngine />
 
       <CardSequence />
       

@@ -37,25 +37,6 @@ export default function Hero() {
           </div>
         </div>
       </section>
-
-      <section id="about" className={`${styles.white} ${styles.ethos}`}>
-        <h3> OUR ETHOS </h3>
-        <h2>
-          {" "}
-          We transform and create <span>(IMPACTFUL)</span> brands & Al
-          solutions. With over <span>(10+COMPANIES)</span> having already
-          partnered with us to turn up their brand & achieve{" "}
-          <span>(GROWTH)</span>{" "}
-        </h2>
-        <h1>From India To The World.</h1>
-      </section>
-
-      <section className={styles.black}>
-        <h3> OUR CREATIVITY ENGINE </h3>
-        <h1>
-          The world's sharpest view of GenZ creativity powered by our 3C engine
-        </h1>
-      </section>
     </div>
   );
 }

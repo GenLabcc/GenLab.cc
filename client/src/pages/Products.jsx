@@ -1,18 +1,32 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Products.module.css';
+
+// Import logos - check paths as they were in the previous file
 import snsLogo from '@/assets/images/products/SNS logo.png';
 import christLogo from '@/assets/images/products/Christ logo.png';
 import heroImage from '@/assets/images/hero-products.jpg';
 import snsVideo from '@/assets/Sns_product.mp4';
-import { motion, AnimatePresence } from 'framer-motion';
+import christVideo from '@/assets/chirst project.mp4';
+
 
 const Products = () => {
   const [activeProduct, setActiveProduct] = useState(1);
 
-  // Data for the sticky left side to swap smoothly
+  // Data for the sticky left side and mobile content
   const productData = {
-    1: { id: "01", title: ["Custom", "Website", "Chatbot"], link: "https://sns-chatbot.vercel.app/" },
-    2: { id: "02", title: ["Campus", "Hub AI"], link: "#" }
+    1: { 
+        id: "01", 
+        title: ["Custom", "Website", "Chatbot"], 
+        link: "https://sns-chatbot.vercel.app/",
+        desc: "Create AI-powered chatbots in minutes with GenLab, easy, fast, and code-free. No training. No scripts. Just one line of code and real conversations begin."
+    },
+    2: { 
+        id: "02", 
+        title: ["Campus", "Hub AI"], 
+        link: "https://campus-bsvvcx30r-neelanjan2448040s-projects.vercel.app/", // Updated link as requested
+        desc: "Transform campuses with GenLab Campus AI Hub plug-and-play AI for colleges. No complex setup. Real student engagement starts instantly."
+    }
   };
 
   return (
@@ -27,7 +41,7 @@ const Products = () => {
       <section className={styles.productSection}>
         <div className={styles.pageLayout}>
 
-          {/* STICKY LEFT COLUMN */}
+          {/* STICKY LEFT COLUMN - Desktop Only */}
           <aside className={styles.leftColumn}>
             <div className={styles.stickyContent}>
               <AnimatePresence mode="wait">
@@ -74,6 +88,7 @@ const Products = () => {
                   {productData[1].title.join(' ')}
                 </h2>
               </div>
+              
               <div className={styles.imageContainer}>
                 <video
                   src={snsVideo}
@@ -87,8 +102,18 @@ const Products = () => {
 
               <div className={styles.contentFooter}>
                 <p className={styles.desc}>
-                  Create AI-powered chatbots in minutes with GenLab, easy, fast, and code-free. No training. No scripts. Just one line of code and real conversations begin.
+                  {productData[1].desc}
                 </p>
+
+                {/* Mobile Try Now Button - Shown only on small screens */}
+                <a
+                  href={productData[1].link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.mobileTryBtn}
+                >
+                  Try now
+                </a>
 
                 <div className={styles.metadataCard}>
                   <div className={styles.partnershipBox}>
@@ -117,13 +142,31 @@ const Products = () => {
                 </h2>
               </div>
               <div className={styles.imageContainer}>
-                <img src={heroImage} alt="Product view 2" className={styles.mainImage} />
+                <video
+                  src={christVideo}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className={styles.mainImage}
+                />
               </div>
+
 
               <div className={styles.contentFooter}>
                 <p className={styles.desc}>
-                  Transform campuses with GenLab Campus AI Hub plug-and-play AI for colleges. No complex setup. Real student engagement starts instantly.
+                   {productData[2].desc}
                 </p>
+
+                {/* Mobile Try Now Button - Shown only on small screens */}
+                <a
+                  href={productData[2].link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.mobileTryBtn}
+                >
+                  Try now
+                </a>
 
                 <div className={styles.metadataCard}>
                   <div className={styles.partnershipBox}>

@@ -13,6 +13,11 @@
   padding-bottom: 1rem;
   font-family: 'Clash Display', sans-serif;
   overflow: hidden;
+  transition: background-color 0.8s ease;
+}
+
+.is-verified {
+  background-color: #000000 !important;
 }
 
 @media (min-width: 640px) {
@@ -39,53 +44,68 @@
   width: 100%;
 }
 
-/* Card layout for the initial request (input) state */
-.request-card {
+/* Shared card layout for all states */
+.verification-card {
   width: 100%;
-  max-width: 520px;
+  max-width: 540px;
   z-index: 10;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  background: rgba(11, 11, 11, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  padding: 2.5rem 1.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
 }
 
-/* Card layout for the verified (success) state */
-.verified-card {
-  width: 100%;
-  max-width: 480px;
-  z-index: 10;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+.verifying-card {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+@media (min-width: 640px) {
+  .verification-card {
+    padding: 3.5rem 3rem;
+    border-radius: 40px;
+  }
 }
 
 /* Spacing and layout for the top logo */
 .logo-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 @media (min-width: 640px) {
   .logo-container {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 }
 
-/* Logo specific spacing for the verified state */
-.logo-verified {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 0.75rem;
+
+/* Container for the title - shared across states */
+.title-container {
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 @media (min-width: 640px) {
-  .logo-verified {
-    margin-bottom: 1rem;
+  .title-container {
+    margin-bottom: 1.5rem;
   }
 }
 
-/* Responsive logo sizing */
+/* Logo general styling - reused */
 .logo-img {
   height: 24px;
   width: auto;
@@ -103,86 +123,27 @@
   }
 }
 
-.logo-verified .logo-img {
-  height: 24px;
-}
-
-@media (min-width: 640px) {
-  .logo-verified .logo-img {
-    height: 36px;
-  }
-}
-
-@media (min-width: 768px) {
-  .logo-verified .logo-img {
-    height: 48px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .logo-verified .logo-img {
-    height: 56px;
-  }
-}
-
-/* Container for the page title */
-.title-container {
-  margin-bottom: 1.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-/* Container for the verified state title */
-.verified-title-container {
-  margin-bottom: 0.75rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 640px) {
-  .verified-title-container {
-    margin-bottom: 1rem;
-  }
-}
-
 /* Main title styling */
 .title {
-  font-size: 20px;
-  line-height: 1.25;
+  font-size: 24px;
+  line-height: 1.1;
   font-weight: 500;
   color: white;
+  letter-spacing: -0.02em; /* Tighter for display fonts */
 }
 
 @media (min-width: 640px) {
   .title {
-    font-size: 28px;
-    line-height: 46px;
-  }
-}
-
-@media (min-width: 768px) {
-  .title {
-    font-size: 36px;
-  }
-}
-
-/* Verified title styling */
-.verified-title {
-  font-size: 22px;
-  line-height: 1.25;
-  font-weight: 500;
-  color: white;
-}
-
-@media (min-width: 640px) {
-  .verified-title {
     font-size: 32px;
+    line-height: 1.1;
   }
 }
 
 @media (min-width: 768px) {
-  .verified-title {
-    font-size: 42px;
+  .title {
+    font-size: 48px;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
   }
 }
 
@@ -253,28 +214,12 @@
   }
 }
 
-/* Verifying/Scanning state styles - Includes high-contrast box for animation visibility */
-.verifying-card {
-  width: 100%;
-  max-width: 480px;
-  z-index: 10;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  background: rgba(11, 11, 11, 0.4);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
-  padding: 2.5rem 1.5rem;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-}
-
-@media (min-width: 640px) {
-  .verifying-card {
-    padding: 3.5rem 2.5rem;
-    border-radius: 32px;
-  }
+/* Verifying/Scanning state specific overrides if any */
+.verifying-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .scanning-container {
@@ -319,17 +264,13 @@
   80%, 100% { transform: scale(1.5); opacity: 0; }
 }
 
-.verifying-text {
-  font-size: 24px;
-  font-weight: 500;
-  color: white;
-  margin-bottom: 0.5rem;
-}
 
 .verifying-subtext {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.5);
   font-weight: 400;
+  letter-spacing: 0.01em;
+  margin-top: -1rem; /* Adjust spacing because of title-container margin */
 }
 
 .scanning-container-wrapper,
@@ -355,17 +296,15 @@
 .form-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
 }
 
 /* Layout for results displayed in the verified form */
 .verified-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  gap: 12px;
+  gap: 10px; /* Tightened results list */
 }
 
 /* Grid layout for Start and End dates */
@@ -417,15 +356,13 @@
   color: #000000;
   font-weight: 500;
   font-size: 16px;
-  transform: rotate(0deg);
-  opacity: 1;
-  gap: 10px;
-  padding: 0 24px;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
   border: none;
+  cursor: pointer;
 }
 
 /* Verify Certificate button with dynamic background */
@@ -434,26 +371,28 @@
   color: #000000 !important;
   font-weight: 500 !important;
   border: none !important;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
 }
 
 .verify-btn:disabled {
-  background-color: #FFFFFF80 !important;
-  color: rgba(0, 0, 0, 0.4) !important;
+  background-color: rgba(240, 240, 240, 0.4) !important;
+  color: rgba(0, 0, 0, 0.55) !important;
   opacity: 1 !important;
-  /* Ensure the specified background is visible */
   cursor: not-allowed !important;
+  letter-spacing: 0.02em;
 }
 
 /* Sticky footer at the bottom of the viewport */
 .footer {
   margin-top: auto;
   text-align: center;
-  font-size: 11px;
-  color: #6b7280;
-  font-weight: 500;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-bottom: 0.5rem;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 400;
+  padding: 1.5rem 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 @media (min-width: 640px) {

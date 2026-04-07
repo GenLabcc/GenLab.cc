@@ -168,9 +168,9 @@ const VerifyingState = ({ isSuccess }) => {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0 }}
-      className="verifying-card"
+      className="verification-card verifying-card"
     >
-      <div className="logo-verified">
+      <div className="logo-container">
         <img src={logoWithSparkle} alt="GenLab" className="logo-img" />
       </div>
 
@@ -187,7 +187,9 @@ const VerifyingState = ({ isSuccess }) => {
               <div className="pulse-ring" />
               <div className="scanning-line" />
             </div>
-            <h2 className="verifying-text">Checking Database</h2>
+            <div className="title-container">
+              <h2 className="title">Checking Database</h2>
+            </div>
             <p className="verifying-subtext">Searching for certificate record...</p>
           </motion.div>
         ) : (
@@ -200,13 +202,17 @@ const VerifyingState = ({ isSuccess }) => {
             {isSuccess ? (
               <>
                 <VerifiedTick />
-                <h2 className="verifying-text" style={{ color: '#32CD32' }}>Match Found!</h2>
+                <div className="title-container">
+                  <h2 className="title" style={{ color: '#32CD32' }}>Match Found!</h2>
+                </div>
                 <p className="verifying-subtext">Certificate authenticity confirmed.</p>
               </>
             ) : (
               <>
                 <ErrorMark />
-                <h2 className="verifying-text" style={{ color: '#e44b4b' }}>Verification Failed</h2>
+                <div className="title-container">
+                  <h2 className="title" style={{ color: '#e44b4b' }}>Verification Failed</h2>
+                </div>
                 <p className="verifying-subtext">No record found with these details.</p>
               </>
             )}
@@ -343,8 +349,8 @@ const VerifyCertificate = () => {
   };
 
   return (
-    <div className="verify-container">
-      <BackgroundGlow />
+    <div className={`verify-container ${(step === 'verified' || step === 'verifying') ? 'is-verified' : ''}`}>
+      {(step !== 'verified' && step !== 'verifying') && <BackgroundGlow />}
 
       {/* Content Wrapper */}
       <div className="content-wrapper">
@@ -358,7 +364,7 @@ const VerifyCertificate = () => {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="request-card"
+              className="verification-card"
             >
 
               <div className="logo-container">
@@ -427,15 +433,15 @@ const VerifyCertificate = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ type: "spring", stiffness: 120 }}
-              className="verified-card"
+              className="verification-card"
             >
 
-              <div className="logo-verified">
+              <div className="logo-container">
                 <img src={logoWithSparkle} alt="GenLab" className="logo-img" />
               </div>
 
-              <div className="verified-title-container">
-                <h2 className="verified-title">
+              <div className="title-container">
+                <h2 className="title">
                   Certificate Verified
                 </h2>
               </div>

@@ -9,6 +9,7 @@ import personImg2 from "@/assets/images/people/ashvin.webp";
 import personImg4 from "@/assets/images/people/bency.webp";
 import personImg5 from "@/assets/images/people/moorthy.webp";
 import personImg6 from "@/assets/images/people/esther.webp";
+import personImg7 from "@/assets/images/people/reshma.webp";
 
 
 const people = [
@@ -18,6 +19,7 @@ const people = [
   { id: 4, name: "Bency", role: "Operations Manager", image: personImg4 },
   { id: 5, name: "Moorthy", role: "AI Product Developer", image: personImg5 },
   { id: 6, name: "Esther", role: "HR Executive", image: personImg6 },
+  { id: 7, name: "Reshma", role: "Developer", image: personImg7 },
 ];
 
 const People = () => {

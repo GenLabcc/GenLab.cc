@@ -101,6 +101,7 @@ export default function Navbar() {
           </button>
         </li>
 
+
         <li>
           <Link
             to="/people"
@@ -110,6 +111,7 @@ export default function Navbar() {
             People
           </Link>
         </li>
+
 
         {/* <li>
           <button
