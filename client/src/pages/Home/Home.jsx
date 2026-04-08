@@ -37,7 +37,7 @@ export default function Home() {
       
       <HeroSection />
       
-      {/* <AIAgents /> */}
+      { <AIAgents /> }
 
       <EthosSection />
 
