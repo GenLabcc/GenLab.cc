@@ -199,7 +199,7 @@ const ConnectSection = () => {
           <div>
             <textarea
               name="project"
-              placeholder="Tell us about your project"
+              placeholder="Share details about your request"
               rows={5}
               value={formData.project}
               onChange={handleChange}

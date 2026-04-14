@@ -10,7 +10,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const isPeoplePage = location.pathname === "/people";
   const isProductsPage = location.pathname === "/products";
-  const isLightPage = false; // Always dark/white text for now since heroes are black
+  const isLightPage = isPeoplePage; // Set light mode for pages with light backgrounds
   const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
