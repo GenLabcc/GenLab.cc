@@ -54,8 +54,9 @@ const ConnectSection = () => {
     // Consent: required
     if (!data.consent) newErrors.consent = "You must give consent to submit";
 
-    // Phone: optional but validated if filled
-    if (data.phone && !/^[0-9+\-\s()]{7,20}$/.test(data.phone))
+    // Phone: required + validated
+    if (!data.phone.trim()) newErrors.phone = "Phone number is required";
+    else if (!/^[0-9+\-\s()]{7,20}$/.test(data.phone))
       newErrors.phone = "Invalid phone number";
 
     return newErrors;
@@ -159,7 +160,7 @@ const ConnectSection = () => {
               <input
                 type="text"
                 name="phone"
-                placeholder="Phone (Optional)"
+                placeholder="Phone Number"
                 value={formData.phone}
                 onChange={handleChange}
                 className={errors.phone ? styles.inputError : ""}
