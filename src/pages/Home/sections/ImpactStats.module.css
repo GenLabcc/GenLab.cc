@@ -2,7 +2,7 @@
   background: #eeeeee;
   padding: clamp(60px, 8vw, 120px) clamp(24px, 8vw, 120px);
   color: #111;
-  min-height: 100dvh;
+  min-height: auto;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -22,10 +22,12 @@
   margin-bottom: clamp(20px, 3vw, 40px);
   color: #444;
 }
+
 /* Main Heading */
 .headingWrapper {
   margin-bottom: clamp(24px, 4vw, 50px);
 }
+
 /* Logo + first line */
 .topRow {
   display: flex;
@@ -33,6 +35,7 @@
   gap: 2rem;
   /* flex-wrap: wrap; */
 }
+
 .logo img {
   width: clamp(40px, 5vw, 70px);
   height: clamp(40px, 5vw, 70px);
@@ -46,10 +49,12 @@
   margin: 0;
   line-height: 1.1;
 }
+
 /* No margin-left here anymore */
 .lineTwo {
   margin-top: clamp(6px, 1vw, 12px);
 }
+
 /* Description */
 .description {
   max-width: 950px;
@@ -69,8 +74,10 @@
 
 .stat {
   text-align: center;
-  flex: 1 1 0; /* shrink properly */
-  min-width: 0; /* allow shrinking */
+  flex: 1 1 0;
+  /* shrink properly */
+  min-width: 0;
+  /* allow shrinking */
   flex: 1;
 }
 
@@ -87,6 +94,7 @@
   text-transform: uppercase;
   color: #444;
 }
+
 /* Vertical Divider */
 .divider {
   width: 1px;
@@ -94,6 +102,7 @@
   background: #bfbfbf;
   flex-shrink: 0;
 }
+
 /* Responsive */
 @media (max-width: 1024px) {
   .headingRow {
@@ -104,32 +113,5 @@
   .logo img {
     width: 55px;
     height: 55px;
-  }
-}
-
-/* Full screen center */
-.sphereContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Rotating image */
-.rotateAnticlockwise {
-  width: min(50vw, 800px); 
-  height: auto;    
-  animation: spinAnti 16s linear infinite;
-  padding: 0;
-  display: block;
-  will-change: transform;
-}
-
-/* Animation */
-@keyframes spinAnti {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
   }
 }

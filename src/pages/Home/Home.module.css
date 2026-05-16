@@ -5,18 +5,15 @@
 }
 
 /* Scoped so the home hero `.join-btn` keeps its own styles */
-.home > *:not(:first-child) button {
+.home>*:not(:first-child) button {
   align-self: flex-start;
   display: flex;
   align-items: center;
   gap: clamp(12px, 2vw, 20px);
-  padding: clamp(10px, 1.5vw, 16px)
-           clamp(2px, 3vw, 18px);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.08),
-    rgba(255, 255, 255, 0.03)
-  );
+  padding: clamp(10px, 1.5vw, 16px) clamp(2px, 3vw, 18px);
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.03));
   border: 1.5px solid #C4C4C4;
   border-radius: 999px;
   color: #eaeaea;
@@ -24,7 +21,7 @@
   transition: 0.3s ease;
 }
 
-.home > *:not(:first-child) button span {
+.home>*:not(:first-child) button span {
   letter-spacing: 0.08em;
   font-size: clamp(12px, 1.2vw, 15px);
 }
@@ -48,7 +45,7 @@
   padding-bottom: 0.09em;
 } */
 
-.home > *:not(:first-child) button div {
+.home>*:not(:first-child) button div {
   width: clamp(28px, 3vw, 36px);
   height: clamp(28px, 3vw, 36px);
   display: flex;
@@ -63,14 +60,14 @@
   stroke: #000;
 } */
 
-.home > *:not(:first-child) button .arrow {
+.home>*:not(:first-child) button .arrow {
   display: block;
 }
 
-.home > *:not(:first-child) button:hover {
+.home>*:not(:first-child) button:hover {
   border-color: #BCF000;
 }
 
-.home > *:not(:first-child) button:hover .arrow {
+.home>*:not(:first-child) button:hover .arrow {
   transform: translateX(4px);
 }

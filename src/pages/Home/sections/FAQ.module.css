@@ -174,6 +174,7 @@
     opacity: 0;
     transform: translateX(15px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -187,6 +188,10 @@
 
   .meet {
     grid-template-columns: 1fr;
+  }
+
+  .left {
+    padding-top: 25px;
   }
 
   .meet .left {

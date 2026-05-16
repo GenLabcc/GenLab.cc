@@ -2,7 +2,7 @@
   background: #EEEEEE;
   padding: clamp(2rem, 6vw, 4rem) 0;
   color: #111;
-  height: 100dvh;
+  height: auto;
   box-sizing: border-box;
   overflow: hidden;
   display: flex;
@@ -91,6 +91,7 @@
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }
@@ -100,6 +101,7 @@
   from {
     transform: translateX(-50%);
   }
+
   to {
     transform: translateX(0);
   }

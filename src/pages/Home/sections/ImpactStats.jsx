@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ImpactStats.module.css";
-import circle from "@/assets/images/green_sphere.webp";
+
 
 const ImpactStats = () => {
   return (
@@ -55,9 +55,6 @@ const ImpactStats = () => {
         </div>
       </div>
 
-      <div className={styles.sphereContainer}>
-      <img src={circle} className={styles.rotateAnticlockwise} alt="Rotating Sphere" />
-    </div>
 
     </section>
   );

@@ -141,6 +141,24 @@ const style = `
     vertical-align: middle;
     display: block;
   }
+    @media (max-width: 1024px) {
+    .ethos-page {
+      height: auto;
+      min-height: 100dvh;
+    }
+    .content {
+      top: clamp(30px, 6%, 80px);
+      left: clamp(16px, 6%, 80px);
+      right: clamp(16px, 6%, 80px);
+      xbottom: clamp(30px, 6%, 80px);
+    }
+    .body-wrap p {
+      font-size : 20px;
+      text-align: justify;   
+      letter-spacing: 0.001em; 
+    }
+  }
+
 `;
 
 export default function OurEthos() {

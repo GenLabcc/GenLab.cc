@@ -17,13 +17,13 @@ export default function Home() {
   const location = useLocation();
 
   useEffect(() => {
-      if (location.hash) {
+    if (location.hash) {
       const id = location.hash.replace("#", "");
 
       const scrollToSection = () => {
         const element = document.getElementById(id);
         element?.scrollIntoView({ behavior: "smooth" });
-    };
+      };
 
       // Delay ensures DOM is rendered
       setTimeout(scrollToSection, 100);
@@ -32,13 +32,13 @@ export default function Home() {
 
   return (
     <div className={styles.home}>
-      
+
       <HeroSection />
 
       <EthosSection />
 
       <CreativityEngine />
-      
+
       <CapabilitiesSection />
 
       <BenefitsSection />

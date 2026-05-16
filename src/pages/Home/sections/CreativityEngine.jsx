@@ -113,7 +113,7 @@ const style = `
     font-size: clamp(36px, 3.3vw, 50px);
     color: rgba(240, 240, 240, 1);
     letter-spacing: -0.01em;
-    line-height: 1;
+    line-height: 2;
   }
 
   .ce-card-desc {
