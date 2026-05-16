@@ -1,0 +1,51 @@
+.input-field-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  font-family: 'Clash Display', sans-serif;
+}
+
+.input-label {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 15px;
+  font-weight: 500;
+  padding-left: 0.25rem;
+  letter-spacing: 0.025em;
+}
+
+.input-element {
+  width: 100%;
+  height: 52px;
+  padding-left: 22px;
+  text-indent: 8px;
+  border-radius: 12px;
+  color: #F0F0F0;
+  font-size: 16px;
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.2s;
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.input-element::placeholder {
+  color: #F0F0F0;
+  opacity: 0.6;
+}
+
+.input-element:focus {
+  border-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.04);
+  transform: scale(1.01);
+}
+
+.input-element.read-only {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.input-element.read-only:focus {
+  transform: none;
+  border-color: rgba(255, 255, 255, 0.2);
+}

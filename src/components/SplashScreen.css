@@ -1,0 +1,127 @@
+.elegant-splash-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  /* Start with the outer square's color so it feels like one continuous surface */
+  background-color: #4b5900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  /* Fade the green background to white as the outer square shrinks away from edges */
+  animation: 
+    bgToWhite 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards,
+    containerFadeOut 1.5s cubic-bezier(0.22, 1, 0.36, 1) 3s forwards;
+}
+
+@keyframes bgToWhite {
+  0% { background-color: #4b5900; }
+  100% { background-color: #ffffff; }
+}
+
+@keyframes containerFadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.elegant-square {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* 
+   PHASE 1 (0s - 1.8s): Squares shrink from full-screen into center
+   PHASE 2 (1.8s - 3.2s): Logo fades in, holds, fades out
+   PHASE 3 (3.2s - 4.5s): Squares expand outward, revealing website
+*/
+
+/* Outer square: visible shrinking from full screen */
+.elegant-outer {
+  width: 100vw;
+  height: 100vh;
+  background-color: #4b5900;
+  z-index: 10;
+  animation: 
+    outerShrink 2s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+    outerExpand 1.5s cubic-bezier(0.22, 1, 0.36, 1) 3s forwards;
+}
+
+@keyframes outerShrink {
+  0% { width: 100vw; height: 100vh; border-radius: 0; }
+  100% { width: 25vmin; height: 25vmin; border-radius: 4px; }
+}
+
+@keyframes outerExpand {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(20); opacity: 0; }
+}
+
+/* Inner square: shrinks slightly after the outer */
+.elegant-inner {
+  width: 100vw;
+  height: 100vh;
+  background-color: #c2e600;
+  z-index: 11;
+  animation: 
+    innerShrink 2s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both,
+    innerExpand 1.5s cubic-bezier(0.22, 1, 0.36, 1) 3s forwards;
+}
+
+@keyframes innerShrink {
+  0% { width: 100vw; height: 100vh; border-radius: 0; }
+  100% { width: 18vmin; height: 18vmin; border-radius: 4px; }
+}
+
+@keyframes innerExpand {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(25); opacity: 0; }
+}
+
+/* Background image square: shrinks last */
+.elegant-bg {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  z-index: 12;
+  animation: 
+    bgShrink 2s cubic-bezier(0.22, 1, 0.36, 1) 0.24s both,
+    bgExpand 1.5s cubic-bezier(0.22, 1, 0.36, 1) 3s forwards;
+}
+
+@keyframes bgShrink {
+  0% { width: 100vw; height: 100vh; border-radius: 0; }
+  100% { width: 11vmin; height: 11vmin; border-radius: 4px; }
+}
+
+@keyframes bgExpand {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(30); opacity: 0; }
+}
+
+/* Logo: fades in after shrink, fades out before expand */
+.elegant-logo {
+  width: 75%;
+  height: auto;
+  opacity: 0;
+  filter: brightness(0) invert(1);
+  animation: logoMotion 2s cubic-bezier(0.22, 1, 0.36, 1) 1.45s forwards;
+}
+
+@keyframes logoMotion {
+  0% { opacity: 0; transform: scale(0.85); }
+  25%, 75% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.1); }
+}
+
+/* Final cleanup: remove the splash container after expand completes */
+.elegant-splash-container.done {
+  display: none;
+}

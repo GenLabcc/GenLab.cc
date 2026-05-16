@@ -1,0 +1,10 @@
+.logo-mark-wrapper svg {
+  width: 100%;
+  height: 100%;
+}
+.logo-mark-wrapper svg path,
+.logo-mark-wrapper svg rect,
+.logo-mark-wrapper svg circle,
+.logo-mark-wrapper svg polygon {
+  fill: currentColor;
+}

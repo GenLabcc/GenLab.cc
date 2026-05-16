@@ -1,0 +1,190 @@
+/* ================= MEET SECTION ================= */
+
+.meet {
+  min-height: clamp(500px, 80vh, 900px);
+  display: grid;
+  grid-template-columns: 0.9fr 1fr;
+  background:black;
+}
+.meet {
+  min-height: clamp(500px, 80vh, 900px);
+  display: grid;
+  grid-template-columns: 0.9fr 1fr;
+  background: black url("@/assets/images/capabilities/bg.png") center/cover no-repeat;
+}
+
+.meet .left {
+  position: relative;
+}
+
+.cardsWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(300px, 35vw, 480px);
+  aspect-ratio: 1 / 1;
+}
+
+.staticGlassCard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.staticInnerGlass {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 55%;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.cardContentWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(24px, 3vw, 40px);
+  color: white;
+  z-index: 2; /* Sit on top of static glass */
+  will-change: opacity; /* Hardware acceleration for opacity */
+}
+
+.innerGlassContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 55%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-transform: uppercase;
+  font-size: clamp(0.5rem, 0.8vw, 0.75rem);
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  font-weight: 300;
+  z-index: 2;
+}
+
+.cardCornerText {
+  white-space: pre-line;
+  max-width: 48%;
+}
+
+.textRight {
+  text-align: right;
+}
+
+.centerIcon {
+  width: 100px;
+  height: 100px;
+  opacity: 0.9;
+}
+
+.centerText {
+  font-size: clamp(1rem, 2vw, 1.8rem);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.cardBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  text-transform: uppercase;
+  font-size: clamp(0.5rem, 0.8vw, 0.75rem);
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  font-weight: 300;
+  z-index: 2;
+}
+
+.bottomFullText {
+  width: 100%;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+
+.meet .right {
+  padding: clamp(40px, 6vw, 95px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vw, 40px);
+  align-self: center;
+}
+
+/* Small heading */
+.meet .right h1 {
+  font-size: clamp(25px, 2.5vw, 36px);
+  letter-spacing: 0.08em;
+  font-weight: 400;
+  color: white;
+}
+
+/* Main paragraph */
+.meet .right p {
+  font-size: clamp(16px, 2.2vw, 18px);
+  line-height: 1.4;
+  letter-spacing: 1px;
+  font-weight: 100;
+  max-width: 650px;
+  color: white;
+  text-align: justify;
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 1024px) {
+
+  .meet {
+    grid-template-columns: 1fr;
+    padding-top: 50px;
+  }
+
+  .meet .left {
+    height: clamp(300px, 50vw, 450px);
+  }
+
+  .meet .right {
+    text-align: center;
+    align-items: center;
+  }
+
+  .meet .right p {
+    max-width: 600px;
+  }
+
+}

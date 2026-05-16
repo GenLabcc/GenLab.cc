@@ -1,0 +1,52 @@
+.glow-container {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -10;
+  background-color: #000000;
+}
+
+.glow-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glow-layer {
+  position: absolute;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+}
+
+.ambient-glow {
+  width: 180%;
+  height: 180%;
+  filter: blur(120px);
+  background: radial-gradient(circle, rgba(163, 230, 53, 0.25) 0%, rgba(163, 230, 53, 0.05) 65%, transparent 90%);
+}
+
+.main-glow {
+  width: 120%;
+  height: 120%;
+  filter: blur(80px);
+  background: radial-gradient(circle, rgba(163, 230, 53, 0.45) 0%, rgba(163, 230, 53, 0.15) 55%, transparent 85%);
+}
+
+.core-glow {
+  width: 70%;
+  height: 75%;
+  filter: blur(40px);
+  background: radial-gradient(circle, rgba(163, 230, 53, 0.95) 0%, rgba(163, 230, 53, 0.45) 50%, transparent 80%);
+}
+
+.secondary-glow {
+  width: 60%;
+  height: 60%;
+  filter: blur(80px);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, transparent 80%);
+}

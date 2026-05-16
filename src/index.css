@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --color-custom-dark: #0b0b0b;
+  --color-custom-lime: #32CD32;
+  --font-clash: "Clash Display", sans-serif;
+}
+
+:root {
+  --accent-color: #c2e600;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* max-width: 100wh;x */
+  /* background-color: aliceblue; */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@font-face {
+  font-family: "Clash Display";
+  src: url("./fonts/ClashDisplay-Variable.ttf") format("truetype");
+  font-weight: 200 700;
+  font-display: swap;
+}
+
+body {
+  /* font-family: Inter, system-ui, sans-serif; */
+  font-family: "Clash Display", sans-serif;
+  background-color: black;
+}

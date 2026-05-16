@@ -1,0 +1,403 @@
+/* Main container for the entire verification page - ensures 100vh layout */
+.verify-container {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-family: 'Clash Display', sans-serif;
+  overflow: hidden;
+  transition: background-color 0.8s ease;
+}
+
+.is-verified {
+  background-color: #000000 !important;
+}
+
+@media (min-width: 640px) {
+  .verify-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .verify-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* Wrapper to vertically and horizontally center the form content */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  width: 100%;
+}
+
+/* Shared card layout for all states */
+.verification-card {
+  width: 100%;
+  max-width: 540px;
+  z-index: 10; 
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(11, 11, 11, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 28px;
+  padding: 2.5rem 1.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.verifying-card {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+@media (min-width: 640px) {
+  .verification-card {
+    padding: 3.5rem 3rem;
+    border-radius: 40px;
+  }
+}
+
+/* Spacing and layout for the top logo */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 640px) {
+  .logo-container {
+    margin-bottom: 2rem;
+  }
+}
+
+
+/* Container for the title - shared across states */
+.title-container {
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .title-container {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Logo general styling - reused */
+.logo-img {
+  height: 24px;
+  width: auto;
+}
+
+@media (min-width: 640px) {
+  .logo-img {
+    height: 36px;
+  }
+}
+
+@media (min-width: 768px) {
+  .logo-img {
+    height: 48px;
+  }
+}
+
+/* Main title styling */
+.title {
+  font-size: 24px;
+  line-height: 1.1;
+  font-weight: 500;
+  color: white;
+  letter-spacing: -0.02em; /* Tighter for display fonts */
+}
+
+@media (min-width: 640px) {
+  .title {
+    font-size: 32px;
+    line-height: 1.1;
+  }
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 48px;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+}
+
+/* Verified tick animation styles */
+.verified-tick-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  z-index: 5;
+}
+
+.glow-pulse {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: rgba(50, 205, 50, 0.4);
+  filter: blur(25px);
+  border-radius: 50%;
+  z-index: -1;
+  animation: glow-expand 0.8s ease-out forwards;
+}
+
+@keyframes glow-expand {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+@media (min-width: 640px) {
+  .verified-tick-container {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+  .glow-pulse {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.verified-tick-container svg {
+  width: 100px;
+  height: 100px;
+  filter: drop-shadow(0 0 10px rgba(50, 205, 50, 0.5));
+}
+
+.error-mark-container svg {
+  filter: drop-shadow(0 0 10px rgba(228, 75, 75, 0.5));
+}
+
+.error-glow {
+  background: rgba(228, 75, 75, 0.4);
+}
+
+@media (min-width: 640px) {
+  .verified-tick-container svg {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (min-width: 768px) {
+  .verified-tick-container svg {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+/* Verifying/Scanning state specific overrides if any */
+.verifying-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.scanning-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scanning-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #32CD32, transparent);
+  box-shadow: 0 0 15px #32CD32;
+  animation: scan 2s linear infinite;
+  z-index: 2;
+}
+
+.pulse-ring {
+  width: 80px;
+  height: 80px;
+  border: 2px solid rgba(50, 205, 50, 0.3);
+  border-radius: 50%;
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes scan {
+  0% { top: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.3); opacity: 0.8; }
+  80%, 100% { transform: scale(1.5); opacity: 0; }
+}
+
+
+.verifying-subtext {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin-top: -1rem; /* Adjust spacing because of title-container margin */
+}
+
+.scanning-container-wrapper,
+.tick-success-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.tick-success-wrapper {
+  padding-bottom: 3rem; /* Add space since it replaces the scanner */
+}
+
+@media (min-width: 640px) {
+  .tick-success-wrapper {
+    padding-bottom: 4rem;
+  }
+}
+
+/* Layout for input groups in the form */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Layout for results displayed in the verified form */
+.verified-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px; /* Tightened results list */
+}
+
+/* Grid layout for Start and End dates */
+.grid-dates {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .grid-dates {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+/* Styling for error messages */
+.error-message {
+  color: #e44b4b;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+/* Spacing for button wrappers */
+.btn-wrapper {
+  padding-top: 1rem;
+}
+
+/* Wider spacing for the 'Done' button */
+.verified-btn-wrapper {
+  padding-top: 0.5rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .verified-btn-wrapper {
+    padding-top: 1rem;
+  }
+}
+
+/* Specific styling for the Done button as per Figma request */
+.done-btn {
+  width: 100%;
+  height: 52px;
+  border-radius: 12px;
+  background-color: #F0F0F0;
+  color: #000000;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+}
+
+/* Verify Certificate button with dynamic background */
+.verify-btn {
+  background-color: #F0F0F0 !important;
+  color: #000000 !important;
+  font-weight: 500 !important;
+  border: none !important;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+}
+
+.verify-btn:disabled {
+  background-color: rgba(240, 240, 240, 0.4) !important;
+  color: rgba(0, 0, 0, 0.55) !important;
+  opacity: 1 !important;
+  cursor: not-allowed !important;
+  letter-spacing: 0.02em;
+}
+
+/* Sticky footer at the bottom of the viewport */
+.footer {
+  margin-top: auto;
+  text-align: center;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 400;
+  padding: 1.5rem 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 640px) {
+  .footer {
+    font-size: 13px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}

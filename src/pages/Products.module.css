@@ -1,0 +1,411 @@
+.productsPage {
+  background-color: #fff;
+  min-height: 100vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.heroSection {
+  width: 100%;
+  height: 534px;
+  background-color: #0c0c0c;
+  color: #fff;
+  padding: 32px 200px 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.heroTitle {
+  font-family: "Clash Display Variable", sans-serif;
+  font-weight: 500;
+  font-size: 80px;
+  line-height: 102px;
+  margin: 0;
+  letter-spacing: 2px;
+  color: #F0F0F0;
+  width: 1520px;
+  max-width: 100%;
+}
+
+.productSection {
+  width: 100%;
+  padding: 100px 40px 100px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.productSection:last-child {
+  border-bottom: none;
+}
+
+.pageLayout {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+  align-items: flex-start;
+  padding-bottom: 100px;
+}
+
+.leftColumn {
+  position: sticky;
+  top: 180px;
+  width: 280px;
+  flex-shrink: 0;
+  height: fit-content;
+}
+
+.stickyContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.mobileHeader {
+  display: none; /* Desktop Only */
+}
+
+.mobileTitle {
+  display: none;
+}
+
+.productUnit {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 300px;
+  /* Increased for smoother scroll transition */
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  /* Gap handled by units */
+  flex: 1;
+  max-width: 1280px;
+  min-width: 0;
+}
+
+.num {
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.title {
+  width: 100%;
+  max-width: 450px;
+  font-family: "Clash Display", sans-serif;
+  font-weight: 500;
+  font-size: 62px;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  color: #101010;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.exploreBtn {
+  background-color: #111;
+  color: #fff;
+  padding: 14px 44px;
+  border-radius: 999px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  align-self: flex-start;
+  margin-top: 10px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.exploreBtn:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.mobileTryBtn {
+  display: none; /* Hide by default */
+  background-color: #d9ff00;
+  color: #000;
+  padding: 16px 44px;
+  border-radius: 999px;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s;
+  margin: 10px 0 30px;
+  align-self: flex-start;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  max-width: 1204px;
+  height: auto;
+  aspect-ratio: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0;
+  background-color: #000;
+}
+
+.mainImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+video.mainImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform: scale(1.2);
+  transform-origin: center;
+}
+
+.contentFooter {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 40px;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.desc {
+  width: 880px;
+  max-width: 100%;
+  height: auto;
+  min-height: 144px;
+  font-family: "Clash Display Variable", "Clash Display";
+  font-size: 32px;
+  line-height: 36px;
+  color: #101010;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  opacity: 1;
+}
+
+.metadataCard {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  width: 360px;
+  height: auto;
+  opacity: 1;
+}
+
+.partnershipBox {
+  width: 120px;
+  height: 120px;
+  background-color: #0b0b0b;
+  border-radius: 9.03px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  flex-shrink: 0;
+}
+
+.partnershipBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.infoCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0;
+  border-radius: 12px;
+  flex: 1;
+  height: auto;
+  gap: 8px;
+}
+
+.names {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  height: auto;
+}
+
+.names span {
+  font-family: "Clash Display Variable", "Clash Display", sans-serif;
+  font-size: 15px;
+  color: rgba(16, 16, 16, 0.5);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.date {
+  font-family: "Clash Display Variable", "Clash Display", sans-serif;
+  font-size: 22px;
+  color: #b5b5b5;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-top: 32px;
+}
+
+@media (max-width: 1600px) {
+  .rightColumn,
+  .imageContainer {
+    width: 100%;
+    max-width: 1100px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .pageLayout {
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .leftColumn {
+    display: none;
+  }
+
+  .mobileHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+    width: 100%;
+  }
+
+  .mobileTitle {
+    display: block;
+    font-family: "Clash Display", sans-serif;
+    font-weight: 500;
+    font-size: clamp(32px, 5vw, 62px);
+    line-height: 1.1;
+    color: #101010;
+    margin: 0;
+  }
+
+  .mobileTryBtn {
+    display: inline-block;
+  }
+
+  .rightColumn {
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+  }
+
+  .imageContainer {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+
+  .contentFooter {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 32px;
+    margin-top: 32px;
+  }
+
+  .desc {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    text-align: left;
+  }
+}
+
+@media (max-width: 768px) {
+  .productSection {
+    padding: 60px 24px 40px;
+  }
+
+  .mobileTitle {
+    font-size: 44px;
+  }
+
+  .desc {
+    font-size: 24px;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+
+  .metadataCard {
+    width: 100%;
+  }
+
+  .partnershipBox {
+    width: 80px;
+    height: 80px;
+  }
+
+  .heroSection {
+    height: auto;
+    min-height: 400px;
+    padding: 100px 24px 60px;
+  }
+
+  .heroTitle {
+    font-size: 56px;
+    line-height: 1.1;
+  }
+
+  .date {
+    font-size: 18px;
+    margin-top: 16px;
+  }
+
+  .productUnit {
+    margin-bottom: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobileTitle {
+    font-size: 32px;
+  }
+
+  .heroTitle {
+    font-size: 40px;
+  }
+
+  .desc {
+    font-size: 18px;
+  }
+
+  .partnershipBox {
+    width: 60px;
+    height: 60px;
+  }
+
+  .date {
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  .heroSection {
+    min-height: 300px;
+  }
+}
