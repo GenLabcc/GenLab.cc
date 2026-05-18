@@ -92,12 +92,12 @@
 
 .socials a {
   width: clamp(40px, 4vw, 48px);
-  height: clamp(30px, 4vw, 48px);
+  height: clamp(40px, 4vw, 48px);
   background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 6px;
+  border-radius: 10px;
   color: #000000;
   font-size: clamp(1.2rem, 1.5vw, 1.5rem);
   transition: 0.3s;
