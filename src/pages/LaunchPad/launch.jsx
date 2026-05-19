@@ -14,7 +14,7 @@ import christ from "../../assets/logos/academia/Christ.webp";
 import fatima from "../../assets/logos/academia/fatima.webp";
 import fx from "../../assets/logos/academia/fx.webp";
 import sm from "../../assets/logos/academia/sm.webp";
-import niche from "../../assets/logos/academia/niche.webp";
+import niche from "../../assets/logos/academia/Niche.webp";
 import xavier from "../../assets/logos/academia/xavier.webp";
 import dmi from "../../assets/logos/academia/dmi.webp";
 import mt from "../../assets/logos/academia/mt.webp";
