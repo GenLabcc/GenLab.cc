@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import "./launch.css";
 import ConnectSection from "../../components/ConnectSection/ConnectSection";
 
-import launchpadImg from "../../assets/logos/academia/launch_img.png";
+import launchpadImg from "../../assets/logos/academia/Launch_img.png";
 import vit from "../../assets/logos/academia/vit.webp";
 import arunachala from "../../assets/logos/academia/a_arunachala.webp";
 import sns from "../../assets/logos/academia/a_3.webp";
@@ -62,16 +62,16 @@ export default function Launchpad() {
             // Use parent element for bounds to avoid jitter from transform scaling
             const rect = imgRef.current.parentElement.getBoundingClientRect();
             const windowHeight = window.innerHeight;
-            
+
             // Calculate distance from center of screen to center of element
             const elementCenterY = rect.top + rect.height / 2;
             const screenCenterY = windowHeight / 2;
-            
+
             // Max scale is 1.25 (since image is 80% width, 80% * 1.25 = 100%)
             // Distance threshold for when the animation starts/ends
             const maxDistance = windowHeight / 1.2;
             const distance = Math.abs(screenCenterY - elementCenterY);
-            
+
             // Calculate scale: max at center, smoothly approaches 1 at edges
             let scale = 1.25 - (distance / maxDistance) * 0.25;
             scale = Math.min(Math.max(scale, 1), 1.25);
