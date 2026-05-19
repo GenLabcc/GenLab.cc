@@ -4,7 +4,7 @@ import styles from "./PartnersSection.module.css";
 // ----------------- IMPORT LOGOS USING @ ----------------- //
 // Academia Logos
 import vitLogo from "@/assets/logos/academia/vit.webp";
-import arunachalaLogo from "@/assets/logos/academia/a_arunachala.png";
+import arunachalaLogo from "@/assets/logos/academia/a_arunachala.webp";
 import a3Logo from "@/assets/logos/academia/a_3.webp";
 import a4Logo from "@/assets/logos/academia/a_4.png";
 import a5Logo from "@/assets/logos/academia/a_5.png";

@@ -1,0 +1,228 @@
+import { useState } from "react";
+import React, { useEffect, useRef } from 'react';
+import "./launch.css";
+import ConnectSection from "../../components/ConnectSection/ConnectSection";
+
+import launchpadImg from "../../assets/logos/academia/launch_img.png";
+import vit from "../../assets/logos/academia/vit.webp";
+import arunachala from "../../assets/logos/academia/a_arunachala.webp";
+import sns from "../../assets/logos/academia/a_3.webp";
+import hindi from "../../assets/logos/academia/a_4.png";
+import telugu from "../../assets/logos/academia/a_5.png";
+import sit from "../../assets/logos/academia/a_6.png";
+import christ from "../../assets/logos/academia/Christ.webp";
+import fatima from "../../assets/logos/academia/fatima.webp";
+import fx from "../../assets/logos/academia/fx.webp";
+import sm from "../../assets/logos/academia/sm.webp";
+import niche from "../../assets/logos/academia/niche.webp";
+import xavier from "../../assets/logos/academia/xavier.webp";
+import dmi from "../../assets/logos/academia/dmi.webp";
+import mt from "../../assets/logos/academia/mt.webp";
+import scad from "../../assets/logos/academia/scad.webp";
+import appa from "../../assets/logos/academia/appa.webp";
+import av from "../../assets/logos/academia/av.webp";
+import sree from "../../assets/logos/academia/sree.webp";
+
+import event1 from "../../assets/launchpad_reviews/events/launch-event1.webp";
+import event2 from "../../assets/launchpad_reviews/events/launch-event2.webp";
+import event3 from "../../assets/launchpad_reviews/events/launch-event3.webp";
+import event4 from "../../assets/launchpad_reviews/events/launch-event4.webp";
+import event5 from "../../assets/launchpad_reviews/events/launch-event5.webp";
+import event6 from "../../assets/launchpad_reviews/events/launch-event6.webp";
+import event7 from "../../assets/launchpad_reviews/events/launch-event7.webp";
+import event8 from "../../assets/launchpad_reviews/events/launch-event8.webp";
+
+import achieve1 from "../../assets/launchpad_reviews/achieved/achieve1.webp";
+import achieve2 from "../../assets/launchpad_reviews/achieved/achieve2.webp";
+import achieve3 from "../../assets/launchpad_reviews/achieved/achieve3.webp";
+
+import review1 from "../../assets/launchpad_reviews/Review_1_1x.webp";
+import review2 from "../../assets/launchpad_reviews/Review_2_1x.webp";
+import review3 from "../../assets/launchpad_reviews/Review_3_1x.webp";
+import review4 from "../../assets/launchpad_reviews/Review_4_1x.webp";
+import review5 from "../../assets/launchpad_reviews/Review_5_1x.webp";
+import review6 from "../../assets/launchpad_reviews/Review_6_1x.webp";
+import review7 from "../../assets/launchpad_reviews/Review_7_1x.webp";
+import review8 from "../../assets/launchpad_reviews/Review_8_1x.webp";
+import review9 from "../../assets/launchpad_reviews/Review_9_1x.webp";
+import review10 from "../../assets/launchpad_reviews/Review_10_1x.webp";
+import review11 from "../../assets/launchpad_reviews/Review_11_1x.webp";
+import review12 from "../../assets/launchpad_reviews/Review_12_1x.webp";
+import review13 from "../../assets/launchpad_reviews/Review_13_1x.webp";
+import review14 from "../../assets/launchpad_reviews/Review_14_1x.webp";
+import review15 from "../../assets/launchpad_reviews/Review_15_1x.webp";
+
+export default function Launchpad() {
+    const imgRef = useRef(null);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (!imgRef.current || !imgRef.current.parentElement) return;
+
+            // Use parent element for bounds to avoid jitter from transform scaling
+            const rect = imgRef.current.parentElement.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            // Calculate distance from center of screen to center of element
+            const elementCenterY = rect.top + rect.height / 2;
+            const screenCenterY = windowHeight / 2;
+            
+            // Max scale is 1.25 (since image is 80% width, 80% * 1.25 = 100%)
+            // Distance threshold for when the animation starts/ends
+            const maxDistance = windowHeight / 1.2;
+            const distance = Math.abs(screenCenterY - elementCenterY);
+            
+            // Calculate scale: max at center, smoothly approaches 1 at edges
+            let scale = 1.25 - (distance / maxDistance) * 0.25;
+            scale = Math.min(Math.max(scale, 1), 1.25);
+
+            imgRef.current.style.transform = `scale(${scale})`;
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll(); // Trigger once on mount
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const [activeTab, setActiveTab] = useState('Hackathon');
+
+    return (
+        <>
+            <div className='launchpad-page'>
+                <div className='launch-title'>
+                    <h1>Launchpad</h1>
+                </div>
+                <div className='launch-dis'>
+                    <div className='launch-left'>
+                        <h2>OUR <br /> CAPABILITIES</h2>
+                        <h4>We're a Gen Z team of strategists,<br />
+                            designers and AI builders.</h4>
+                    </div>
+                    <div className='launch-right'>
+                        <h3 className={activeTab === 'Bootcamp' ? 'active' : ''} onClick={() => setActiveTab('Bootcamp')}>• Bootcamp •</h3>
+                        <h3 className={activeTab === 'Hackathon' ? 'active' : ''} onClick={() => setActiveTab('Hackathon')}>• Hackathon •</h3>
+                        <h3 className={activeTab === 'Incubation' ? 'active' : ''} onClick={() => setActiveTab('Incubation')}>• Incubation •</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div className='launch-img'>
+                <img ref={imgRef} src={launchpadImg} alt="Launchpad" />
+            </div>
+
+
+            <div className='launch-white'>
+                <div className='launch-colleges'>
+                    <h2>Our College Partners</h2>
+                </div>
+
+                <div className='launch-partners'>
+                    <div className='partner-one'>
+                        <img src={vit} alt='VIT'></img>
+                        <img src={arunachala} alt='Arunachala'></img>
+                        <img src={sns} alt='SNS'></img>
+                        <img src={hindi} alt='Hindi'></img>
+                        <img src={telugu} alt='Telugu'></img>
+                        <img src={sit} alt='SIT'></img>
+                        <img src={christ} alt='Christ'></img>
+                        <img src={fatima} alt='Fatima'></img>
+                        <img src={fx} alt='FX'></img>
+                        <img src={sm} alt='SM'></img>
+                        <img src={niche} alt='Niche'></img>
+                        <img src={xavier} alt='Xavier'></img>
+                        <img src={dmi} alt='DMI'></img>
+                        <img src={mt} alt='MT'></img>
+                        <img src={scad} alt='SCAD'></img>
+                        <img src={appa} alt='APPA'></img>
+                        <img src={av} alt='AV'></img>
+                        <img src={sree} alt='Sree'></img>
+                    </div>
+                </div>
+
+                <div className="launch-event">
+                    <h2>Our Events</h2>
+                    <div className="launch-ev-img">
+                        <div className="ev-row">
+                            <div className="ev-card ev-small">
+                                <img src={event1} alt="event1" />
+                                <h3>AI Summit</h3>
+                                <p>We bring our AI Summit to cities like Bengaluru, Coimbatore, and beyond to accelerate developer and student adoption across India's growing AI future.</p>
+                            </div>
+                            <div className="ev-card ev-big">
+                                <img src={event2} alt="event2" />
+                            </div>
+                        </div>
+
+                        <div className="ev-row">
+                            <div className="ev-card ev-big">
+                                <img src={event3} alt="event3" />
+                            </div>
+                            <div className="ev-card ev-small">
+                                <img src={event4} alt="event4" />
+                                <h3>Hackathon</h3>
+                                <p>Our Hackathons bring together students across cities in India to develop innovative AI solutions that define the next era of Indian tech.</p>
+                            </div>
+                        </div>
+
+                        <div className="ev-row">
+                            <div className="ev-card ev-small">
+                                <img src={event5} alt="event5" />
+                                <h3>Bootcamp</h3>
+                                <p>Our Bootcamps are built for beginners!
+                                    We take you from zero to job-ready through hands-on training in Web Development, App Development, UI/UX, Data Science, AI programs and more..</p>
+                            </div>
+                            <div className="ev-card ev-big">
+                                <img src={event6} alt="event6" />
+                            </div>
+                        </div>
+
+                        <div className="ev-row">
+                            <div className="ev-card ev-big">
+                                <img src={event7} alt="event7" />
+                            </div>
+                            <div className="ev-card ev-small">
+                                <img src={event8} alt="event8" />
+                                <h3>Incubation</h3>
+                                <p>We support early-stage student startups by providing funding, mentorship, infrastructure, and networking opportunities to help great ideas grow into real businesses.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="launch-achieve">
+                <div className="achieve-img">
+                    <img src={achieve1} alt='achieve1'></img>
+                    <img src={achieve2} alt='achieve2'></img>
+                    <img src={achieve3} alt='achieve3' ></img>
+                </div>
+            </div>
+
+            <div className="launch-review">
+                <div className="review-marquee-container">
+                    <div className="review-gallery-wrapper">
+                        {[
+                            [review1, review6, review11],
+                            [review2, review7, review12],
+                            [review3, review8, review13],
+                            [review4, review9, review14],
+                            [review5, review10, review15]
+                        ].map((colImages, index) => (
+                            <div key={index} className="review-col">
+                                <div className={`review-col-inner ${index % 2 === 0 ? 'scroll-up' : 'scroll-down'}`}>
+                                    <div className="review-col-part">
+                                        {colImages.map((img, i) => <img key={i} src={img} alt={`review${index}-${i}`} />)}
+                                    </div>
+                                    <div className="review-col-part">
+                                        {colImages.map((img, i) => <img key={i + 3} src={img} alt={`review-dup${index}-${i}`} />)}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+            <ConnectSection></ConnectSection>
+        </>
+    )
+}

@@ -26,7 +26,7 @@ export default function Navbar() {
           <div className="nav-links">
             <Link to="/" className="nav-link">Home</Link>
             <Link to="/people" className="nav-link">People</Link>
-            <Link to="/#launchpad" className="nav-link">Launchpad</Link>
+            <Link to="/launchpad" className="nav-link">Launchpad</Link>
             <Link to="/products" className="nav-link">Product</Link>
             <Link to="/verify-certificate" className="nav-link">Certificate</Link>
           </div>
@@ -50,7 +50,7 @@ export default function Navbar() {
         <div className="mobile-menu-overlay">
           <Link to="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>Home</Link>
           <Link to="/people" className="nav-link" onClick={() => setIsMenuOpen(false)}>People</Link>
-          <Link to="/#launchpad" className="nav-link" onClick={() => setIsMenuOpen(false)}>Launchpad</Link>
+          <Link to="/launchpad" className="nav-link" onClick={() => setIsMenuOpen(false)}>Launchpad</Link>
           <Link to="/products" className="nav-link" onClick={() => setIsMenuOpen(false)}>Product</Link>
           <Link to="/verify-certificate" className="nav-link" onClick={() => setIsMenuOpen(false)}>Certificate</Link>
 

@@ -6,6 +6,7 @@ import Home from "@/pages/Home/Home.jsx";
 import People from "@/pages/People/People.jsx";
 import Products from "@/pages/Products.jsx";
 import ProductDetail from "@/pages/ProductDetail/ProductDetail.jsx";
+import LaunchPad from "@/pages/LaunchPad/launch.jsx"
 import VerifyCertificate from "@/pages/VerifyCertificate.jsx";
 // import VoiceAgent from "@/pages/VoiceAgent/VoiceAgent.jsx";
 import { Routes, Route, useLocation } from "react-router-dom";
@@ -56,6 +57,7 @@ function App() {
           <Route path="/people" element={<People />} />
           {/* <Route path="/voice-agent" element={<VoiceAgent />} /> */}
           <Route path="/products" element={<Products />} />
+          <Route path="/launchpad" element={<LaunchPad/>}/>
           <Route path="/products/custom-website-chatbots" element={<ProductDetail />} />
           <Route path="/verify-certificate" element={<VerifyCertificate />} />
         </Routes>

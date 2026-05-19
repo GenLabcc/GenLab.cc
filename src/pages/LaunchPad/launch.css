@@ -1,0 +1,382 @@
+.launchpad-page {
+    height: auto;
+    background: #010101;
+    width: 100%;
+    padding: clamp(12px, 4vw, 0px) clamp(24px, 8vw, 150px);
+}
+
+.launch-title {
+    width: 100%;
+    max-width: 1520px;
+    height: 158px;
+    padding-bottom: 10px;
+    gap: 120px;
+    opacity: 1;
+    border-bottom: 1px solid #F0F0F033;
+    display: flex;
+    align-items: flex-end;
+}
+
+.launch-title h1 {
+    color: #F0F0F0;
+    font-size: clamp(32px, 5vw, 72px);
+    font-weight: 500;
+}
+
+.launch-title h2 {
+    font-family: var(--title);
+    font-weight: 400;
+    color: var(--off-white);
+    font-size: clamp(32px, 5vw, 72px);
+    line-height: 1;
+    margin: 0;
+}
+
+/* ─── Discription ─────────────────────────────────────────────────── */
+.launch-dis {
+    color: #F0F0F0;
+    padding-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.launch-left {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12px, 2vw, 24px);
+}
+
+.launch-right {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1.5vw, 20px);
+    text-align: right;
+    align-items: flex-end;
+}
+
+.launch-right h3 {
+    border: 1.2px solid #F0F0F0;
+    border-radius: 50px;
+    padding: clamp(8px, 1vw, 12px) clamp(24px, 2.5vw, 40px);
+    cursor: pointer;
+    transition: border-color 0.3s ease, color 0.3s ease;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.launch-right h3.active {
+    border-color: #D7FF00;
+    color: #D7FF00;
+}
+
+.launch-right h3:hover {
+    border-color: #D7FF00;
+    color: #D7FF00;
+}
+
+/* ─── Launch Pad Image ─────────────────────────────────────────────────── */
+.launch-img {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    overflow: hidden;
+    background-color: #010101;
+    display: flex;
+    justify-content: center;
+}
+
+.launch-img img {
+    width: 80%;
+    height: auto;
+    transition: transform 0.1s ease-out;
+    transform: scale(1);
+    will-change: transform;
+}
+
+/* ─── Launch Pad Partners ─────────────────────────────────────────────────── */
+.launch-colleges {
+    padding-top: 40px;
+    color: #010101;
+    font-size: 30px;
+    padding-bottom: 20px;
+}
+
+.launch-white {
+    background-color: #F0F0F0;
+    height: auto;
+    width: 100%;
+    padding: clamp(12px, 4vw, 0px) clamp(24px, 8vw, 150px);
+
+}
+
+.launch-partners {
+    background-color: #F0F0F0;
+    padding: clamp(20px, 4vw, 60px) clamp(24px, 8vw, 150px);
+    width: 100%;
+}
+
+.partner-one {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, auto);
+    align-items: center;
+    justify-items: center;
+    gap: clamp(16px, 3vw, 40px);
+}
+
+.partner-one img {
+    height: 110px;
+    width: 110px;
+    object-fit: contain;
+}
+
+/* ─── LaunchPad Event─────────────────────────────────────────────────── */
+.launch-event {
+    padding-bottom: 120px;
+}
+
+.launch-event h2 {
+    padding-top: 40px;
+    color: #010101;
+    font-size: 30px;
+    padding-bottom: 40px;
+}
+
+.launch-ev-img {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 3vw, 40px);
+}
+
+.ev-row {
+    display: flex;
+    flex-direction: row;
+    gap: clamp(16px, 3vw, 40px);
+    align-items: flex-start;
+}
+
+.ev-row {
+    display: flex;
+    flex-direction: row;
+    gap: clamp(16px, 3vw, 40px);
+    align-items: flex-start;
+}
+
+.ev-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ev-small {
+    flex: 1;
+}
+
+.ev-big {
+    flex: 2;
+}
+
+.ev-card h3 {
+    color: #010101;
+    font-size: clamp(16px, 2vw, 24px);
+    font-weight: 500;
+    margin: 0;
+}
+
+.ev-card p {
+    color: #010101;
+    font-size: clamp(13px, 1.2vw, 16px);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ─── LaunchPad Achievement ─────────────────────────────────────────────────── */
+.launch-achieve {
+    background: url("../../assets/bg.png") center/cover no-repeat;
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+.achieve-img {
+    display: flex;
+    flex-direction: row;
+    gap: clamp(16px, 3vw, 40px);
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.achieve-img img {
+    width: 350px;
+    height: 430px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* ─── LaunchPad Review ─────────────────────────────────────────────────── */
+.launch-review {
+    background: #F0F0F0;
+    padding: clamp(12px, 4vw, 0px) clamp(24px, 8vw, 150px);
+    padding-bottom: 25px;
+    height: 600px; /* Fixed height for the scroll container */
+    overflow: hidden;
+}
+
+.review-marquee-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    /* Optional: fade out edges for premium feel */
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+}
+
+.review-gallery-wrapper {
+    display: flex;
+    gap: 24px;
+    height: 100%;
+    width: 100%;
+}
+
+.review-col {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.review-col-inner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.review-col-inner.scroll-up {
+    animation: marquee-up 15s linear infinite;
+}
+
+.review-col-inner.scroll-down {
+    animation: marquee-down 15s linear infinite;
+}
+
+.review-col-inner:hover {
+    animation-play-state: paused;
+}
+
+.review-col-part {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-bottom: 24px;
+    width: 100%;
+}
+
+.review-col-part img {
+    width: 100%;
+    height: auto;
+    border-radius: 0px;
+    display: block;
+}
+
+@keyframes marquee-up {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+}
+
+@keyframes marquee-down {
+    0% { transform: translateY(-50%); }
+    100% { transform: translateY(0); }
+}
+
+
+
+/* ─── Mobile View─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .launch-title {
+        padding-top: 50px;
+    }
+
+    .launch-dis {
+        padding-top: 50px;
+    }
+
+    .launch-left {
+        font-size: 12px;
+    }
+
+    .launch-right {
+        font-size: 12px;
+    }
+
+    .launch-img {
+        padding-bottom: 50px;
+    }
+
+    .launch-colleges {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    .launch-partners {
+        padding: clamp(12px, 4vw, 24px) clamp(12px, 4vw, 24px);
+    }
+
+    .launch-event {
+        padding-bottom: 50px;
+    }
+
+    .partner-one img {
+        height: 40px;
+        width: 110px;
+        object-fit: contain;
+    }
+
+    .launch-event h2 {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    .launch-ev-img {
+        gap: clamp(12px, 4vw, 24px);
+    }
+
+    .ev-row {
+        flex-direction: column;
+        gap: clamp(12px, 4vw, 24px);
+    }
+
+    .ev-small,
+    .ev-big {
+        flex: 1;
+        width: 100%;
+    }
+
+    .ev-card img {
+        height: clamp(200px, 60vw, 320px);
+        width: 100%;
+    }
+
+    .launch-achieve {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .achieve-img {
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+    }
+
+    .achieve-img img {
+        width: 300px;
+        height: 380px;
+    }
+
+    .review-col:nth-child(3),
+    .review-col:nth-child(4),
+    .review-col:nth-child(5) {
+        display: none;
+    }
+
+}

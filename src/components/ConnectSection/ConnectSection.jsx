@@ -79,7 +79,7 @@ const ConnectSection = () => {
 
     try {
       const contactUrl = import.meta.env.VITE_USER_DATA_COLLECTION_URL;
-      
+
       if (!contactUrl) {
         console.error('Submit Error: VITE_USER_DATA_COLLECTION_URL is not defined in environment variables.');
         throw new Error('Script URL missing');
@@ -175,21 +175,16 @@ const ConnectSection = () => {
                 name="reason"
                 value={formData.reason}
                 onChange={handleChange}
-                className={`${styles.select} ${
-                  errors.reason ? styles.inputError : ""
-                }`}
+                className={`${styles.select} ${errors.reason ? styles.inputError : ""
+                  }`}
               >
                 <option value="" disabled>Reason</option>
-                <option value="careers">Careers</option>
-                <option value="internships">Internships</option>
-                <option value="training_programs_courses">Training programs / Courses</option>
-                <option value="incubation_support">Incubation support</option>
-                <option value="guest_lectures_campus_visits">Guest lectures / Campus visits</option>
-                <option value="collaborations_partnerships">Collaborations / Partnerships</option>
-                <option value="branding_and_design_services">Branding and design services</option>
-                <option value="digital_marketing_services">Digital marketing services</option>
-                <option value="ai_solutions_automation">AI solutions / Automation</option>
-                <option value="software_development_tech_projects">Software development / Tech projects</option>
+                <option value="careers">business enquiry</option>
+                <option value="internships">internship enquiry</option>
+                <option value="training_programs_courses">courses enquiry</option>
+                <option value="incubation_support">careers enquiry</option>
+
+
               </select>
               {errors.reason && (
                 <span className={styles.fieldError}>{errors.reason}</span>
@@ -215,9 +210,8 @@ const ConnectSection = () => {
               onChange={handleChange}
             />
             <span
-              className={`${styles.checkmark} ${
-                errors.consent ? styles.inputError : ""
-              }`}
+              className={`${styles.checkmark} ${errors.consent ? styles.inputError : ""
+                }`}
             ></span>
             <span className={styles.checkboxText}>
               I consent to GenLab collecting and processing my information to
@@ -234,10 +228,10 @@ const ConnectSection = () => {
               {status === "loading"
                 ? "Submitting..."
                 : status === "success"
-                ? "Submitted ✓"
-                : status === "error"
-                ? "Failed ✕"
-                : "SUBMIT"}
+                  ? "Submitted ✓"
+                  : status === "error"
+                    ? "Failed ✕"
+                    : "SUBMIT"}
             </span>
             <div className={styles.arrow}>
               <ArrowIcon />
