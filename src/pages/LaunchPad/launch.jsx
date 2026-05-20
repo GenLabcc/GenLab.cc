@@ -23,34 +23,34 @@ import appa from "../../assets/logos/academia/appa.webp";
 import av from "../../assets/logos/academia/av.webp";
 import sree from "../../assets/logos/academia/sree.webp";
 
-import event1 from "../../assets/launchpad_reviews/events/launch-event1.webp";
-import event2 from "../../assets/launchpad_reviews/events/launch-event2.webp";
-import event3 from "../../assets/launchpad_reviews/events/launch-event3.webp";
-import event4 from "../../assets/launchpad_reviews/events/launch-event4.webp";
+import event1 from "../../assets/launchpad_reviews/events/Launch-event1.webp";
+import event2 from "../../assets/launchpad_reviews/events/Launch-event2.webp";
+import event3 from "../../assets/launchpad_reviews/events/Launch-event3.webp";
+import event4 from "../../assets/launchpad_reviews/events/Launch-event4.webp";
 import event5 from "../../assets/launchpad_reviews/events/launch-event5.webp";
-import event6 from "../../assets/launchpad_reviews/events/launch-event6.webp";
+import event6 from "../../assets/launchpad_reviews/events/Launch-event6.webp";
 import event7 from "../../assets/launchpad_reviews/events/launch-event7.webp";
-import event8 from "../../assets/launchpad_reviews/events/launch-event8.webp";
+import event8 from "../../assets/launchpad_reviews/events/Launch-event8.webp";
 
-import achieve1 from "../../assets/launchpad_reviews/achieved/achieve1.webp";
-import achieve2 from "../../assets/launchpad_reviews/achieved/achieve2.webp";
-import achieve3 from "../../assets/launchpad_reviews/achieved/achieve3.webp";
+import achieve1 from "../../assets/launchpad_reviews/achieved/Achieve1.webp";
+import achieve2 from "../../assets/launchpad_reviews/achieved/Achieve2.webp";
+import achieve3 from "../../assets/launchpad_reviews/achieved/Achieve3.webp";
 
-import review1 from "../../assets/launchpad_reviews/Review_1_1x.webp";
-import review2 from "../../assets/launchpad_reviews/Review_2_1x.webp";
-import review3 from "../../assets/launchpad_reviews/Review_3_1x.webp";
-import review4 from "../../assets/launchpad_reviews/Review_4_1x.webp";
-import review5 from "../../assets/launchpad_reviews/Review_5_1x.webp";
-import review6 from "../../assets/launchpad_reviews/Review_6_1x.webp";
-import review7 from "../../assets/launchpad_reviews/Review_7_1x.webp";
-import review8 from "../../assets/launchpad_reviews/Review_8_1x.webp";
-import review9 from "../../assets/launchpad_reviews/Review_9_1x.webp";
-import review10 from "../../assets/launchpad_reviews/Review_10_1x.webp";
-import review11 from "../../assets/launchpad_reviews/Review_11_1x.webp";
-import review12 from "../../assets/launchpad_reviews/Review_12_1x.webp";
-import review13 from "../../assets/launchpad_reviews/Review_13_1x.webp";
-import review14 from "../../assets/launchpad_reviews/Review_14_1x.webp";
-import review15 from "../../assets/launchpad_reviews/Review_15_1x.webp";
+import review1 from "../../assets/launchpad_reviews/review_1_1x.webp";
+import review2 from "../../assets/launchpad_reviews/review_2_1x.webp";
+import review3 from "../../assets/launchpad_reviews/review_3_1x.webp";
+import review4 from "../../assets/launchpad_reviews/review_4_1x.webp";
+import review5 from "../../assets/launchpad_reviews/review_5_1x.webp";
+import review6 from "../../assets/launchpad_reviews/review_6_1x.webp";
+import review7 from "../../assets/launchpad_reviews/review_7_1x.webp";
+import review8 from "../../assets/launchpad_reviews/review_8_1x.webp";
+import review9 from "../../assets/launchpad_reviews/review_9_1x.webp";
+import review10 from "../../assets/launchpad_reviews/review_10_1x.webp";
+import review11 from "../../assets/launchpad_reviews/review_11_1x.webp";
+import review12 from "../../assets/launchpad_reviews/review_12_1x.webp";
+import review13 from "../../assets/launchpad_reviews/review_13_1x.webp";
+import review14 from "../../assets/launchpad_reviews/review_14_1x.webp";
+import review15 from "../../assets/launchpad_reviews/review_15_1x.webp";
 
 export default function Launchpad() {
     const imgRef = useRef(null);
