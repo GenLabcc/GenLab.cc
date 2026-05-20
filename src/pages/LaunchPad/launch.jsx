@@ -142,46 +142,38 @@ export default function Launchpad() {
                 <div className="launch-event">
                     <h2>Our Events</h2>
                     <div className="launch-ev-img">
-                        <div className="ev-row">
-                            <div className="ev-card ev-small">
-                                <img src={event1} alt="event1" />
+                        <div className="ev-row ev-row-left">
+                            <img className="ev-img ev-img-small" src={event1} alt="event1" />
+                            <img className="ev-img ev-img-big" src={event2} alt="event2" />
+                            <div className="ev-text">
                                 <h3>AI Summit</h3>
                                 <p>We bring our AI Summit to cities like Bengaluru, Coimbatore, and beyond to accelerate developer and student adoption across India's growing AI future.</p>
                             </div>
-                            <div className="ev-card ev-big">
-                                <img src={event2} alt="event2" />
-                            </div>
                         </div>
 
-                        <div className="ev-row">
-                            <div className="ev-card ev-big">
-                                <img src={event3} alt="event3" />
-                            </div>
-                            <div className="ev-card ev-small">
-                                <img src={event4} alt="event4" />
+                        <div className="ev-row ev-row-right">
+                            <img className="ev-img ev-img-big" src={event3} alt="event3" />
+                            <img className="ev-img ev-img-small" src={event4} alt="event4" />
+                            <div className="ev-text">
                                 <h3>Hackathon</h3>
                                 <p>Our Hackathons bring together students across cities in India to develop innovative AI solutions that define the next era of Indian tech.</p>
                             </div>
                         </div>
 
-                        <div className="ev-row">
-                            <div className="ev-card ev-small">
-                                <img src={event5} alt="event5" />
+                        <div className="ev-row ev-row-left">
+                            <img className="ev-img ev-img-small" src={event5} alt="event5" />
+                            <img className="ev-img ev-img-big" src={event6} alt="event6" />
+                            <div className="ev-text">
                                 <h3>Bootcamp</h3>
                                 <p>Our Bootcamps are built for beginners!
                                     We take you from zero to job-ready through hands-on training in Web Development, App Development, UI/UX, Data Science, AI programs and more..</p>
                             </div>
-                            <div className="ev-card ev-big">
-                                <img src={event6} alt="event6" />
-                            </div>
                         </div>
 
-                        <div className="ev-row">
-                            <div className="ev-card ev-big">
-                                <img src={event7} alt="event7" />
-                            </div>
-                            <div className="ev-card ev-small">
-                                <img src={event8} alt="event8" />
+                        <div className="ev-row ev-row-right">
+                            <img className="ev-img ev-img-big" src={event7} alt="event7" />
+                            <img className="ev-img ev-img-small" src={event8} alt="event8" />
+                            <div className="ev-text">
                                 <h3>Incubation</h3>
                                 <p>We support early-stage student startups by providing funding, mentorship, infrastructure, and networking opportunities to help great ideas grow into real businesses.</p>
                             </div>
