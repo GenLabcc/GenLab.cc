@@ -276,7 +276,8 @@
     background: #F0F0F0;
     padding: clamp(12px, 4vw, 0px) clamp(24px, 8vw, 150px);
     padding-bottom: 25px;
-    height: 600px; /* Fixed height for the scroll container */
+    height: 600px;
+    /* Fixed height for the scroll container */
     overflow: hidden;
 }
 
@@ -337,13 +338,23 @@
 }
 
 @keyframes marquee-up {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-50%); }
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-50%);
+    }
 }
 
 @keyframes marquee-down {
-    0% { transform: translateY(-50%); }
-    100% { transform: translateY(0); }
+    0% {
+        transform: translateY(-50%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
 }
 
 
@@ -380,7 +391,7 @@
     }
 
     .launch-left h2 {
-        font-size: 36px !important;
+        font-size: 24px !important;
         line-height: 1.1;
     }
 
