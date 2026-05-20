@@ -261,3 +261,40 @@
   vertical-align: middle;
 }
 
+/* ─── Light Navbar Theme overrides ────────────────────────────────── */
+.nav-container.light-nav .logo-circle {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.nav-container.light-nav .nav-pill {
+  background-color: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.nav-container.light-nav .nav-link {
+  color: #111111;
+}
+
+.nav-container.light-nav .nav-link:hover {
+  color: var(--accent-color);
+}
+
+.nav-container.light-nav .mobile-menu-btn {
+  background-color: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.nav-container.light-nav .mobile-menu-overlay {
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.nav-container.light-nav .mobile-menu-overlay .nav-link {
+  color: #111111;
+}
+
+

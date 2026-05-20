@@ -8,6 +8,7 @@ import Products from "@/pages/Products.jsx";
 import ProductDetail from "@/pages/ProductDetail/ProductDetail.jsx";
 import LaunchPad from "@/pages/LaunchPad/launch.jsx"
 import VerifyCertificate from "@/pages/VerifyCertificate.jsx";
+import ShabdamUI from "@/pages/Home/shubham/ShabdamUI.jsx";
 // import VoiceAgent from "@/pages/VoiceAgent/VoiceAgent.jsx";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
@@ -60,6 +61,7 @@ function App() {
           <Route path="/launchpad" element={<LaunchPad/>}/>
           <Route path="/products/custom-website-chatbots" element={<ProductDetail />} />
           <Route path="/verify-certificate" element={<VerifyCertificate />} />
+          <Route path="/shabdamui" element={<ShabdamUI />} />
         </Routes>
       </div>
 

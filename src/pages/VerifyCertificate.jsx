@@ -350,7 +350,7 @@ const VerifyCertificate = () => {
 
   return (
     <div className={`verify-container ${(step === 'verified' || step === 'verifying') ? 'is-verified' : ''}`}>
-      {(step !== 'verified' && step !== 'verifying') && <BackgroundGlow />}
+      {/* {(step !== 'verified' && step !== 'verifying') && <BackgroundGlow />} */}
 
       {/* Content Wrapper */}
       <div className="content-wrapper">

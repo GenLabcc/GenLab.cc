@@ -20,13 +20,14 @@
   height: 52px;
   padding-left: 22px;
   text-indent: 8px;
-  border-radius: 12px;
+  border-radius: 0;
   color: #F0F0F0;
   font-size: 16px;
   outline: none;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.2s;
-  background-color: rgba(255, 255, 255, 0.02);
+  background-color: transparent;
 }
 
 .input-element::placeholder {

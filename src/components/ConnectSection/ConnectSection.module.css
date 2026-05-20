@@ -201,6 +201,46 @@ select:-webkit-autofill {
   line-height: 1.4;
 }
 
+.submitBtn {
+  align-self: flex-start;
+  background-color: #BCF000;
+  color: #101010;
+  border: none;
+  border-radius: 100px;
+  padding: 7px 12px;
+  font-size: clamp(0.9rem, 1vw, 1.05rem);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(188, 240, 0, 0.15);
+  width: fit-content;
+}
+
+.submitBtn:hover {
+  background-color: #c9ff1a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(188, 240, 0, 0.3);
+}
+
+.submitBtn:active {
+  transform: translateY(0);
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.submitBtn:hover .arrow {
+  transform: translateX(4px);
+}
+
 /* ================= TABLET ================= */
 
 @media (max-width: 1024px) {
@@ -229,6 +269,8 @@ select:-webkit-autofill {
 
   .submitBtn {
     align-self: flex-start;
+    background: #BCF000;
+    color: #101010;
   }
 }
 

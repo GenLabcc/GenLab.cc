@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import LogoMark from '../LogoMark.jsx';
 import './Navbar.css';
 
@@ -12,13 +12,17 @@ const CustomSparkle = ({ className = '' }) => (
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const isLightNav = location.pathname === '/shabdamui';
 
   return (
-    <nav className="nav-container">
+    <nav className={`nav-container ${isLightNav ? 'light-nav' : ''}`}>
       {/* Logo + Pill grouped together on the left */}
       <div className="nav-left-group">
         <Link to="/" className="logo-circle" aria-label="GenLab home">
-          <LogoMark color="white" size={28} />
+          <LogoMark color={isLightNav ? "black" : "white"} size={28} />
         </Link>
 
         {/* Main Nav Pill */}
@@ -31,7 +35,7 @@ export default function Navbar() {
             <Link to="/verify-certificate" className="nav-link">Certificate</Link>
           </div>
 
-          <button className="cta-btn">
+          <button className="cta-btn" onClick={() => navigate('/shabdamui')}>
             Shabdam AI
             <CustomSparkle />
           </button>
@@ -40,7 +44,7 @@ export default function Navbar() {
             className="mobile-menu-btn"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X size={20} color="#E0E0E0" /> : <Menu size={20} color="#E0E0E0" />}
+            {isMenuOpen ? <X size={20} color={isLightNav ? "#111111" : "#E0E0E0"} /> : <Menu size={20} color={isLightNav ? "#111111" : "#E0E0E0"} />}
           </button>
         </div>
       </div>
@@ -54,7 +58,14 @@ export default function Navbar() {
           <Link to="/products" className="nav-link" onClick={() => setIsMenuOpen(false)}>Product</Link>
           <Link to="/verify-certificate" className="nav-link" onClick={() => setIsMenuOpen(false)}>Certificate</Link>
 
-          <button className="cta-btn mobile-cta-overlay" style={{ display: 'flex' }}>
+          <button
+            className="cta-btn mobile-cta-overlay"
+            style={{ display: 'flex' }}
+            onClick={() => {
+              setIsMenuOpen(false);
+              navigate('/shabdamui');
+            }}
+          >
             Shabdam AI
             <CustomSparkle />
           </button>
