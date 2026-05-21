@@ -52,13 +52,13 @@
     font-family: var(--title);
     font-weight: 400;
     color: #F0F0F0;
-    font-size: clamp(32px, 5vw, 72px);
+    font-size: clamp(24px, 3.5vw, 44px);
     line-height: 1.1;
     margin: 0;
 }
 
 .launch-left h4 {
-    font-size: clamp(16px, 1.8vw, 24px);
+    font-size: clamp(14px, 1.3vw, 18px);
     font-weight: 300;
     color: #F0F0F0CC;
     line-height: 1.4;
