@@ -4,8 +4,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./CapabilitiesSection.module.css";
 import ArrowIcon from "@/components/ui/ArrowIcon.jsx";
 import logoWhite from "../../../assets/logo-white.svg";
-import genLabLogo from "../../../assets/Genlab.png";
-
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -195,55 +193,85 @@ export default function CapabilitiesSection() {
       {/* ========================= */}
 
       <div className={styles.right}>
-        {sections.map((section, index) => (
-          <div key={index} id={section.id} className={styles.textSection}>
-            {/* MOBILE IMAGE PLACEHOLDER */}
-            <div className={styles.mobileImage}>
-              <img src = {genLabLogo} alt= "GenLab logo" className={styles.mobileLogo}></img>
-            </div>
+        {sections.map((section, index) => {
+          const card = leftCards[index];
+          return (
+            <div key={index} id={section.id} className={styles.textSection}>
+              {/* MOBILE CARD */}
+              <div className={styles.mobileImage}>
+                <div className={styles.staticGlassCard}>
+                  <div className={styles.staticInnerGlass}></div>
+                </div>
+                <div className={styles.cardContentWrapper}>
+                  <div className={styles.cardTop}>
+                    <div className={styles.cardCornerText}>{card.topLeft}</div>
+                    <div className={`${styles.cardCornerText} ${styles.textRight}`}>{card.topRight}</div>
+                  </div>
 
-            {section.label && <h3>{section.label}</h3>}
-
-            <h2>{section.heading}</h2>
-
-            <ul className={styles.list}>
-              {section.list.map((item, i) => (
-                <li key={i} className={styles.listItems}>
-                  <div
-                    className={`${styles.listItem} ${
-                      section.clickableList ? styles.clickable : ""
-                    }`}
-                  >
-                    <span className={styles.number}>
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-
-                    <span className={styles.itemText}>{item}</span>
-
-                    {section.clickableList && (
-                      <span className={styles.arrow}>{">"}</span>
+                  <div className={styles.innerGlassContent}>
+                    {card.centerIcon ? (
+                      <img src={logoWhite} alt="GenLab Logo" className={styles.centerIcon} />
+                    ) : (
+                      <div className={styles.centerText}>{card.centerText}</div>
                     )}
                   </div>
 
-                  <span className={styles.line}></span>
-                </li>
-              ))}
-            </ul>
-
-            {section.showButton && (
-              <button type="button" className={styles.submitBtn}
-              onClick={() => {
-                const section = document.getElementById("connect");
-                section?.scrollIntoView({ behavior: "smooth" });
-              }}>
-                <span>START WITH US</span>
-                <div className={styles.arrow}>
-                  <ArrowIcon />
+                  <div className={styles.cardBottom}>
+                    {card.bottomText ? (
+                      <div className={styles.bottomFullText}>{card.bottomText}</div>
+                    ) : (
+                      <>
+                        <div className={styles.cardCornerText}>{card.bottomLeft}</div>
+                        <div className={`${styles.cardCornerText} ${styles.textRight}`}>{card.bottomRight}</div>
+                      </>
+                    )}
+                  </div>
                 </div>
-              </button>
-            )}
-          </div>
-        ))}
+              </div>
+
+              {section.label && <h3>{section.label}</h3>}
+
+              <h2>{section.heading}</h2>
+
+              <ul className={styles.list}>
+                {section.list.map((item, i) => (
+                  <li key={i} className={styles.listItems}>
+                    <div
+                      className={`${styles.listItem} ${
+                        section.clickableList ? styles.clickable : ""
+                      }`}
+                    >
+                      <span className={styles.number}>
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+
+                      <span className={styles.itemText}>{item}</span>
+
+                      {section.clickableList && (
+                        <span className={styles.arrow}>{">"}  </span>
+                      )}
+                    </div>
+
+                    <span className={styles.line}></span>
+                  </li>
+                ))}
+              </ul>
+
+              {section.showButton && (
+                <button type="button" className={styles.submitBtn}
+                onClick={() => {
+                  const section = document.getElementById("connect");
+                  section?.scrollIntoView({ behavior: "smooth" });
+                }}>
+                  <span>START WITH US</span>
+                  <div className={styles.arrow}>
+                    <ArrowIcon />
+                  </div>
+                </button>
+              )}
+            </div>
+          );
+        })}
       </div>
     </section>
   );
