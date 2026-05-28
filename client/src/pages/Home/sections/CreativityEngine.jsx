@@ -7,7 +7,7 @@ const style = `
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   .ce-page {
-    height: 75dvh;
+    height: 90dvh;
     width: 100%;
     background: #0a0a0a;
     font-family: 'Clash Display', sans-serif;
@@ -57,7 +57,7 @@ const style = `
     gap: 34px;
     align-items: stretch;
     flex: 1;
-    min-height: 0;
+    min-height: 0%;
   }
 
   .ce-card {
@@ -73,7 +73,7 @@ const style = `
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: clamp(280px, 45vh, 460px);
+    min-height: 10%;
     opacity: 0;
     transform: translateY(18px);
     transition: opacity 0.7s ease, transform 0.7s ease;

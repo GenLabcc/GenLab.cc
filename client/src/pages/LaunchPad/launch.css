@@ -513,9 +513,9 @@
     }
 
     .achieve-img img {
-        width: 90% !important;
-        max-width: 320px !important;
-        height: auto !important;
+        width: 400!important;
+        max-width: 341px !important;
+        height: 396px !important;
         aspect-ratio: 350 / 430 !important;
         object-fit: cover;
     }

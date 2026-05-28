@@ -104,6 +104,11 @@
 .state3::before {
   inset: clamp(-10px, -2vw, -20px);
   filter: blur(clamp(25px, 6vw, 50px));
+  background: conic-gradient(#BCF000 0deg 90deg,
+      #BCF000 90deg 180deg,
+      #BCF000 180deg 270deg,
+      #F1F1F1 270deg 360deg);
+  height: auto;
 }
 
 .state1::before {

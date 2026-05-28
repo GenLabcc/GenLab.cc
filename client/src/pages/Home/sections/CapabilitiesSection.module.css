@@ -260,6 +260,7 @@
   width: 100%;
   text-align: left;
   color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
 }
 
 /* ========================= */
@@ -354,5 +355,44 @@
   .centerIcon {
     width: 50px;
     height: 50px;
+  }
+}
+@media (max-width: 1080px) {
+  .gallery {
+    flex-direction: column;
+  }
+
+  .left {
+    display: none;
+  }
+
+  .right {
+    width: 100%;
+  }
+
+  /* Show card in each text section on mobile */
+  .mobileImage {
+    display: block;
+  }
+
+  .cardTop {
+    font-size: clamp(0.55rem, 2.5vw, 0.8rem);
+  }
+
+  .cardBottom {
+    font-size: clamp(0.55rem, 2.5vw, 0.8rem);
+  }
+
+  .centerIcon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .centerText {
+    font-size: clamp(1rem, 5vw, 1.5rem);
+  }
+
+  .cardContentWrapper {
+    padding: clamp(16px, 4vw, 28px);
   }
 }

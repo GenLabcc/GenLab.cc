@@ -78,7 +78,7 @@ export default function CapabilitiesSection() {
       topLeft: "GENLAB.",
       topRight: "PROGRAMS THAT TURN\nLEARNING INTO REAL-\nWORLD ACTION",
       centerText: "LAUNCHPAD",
-      bottomText: "WE POWER INNOVATION WITH UPSKILLING, HACKATHONS AND INCUBATION SO STUDENTS, TEAMS AND FOUNDERS CAN BUILD REAL-WORLD SOLUTIONS FASTER.",
+      bottomText: "WE POWER INNOVATION WITH UPSKILLING, HACKATHONS AND INCUBATION .",
     },
     {
       id: "ai",
