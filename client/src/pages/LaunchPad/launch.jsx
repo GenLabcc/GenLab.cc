@@ -1,6 +1,7 @@
 import { useState } from "react";
 import React, { useEffect, useRef } from 'react';
 import "./launch.css";
+import Journey from "./Journey";
 import ConnectSection from "../../components/ConnectSection/ConnectSection";
 
 import launchpadImg from "../../assets/logos/academia/Launch_img.png";
@@ -51,6 +52,7 @@ import review12 from "../../assets/launchpad_reviews/review_12_1x.webp";
 import review13 from "../../assets/launchpad_reviews/review_13_1x.webp";
 import review14 from "../../assets/launchpad_reviews/review_14_1x.webp";
 import review15 from "../../assets/launchpad_reviews/review_15_1x.webp";
+import Courses from "../../components/Courses/Courses";
 
 export default function Launchpad() {
     const imgRef = useRef(null);
@@ -110,6 +112,8 @@ export default function Launchpad() {
                 <img ref={imgRef} src={launchpadImg} alt="Launchpad" />
             </div>
 
+            <Journey/>
+            <Courses/>
 
             <div className='launch-white'>
                 <div className='launch-colleges'>

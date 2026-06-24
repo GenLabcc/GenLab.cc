@@ -1,0 +1,449 @@
+.courses-page {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #000000;
+  padding: 40px 20px 56px;
+  font-family: "Clash Display Variable", "Clash Display", "Inter", sans-serif;
+  overflow-x: clip;
+  margin: 0;
+  max-width: 100%;
+}
+
+/* Page header */
+.page-header {
+  margin-bottom: 32px;
+}
+
+.choose-from-label {
+  display: block;
+  color: #d7ff00;
+  font-size: 12px;
+  font-weight: 200;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.page-title {
+  color: #f5f5f5;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 16px;
+}
+
+.page-subtitle {
+  color: #9a9a9a;
+  letter-spacing: normal;
+  font-size: 14px;
+  line-height: 1;
+  margin: 0;
+}
+
+/* Layout wrapper for the nav (mobile pills OR tablet/desktop list)
+   plus the content panel. Column by default; only becomes a row
+   (sidebar beside content) on real desktop widths, see media query. */
+.courses-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Mobile: horizontal, wrapping pills. Visible by default,
+   hidden at 640px+ where the numbered list takes over instead. */
+.track-tabs-mobile {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.track-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #161616;
+  border: 1px solid #333333;
+  border-radius: 999px;
+  padding: 10px 16px;
+  color: #d6d6d6;
+  font-size: 12px;
+  font-weight: 200;
+  font-family: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.track-tab:hover {
+  border-color: #555555;
+}
+
+.track-tab.active {
+  border-color: #d7ff00;
+  color: #d7ff00;
+}
+
+.track-tab-check {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: #d7ff00;
+}
+
+/* Tablet & desktop: numbered vertical list with chevrons.
+   Hidden by default (mobile-first); shown at 640px+ instead of
+   the pill tabs. At 1280px+ it also becomes the sidebar, sitting
+   beside the content panel — see the media queries below. */
+.track-nav-list {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.track-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background-color: #141414;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: #d6d6d6;
+  font-size: 15px;
+  font-weight: 200;
+  font-family: "Clash Display Variable", "Clash Display", "Inter", sans-serif;
+  line-height: 30.75px;
+  letter-spacing: 0%;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.track-nav-item:hover {
+  border-color: #4a4a4a;
+}
+
+.track-nav-item.active {
+  border-color: #d7ff00;
+  color: #d7ff00;
+}
+
+.track-nav-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 auto;
+}
+
+.track-name-text {
+  display: block;
+  white-space: nowrap;
+}
+
+.track-number {
+  font-weight: 200;
+  flex-shrink: 0;
+}
+
+.chevron-right {
+  width: 7px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+/* Content panel */
+.content-panel {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.content-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.content-track-name {
+  color: #f5f5f5;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.content-divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: #333333;
+}
+
+.content-course-count {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Course grid + cards */
+.track-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: stretch;
+}
+
+.course-card {
+  background-color: #ffffff;
+  border: 1px solid #e3e3e3;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 7.25px;
+}
+
+.course-image {
+  position: relative;
+  height: 140px;
+  background-color: #0c0c0c;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.course-card:hover .course-image {
+  background-color: #d7ff00;
+}
+
+.course-card:hover .course-thumbnail {
+  filter: invert(1);
+}
+
+.course-thumbnail {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  display: block;
+}
+
+.growth-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  letter-spacing: normal;
+  font-size: 9px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.growth-badge.advance {
+  background-color: #1d8a45;
+  color: #d8ffb0;
+}
+
+.growth-badge.medium {
+  background-color: #f0a93c;
+  color: #ffffff;
+}
+
+.growth-icon {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+}
+
+.course-body {
+  padding: 14px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.course-title {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: normal;
+  color: #111111;
+  margin: 0;
+  line-height: 1;
+}
+
+.course-description {
+  font-size: 10px;
+  color: #6b6b6b;
+  line-height: 1;
+  margin: 0;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.tag-row:has(.tag-pill.dark) {
+  flex-wrap: nowrap;
+}
+
+.tag-pill {
+  background-color: transparent;
+  border: 1px solid #dcdcdc;
+  color: #1a1a1a;
+  letter-spacing: normal;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.tag-pill.dark {
+  background-color: #161616;
+  border-color: #161616;
+  color: #ffffff;
+}
+
+.course-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding: 10px 12px;
+  border: 1px solid #e8e8e8;
+  border-radius: 16px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.course-footer:hover {
+  background-color: #d7ff00;
+  border-color: #d7ff00;
+}
+
+.course-card:hover .course-footer {
+  background-color: #d7ff00;
+  border-color: #d7ff00;
+}
+
+.course-card:hover .download-icon {
+  color: #1a1a1a;
+}
+
+.course-card:hover .enroll-btn {
+  background-color: #ffffff;
+  color: #1a1a1a;
+  border-radius: 10px;
+}
+
+.syllabus-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  letter-spacing: normal;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1a1a1a;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.download-icon {
+  width: 16px;
+  height: 16px;
+  color: #6b6b6b;
+}
+
+.enroll-btn {
+  background-color: #d7fa3a;
+  color: #15210a;
+  border: none;
+  border-radius: 10px;
+  padding: 9px 18px;
+  letter-spacing: normal;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0; 
+}
+
+.enroll-btn:hover {
+  background-color: #c4ed1f;
+}
+
+/* Responsive: progressively enhance toward the desktop layout. */
+@media (min-width: 640px) {
+  .courses-page {
+    padding: 48px 40px 72px;
+  }
+
+  .page-title {
+    font-size: 34px;
+  }
+
+  .track-tabs-mobile {
+    display: none;
+  }
+
+  .track-nav-list {
+    display: flex;
+  }
+
+  .track-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .courses-page {
+    padding: 56px 80px 100px;
+  }
+
+  .courses-layout {
+    flex-direction: row;
+  }
+
+  .track-nav-list {
+    width: 290px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+  }
+
+  .content-panel {
+    flex: 1;
+    width: auto;
+  }
+
+  .track-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

@@ -1,0 +1,481 @@
+/* ===========================
+   COURSES SECTION
+   =========================== */
+
+.courses-section {
+  background-color: #101010;
+  color: #ffffff;
+  /* Fit inside 100vh — use min-height instead of fixed height */
+  min-height: 100vh;
+  height: 100vh;
+  padding: 36px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* spread header / grid / nav / explore evenly */
+  gap: 0;
+  font-family: "Clash Display Variable", "Clash Display", "Inter", sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.courses-section * {
+  font-family: "Clash Display Variable", "Clash Display", "Inter", sans-serif;
+  box-sizing: border-box;
+}
+
+/* ===========================
+   HEADER
+   =========================== */
+
+.courses-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.courses-title {
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+}
+
+.courses-subtitle {
+  letter-spacing: normal;
+  font-size: clamp(14px, 1.4vw, 20px);
+  font-weight: 400;
+  color: #888888;
+  margin: 0;
+  line-height: 1.3;
+  padding-bottom: 20px;
+}
+
+/* ===========================
+   GRID
+   =========================== */
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  flex: 1;
+  /* clamp card height so grid always fits viewport */
+  align-items: stretch;
+}
+
+/* ===========================
+   CARD
+   =========================== */
+
+.course-card {
+  border: 1px solid #F0F0F0;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: #ffffff;
+  min-height: 0; /* allow shrink inside grid */
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* TOP — dark logo area */
+.course-card-top {
+  background-color: #0d0d0d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 38%;
+  position: relative;
+}
+
+/* Badge */
+.course-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  letter-spacing: normal;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+
+.badge-green  { background-color: #c8f135; color: #0d0d0d; }
+.badge-yellow { background-color: #f5c518; color: #0d0d0d; }
+
+.course-logo-img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+/* BOTTOM — white content area */
+.course-card-bottom {
+  background-color: #ffffff;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+}
+
+.course-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.course-title {
+  font-size: clamp(16px, 1.5vw, 22px);
+  font-weight: 600;
+  color: #000000;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.course-description {
+  font-size: clamp(11px, 0.9vw, 14px);
+  font-weight: 400;
+  color: #101010;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Tags */
+.course-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.course-tag {
+  letter-spacing: normal;
+  font-size: 0.72rem;
+  color: #000000;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 50px;
+  padding: 4px 8px;
+  background: transparent;
+}
+
+/* Pills */
+.course-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  letter-spacing: normal;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 50px;
+}
+
+.pill-duration, .pill-support {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Footer */
+.course-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid #eeeeee;
+  margin-top: auto;
+}
+
+.btn-syllabus {
+  background: transparent;
+  border: none;
+  color: #000000;
+  letter-spacing: normal;
+  font-size: clamp(13px, 1vw, 16px);
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  transition: opacity 0.2s;
+}
+
+.btn-syllabus:hover { opacity: 0.7; }
+
+.btn-enroll {
+  background-color: #D7FF00;
+  color: #000000;
+  border: none;
+  letter-spacing: normal;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.btn-enroll:hover {
+  background-color: #e5ff33;
+  transform: scale(1.03);
+}
+
+/* ===========================
+   CAROUSEL NAV
+   =========================== */
+
+.courses-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.nav-arrow {
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  color: #ffffff;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.nav-arrow:hover:not(:disabled) { background-color: #3a3a3a; }
+.nav-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.nav-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.nav-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background-color: #3a3a3a;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.nav-dot.active {
+  background-color: #c8f135;
+  transform: scale(1.25);
+}
+
+/* ===========================
+   EXPLORE BUTTON
+   =========================== */
+
+.courses-explore {
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-explore {
+  background: transparent;
+  border: 1px solid #555555;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 11px 32px;
+  border-radius: 30px;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.btn-explore:hover {
+  border-color: #c8f135;
+  background-color: rgba(200,241,53,0.05);
+  color: #c8f135;
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+
+@media (max-width: 1200px) {
+  .courses-section { padding: 30px 40px; }
+}
+
+@media (max-width: 1024px) {
+  .courses-section {
+    padding: 24px 20px;
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+
+  .courses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .courses-section {
+    height: 100dvh;
+    min-height: 100dvh;
+    padding: 18px 14px;
+    overflow: hidden;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .courses-header {
+    gap: 6px;
+  }
+
+  .courses-title {
+    font-size: 1.05rem;
+    line-height: 1.15;
+  }
+
+  .courses-subtitle {
+    font-size: 0.72rem;
+    line-height: 1.25;
+  }
+
+  .courses-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    flex: 1;
+    min-height: 0;
+    align-items: stretch;
+  }
+
+  .course-card-top {
+    flex: 0 0 34%;
+  }
+
+  .course-logo-img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .course-badge {
+    top: 10px;
+    right: 10px;
+    font-size: 0.58rem;
+    padding: 4px 9px;
+  }
+
+  .course-card-bottom {
+    padding: 12px;
+    gap: 7px;
+  }
+
+  .course-title {
+    font-size: 0.98rem;
+  }
+
+  .course-description {
+    font-size: 0.72rem;
+    line-height: 1.35;
+  }
+
+  .course-tag {
+    font-size: 0.62rem;
+    padding: 3px 6px;
+  }
+
+  .pill {
+    font-size: 0.62rem;
+    padding: 4px 8px;
+  }
+
+  .course-footer {
+    padding-top: 8px;
+  }
+
+  .btn-syllabus {
+    font-size: 0.72rem;
+  }
+
+  .btn-enroll {
+    font-size: 0.7rem;
+    padding: 7px 11px;
+  }
+
+  .courses-nav {
+    gap: 10px;
+  }
+
+  .nav-arrow {
+    width: 30px;
+    height: 30px;
+    font-size: 0.85rem;
+  }
+
+  .btn-explore {
+    font-size: 0.72rem;
+    padding: 9px 22px;
+  }
+}
+
+@media (max-width: 380px), (max-height: 720px) {
+  .courses-section {
+    padding: 14px 12px;
+    gap: 10px;
+  }
+
+  .courses-title {
+    font-size: 0.95rem;
+  }
+
+  .courses-subtitle {
+    font-size: 0.66rem;
+  }
+
+  .course-card-bottom {
+    gap: 6px;
+  }
+
+  .course-description {
+    font-size: 0.68rem;
+  }
+
+  .course-tags {
+    gap: 4px;
+  }
+
+  .course-tag {
+    font-size: 0.58rem;
+  }
+
+  .nav-arrow {
+    width: 28px;
+    height: 28px;
+  }
+}

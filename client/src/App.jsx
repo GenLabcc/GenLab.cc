@@ -7,6 +7,7 @@ import People from "@/pages/People/People.jsx";
 import Products from "@/pages/Products.jsx";
 import ProductDetail from "@/pages/ProductDetail/ProductDetail.jsx";
 import LaunchPad from "@/pages/LaunchPad/launch.jsx"
+import Tracksection from '@/components/Courses/Tracksection.jsx';
 import VerifyCertificate from "@/pages/VerifyCertificate.jsx";
 import ShabdamUI from "@/pages/Home/shubham/ShabdamUI.jsx";
 // import VoiceAgent from "@/pages/VoiceAgent/VoiceAgent.jsx";
@@ -59,6 +60,7 @@ function App() {
           {/* <Route path="/voice-agent" element={<VoiceAgent />} /> */}
           <Route path="/products" element={<Products />} />
           <Route path="/launchpad" element={<LaunchPad/>}/>
+          <Route path="/tracks" element={<Tracksection />} />
           <Route path="/products/custom-website-chatbots" element={<ProductDetail />} />
           <Route path="/verify-certificate" element={<VerifyCertificate />} />
           <Route path="/shabdamui" element={<ShabdamUI />} />
