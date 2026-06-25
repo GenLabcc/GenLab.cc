@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./TrackSection.css";
+import "./Tracksection.css";
 import courseThumbnail from "../../assets/Course_logo.png";
 import ConnectSection from "../ConnectSection/ConnectSection";
 
