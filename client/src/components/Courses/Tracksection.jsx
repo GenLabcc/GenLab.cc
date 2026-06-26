@@ -144,6 +144,7 @@ const TrackSection = () => {
     <>
     <section className="courses-page">
       <header className="page-header">
+        <h1 className="courses-title">Leading Upskilling Platform <br/> Built For Students And Job Seekers</h1>
         <span className="choose-from-label">Choose From</span>
         <h1 className="page-title">Industry-Relevant Free Courses</h1>
         <p className="page-subtitle">
