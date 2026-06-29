@@ -1,0 +1,1037 @@
+/* ==========================================================================
+   UPSKILLING PAGE STYLES
+   ========================================================================== */
+
+.upskilling-page {
+  background-color: #0b0b0b;
+  color: #ffffff;
+  font-family: "Clash Display", sans-serif;
+  overflow-x: hidden;
+  padding-top: 100px; /* Offset for navbar */
+}
+
+/* Overrides for integrated Courses component inside Upskilling page */
+.upskilling-page .courses-section {
+  min-height: auto !important;
+  height: auto !important;
+  background-color: transparent !important;
+  padding: 40px 0 !important;
+}
+
+.upskilling-page .courses-header {
+  display: none !important; /* Hide duplicate title header */
+}
+
+.upskilling-page .courses-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
+  width: 100% !important;
+  max-width: 1300px !important;
+  margin: 0 auto !important;
+}
+
+.upskilling-page .courses-nav {
+  margin-top: 24px !important;
+}
+
+.upskilling-page .courses-explore {
+  display: none !important; /* Hide original explore button to display custom stats + explore layout below */
+}
+
+@media (max-width: 1024px) {
+  .upskilling-page .courses-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .upskilling-page .courses-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ================= 1. HERO & COURSE CARDS ================= */
+
+.upskilling-hero {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 60px 4% 80px 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-text-content {
+  text-align: center;
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+.hero-main-title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 600;
+  line-height: 1.15;
+  margin-bottom: 50px;
+  letter-spacing: -0.5px;
+  text-transform: capitalize;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-title-wrapper {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-sub-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.custom-underline {
+  width: 120px;
+  height: 4px;
+  background-color: #bcf000;
+  margin-bottom: 20px;
+  border-radius: 2px;
+}
+
+.hero-meta-subtitle {
+  font-size: clamp(0.95rem, 1.2vw, 1.2rem);
+  color: #a0a0a0;
+  letter-spacing: 0.5px;
+}
+
+/* Course Grid */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 30px;
+  width: 100%;
+  margin-bottom: 60px;
+}
+
+.upskilling-course-card {
+  background-color: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.upskilling-course-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(188, 240, 0, 0.1);
+}
+
+/* Card Header (Black) */
+.course-card-top {
+  background-color: #0d0d0d;
+  padding: 30px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.target-circle-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.target-circle-icon::before {
+  content: "";
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+
+.circle-inner-dot {
+  width: 12px;
+  height: 12px;
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+
+/* Badges */
+.growth-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.growth-badge.advance {
+  background-color: rgba(188, 240, 0, 0.15);
+  color: #bcf000;
+  border: 1px solid rgba(188, 240, 0, 0.3);
+}
+
+.growth-badge.medium {
+  background-color: rgba(255, 193, 7, 0.15);
+  color: #ffc107;
+  border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.badge-arrow {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Card Body (White) */
+.course-card-bottom {
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: #ffffff;
+}
+
+.course-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #0c0c0c;
+  line-height: 1.3;
+  margin-bottom: 12px;
+  min-height: 56px;
+}
+
+.course-description {
+  font-size: 14.5px;
+  color: #555555;
+  line-height: 1.5;
+  margin-bottom: 24px;
+  min-height: 66px;
+}
+
+.course-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.course-tag {
+  background-color: #f1f3f5;
+  color: #495057;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.course-pills {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.pill {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  background-color: #0c0c0c;
+  color: #ffffff;
+}
+
+/* Card Buttons */
+.course-footer-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.btn-syllabus {
+  background: transparent;
+  color: #0c0c0c;
+  border: 1.5px solid #0c0c0c;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-syllabus:hover {
+  background-color: #0c0c0c;
+  color: #ffffff;
+}
+
+.download-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-enroll {
+  background-color: #bcf000;
+  color: #0c0c0c;
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-enroll:hover {
+  background-color: #a7d600;
+  transform: translateY(-1px);
+}
+
+/* Stats Row */
+.stats-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 40px auto 40px auto;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
+  padding: 24px 0;
+  gap: 20px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #888888;
+  margin-top: 6px;
+}
+
+.rating-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rating-stars {
+  display: flex;
+  gap: 4px;
+  color: #bcf000;
+  font-size: 20px;
+}
+
+.explore-programs-wrapper {
+  margin-top: 20px;
+}
+
+.btn-explore-programs {
+  background: transparent;
+  color: #ffffff;
+  border: 1.5px solid #ffffff;
+  padding: 14px 32px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-explore-programs:hover {
+  background-color: #ffffff;
+  color: #0c0c0c;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+
+/* ================= 2. LEARNER JOURNEY SECTION ================= */
+
+.learner-journey-section {
+  background-color: #f6f6f6;
+  color: #000000;
+  padding: 100px 4%;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.journey-grid {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 2fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.journey-left-card {
+  height: 100%;
+  min-height: 380px;
+}
+
+.gradient-glow-box {
+  background: linear-gradient(135deg, #a4e000 0%, #5fb200 50%, #2f7a00 100%);
+  border-radius: 24px;
+  padding: 40px 32px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(95, 178, 0, 0.25);
+}
+
+.gradient-glow-box::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.journey-heading {
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.journey-subtext {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* Steps Carousel */
+.journey-right-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-nav-arrows {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.carousel-arrow {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #dddddd;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: background-color 0.2s, transform 0.2s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.carousel-arrow:hover {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #000000;
+  transform: scale(1.05);
+}
+
+.journey-steps-container {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 0 20px 0;
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+
+.journey-steps-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar Chrome/Safari */
+}
+
+.journey-step-card {
+  min-width: 290px;
+  width: 290px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eeeeee;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.step-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.step-num-box {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.step-code {
+  font-size: 20px;
+  font-weight: 500;
+  color: #888888;
+}
+
+.step-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #0c0c0c;
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+
+.step-desc {
+  font-size: 14px;
+  color: #666666;
+  line-height: 1.5;
+}
+
+.step-or-tag {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #888888;
+  text-transform: uppercase;
+  background: #f6f6f6;
+  padding: 4px 8px;
+  border-radius: 4px;
+  z-index: 2;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+
+/* ================= 3. WHY GENLAB? SECTION ================= */
+
+.why-genlab-section {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 100px 4%;
+}
+
+.section-header-centered {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.why-title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.why-subtitle {
+  font-size: 16px;
+  color: #a0a0a0;
+}
+
+.why-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px;
+}
+
+.why-card {
+  background-color: #121212;
+  border: 1px solid #222;
+  border-radius: 24px;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 340px;
+  transition: all 0.3s ease;
+}
+
+.why-card:hover {
+  border-color: rgba(188, 240, 0, 0.4);
+  box-shadow: 0 10px 30px rgba(188, 240, 0, 0.05);
+}
+
+.why-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.why-card-desc {
+  font-size: 14px;
+  color: #a0a0a0;
+  line-height: 1.5;
+}
+
+/* Dynamic Grid Spanning */
+.card-progress {
+  grid-column: span 2;
+}
+
+.card-practitioners {
+  grid-column: span 2;
+}
+
+.card-mentors {
+  grid-column: span 2;
+}
+
+.card-market {
+  grid-column: span 3;
+}
+
+.card-partners {
+  grid-column: span 3;
+}
+
+/* Card 1 Visuals: Progress Bars */
+.progress-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  height: 120px;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.bar-col {
+  flex-grow: 1;
+  background-color: #2a2a2a;
+  border-radius: 6px;
+  transition: height 1s ease;
+}
+
+.bar-col.active-bar {
+  background-color: #bcf000;
+  box-shadow: 0 0 15px rgba(188, 240, 0, 0.6);
+}
+
+/* Card 2 Visuals: Modules checklist */
+.checklist-modules {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.module-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background-color: #1a1a1a;
+  border-radius: 12px;
+}
+
+.module-item.checked {
+  border: 1px solid rgba(188, 240, 0, 0.3);
+}
+
+.check-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.module-item.checked .check-dot {
+  background-color: #bcf000;
+  border-color: #bcf000;
+  color: #0c0c0c;
+}
+
+.module-text {
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.module-date {
+  margin-left: auto;
+  font-size: 12px;
+  color: #888888;
+}
+
+/* Card 3 Visuals: Chat simulator */
+.chat-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.chat-bubble {
+  padding: 10px 14px;
+  border-radius: 14px;
+  max-width: 85%;
+  position: relative;
+}
+
+.bubble-user {
+  background-color: #222;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.bubble-mentor {
+  background-color: rgba(188, 240, 0, 0.1);
+  border: 1px solid rgba(188, 240, 0, 0.2);
+  color: #bcf000;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.chat-text {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.chat-time {
+  font-size: 10px;
+  color: #888888;
+  display: block;
+  text-align: right;
+  margin-top: 4px;
+}
+
+/* Card 4 Visuals: Icon Row */
+.icon-boxes-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.icon-box-neon {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background-color: rgba(188, 240, 0, 0.05);
+  border: 1.5px solid rgba(188, 240, 0, 0.2);
+  color: #bcf000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.icon-box-neon:hover {
+  background-color: #bcf000;
+  color: #0c0c0c;
+  transform: translateY(-4px);
+}
+
+.neon-svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Card 5 Visuals: Sine wave */
+.sine-wave-container {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sine-wave-svg {
+  width: 100%;
+  height: auto;
+  max-height: 90px;
+}
+
+.wave-highlight-path {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: drawWave 4s linear infinite;
+}
+
+.wave-pulse-dot {
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+@keyframes drawWave {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pulseDot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+    fill: #ffffff;
+  }
+}
+
+
+/* ================= 4. TESTIMONIALS SECTION ================= */
+
+.testimonials-section {
+  background-color: #f6f6f6;
+  color: #000000;
+  padding: 100px 4%;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.testimonials-grid {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+}
+
+/* Left Google Card */
+.google-rating-card {
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 40px 32px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eeeeee;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.google-logo-wrapper {
+  margin-bottom: 24px;
+}
+
+.google-icon-svg {
+  width: 48px;
+  height: 48px;
+}
+
+.rating-heading {
+  font-size: 24px;
+  font-weight: 600;
+  color: #0c0c0c;
+  margin-bottom: 12px;
+}
+
+.rating-digits-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.big-rating {
+  font-size: 48px;
+  font-weight: 700;
+  color: #0c0c0c;
+  line-height: 1;
+}
+
+.rating-stars-gold {
+  color: #ffc107;
+  font-size: 24px;
+  display: flex;
+  gap: 2px;
+}
+
+.rating-reviews-count {
+  font-size: 14.5px;
+  color: #777777;
+}
+
+/* Right reviews list */
+.testimonials-list-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.testimonial-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+  border: 1px solid #eeeeee;
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.learner-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0c0c0c;
+}
+
+.review-date {
+  font-size: 12px;
+  color: #888888;
+  margin-top: 2px;
+  display: block;
+}
+
+.google-badge-small {
+  width: 20px;
+  height: 20px;
+}
+
+.google-icon-small-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.testimonial-rating-row {
+  color: #ffc107;
+  font-size: 15px;
+  margin-bottom: 12px;
+  display: flex;
+  gap: 2px;
+}
+
+.testimonial-text {
+  font-size: 13.5px;
+  color: #555555;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+
+/* ================= 5. CONNECT SECTION BACKGROUND OVERRIDE ================= */
+
+#connect {
+  width: 100%;
+}
+
+
+/* ==========================================================================
+   MEDIA QUERIES / RESPONSIVENESS
+   ========================================================================== */
+
+@media (max-width: 1100px) {
+  .why-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-progress, .card-practitioners, .card-mentors, .card-market, .card-partners {
+    grid-column: span 1;
+  }
+  
+  .journey-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .journey-left-card {
+    min-height: 240px;
+  }
+  
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .upskilling-page {
+    padding-top: 80px;
+  }
+
+  .courses-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-row {
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .testimonials-list-container {
+    grid-template-columns: 1fr;
+  }
+
+  .why-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .card-progress, .card-practitioners, .card-mentors, .card-market, .card-partners {
+    grid-column: span 1;
+  }
+}

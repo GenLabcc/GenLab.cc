@@ -8,9 +8,9 @@ import Products from "@/pages/Products.jsx";
 import ProductDetail from "@/pages/ProductDetail/ProductDetail.jsx";
 import LaunchPad from "@/pages/LaunchPad/launch.jsx"
 import Tracksection from '@/components/Courses/Tracksection.jsx';
+import Upskilling from "@/pages/Upskilling/Upskilling.jsx";
 import VerifyCertificate from "@/pages/VerifyCertificate.jsx";
 import ShabdamUI from "@/pages/Home/shubham/ShabdamUI.jsx";
-// import VoiceAgent from "@/pages/VoiceAgent/VoiceAgent.jsx";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Lenis from "lenis";
@@ -61,6 +61,8 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/launchpad" element={<LaunchPad/>}/>
           <Route path="/tracks" element={<Tracksection />} />
+          <Route path="/upskilling" element={<Upskilling />} />
+          <Route path="/upcoming-skills" element={<Upskilling />} />
           <Route path="/products/custom-website-chatbots" element={<ProductDetail />} />
           <Route path="/verify-certificate" element={<VerifyCertificate />} />
           <Route path="/shabdamui" element={<ShabdamUI />} />

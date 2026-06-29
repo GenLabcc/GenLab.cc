@@ -196,7 +196,7 @@ export default function OurEthos() {
           <div className={`tagline-wrap ${visible ? "visible" : ""}`}>
             <div className="tagline-inner">
               <span className="tagline-line">From India</span>
-              <span className="tagline-line">To The World.</span>
+            <span className="tagline-line">To The Worlds❤️.</span>
             </div>
           </div>
 

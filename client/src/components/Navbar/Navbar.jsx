@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import LogoMark from '../LogoMark.jsx';
 import './Navbar.css';
@@ -12,25 +12,95 @@ const CustomSparkle = ({ className = '' }) => (
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLaunchpadOpen, setIsLaunchpadOpen] = useState(false);
+  const [isMobileLaunchpadOpen, setIsMobileLaunchpadOpen] = useState(false);
+  const launchpadRef = useRef(null);
+  const closeTimerRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
 
   const isLightNav = location.pathname === '/shabdamui';
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (launchpadRef.current && !launchpadRef.current.contains(e.target)) {
+        setIsLaunchpadOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Clear timer on unmount
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    };
+  }, []);
+
+  const handleMouseEnter = () => {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    setIsLaunchpadOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimerRef.current = setTimeout(() => {
+      setIsLaunchpadOpen(false);
+    }, 150);
+  };
+
   return (
     <nav className={`nav-container ${isLightNav ? 'light-nav' : ''}`}>
-      {/* Logo + Pill grouped together on the left */}
       <div className="nav-left-group">
         <Link to="/" className="logo-circle" aria-label="GenLab home">
           <LogoMark color={isLightNav ? "black" : "white"} size={28} />
         </Link>
 
-        {/* Main Nav Pill */}
         <div className="nav-pill">
           <div className="nav-links">
             <Link to="/" className="nav-link">Home</Link>
             <Link to="/people" className="nav-link">People</Link>
-            <Link to="/launchpad" className="nav-link">Launchpad</Link>
+
+            {/* Launchpad Dropdown */}
+            <div
+              className="nav-dropdown-wrapper"
+              ref={launchpadRef}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button
+                className={`nav-link nav-dropdown-trigger ${isLaunchpadOpen ? 'active' : ''}`}
+                onClick={() => setIsLaunchpadOpen((prev) => !prev)}
+                aria-expanded={isLaunchpadOpen}
+              >
+                Launchpad
+                <ChevronDown
+                  size={14}
+                  className={`dropdown-chevron ${isLaunchpadOpen ? 'rotated' : ''}`}
+                />
+              </button>
+
+              {isLaunchpadOpen && (
+                <div className={`nav-dropdown-menu ${isLightNav ? 'light' : ''}`}>
+                  <Link
+                    to="/launchpad"
+                    className="nav-dropdown-item"
+                    onClick={() => setIsLaunchpadOpen(false)}
+                  >
+                    Launchpad
+                  </Link>
+                  <Link
+                    to="/upcoming-skills"
+                    className="nav-dropdown-item"
+                    onClick={() => setIsLaunchpadOpen(false)}
+                  >
+                    Upskilling Programs
+                  </Link>
+                </div>
+              )}
+            </div>
+
             <Link to="/products" className="nav-link">Product</Link>
             <Link to="/verify-certificate" className="nav-link">Certificate</Link>
           </div>
@@ -44,7 +114,9 @@ export default function Navbar() {
             className="mobile-menu-btn"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X size={20} color={isLightNav ? "#111111" : "#E0E0E0"} /> : <Menu size={20} color={isLightNav ? "#111111" : "#E0E0E0"} />}
+            {isMenuOpen
+              ? <X size={20} color={isLightNav ? "#111111" : "#E0E0E0"} />
+              : <Menu size={20} color={isLightNav ? "#111111" : "#E0E0E0"} />}
           </button>
         </div>
       </div>
@@ -54,17 +126,46 @@ export default function Navbar() {
         <div className="mobile-menu-overlay">
           <Link to="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>Home</Link>
           <Link to="/people" className="nav-link" onClick={() => setIsMenuOpen(false)}>People</Link>
-          <Link to="/launchpad" className="nav-link" onClick={() => setIsMenuOpen(false)}>Launchpad</Link>
+
+          {/* Mobile Launchpad accordion */}
+          <div className="mobile-dropdown-wrapper">
+            <button
+              className={`nav-link mobile-dropdown-trigger ${isMobileLaunchpadOpen ? 'active' : ''}`}
+              onClick={() => setIsMobileLaunchpadOpen((prev) => !prev)}
+            >
+              Launchpad
+              <ChevronDown
+                size={14}
+                className={`dropdown-chevron ${isMobileLaunchpadOpen ? 'rotated' : ''}`}
+              />
+            </button>
+            {isMobileLaunchpadOpen && (
+              <div className="mobile-dropdown-submenu">
+                <Link
+                  to="/launchpad"
+                  className="nav-link mobile-sub-link"
+                  onClick={() => { setIsMenuOpen(false); setIsMobileLaunchpadOpen(false); }}
+                >
+                  Launchpad
+                </Link>
+                <Link
+                  to="/upcoming-skills"
+                  className="nav-link mobile-sub-link"
+                  onClick={() => { setIsMenuOpen(false); setIsMobileLaunchpadOpen(false); }}
+                >
+                  Upcoming New Skill
+                </Link>
+              </div>
+            )}
+          </div>
+
           <Link to="/products" className="nav-link" onClick={() => setIsMenuOpen(false)}>Product</Link>
           <Link to="/verify-certificate" className="nav-link" onClick={() => setIsMenuOpen(false)}>Certificate</Link>
 
           <button
             className="cta-btn mobile-cta-overlay"
             style={{ display: 'flex' }}
-            onClick={() => {
-              setIsMenuOpen(false);
-              navigate('/shabdamui');
-            }}
+            onClick={() => { setIsMenuOpen(false); navigate('/shabdamui'); }}
           >
             Shabdam AI
             <CustomSparkle />

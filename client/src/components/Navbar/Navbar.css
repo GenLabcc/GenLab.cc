@@ -14,6 +14,7 @@
   max-width: 100%;
   box-sizing: border-box;
   position: relative;
+  z-index: 1000;
 }
 
 /* Groups logo + pill tightly together */
@@ -297,4 +298,111 @@
   color: #111111;
 }
 
+/* ─── Launchpad Dropdown ─────────────────────────────────────────── */
+.nav-dropdown-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 
+.nav-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.dropdown-chevron {
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.dropdown-chevron.rotated {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 180px;
+  background-color: rgba(28, 28, 28, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 200;
+}
+
+.nav-dropdown-menu.light {
+  background-color: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.nav-dropdown-item {
+  color: #e0e0e0;
+  font-size: clamp(13px, 1.3vw, 15px);
+  font-weight: 400;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.07);
+  color: var(--accent-color);
+}
+
+.nav-dropdown-menu.light .nav-dropdown-item {
+  color: #111111;
+}
+
+.nav-dropdown-menu.light .nav-dropdown-item:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  color: var(--accent-color);
+}
+
+/* ─── Mobile Launchpad Accordion ─────────────────────────────────── */
+.mobile-dropdown-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+}
+
+.mobile-dropdown-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.mobile-dropdown-submenu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.mobile-sub-link {
+  font-size: 15px !important;
+  opacity: 0.75;
+}

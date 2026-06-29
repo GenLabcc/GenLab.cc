@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import "./Journey.css";
 import bg from "../../assets/bg.png";
 
@@ -16,88 +16,112 @@ const steps = [
   { number: 11, title: "Go Land That Job.", description: "Placement support, referrals, and career launch" },
 ];
 
-export default function Launch({ timelineRef }) {
-  const internalRef = useRef(null);
-  const scrollEl = timelineRef || internalRef;
+export default function Launch() {
   const sectionRef = useRef(null);
-  const rafRef = useRef(null);
-  const pausedRef = useRef(false);
-  const AUTO_SPEED = 1.2;
+  const stickyRef = useRef(null);
+  const timelineRef = useRef(null);
+  const [scrollExtra, setScrollExtra] = useState(0);
 
+  // Measure how much horizontal overflow we need to scroll through
   useEffect(() => {
-    const el = scrollEl.current;
-    const section = sectionRef.current;
-    if (!el || !section) return;
-
-    const tick = () => {
-      if (!pausedRef.current) {
-        const maxScroll = el.scrollWidth - el.clientWidth;
-
-        if (el.scrollLeft >= maxScroll) {
-          el.scrollLeft = maxScroll;
-        } else {
-          el.scrollLeft = Math.min(el.scrollLeft + AUTO_SPEED, maxScroll);
-        }
-      }
-      rafRef.current = requestAnimationFrame(tick);
+    const measure = () => {
+      if (!timelineRef.current || !stickyRef.current) return;
+      const timelineWidth = timelineRef.current.scrollWidth;
+      const viewportWidth = stickyRef.current.clientWidth;
+      // Extra = the distance we need to translate minus what's already visible
+      // We subtract the hero card width and some padding from the viewport
+      const extra = Math.max(0, timelineWidth - viewportWidth + 80);
+      setScrollExtra(extra);
     };
 
-    rafRef.current = requestAnimationFrame(tick);
-    const onEnter = () => { pausedRef.current = true; };
-    const onLeave = () => { pausedRef.current = false; };
-    section.addEventListener("mouseenter", onEnter);
-    section.addEventListener("mouseleave", onLeave);
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
 
-    return () => {
-      section.removeEventListener("mouseenter", onEnter);
-      section.removeEventListener("mouseleave", onLeave);
-      cancelAnimationFrame(rafRef.current);
+  // Drive horizontal translation from vertical scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current || !timelineRef.current) return;
+
+      const rect = sectionRef.current.getBoundingClientRect();
+      const sectionHeight = sectionRef.current.offsetHeight;
+      const viewportHeight = window.innerHeight;
+
+      // How far we've scrolled into the tall wrapper
+      // rect.top starts at some positive value, goes negative as we scroll
+      const scrolled = -rect.top;
+      // Total scrollable distance within the wrapper (minus one viewport that's always visible)
+      const totalScroll = sectionHeight - viewportHeight;
+
+      if (totalScroll <= 0) return;
+
+      // Progress: 0 at top, 1 when fully scrolled through
+      const progress = Math.min(Math.max(scrolled / totalScroll, 0), 1);
+
+      // Apply horizontal translation
+      const translateX = progress * scrollExtra;
+      timelineRef.current.style.transform = `translateX(-${translateX}px)`;
     };
-  }, [scrollEl]);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [scrollExtra]);
+
+  // The outer wrapper height = 100vh (visible) + scrollExtra (the horizontal distance mapped to vertical scroll)
+  const wrapperHeight = `calc(100vh + ${scrollExtra}px)`;
 
   return (
-    <section className="journey-section" ref={sectionRef}>
-      <div className="journey-wrapper">
+    <section
+      className="journey-outer"
+      ref={sectionRef}
+      style={{ height: wrapperHeight }}
+    >
+      <div className="journey-section" ref={stickyRef}>
+        <div className="journey-wrapper">
 
-        {/* bg.png as background image; glows layer on top for depth */}
-        <div
-          className="journey-hero"
-          style={{ backgroundImage: `url(${bg})` }}
-        >
-          <div className="journey-glow glow-1"></div>
-          <div className="journey-glow glow-2"></div>
+          {/* Hero card with background image and glows */}
+          <div
+            className="journey-hero"
+            style={{ backgroundImage: `url(${bg})` }}
+          >
+            <div className="journey-glow glow-1"></div>
+            <div className="journey-glow glow-2"></div>
 
-          <h1 className="journey-hero__title">
-            Journey<br />Of Our<br />Learners
-          </h1>
+            <h1 className="journey-hero__title">
+              Journey<br />Of Our<br />Learners
+            </h1>
 
-          <div className="journey-hero__line"></div>
+            <div className="journey-hero__line"></div>
 
-          <p className="journey-hero__text">
-            Your First Day to Your First Offer.
-            Here's What the Journey Looks Like.
-          </p>
-        </div>
+            <p className="journey-hero__text">
+              Your First Day to Your First Offer.
+              Here's What the Journey Looks Like.
+            </p>
+          </div>
 
-        <div className="journey-timeline-scroll" ref={scrollEl}>
-          <ol className="journey-timeline">
-            {steps.map((step) => (
-              <li className="journey-step" key={step.number}>
-                <div className="journey-step__top">
-                  <span className="journey-step__badge">{step.number}</span>
-                  <h3 className="journey-step__title">{step.title}</h3>
-                </div>
-                <div className="journey-step__bottom">
-                  <div className="journey-step__rule">
-                    <span className="journey-step__ad">ad</span>
+          {/* Timeline — translated horizontally based on scroll progress */}
+          <div className="journey-timeline-viewport">
+            <ol className="journey-timeline" ref={timelineRef}>
+              {steps.map((step) => (
+                <li className="journey-step" key={step.number}>
+                  <div className="journey-step__top">
+                    <span className="journey-step__badge">{step.number}</span>
+                    <h3 className="journey-step__title">{step.title}</h3>
                   </div>
-                  <p className="journey-step__description">{step.description}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
+                  <div className="journey-step__bottom">
+                    <div className="journey-step__rule">
+                      <span className="journey-step__ad">ad</span>
+                    </div>
+                    <p className="journey-step__description">{step.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
 
+        </div>
       </div>
     </section>
   );
