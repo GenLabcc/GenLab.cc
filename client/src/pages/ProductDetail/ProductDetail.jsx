@@ -1,8 +1,10 @@
 import React from 'react';
 import styles from './ProductDetail.module.css';
+import ConnectSection from "@/components/ConnectSection/ConnectSection";
 import partnershipLogo from '@/assets/images/products/SNS logo.png';
 import heroImage from '@/assets/images/hero-products.jpg';
 import { motion } from 'framer-motion';
+
 
 const ProductDetail = () => {
   return (
@@ -54,6 +56,7 @@ const ProductDetail = () => {
           </main>
         </div>
       </section>
+      <ConnectSection />
     </div>
   );
 };

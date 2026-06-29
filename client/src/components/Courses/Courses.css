@@ -6,7 +6,6 @@
   background-color: #0a0a0a;
   color: #ffffff;
   min-height: 100vh;
-  height: 100vh;
   padding: 40px 80px;
   display: flex;
   flex-direction: column;
@@ -16,7 +15,6 @@
   font-family: "Clash Display Variable", "Clash Display", "Inter", sans-serif;
   width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 .courses-section * {
@@ -65,9 +63,9 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   width: 100%;
-  flex: 1;
+  flex: 0 1 auto;
   /* clamp card height so grid always fits viewport */
-  align-items: stretch;
+  align-items: start;
 }
 
 /* ===========================
