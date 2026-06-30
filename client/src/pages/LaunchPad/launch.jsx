@@ -4,6 +4,7 @@ import "./launch.css";
 import Journey from "./Journey";
 import ConnectSection from "../../components/ConnectSection/ConnectSection";
 
+
 import launchpadImg from "../../assets/logos/academia/Launch_img.png";
 import vit from "../../assets/logos/academia/vit.webp";
 import arunachala from "../../assets/logos/academia/a_arunachala.webp";

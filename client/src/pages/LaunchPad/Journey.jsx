@@ -16,7 +16,7 @@ const steps = [
   { number: 11, title: "Go Land That Job.", description: "Placement support, referrals, and career launch" },
 ];
 
-export default function Launch() {
+export default function Launch({ compact = false, scrollDistanceScale = 1 }) {
   const sectionRef = useRef(null);
   const stickyRef = useRef(null);
   const timelineRef = useRef(null);
@@ -27,17 +27,15 @@ export default function Launch() {
     const measure = () => {
       if (!timelineRef.current || !stickyRef.current) return;
       const timelineWidth = timelineRef.current.scrollWidth;
-      const viewportWidth = stickyRef.current.clientWidth;
-      // Extra = the distance we need to translate minus what's already visible
-      // We subtract the hero card width and some padding from the viewport
-      const extra = Math.max(0, timelineWidth - viewportWidth + 80);
+      const viewportWidth = timelineRef.current.parentElement?.clientWidth ?? stickyRef.current.clientWidth;
+      const extra = compact ? 0 : Math.max(0, timelineWidth - viewportWidth);
       setScrollExtra(extra);
     };
 
     measure();
     window.addEventListener("resize", measure);
     return () => window.removeEventListener("resize", measure);
-  }, []);
+  }, [compact]);
 
   // Drive horizontal translation from vertical scroll position
   useEffect(() => {
@@ -70,11 +68,12 @@ export default function Launch() {
   }, [scrollExtra]);
 
   // The outer wrapper height = 100vh (visible) + scrollExtra (the horizontal distance mapped to vertical scroll)
-  const wrapperHeight = `calc(100vh + ${scrollExtra}px)`;
+  const scaledScrollExtra = Math.round(scrollExtra * scrollDistanceScale);
+  const wrapperHeight = compact ? "100vh" : `calc(100vh + ${scaledScrollExtra}px)`;
 
   return (
     <section
-      className="journey-outer"
+      className={`journey-outer ${compact ? "journey-outer--compact" : ""}`}
       ref={sectionRef}
       style={{ height: wrapperHeight }}
     >

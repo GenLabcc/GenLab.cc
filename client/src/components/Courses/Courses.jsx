@@ -69,7 +69,7 @@ export default function Courses({ registerGoToPage, registerPageRef, registerTot
   return (
     <section className="courses-section">
       <div className="courses-header">
-        <h2 className="courses-title">LEARN WHAT INDUSTRY DEMANDS</h2>
+        <h2 className="courses-title">Learn What Industry Demands</h2>
         <p className="courses-subtitle">
           9 Divisions · 26 Courses · Online and Offline · 3 to 6 Month Programs
         </p>

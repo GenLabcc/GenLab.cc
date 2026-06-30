@@ -7,7 +7,7 @@
   color: #ffffff;
   font-family: "Clash Display", sans-serif;
   overflow-x: hidden;
-  padding-top: 100px; /* Offset for navbar */
+  padding-top: 0;
 }
 
 /* Overrides for integrated Courses component inside Upskilling page */
@@ -15,11 +15,25 @@
   min-height: auto !important;
   height: auto !important;
   background-color: transparent !important;
-  padding: 40px 0 !important;
+  padding: 220px 0 40px !important;
+  gap: 64px !important;
 }
 
 .upskilling-page .courses-header {
-  display: none !important; /* Hide duplicate title header */
+  display: flex !important;
+  align-items: center;
+  gap: 8px !important;
+}
+
+.upskilling-page .courses-title {
+  font-size: clamp(30px, 3vw, 44px) !important;
+  line-height: 1.05 !important;
+  text-transform: none !important;
+}
+
+.upskilling-page .courses-subtitle {
+  font-size: clamp(14px, 1.35vw, 20px) !important;
+  line-height: 1.25 !important;
 }
 
 .upskilling-page .courses-grid {
@@ -54,30 +68,28 @@
 /* ================= 1. HERO & COURSE CARDS ================= */
 
 .upskilling-hero {
-  max-width: 1300px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 60px 4% 80px 4%;
+  padding: 126px 10.5% 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .hero-text-content {
-  text-align: center;
-  margin-bottom: 60px;
+  text-align: left;
+  margin-bottom: 0;
   width: 100%;
 }
 
 .hero-main-title {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(3.25rem, 5.1vw, 5rem);
   font-weight: 600;
   line-height: 1.15;
-  margin-bottom: 50px;
+  margin: 0;
   letter-spacing: -0.5px;
   text-transform: capitalize;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 1240px;
 }
 
 .section-title-wrapper {
@@ -574,20 +586,26 @@
   padding: 100px 4%;
 }
 
+.upskilling-page .journey-outer + .why-genlab-section {
+  padding: 0 4% 80px;
+}
+
 .section-header-centered {
   text-align: center;
   margin-bottom: 60px;
+  margin-top: 0;
 }
 
 .why-title {
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 600;
-  margin-bottom: 12px;
+  margin: 0 0 12px;
 }
 
 .why-subtitle {
   font-size: 16px;
   color: #a0a0a0;
+  margin: 0;
 }
 
 .why-cards-grid {
@@ -1013,6 +1031,23 @@
     padding-top: 80px;
   }
 
+  .upskilling-hero {
+    padding: 56px 20px 56px;
+  }
+
+  .hero-text-content {
+    text-align: left;
+  }
+
+  .hero-main-title {
+    font-size: clamp(2.2rem, 11vw, 3.4rem);
+  }
+
+  .upskilling-page .courses-section {
+    padding: 72px 0 32px !important;
+    gap: 36px !important;
+  }
+
   .courses-grid {
     grid-template-columns: 1fr;
   }
@@ -1029,6 +1064,10 @@
 
   .why-cards-grid {
     grid-template-columns: 1fr;
+  }
+
+  .upskilling-page .journey-outer + .why-genlab-section {
+    padding: 0 4% 64px;
   }
   
   .card-progress, .card-practitioners, .card-mentors, .card-market, .card-partners {

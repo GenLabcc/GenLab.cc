@@ -5,6 +5,10 @@
     padding: clamp(12px, 4vw, 0px) clamp(24px, 8vw, 150px);
 }
 
+.journey-outer + .courses-section {
+    padding-top: 40px;
+}
+
 .launch-title {
     width: 100%;
     max-width: 1520px;

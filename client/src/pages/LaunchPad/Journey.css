@@ -13,7 +13,12 @@
 .journey-outer {
   position: relative;
   width: 100%;
+   
   /* height is set dynamically via inline style */
+}
+
+.journey-outer--compact .journey-section {
+  position: relative;
 }
 
 /* ===========================
