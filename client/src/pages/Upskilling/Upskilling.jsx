@@ -54,27 +54,6 @@ export default function Upskilling() {
         <div style={{ width: "100%" }}>
           <Courses />
         </div>
-
-        {/* Stats Row */}
-        <div className="stats-row">
-          <div className="stat-item">
-            <span className="stat-number">00</span>
-            <span className="stat-label">active Students</span>
-          </div>
-          <div className="stat-item rating-item">
-            <div className="rating-stars">
-              {[...Array(5)].map((_, i) => (
-                <span key={i} className="star-icon">★</span>
-              ))}
-            </div>
-            <span className="stat-label">140 reviews</span>
-          </div>
-          <div className="stat-item">
-            <span className="stat-number">6</span>
-            <span className="stat-label">division programs</span>
-          </div>
-        </div>
-
         {/* Explore Button */}
         <div className="explore-programs-wrapper">
           <button className="btn-explore-programs" onClick={() => navigate("/tracks")}>

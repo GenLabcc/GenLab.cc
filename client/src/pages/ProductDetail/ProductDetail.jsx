@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 
 const ProductDetail = () => {
   return (
+    <>
     <div className={styles.productDetailPage}>
       <section className={styles.productSection}>
         <div className={styles.pageLayout}>
@@ -58,6 +59,7 @@ const ProductDetail = () => {
       </section>
       <ConnectSection />
     </div>
+    </>
   );
 };
 
