@@ -62,7 +62,6 @@ function App() {
           <Route path="/launchpad" element={<LaunchPad/>}/>
           <Route path="/tracks" element={<Tracksection />} />
           <Route path="/upskilling" element={<Upskilling />} />
-          <Route path="/upcoming-skills" element={<Upskilling />} />
           <Route path="/products/custom-website-chatbots" element={<ProductDetail />} />
           <Route path="/verify-certificate" element={<VerifyCertificate />} />
           <Route path="/shabdamui" element={<ShabdamUI />} />

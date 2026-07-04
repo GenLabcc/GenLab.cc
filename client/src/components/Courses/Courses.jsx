@@ -8,8 +8,8 @@ const coursesData = [
   { id: 2, badge: "Medium Growth",  badgeColor: "yellow", title: "Full Stack Web Development (MERN)",  description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
   { id: 3, badge: "Advance Growth", badgeColor: "green",  title: "Full Stack Web Development (MERN)",  description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
   { id: 4, badge: "Advance Growth", badgeColor: "green",  title: "UI/UX Design Fundamentals",           description: "Master design thinking, Figma, and prototyping with real-world projects and mentorship.",   tags: ["Figma", "Adobe XD", "Prototyping", "Research"],  duration: "3 Months", support: "Job Offer Support" },
-  { id: 5, badge: "Medium Growth",  badgeColor: "yellow", title: "Data Science & Machine Learning",     description: "Dive into data analysis, ML algorithms, and Python for real-world data challenges.",       tags: ["Python", "Pandas", "Scikit-learn", "TensorFlow"], duration: "6 Months", support: "Job Offer Support" },
-  { id: 6, badge: "Advance Growth", badgeColor: "green",  title: "DevOps & Cloud Engineering",          description: "Learn CI/CD, Docker, Kubernetes, and AWS for scalable cloud infrastructure.",              tags: ["Docker", "AWS", "Kubernetes", "CI/CD"],           duration: "4 Months", support: "Job Offer Support" },
+  { id: 5, badge: "Medium Growth",  badgeColor: "yellow", title: "Data Science & Machine Learning",     description: "Dive into data analysis, ML algorithms, and Python for real-world data challenges with expert mentors.",       tags: ["Python", "Pandas", "Scikit-learn", "TensorFlow"], duration: "6 Months", support: "Job Offer Support" },
+  { id: 6, badge: "Advance Growth", badgeColor: "green",  title: "DevOps & Cloud Engineering",          description: "Learn CI/CD, Docker, Kubernetes, and AWS for scalable cloud infrastructure with expert mentors",              tags: ["Docker", "AWS", "Kubernetes", "CI/CD"],           duration: "4 Months", support: "Job Offer Support" },
 ];
 
 const CARDS_PER_PAGE = 3;
@@ -76,8 +76,11 @@ export default function Courses({ registerGoToPage, registerPageRef, registerTot
       </div>
 
       <div className="courses-grid">
-        {visibleCourses.map((course) => (
-          <div className="course-card" key={course.id}>
+        {visibleCourses.map((course, index) => (
+          <div className="course-card" 
+          key={`${currentPage}-${course.id}`}
+          style={{ animationDelay: `${index * 80}ms` }}
+          >
             <div className="course-card-top">
               <div className={`course-badge badge-${course.badgeColor}`}>
                 <span>↗</span> {course.badge}

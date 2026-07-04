@@ -10,11 +10,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 62px;
   font-family: "Clash Display Variable", "Clash Display", "Inter", sans-serif;
   width: 100%;
   box-sizing: border-box;
 }
+
 .courses-section * {
   font-family: "Clash Display Variable", "Clash Display", "Inter", sans-serif;
   box-sizing: border-box;
@@ -34,14 +34,12 @@
 
 .courses-title {
   font-family: "Clash Display Variable", "Clash Display", sans-serif;
-  font-size: 48px;
+  font-size: 35px;
   font-weight: 600;
   line-height: 48px;
   letter-spacing: 0px;
   text-transform: uppercase;
   color: #ffffff;
-  margin: 0;
-  padding-bottom: 0;
   font-style: semibold;
 }
 
@@ -52,8 +50,7 @@
   line-height: 24px;
   letter-spacing: 0px;
   color: #e2e2e2;
-  margin: 0;
-  padding-bottom: 0;
+  padding-bottom: 40px;
 }
 /* ===========================
    GRID
@@ -62,7 +59,6 @@
 .courses-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
   width: 100%;
   flex: 0 1 auto;
   /* clamp card height so grid always fits viewport */
@@ -82,11 +78,21 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   background-color: #ffffff;
   min-height: 0;
+  opacity: 0%;
+  transform: translateY(16px);
+  animation: courseCardIn 1s ease forwards;
 }
 
 .course-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+@keyframes courseCardIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* TOP — dark logo area */
@@ -381,8 +387,10 @@
     gap: 0;
     flex: 1;
     min-height: 0;
-    align-items: stretch;
+    align-items: start;
+    justify-content: center;
   }
+
 
   .course-card-top {
     flex: 0 0 34%;
