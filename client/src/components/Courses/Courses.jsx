@@ -89,7 +89,7 @@ export default function Courses({ registerGoToPage, registerPageRef, registerTot
             </div>
             <div className="course-card-bottom">
               <div className="course-text">
-                <h3 className="course-title">{course.title}</h3>
+                <h1 className="course-title">{course.title}</h1>
                 <p className="course-description">{course.description}</p>
               </div>
               <div className="course-tags">

@@ -147,7 +147,8 @@
 }
 
 .course-title {
-  font-size: clamp(16px, 1.5vw, 22px);
+  font-family: "Clash Display Variable", "Clash Display", sans-serif;
+  font-size: 32px;
   font-weight: 700;
   color: #000000;
   margin: 0;
