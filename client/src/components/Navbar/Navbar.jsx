@@ -91,7 +91,7 @@ export default function Navbar() {
                     Launchpad
                   </Link>
                   <Link
-                    to="/upcoming-skills"
+                    to="/upskilling"
                     className="nav-dropdown-item"
                     onClick={() => setIsLaunchpadOpen(false)}
                   >
@@ -149,7 +149,7 @@ export default function Navbar() {
                   Launchpad
                 </Link>
                 <Link
-                  to="/upcoming-skills"
+                  to="/upskilling"
                   className="nav-link mobile-sub-link"
                   onClick={() => { setIsMenuOpen(false); setIsMobileLaunchpadOpen(false); }}
                 >
