@@ -6,9 +6,12 @@ import styles from "./People.module.css";
 import personImg1 from "@/assets/images/people/henrich.webp";
 import personImg2 from "@/assets/images/people/ashvin.webp";
 import personImg4 from "@/assets/images/people/bency.webp";
-import personImg5 from "@/assets/images/people/esther.webp";
-import personImg6 from "@/assets/images/people/reshma.webp";
-// import personImg7 from "@/assets/images/people/Ameera_HR2.png";
+import personImg5 from "@/assets/images/people/Esther.png";
+import personImg6 from "@/assets/images/people/Reshma.png";
+import personImg7 from "@/assets/images/people/Akshen.png";
+import personImg8 from "@/assets/images/people/Gowri.png";
+import personImg9 from "@/assets/images/people/Ashmi.png";
+import personImg10 from "@/assets/images/people/Britta.png";
 
 
 const people = [
@@ -17,7 +20,10 @@ const people = [
   { id: 4, name: "Bency", role: "Operations Manager", image: personImg4 },
   { id: 5, name: "Esther Beni", role: "HR Executive", image: personImg5 },
   { id: 6, name: "Reshma", role: "Senior Developer", image: personImg6 },
-  // { id: 7, name: "Ameera", role: "GenLab CEO", image: personImg7 },
+  { id: 7, name: "Akshen", role: "Senior Mentor", image: personImg7 },
+  { id: 8, name: "Gowri", role: "UI/UX Designer", image: personImg8 },
+  { id: 9, name: "Ashmi", role: "Brand Growth Strategist", image: personImg9 },
+  { id: 10, name: "Britta", role: "Software Engineer", image: personImg10 },
 ];
 
 const People = () => {
