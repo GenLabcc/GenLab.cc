@@ -6,18 +6,18 @@ import styles from "./People.module.css";
 import personImg1 from "@/assets/images/people/henrich.webp";
 import personImg2 from "@/assets/images/people/ashvin.webp";
 import personImg4 from "@/assets/images/people/bency.webp";
-import personImg6 from "@/assets/images/people/esther.webp";
-import personImg7 from "@/assets/images/people/reshma.webp";
+import personImg5 from "@/assets/images/people/esther.webp";
+import personImg6 from "@/assets/images/people/reshma.webp";
+// import personImg7 from "@/assets/images/people/Ameera_HR2.png";
 
 
 const people = [
   { id: 1, name: "Henrich", role: "Visionary", image: personImg1 },
   { id: 2, name: "Ashvin", role: "Chief Operating Officer", image: personImg2 },
-
   { id: 4, name: "Bency", role: "Operations Manager", image: personImg4 },
-  // { id: 5, name: "Akshen", role: "AI/ML Developer", image: personImg5 },
-  { id: 6, name: "Esther Beni", role: "HR Executive", image: personImg6 },
-  { id: 7, name: "Reshma", role: "Senior Developer", image: personImg7 },
+  { id: 5, name: "Esther Beni", role: "HR Executive", image: personImg5 },
+  { id: 6, name: "Reshma", role: "Senior Developer", image: personImg6 },
+  // { id: 7, name: "Ameera", role: "GenLab CEO", image: personImg7 },
 ];
 
 const People = () => {
@@ -26,7 +26,7 @@ const People = () => {
       <section className={styles.peopleSection}>
         <div className={styles.container}>
           <h2 className={styles.heading}>
-            Meet the crew. <br />
+            Meet the crew.<br />
             Team spirit you can feel.
           </h2>
 

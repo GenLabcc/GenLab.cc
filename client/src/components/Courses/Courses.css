@@ -1,7 +1,6 @@
 /* ===========================
    COURSES SECTION
    =========================== */
-
 .courses-section {
   background-color: #111111;
   color: #ffffff;
@@ -52,6 +51,19 @@
   color: #e2e2e2;
   padding-bottom: 40px;
 }
+
+/* ===========================
+   GRID WRAPPER — enables overlapping slide transitions
+   =========================== */
+
+.courses-grid-wrapper {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: visible;
+  min-height: 600px; /* tune to your actual desktop card height */
+}
+
 /* ===========================
    GRID
    =========================== */
@@ -60,9 +72,11 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   width: 100%;
-  flex: 0 1 auto;
-  /* clamp card height so grid always fits viewport */
+  position: absolute;
+  top: 0;
+  left: 0;
   align-items: start;
+  padding-top: 10px;
 }
 
 /* ===========================
@@ -78,21 +92,11 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   background-color: #ffffff;
   min-height: 0;
-  opacity: 0%;
-  transform: translateY(16px);
-  animation: courseCardIn 1s ease forwards;
 }
 
 .course-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-}
-
-@keyframes courseCardIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* TOP — dark logo area */
@@ -140,33 +144,37 @@
   min-height: 0;
 }
 
-.course-text {
+.course-card-text {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.course-title {
+.course-card-title {
   font-family: "Clash Display Variable", "Clash Display", sans-serif;
-  font-size: 32px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 600;
+  font-style:Semibold;
   color: #000000;
   margin: 0;
   line-height: 1.2;
+  letter-spacing: normal;
 }
 
-.course-description {
-  font-size: clamp(11px, 0.9vw, 14px);
+.course-card-description {
+  font-size: 12px;
   font-weight: 400;
   color: #555555;
   margin: 0;
   line-height: 1.5;
+  letter-spacing: 1px;
 }
 
 /* Tags */
 .course-tags {
   display: flex;
   flex-wrap: wrap;
+  font-weight: 500;
   gap: 5px;
 }
 
@@ -357,6 +365,10 @@
   .courses-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .courses-grid-wrapper {
+    min-height: 480px; /* 2-col layout is taller per card row than 3-col */
+  }
 }
 
 @media (max-width: 640px) {
@@ -383,11 +395,14 @@
     line-height: 1.25;
   }
 
+  .courses-grid-wrapper {
+    flex: 1;
+    min-height: 0;
+  }
+
   .courses-grid {
     grid-template-columns: 1fr;
     gap: 0;
-    flex: 1;
-    min-height: 0;
     align-items: start;
     justify-content: center;
   }

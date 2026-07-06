@@ -96,15 +96,15 @@ const GrowthBadge = ({ type }) => {
 
 const CourseCard = ({ course }) => {
   return (
-    <div className="course-card">
+    <div className="track-card">
       <div className="course-image">
         <img src={courseThumbnail} alt={course.title} className="course-thumbnail" />
         <GrowthBadge type={course.growth} />
       </div>
 
       <div className="course-body">
-        <h3 className="course-title">{course.title}</h3>
-        <p className="course-description">{course.description}</p>
+        <h3 className="course-track-title">{course.title}</h3>
+        <p className="course-track-description">{course.description}</p>
 
         <div className="tag-row">
           {course.tags.map((tag) => (
@@ -119,7 +119,7 @@ const CourseCard = ({ course }) => {
           <span className="tag-pill dark">{course.support}</span>
         </div>
 
-        <div className="course-footer">
+        <div className="course-track-footer">
           <button className="syllabus-btn" type="button">
             <svg viewBox="0 0 24 24" className="download-icon" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 3V15M12 15L7 10M12 15L17 10M4 19H20" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round" />

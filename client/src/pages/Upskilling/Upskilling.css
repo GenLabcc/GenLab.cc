@@ -15,8 +15,7 @@
   min-height: auto !important;
   height: auto !important;
   background-color: transparent !important;
-  padding: 220px 0 40px !important;
-  gap: 64px !important;
+  padding: 100px 0px  0px;
 }
 
 .upskilling-page .courses-header {
@@ -43,10 +42,6 @@
   width: 100% !important;
   max-width: 1300px !important;
   margin: 0 auto !important;
-}
-
-.upskilling-page .courses-nav {
-  margin-top: 24px !important;
 }
 
 .upskilling-page .courses-explore {
@@ -126,7 +121,6 @@
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 30px;
   width: 100%;
-  margin-bottom: 60px;
 }
 
 .upskilling-course-card {
@@ -214,7 +208,6 @@
 
 /* Card Body (White) */
 .course-card-bottom {
-  padding: 32px 28px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;

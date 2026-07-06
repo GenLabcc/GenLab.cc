@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import "./Courses.css";
 import logo from "../../assets/Course_logo.png";
 
@@ -7,9 +8,9 @@ const coursesData = [
   { id: 1, badge: "Advance Growth", badgeColor: "green",  title: "Full Stack Web Development (MERN)",  description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
   { id: 2, badge: "Medium Growth",  badgeColor: "yellow", title: "Full Stack Web Development (MERN)",  description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
   { id: 3, badge: "Advance Growth", badgeColor: "green",  title: "Full Stack Web Development (MERN)",  description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
-  { id: 4, badge: "Advance Growth", badgeColor: "green",  title: "UI/UX Design Fundamentals",           description: "Master design thinking, Figma, and prototyping with real-world projects and mentorship.",   tags: ["Figma", "Adobe XD", "Prototyping", "Research"],  duration: "3 Months", support: "Job Offer Support" },
-  { id: 5, badge: "Medium Growth",  badgeColor: "yellow", title: "Data Science & Machine Learning",     description: "Dive into data analysis, ML algorithms, and Python for real-world data challenges with expert mentors.",       tags: ["Python", "Pandas", "Scikit-learn", "TensorFlow"], duration: "6 Months", support: "Job Offer Support" },
-  { id: 6, badge: "Advance Growth", badgeColor: "green",  title: "DevOps & Cloud Engineering",          description: "Learn CI/CD, Docker, Kubernetes, and AWS for scalable cloud infrastructure with expert mentors",              tags: ["Docker", "AWS", "Kubernetes", "CI/CD"],           duration: "4 Months", support: "Job Offer Support" },
+  { id: 4, badge: "Advance Growth", badgeColor: "green",  title: "UI/UX Design Fundamentals",           description: "Master design thinking, Figma, and prototyping with real-world projects and mentorship with career support.",   tags: ["Figma", "Adobe XD", "Prototyping", "Research"],  duration: "3 Months", support: "Job Offer Support" },
+  { id: 5, badge: "Medium Growth",  badgeColor: "yellow", title: "Data Science & ML",     description: "Dive into data analysis, ML algorithms, and Python for real-world data challenges with expert mentors.",       tags: ["Python", "Pandas", "Scikit-learn", "TensorFlow"], duration: "6 Months", support: "Job Offer Support" },
+  { id: 6, badge: "Advance Growth", badgeColor: "green",  title: "DevOps & Cloud Engineering",          description: "Learn CI/CD, Docker, Kubernetes, and AWS for scalable cloud infrastructure with expert mentors",              tags: ["Docker", "AWS", "Kubernetes", "CI/CD Pipeline"],           duration: "4 Months", support: "Job Offer Support" },
 ];
 
 const CARDS_PER_PAGE = 3;
@@ -19,16 +20,27 @@ const MOBILE_BREAKPOINT = 640;
 const getCardsPerPage = () =>
   window.innerWidth <= MOBILE_BREAKPOINT ? MOBILE_CARDS_PER_PAGE : CARDS_PER_PAGE;
 
+const slideVariants = {
+  enter: (dir) => ({ x: dir > 0 ? "100%" : "-100%", opacity: 0 }),
+  center: { x: 0, opacity: 1 },
+  exit: (dir) => ({ x: dir > 0 ? "-100%" : "100%", opacity: 0 }),
+};
+
 export default function Courses({ registerGoToPage, registerPageRef, registerTotalPages }) {
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState(0);
+  const [[currentPage, direction], setPageState] = useState([0, 0]);
   const [cardsPerPage, setCardsPerPage] = useState(getCardsPerPage);
   const totalPages = Math.ceil(coursesData.length / cardsPerPage);
+
+  const paginate = (newPage) => {
+    const clamped = Math.max(0, Math.min(totalPages - 1, newPage));
+    setPageState(([prevPage]) => [clamped, clamped > prevPage ? 1 : -1]);
+  };
 
   useEffect(() => {
     registerTotalPages?.(totalPages);
     registerGoToPage?.((page) => {
-      setCurrentPage(Math.min(page, totalPages - 1));
+      paginate(page);
     });
   }, [registerGoToPage, registerTotalPages, totalPages]);
 
@@ -42,16 +54,16 @@ export default function Courses({ registerGoToPage, registerPageRef, registerTot
   }, []);
 
   useEffect(() => {
-    setCurrentPage((page) => Math.min(page, totalPages - 1));
+    setPageState(([page]) => [Math.min(page, totalPages - 1), 0]);
   }, [totalPages]);
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
-      setCurrentPage((page) => (page + 1) % totalPages);
+      paginate((currentPage + 1) % totalPages);
     }, 5000);
 
     return () => window.clearInterval(intervalId);
-  }, [totalPages]);
+  }, [currentPage, totalPages]);
 
   // Keep App's ref always current
   useEffect(() => {
@@ -63,10 +75,10 @@ export default function Courses({ registerGoToPage, registerPageRef, registerTot
     currentPage * cardsPerPage + cardsPerPage
   );
 
-  const handlePrev = () => setCurrentPage((p) => Math.max(0, p - 1));
-  const handleNext = () => setCurrentPage((p) => Math.min(totalPages - 1, p + 1));
+  const handlePrev = () => paginate(currentPage - 1);
+  const handleNext = () => paginate(currentPage + 1);
 
-  return (
+return (
     <section className="courses-section">
       <div className="courses-header">
         <h2 className="courses-title">Learn What Industry Demands</h2>
@@ -75,46 +87,56 @@ export default function Courses({ registerGoToPage, registerPageRef, registerTot
         </p>
       </div>
 
-      <div className="courses-grid">
-        {visibleCourses.map((course, index) => (
-          <div className="course-card" 
-          key={`${currentPage}-${course.id}`}
-          style={{ animationDelay: `${index * 80}ms` }}
+      <div className="courses-grid-wrapper" style={{ overflow: "hidden", position: "relative" }}>
+        <AnimatePresence mode="wait" custom={direction}>
+          <motion.div
+            className="courses-grid"
+            key={currentPage}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 0.4, ease: "easeInOut" }}
           >
-            <div className="course-card-top">
-              <div className={`course-badge badge-${course.badgeColor}`}>
-                <span>↗</span> {course.badge}
+            {visibleCourses.map((course) => (
+              <div className="course-card" key={course.id}>
+                <div className="course-card-top">
+                  <div className={`course-badge badge-${course.badgeColor}`}>
+                    <span>↗</span> {course.badge}
+                  </div>
+                  <img src={logo} alt="GenLab Logo" className="course-logo-img" />
+                </div>
+                <div className="course-card-bottom">
+                  <div className="course-card-text">
+                    <h3 className="course-card-title">{course.title}</h3>
+                    <p className="course-card-description">{course.description}</p>
+                  </div>
+                  <div className="course-tags">
+                    {course.tags.map((tag) => (
+                      <span key={tag} className="course-tag">{tag}</span>
+                    ))}
+                  </div>
+                  <div className="course-pills">
+                    <span className="pill pill-duration">{course.duration}</span>
+                    <span className="pill pill-support">{course.support}</span>
+                  </div>
+                  <div className="course-footer">
+                    <button className="btn-syllabus">↓ Syllabus</button>
+                    <button className="btn-enroll">Enroll Now</button>
+                  </div>
+                </div>
               </div>
-              <img src={logo} alt="GenLab Logo" className="course-logo-img" />
-            </div>
-            <div className="course-card-bottom">
-              <div className="course-text">
-                <h1 className="course-title">{course.title}</h1>
-                <p className="course-description">{course.description}</p>
-              </div>
-              <div className="course-tags">
-                {course.tags.map((tag) => (
-                  <span key={tag} className="course-tag">{tag}</span>
-                ))}
-              </div>
-              <div className="course-pills">
-                <span className="pill pill-duration">{course.duration}</span>
-                <span className="pill pill-support">{course.support}</span>
-              </div>
-              <div className="course-footer">
-                <button className="btn-syllabus">↓ Syllabus</button>
-                <button className="btn-enroll">Enroll Now</button>
-              </div>
-            </div>
-          </div>
-        ))}
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       <div className="courses-nav">
         <button className="nav-arrow" onClick={handlePrev} disabled={currentPage === 0} aria-label="Previous">&#8592;</button>
         <div className="nav-dots">
           {Array.from({ length: totalPages }).map((_, i) => (
-            <button key={i} className={`nav-dot ${i === currentPage ? "active" : ""}`} onClick={() => setCurrentPage(i)} aria-label={`Page ${i + 1}`} />
+            <button key={i} className={`nav-dot ${i === currentPage ? "active" : ""}`} onClick={() => paginate(i)} aria-label={`Page ${i + 1}`} />
           ))}
         </div>
         <button className="nav-arrow" onClick={handleNext} disabled={currentPage === totalPages - 1} aria-label="Next">&#8594;</button>

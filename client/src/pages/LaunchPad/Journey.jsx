@@ -69,7 +69,7 @@ export default function Launch({ compact = false, scrollDistanceScale = 1 }) {
 
   // The outer wrapper height = 100vh (visible) + scrollExtra (the horizontal distance mapped to vertical scroll)
   const scaledScrollExtra = Math.round(scrollExtra * scrollDistanceScale);
-  const wrapperHeight = compact ? "100vh" : `calc(100vh + ${scaledScrollExtra}px)`;
+  const wrapperHeight = compact ? "100vh" : `calc(70vh + ${scaledScrollExtra}px)`;
 
   return (
     <section

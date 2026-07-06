@@ -14,7 +14,7 @@
   margin-bottom: 32px;
 }
 
-.courses-page .courses-title{
+.courses-page .courses-track-title{
   font-family: 'Clash Display', sans-serif;;
   font-weight: 500;
   text-align: center;
@@ -211,7 +211,7 @@
   align-items: stretch;
 }
 
-.course-card {
+.track-card {
   background-color: #ffffff;
   border: 1px solid #e3e3e3;
   border-radius: 16px;
@@ -222,7 +222,7 @@
   transform: none !important;
 }
 
-.course-card:hover {
+.track-card:hover {
   transform: none !important;
 }
 
@@ -240,11 +240,11 @@
   isolation: isolate;
 }
 
-.course-card:hover .course-image {
+.track-card:hover .course-image {
   background-color: #d7ff00;
 }
 
-.course-card:hover .course-thumbnail {
+.track-card:hover .course-thumbnail {
   filter: invert(1);
 }
 
@@ -302,11 +302,11 @@
   flex: 1;
 }
 
-.course-title {
+.course-track-title {
   all: unset !important;
   display: block !important;
-  font-size: 16px !important;
-  font-weight: 500 !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
   letter-spacing: normal !important;
   color: #111111 !important;
   margin: 0 !important;
@@ -314,7 +314,7 @@
   line-height: 1.15 !important;
 }
 
-.course-description {
+.course-track-description {
   all: unset !important;
   display: block !important;
   font-size: 10px !important;
@@ -322,6 +322,7 @@
   line-height: 1.3 !important;
   margin: 0 !important;
   padding: 0 !important;
+  letter-spacing: 1px !important;
 }
 
 .tag-row {
@@ -353,7 +354,7 @@
   color: #ffffff;
 }
 
-.course-footer {
+.course-track-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -364,21 +365,21 @@
   transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.course-footer:hover {
+.course-track-footer:hover {
   background-color: #d7ff00;
   border-color: #d7ff00;
 }
 
-.course-card:hover .course-footer {
+.track-card:hover .course-track-footer {
   background-color: #d7ff00;
   border-color: #d7ff00;
 }
 
-.course-card:hover .download-icon {
+.track-card:hover .download-icon {
   color: #1a1a1a;
 }
 
-.course-card:hover .enroll-btn {
+.track-card:hover .enroll-btn {
   background-color: #ffffff;
   color: #1a1a1a;
   border-radius: 10px;
