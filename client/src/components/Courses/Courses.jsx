@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef, useCallback } from "react";
 import "./Courses.css";
 import logo from "../../assets/Course_logo.png";
 
@@ -13,72 +12,106 @@ const coursesData = [
   { id: 6, badge: "Advance Growth", badgeColor: "green",  title: "DevOps & Cloud Engineering",          description: "Learn CI/CD, Docker, Kubernetes, and AWS for scalable cloud infrastructure with expert mentors",              tags: ["Docker", "AWS", "Kubernetes", "CI/CD Pipeline"],           duration: "4 Months", support: "Job Offer Support" },
 ];
 
-const CARDS_PER_PAGE = 3;
-const MOBILE_CARDS_PER_PAGE = 1;
-const MOBILE_BREAKPOINT = 640;
+const AUTOPLAY_INTERVAL = 5000;
 
-const getCardsPerPage = () =>
-  window.innerWidth <= MOBILE_BREAKPOINT ? MOBILE_CARDS_PER_PAGE : CARDS_PER_PAGE;
-
-const slideVariants = {
-  enter: (dir) => ({ x: dir > 0 ? "100%" : "-100%", opacity: 0 }),
-  center: { x: 0, opacity: 1 },
-  exit: (dir) => ({ x: dir > 0 ? "-100%" : "100%", opacity: 0 }),
+/* Circular distance: shortest path around the ring */
+const getCircularDiff = (index, active, total) => {
+  let diff = index - active;
+  if (diff > total / 2) diff -= total;
+  if (diff < -total / 2) diff += total;
+  return diff;
 };
 
 export default function Courses({ registerGoToPage, registerPageRef, registerTotalPages }) {
   const navigate = useNavigate();
-  const [[currentPage, direction], setPageState] = useState([0, 0]);
-  const [cardsPerPage, setCardsPerPage] = useState(getCardsPerPage);
-  const totalPages = Math.ceil(coursesData.length / cardsPerPage);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const autoplayRef = useRef(null);
+  const viewportRef = useRef(null);
+  const [viewportWidth, setViewportWidth] = useState(0);
+  const totalCards = coursesData.length;
 
-  const paginate = (newPage) => {
-    const clamped = Math.max(0, Math.min(totalPages - 1, newPage));
-    setPageState(([prevPage]) => [clamped, clamped > prevPage ? 1 : -1]);
-  };
-
-  useEffect(() => {
-    registerTotalPages?.(totalPages);
-    registerGoToPage?.((page) => {
-      paginate(page);
-    });
-  }, [registerGoToPage, registerTotalPages, totalPages]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setCardsPerPage(getCardsPerPage());
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+  /* Measure viewport width for spacing calculations */
+  const measure = useCallback(() => {
+    if (viewportRef.current) {
+      setViewportWidth(viewportRef.current.offsetWidth);
+    }
   }, []);
 
   useEffect(() => {
-    setPageState(([page]) => [Math.min(page, totalPages - 1), 0]);
-  }, [totalPages]);
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [measure]);
+
+  /* Keep external refs in sync */
+  useEffect(() => {
+    registerTotalPages?.(totalCards);
+    registerGoToPage?.((page) => {
+      setActiveIndex(((page % totalCards) + totalCards) % totalCards);
+    });
+  }, [registerGoToPage, registerTotalPages, totalCards]);
 
   useEffect(() => {
-    const intervalId = window.setInterval(() => {
-      paginate((currentPage + 1) % totalPages);
-    }, 5000);
+    registerPageRef?.(activeIndex);
+  }, [activeIndex, registerPageRef]);
 
-    return () => window.clearInterval(intervalId);
-  }, [currentPage, totalPages]);
-
-  // Keep App's ref always current
+  /* Autoplay — wraps circularly */
   useEffect(() => {
-    registerPageRef?.(currentPage);
-  }, [currentPage, registerPageRef]);
+    autoplayRef.current = window.setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % totalCards);
+    }, AUTOPLAY_INTERVAL);
+    return () => window.clearInterval(autoplayRef.current);
+  }, [activeIndex, totalCards]);
 
-  const visibleCourses = coursesData.slice(
-    currentPage * cardsPerPage,
-    currentPage * cardsPerPage + cardsPerPage
-  );
+  /* Circular navigation — always wraps */
+  const goTo = (index) => {
+    setActiveIndex(((index % totalCards) + totalCards) % totalCards);
+  };
 
-  const handlePrev = () => paginate(currentPage - 1);
-  const handleNext = () => paginate(currentPage + 1);
+  const handlePrev = () => goTo(activeIndex - 1);
+  const handleNext = () => goTo(activeIndex + 1);
 
-return (
+  /* Compute inline style for each card based on circular position */
+  const getSlideStyle = (index) => {
+    const diff = getCircularDiff(index, activeIndex, totalCards);
+    const absDiff = Math.abs(diff);
+
+    /* Spacing between card centers — ~34% of viewport */
+    const spacing = viewportWidth * 0.34;
+    const offsetX = diff * spacing;
+
+    /* Cards more than 2 positions away: hide them */
+    if (absDiff > 2) {
+      return {
+        transform: `translateX(calc(-50% + ${offsetX}px)) translateY(-50%) scale(0.7)`,
+        opacity: 0,
+        pointerEvents: "none",
+        zIndex: 0,
+      };
+    }
+
+    const scale  = absDiff === 0 ? 1    : absDiff === 1 ? 0.85 : 0.75;
+    const opacity = absDiff === 0 ? 1    : absDiff === 1 ? 0.6  : 0.35;
+    const zIndex  = 10 - absDiff;
+    const blur    = absDiff >= 2 ? 1 : 0;
+
+    return {
+      transform: `translateX(calc(-50% + ${offsetX}px)) translateY(-50%) scale(${scale})`,
+      opacity,
+      zIndex,
+      filter: blur > 0 ? `blur(${blur}px)` : "none",
+      pointerEvents: absDiff === 0 ? "auto" : "none",
+    };
+  };
+
+  const getSlideClass = (index) => {
+    const diff = getCircularDiff(index, activeIndex, totalCards);
+    if (diff === 0) return "courses-carousel-slide active";
+    if (Math.abs(diff) === 1) return "courses-carousel-slide adjacent";
+    return "courses-carousel-slide";
+  };
+
+  return (
     <section className="courses-section">
       <div className="courses-header">
         <h2 className="courses-title">Learn What Industry Demands</h2>
@@ -87,20 +120,27 @@ return (
         </p>
       </div>
 
-      <div className="courses-grid-wrapper" style={{ overflow: "hidden", position: "relative" }}>
-        <AnimatePresence mode="wait" custom={direction}>
-          <motion.div
-            className="courses-grid"
-            key={currentPage}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-          >
-            {visibleCourses.map((course) => (
-              <div className="course-card" key={course.id}>
+      <div className="courses-carousel-container">
+        {/* Left Arrow — always enabled (circular) */}
+        <button
+          className="carousel-arrow carousel-arrow--left"
+          onClick={handlePrev}
+          aria-label="Previous course"
+        >
+          <svg viewBox="0 0 24 24">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+
+        {/* Carousel Viewport — cards positioned absolutely inside */}
+        <div className="courses-carousel-viewport" ref={viewportRef}>
+          {coursesData.map((course, index) => (
+            <div
+              className={getSlideClass(index)}
+              key={course.id}
+              style={getSlideStyle(index)}
+            >
+              <div className="course-card">
                 <div className="course-card-top">
                   <div className={`course-badge badge-${course.badgeColor}`}>
                     <span>↗</span> {course.badge}
@@ -127,25 +167,40 @@ return (
                   </div>
                 </div>
               </div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      <div className="courses-nav">
-        <button className="nav-arrow" onClick={handlePrev} disabled={currentPage === 0} aria-label="Previous">&#8592;</button>
-        <div className="nav-dots">
-          {Array.from({ length: totalPages }).map((_, i) => (
-            <button key={i} className={`nav-dot ${i === currentPage ? "active" : ""}`} onClick={() => paginate(i)} aria-label={`Page ${i + 1}`} />
+            </div>
           ))}
         </div>
-        <button className="nav-arrow" onClick={handleNext} disabled={currentPage === totalPages - 1} aria-label="Next">&#8594;</button>
+
+        {/* Right Arrow — always enabled (circular) */}
+        <button
+          className="carousel-arrow carousel-arrow--right"
+          onClick={handleNext}
+          aria-label="Next course"
+        >
+          <svg viewBox="0 0 24 24">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Dot indicators */}
+      <div className="courses-nav">
+        <div className="nav-dots">
+          {coursesData.map((_, i) => (
+            <button
+              key={i}
+              className={`nav-dot ${i === activeIndex ? "active" : ""}`}
+              onClick={() => goTo(i)}
+              aria-label={`Go to course ${i + 1}`}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="courses-explore">
-        <button 
-        className="btn-explore"
-        onClick={() => navigate('/tracks')}
+        <button
+          className="btn-explore"
+          onClick={() => navigate('/tracks')}
         >Explore All Programs</button>
       </div>
     </section>

@@ -63,7 +63,7 @@ export default function Upskilling() {
       </section>
 
       {/* 2. JOURNEY OF OUR LEARNERS SECTION */}
-      <Journey scrollDistanceScale={0.08} />
+      <Journey scrollDistanceScale={1} />
 
       {/* 3. WHY GENLAB? SECTION */}
       <section className="why-genlab-section">

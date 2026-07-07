@@ -4,7 +4,7 @@
 .courses-section {
   background-color: #111111;
   color: #ffffff;
-  padding: 100px 80px 40px;
+  padding: 80px 0 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,6 +12,7 @@
   font-family: "Clash Display Variable", "Clash Display", "Inter", sans-serif;
   width: 100%;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .courses-section * {
@@ -29,6 +30,7 @@
   flex-direction: column;
   gap: 4px;
   flex-shrink: 0;
+  padding: 0 80px;
 }
 
 .courses-title {
@@ -53,30 +55,47 @@
 }
 
 /* ===========================
-   GRID WRAPPER — enables overlapping slide transitions
+   CAROUSEL CONTAINER
    =========================== */
 
-.courses-grid-wrapper {
+.courses-carousel-container {
   position: relative;
   width: 100%;
-  overflow-x: hidden;
-  overflow-y: visible;
-  min-height: 600px; /* tune to your actual desktop card height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ===========================
-   GRID
+   CAROUSEL VIEWPORT — holds absolutely-positioned cards
    =========================== */
 
-.courses-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.courses-carousel-viewport {
   width: 100%;
+  overflow: hidden;
+  position: relative;
+  /* Fixed height to contain the absolutely-positioned cards */
+  min-height: 520px;
+}
+
+/* ===========================
+   CAROUSEL SLIDE — absolutely positioned, centered
+   =========================== */
+
+.courses-carousel-slide {
   position: absolute;
-  top: 0;
-  left: 0;
-  align-items: start;
-  padding-top: 10px;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%) scale(0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 12px;
+  /* Smooth transitions for position, scale, opacity */
+  transition: transform 0.55s cubic-bezier(0.25, 0.8, 0.25, 1),
+              opacity 0.55s cubic-bezier(0.25, 0.8, 0.25, 1),
+              filter 0.55s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: transform, opacity;
 }
 
 /* ===========================
@@ -92,14 +111,22 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   background-color: #ffffff;
   min-height: 0;
+  width: 380px;
 }
 
-.course-card:hover {
+/* Active card gets a subtle glow */
+.courses-carousel-slide.active .course-card {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+              0 0 40px rgba(200, 241, 53, 0.1);
+}
+
+.courses-carousel-slide.active .course-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45),
+              0 0 50px rgba(200, 241, 53, 0.12);
 }
 
-/* TOP — dark logo area */
+/* TOP — logo area */
 .course-card-top {
   background-color: #f5f5f5;
   display: flex;
@@ -265,7 +292,55 @@
 }
 
 /* ===========================
-   CAROUSEL NAV
+   CAROUSEL ARROW BUTTONS
+   =========================== */
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.95);
+  color: #111111;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-arrow:hover {
+  background-color: #ffffff;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.25);
+}
+
+.carousel-arrow--left {
+  left: 16px;
+}
+
+.carousel-arrow--right {
+  right: 16px;
+}
+
+.carousel-arrow svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ===========================
+   CAROUSEL NAV (dots)
    =========================== */
 
 .courses-nav {
@@ -273,31 +348,13 @@
   align-items: center;
   gap: 14px;
   flex-shrink: 0;
-  padding-top: 15px;
+  padding-top: 24px;
   padding-bottom: 15px;
 }
 
-.nav-arrow {
-  background: #2a2a2a;
-  border: 1px solid #3a3a3a;
-  color: #ffffff;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  font-size: 1rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s;
-}
-
-.nav-arrow:hover:not(:disabled) { background-color: #3a3a3a; }
-.nav-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
-
 .nav-dots {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
 }
 
@@ -309,12 +366,12 @@
   background-color: #3a3a3a;
   cursor: pointer;
   padding: 0;
-  transition: background-color 0.2s, transform 0.2s;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .nav-dot.active {
   background-color: #c8f135;
-  transform: scale(1.25);
+  transform: scale(1.3);
 }
 
 /* ===========================
@@ -351,38 +408,40 @@
    =========================== */
 
 @media (max-width: 1200px) {
-  .courses-section { padding: 30px 40px; }
+  .courses-section { padding: 30px 0; }
+  .courses-header { padding: 0 40px; }
 }
 
 @media (max-width: 1024px) {
   .courses-section {
-    padding: 24px 20px;
-    height: auto;
-    min-height: 100vh;
-    overflow-y: auto;
+    padding: 24px 0;
   }
 
-  .courses-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .courses-header { padding: 0 20px; }
+
+  .course-card {
+    width: 340px;
   }
 
-  .courses-grid-wrapper {
-    min-height: 480px; /* 2-col layout is taller per card row than 3-col */
+  .courses-carousel-viewport {
+    min-height: 480px;
+  }
+
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
   }
 }
 
 @media (max-width: 640px) {
   .courses-section {
-    height: 100dvh;
-    min-height: 100dvh;
-    padding: 18px 14px;
-    overflow: hidden;
-    justify-content: space-between;
-    gap: 12px;
+    padding: 18px 0;
+    gap: 8px;
   }
 
   .courses-header {
     gap: 6px;
+    padding: 0 14px;
   }
 
   .courses-title {
@@ -393,20 +452,34 @@
   .courses-subtitle {
     font-size: 0.72rem;
     line-height: 1.25;
+    padding-bottom: 20px;
   }
 
-  .courses-grid-wrapper {
-    flex: 1;
-    min-height: 0;
+  .course-card {
+    width: 260px;
   }
 
-  .courses-grid {
-    grid-template-columns: 1fr;
-    gap: 0;
-    align-items: start;
-    justify-content: center;
+  .courses-carousel-viewport {
+    min-height: 420px;
   }
 
+  .courses-carousel-slide {
+    padding: 12px 6px;
+  }
+
+  .carousel-arrow {
+    width: 34px;
+    height: 34px;
+    font-size: 1rem;
+  }
+
+  .carousel-arrow--left { left: 6px; }
+  .carousel-arrow--right { right: 6px; }
+
+  .carousel-arrow svg {
+    width: 16px;
+    height: 16px;
+  }
 
   .course-card-top {
     flex: 0 0 34%;
@@ -429,11 +502,11 @@
     gap: 7px;
   }
 
-  .course-title {
+  .course-card-title {
     font-size: 0.98rem;
   }
 
-  .course-description {
+  .course-card-description {
     font-size: 0.72rem;
     line-height: 1.35;
   }
@@ -463,12 +536,12 @@
 
   .courses-nav {
     gap: 10px;
+    padding-top: 16px;
   }
 
-  .nav-arrow {
-    width: 30px;
-    height: 30px;
-    font-size: 0.85rem;
+  .nav-dot {
+    width: 8px;
+    height: 8px;
   }
 
   .btn-explore {
@@ -479,8 +552,12 @@
 
 @media (max-width: 380px), (max-height: 720px) {
   .courses-section {
-    padding: 14px 12px;
-    gap: 10px;
+    padding: 14px 0;
+    gap: 6px;
+  }
+
+  .courses-header {
+    padding: 0 12px;
   }
 
   .courses-title {
@@ -495,7 +572,7 @@
     gap: 6px;
   }
 
-  .course-description {
+  .course-card-description {
     font-size: 0.68rem;
   }
 
@@ -505,10 +582,5 @@
 
   .course-tag {
     font-size: 0.58rem;
-  }
-
-  .nav-arrow {
-    width: 28px;
-    height: 28px;
   }
 }
