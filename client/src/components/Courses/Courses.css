@@ -72,7 +72,6 @@
 
 .courses-carousel-viewport {
   width: 100%;
-  overflow: hidden;
   position: relative;
   /* Fixed height to contain the absolutely-positioned cards */
   min-height: 520px;

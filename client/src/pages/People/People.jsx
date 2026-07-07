@@ -5,7 +5,7 @@ import styles from "./People.module.css";
 
 import personImg1 from "@/assets/images/people/Henrich.webp";
 import personImg2 from "@/assets/images/people/Ashvin.webp";
-import personImg4 from "@/assets/images/people/Bency.png";
+import personImg4 from "@/assets/images/people/Bency.webp";
 import personImg5 from "@/assets/images/people/Esther.webp";
 import personImg6 from "@/assets/images/people/Reshma.webp";
 import personImg7 from "@/assets/images/people/Akshen.webp";

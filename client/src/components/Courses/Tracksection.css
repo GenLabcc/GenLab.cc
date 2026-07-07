@@ -447,10 +447,6 @@
     padding: 48px 40px 72px;
   }
 
-  .track-title{
-    font-size: 25px;
-  }
-
   .page-title {
     font-size: 34px;
   }
@@ -472,10 +468,6 @@
 @media (min-width: 1280px) {
   .courses-page {
     padding: 56px 80px 100px;
-  }
-
-  .track-title{
-    font-size: 60px !important;
   }
 
   .courses-layout {
