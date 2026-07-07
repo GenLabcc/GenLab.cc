@@ -3,8 +3,8 @@ import MeetSection from "@/pages/People/sections/MeetSection.jsx";
 
 import styles from "./People.module.css";
 
-import personImg1 from "@/assets/images/people/henrich.webp";
-import personImg2 from "@/assets/images/people/ashvin.webp";
+import personImg1 from "@/assets/images/people/Henrich.png";
+import personImg2 from "@/assets/images/people/Ashvin.png";
 import personImg4 from "@/assets/images/people/bency.webp";
 import personImg5 from "@/assets/images/people/Esther.png";
 import personImg6 from "@/assets/images/people/Reshma.png";
@@ -20,7 +20,7 @@ const people = [
   { id: 4, name: "Bency", role: "Operations Manager", image: personImg4 },
   { id: 5, name: "Esther Beni", role: "HR Executive", image: personImg5 },
   { id: 6, name: "Reshma", role: "Senior Developer", image: personImg6 },
-  { id: 7, name: "Akshen", role: "Senior Mentor", image: personImg7 },
+  { id: 7, name: "Akshen", role: "AI/ML Engineer", image: personImg7 },
   { id: 8, name: "Gowri", role: "UI/UX Designer", image: personImg8 },
   { id: 9, name: "Ashmi", role: "Brand Growth Strategist", image: personImg9 },
   { id: 10, name: "Britta", role: "Software Engineer", image: personImg10 },

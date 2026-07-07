@@ -9,6 +9,19 @@
   max-width: 100%;
 }
 
+.track-title{
+  color: white;
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  max-width: 1240px;
+  padding-bottom: 100px;
+
+}
+
 /* Page header */
 .page-header {
   margin-bottom: 32px;
@@ -317,12 +330,11 @@
 .course-track-description {
   all: unset !important;
   display: block !important;
-  font-size: 10px !important;
+  font-size: 11.5px !important;
   color: #6b6b6b !important;
   line-height: 1.3 !important;
-  margin: 0 !important;
-  padding: 0 !important;
   letter-spacing: 1px !important;
+  padding-bottom: 10px !important; 
 }
 
 .tag-row {
@@ -330,6 +342,7 @@
   flex-wrap: wrap;
   gap: 6px;
   overflow: hidden;
+  padding-bottom: 15px;
 }
 
 .tag-row:has(.tag-pill.dark) {

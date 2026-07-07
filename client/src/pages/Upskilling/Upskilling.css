@@ -78,11 +78,11 @@
 }
 
 .hero-main-title {
-  font-size: clamp(3.25rem, 5.1vw, 5rem);
+  font-size: 60px;
   font-weight: 600;
   line-height: 1.15;
   margin: 0;
-  letter-spacing: -0.5px;
+  letter-spacing: 1px;
   text-transform: capitalize;
   max-width: 1240px;
 }
