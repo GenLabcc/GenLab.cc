@@ -3,7 +3,7 @@ import MeetSection from "@/pages/People/sections/MeetSection.jsx";
 
 import styles from "./People.module.css";
 
-import personImg1 from "@/assets/images/people/Henrich.webp";
+import personImg1 from "@/assets/images/people/henrich.webp";
 import personImg2 from "@/assets/images/people/Ashvin.webp";
 import personImg4 from "@/assets/images/people/Bency.webp";
 import personImg5 from "@/assets/images/people/Esther.webp";
