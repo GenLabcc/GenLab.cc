@@ -3,15 +3,15 @@ import MeetSection from "@/pages/People/sections/MeetSection.jsx";
 
 import styles from "./People.module.css";
 
-import personImg1 from "@/assets/images/people/Henrich.png";
-import personImg2 from "@/assets/images/people/Ashvin.png";
-import personImg4 from "@/assets/images/people/bency.webp";
-import personImg5 from "@/assets/images/people/Esther.png";
-import personImg6 from "@/assets/images/people/Reshma.png";
-import personImg7 from "@/assets/images/people/Akshen.png";
-import personImg8 from "@/assets/images/people/Gowri.png";
-import personImg9 from "@/assets/images/people/Ashmi.png";
-import personImg10 from "@/assets/images/people/Britta.png";
+import personImg1 from "@/assets/images/people/Henrich.webp";
+import personImg2 from "@/assets/images/people/Ashvin.webp";
+import personImg4 from "@/assets/images/people/Bency.png";
+import personImg5 from "@/assets/images/people/Esther.webp";
+import personImg6 from "@/assets/images/people/Reshma.webp";
+import personImg7 from "@/assets/images/people/Akshen.webp";
+import personImg8 from "@/assets/images/people/Gowri.webp";
+import personImg9 from "@/assets/images/people/Ashmi.webp";
+import personImg10 from "@/assets/images/people/Britta.webp";
 
 
 const people = [
