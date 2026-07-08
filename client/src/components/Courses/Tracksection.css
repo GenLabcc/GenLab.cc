@@ -442,6 +442,184 @@
 }
 
 /* Responsive: progressively enhance toward the desktop layout. */
+
+/* --- Mobile-specific polish (below 640px) --- */
+@media (max-width: 639px) {
+  .courses-page {
+    padding: 28px 14px 40px;
+  }
+
+  .track-title {
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    padding-bottom: 48px;
+  }
+
+  .page-header {
+    margin-bottom: 20px;
+  }
+
+  .courses-page .courses-track-title {
+    padding-bottom: 48px;
+  }
+
+  .choose-from-label {
+    font-size: 10px;
+    margin-bottom: 10px;
+  }
+
+  .page-title {
+    font-size: 20px;
+    margin: 0 0 10px;
+  }
+
+  .page-subtitle {
+    font-size: 12px;
+  }
+
+  .track-tabs-mobile {
+    gap: 8px;
+  }
+
+  .track-tab {
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+
+  .content-header {
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .content-track-name {
+    font-size: 12px;
+  }
+
+  .content-course-count {
+    font-size: 11px;
+  }
+
+  .track-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .track-card {
+    border-radius: 14px;
+  }
+
+  .course-image {
+    height: 140px;
+    padding-bottom: 10px;
+  }
+
+  .course-thumbnail {
+    width: 60px;
+    height: 60px;
+  }
+
+  .growth-badge {
+    top: 10px;
+    right: 10px;
+    font-size: 8px;
+    padding: 3px 7px;
+  }
+
+  .course-body {
+    padding: 12px 12px 12px;
+    gap: 3px;
+  }
+
+  .course-track-title {
+    font-size: 16px !important;
+  }
+
+  .course-track-description {
+    font-size: 10.5px !important;
+    padding-bottom: 8px !important;
+  }
+
+  .tag-row {
+    gap: 5px;
+    padding-bottom: 10px;
+  }
+
+  .tag-pill {
+    font-size: 9px;
+    padding: 3px 7px;
+  }
+
+  .course-track-footer {
+    padding: 9px 10px;
+    border-radius: 12px;
+  }
+
+  .syllabus-btn {
+    font-size: 11px;
+    gap: 6px;
+  }
+
+  .download-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .enroll-btn {
+    font-size: 11px;
+    padding: 8px 14px;
+    border-radius: 8px;
+  }
+}
+
+/* --- Very small phones (<400px) --- */
+@media (max-width: 400px) {
+  .courses-page {
+    padding: 22px 12px 32px;
+  }
+
+  .track-title {
+    font-size: 24px;
+    padding-bottom: 36px;
+  }
+
+  .page-title {
+    font-size: 18px;
+  }
+
+  .page-subtitle {
+    font-size: 11px;
+  }
+
+  .track-tab {
+    padding: 7px 12px;
+    font-size: 10px;
+  }
+
+  .course-image {
+    height: 120px;
+  }
+
+  .course-thumbnail {
+    width: 50px;
+    height: 50px;
+  }
+
+  .course-track-title {
+    font-size: 14px !important;
+  }
+
+  .course-track-description {
+    font-size: 9.5px !important;
+  }
+
+  .tag-pill {
+    font-size: 8px;
+    padding: 2px 6px;
+  }
+}
+
+/* --- Tablet (640px+) --- */
 @media (min-width: 640px) {
   .courses-page {
     padding: 48px 40px 72px;
@@ -460,11 +638,20 @@
   }
 
   .track-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+}
+
+/* --- Desktop (960px+) --- */
+@media (min-width: 960px) {
+  .track-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
 }
 
+/* --- Large desktop (1280px+) --- */
 @media (min-width: 1280px) {
   .courses-page {
     padding: 56px 80px 100px;
