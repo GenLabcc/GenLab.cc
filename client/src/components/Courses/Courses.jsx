@@ -68,20 +68,61 @@ export default function Courses({ registerGoToPage, registerPageRef, registerTot
     setActiveIndex(((index % totalCards) + totalCards) % totalCards);
   };
 
-  const handlePrev = () => goTo(activeIndex - 1);
-  const handleNext = () => goTo(activeIndex + 1);
+  const handlePrev = useCallback(() => goTo(activeIndex - 1), [activeIndex, totalCards]);
+  const handleNext = useCallback(() => goTo(activeIndex + 1), [activeIndex, totalCards]);
+
+  /* Responsive: detect mobile for layout adjustments */
+  const isMobile = viewportWidth > 0 && viewportWidth < 640;
+
+  /* Touch swipe support for mobile */
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const isSwiping = useRef(false);
+
+  const handleTouchStart = useCallback((e) => {
+    touchStartX.current = e.touches[0].clientX;
+    isSwiping.current = true;
+  }, []);
+
+  const handleTouchMove = useCallback((e) => {
+    if (isSwiping.current) {
+      touchEndX.current = e.touches[0].clientX;
+    }
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    if (!isSwiping.current) return;
+    isSwiping.current = false;
+    const swipeDiff = touchStartX.current - touchEndX.current;
+    const threshold = 50;
+    if (Math.abs(swipeDiff) > threshold) {
+      setActiveIndex((prev) => {
+        const next = swipeDiff > 0 ? prev + 1 : prev - 1;
+        return ((next % totalCards) + totalCards) % totalCards;
+      });
+    }
+  }, [totalCards]);
 
   /* Compute inline style for each card based on circular position */
   const getSlideStyle = (index) => {
     const diff = getCircularDiff(index, activeIndex, totalCards);
     const absDiff = Math.abs(diff);
 
-    /* Spacing between card centers — ~34% of viewport */
-    const spacing = viewportWidth * 0.34;
+    /* Responsive spacing: wider cards need more spacing */
+    let spacingRatio;
+    if (viewportWidth < 480) spacingRatio = 0.72;
+    else if (viewportWidth < 640) spacingRatio = 0.65;
+    else if (viewportWidth < 1024) spacingRatio = 0.40;
+    else if (viewportWidth < 1440) spacingRatio = 0.36;
+    else spacingRatio = 0.33;
+
+    const spacing = viewportWidth * spacingRatio;
     const offsetX = diff * spacing;
 
-    /* Cards more than 2 positions away: hide them */
-    if (absDiff > 2) {
+    /* On mobile, hide cards more than 1 position away for cleaner look */
+    const hideThreshold = isMobile ? 1 : 2;
+
+    if (absDiff > hideThreshold) {
       return {
         transform: `translateX(calc(-50% + ${offsetX}px)) translateY(-50%) scale(0.7)`,
         opacity: 0,
@@ -90,10 +131,19 @@ export default function Courses({ registerGoToPage, registerPageRef, registerTot
       };
     }
 
-    const scale  = absDiff === 0 ? 1    : absDiff === 1 ? 0.85 : 0.75;
-    const opacity = absDiff === 0 ? 1    : absDiff === 1 ? 0.6  : 0.35;
+    /* Mobile: only active card is fully visible, neighbors are barely peeking */
+    let scale, opacity, blur;
+    if (isMobile) {
+      scale  = absDiff === 0 ? 1 : 0.88;
+      opacity = absDiff === 0 ? 1 : 0.3;
+      blur = absDiff === 0 ? 0 : 2;
+    } else {
+      scale  = absDiff === 0 ? 1    : absDiff === 1 ? 0.85 : 0.75;
+      opacity = absDiff === 0 ? 1    : absDiff === 1 ? 0.6  : 0.35;
+      blur    = absDiff >= 2 ? 1 : 0;
+    }
+
     const zIndex  = 10 - absDiff;
-    const blur    = absDiff >= 2 ? 1 : 0;
 
     return {
       transform: `translateX(calc(-50% + ${offsetX}px)) translateY(-50%) scale(${scale})`,
@@ -133,37 +183,48 @@ export default function Courses({ registerGoToPage, registerPageRef, registerTot
         </button>
 
         {/* Carousel Viewport — cards positioned absolutely inside */}
-        <div className="courses-carousel-viewport" ref={viewportRef}>
+        <div
+          className="courses-carousel-viewport"
+          ref={viewportRef}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           {coursesData.map((course, index) => (
             <div
               className={getSlideClass(index)}
               key={course.id}
               style={getSlideStyle(index)}
             >
-              <div className="course-card">
-                <div className="course-card-top">
-                  <div className={`course-badge badge-${course.badgeColor}`}>
+              <div className="courses-card">
+                <div className="courses-card-top">
+                  <div className={`courses-badge badge-${course.badgeColor}`}>
                     <span>↗</span> {course.badge}
                   </div>
-                  <img src={logo} alt="GenLab Logo" className="course-logo-img" />
+                  <img src={logo} alt="GenLab Logo" className="courses-logo-img" />
                 </div>
-                <div className="course-card-bottom">
-                  <div className="course-card-text">
-                    <h3 className="course-card-title">{course.title}</h3>
-                    <p className="course-card-description">{course.description}</p>
+                <div className="courses-card-bottom">
+                  <div className="courses-card-text">
+                    <h3 className="courses-card-title">{course.title}</h3>
+                    <p className="courses-card-description">{course.description}</p>
                   </div>
-                  <div className="course-tags">
+                  <div className="courses-tags">
                     {course.tags.map((tag) => (
-                      <span key={tag} className="course-tag">{tag}</span>
+                      <span key={tag} className="courses-tag">{tag}</span>
                     ))}
                   </div>
-                  <div className="course-pills">
-                    <span className="pill pill-duration">{course.duration}</span>
-                    <span className="pill pill-support">{course.support}</span>
+                  <div className="courses-pills">
+                    <span className="courses-pill courses-pill-duration">{course.duration}</span>
+                    <span className="courses-pill courses-pill-support">{course.support}</span>
                   </div>
-                  <div className="course-footer">
-                    <button className="btn-syllabus">↓ Syllabus</button>
-                    <button className="btn-enroll">Enroll Now</button>
+                  <div className="courses-footer">
+                    <button className="courses-btn-syllabus">
+                      <svg viewBox="0 0 24 24" className="download-icon" style={{ width: "16px", height: "16px" }} xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 3v12M12 15l-5-5M12 15l5-5M4 19h16" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      Syllabus
+                    </button>
+                    <button className="courses-btn-enroll">Enroll Now</button>
                   </div>
                 </div>
               </div>

@@ -153,7 +153,7 @@ export default function Navbar() {
                   className="nav-link mobile-sub-link"
                   onClick={() => { setIsMenuOpen(false); setIsMobileLaunchpadOpen(false); }}
                 >
-                  Upcoming New Skill
+                  Upskilling Programs
                 </Link>
               </div>
             )}

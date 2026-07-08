@@ -213,7 +213,7 @@
 
 @media (max-width: 600px) {
   .journey-outer {
-    /* On mobile, disable the scroll-jacking — just let it auto-scroll */
+    /* On mobile, disable the scroll-jacking — just let it flow naturally */
     height: auto !important;
   }
 
@@ -221,13 +221,15 @@
     position: relative;
     height: 100dvh;
     padding: 20px 0 0 20px;
-    overflow: hidden;
+    /* Allow horizontal overflow to reach the timeline viewport */
+    overflow: visible;
   }
 
   .journey-wrapper {
     flex-direction: column;
     height: 100%;
     gap: 0;
+    overflow: hidden;
   }
 
   /* Hero — static, fixed height at top */
@@ -256,26 +258,41 @@
     max-width: 220px;
   }
 
-  /* Timeline fills remaining height, swipes horizontally */
+  /* Timeline fills remaining height, native horizontal scroll */
   .journey-timeline-viewport {
     flex: 1;
     width: 100%;
     margin-left: 0;
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
     -webkit-overflow-scrolling: touch;
+    /* Allow both horizontal timeline swipe and vertical page scroll naturally */
+    touch-action: auto;
+    /* Hide scrollbar but keep scroll functional */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+
+  .journey-timeline-viewport::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
   }
 
   .journey-timeline {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
     height: 100%;
-    width: max-content;
+    width: max-content !important;
     transform: none !important; /* disable scroll-driven translation on mobile */
   }
 
   /* Each step narrower for mobile */
   .journey-step {
-    width: 220px;
-    height: 100%;
+    width: 250px !important;
+    height: 100% !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
   }
 
   .journey-step__top {
@@ -317,12 +334,13 @@
   .journey-section {
     height: 100dvh;
     padding: 16px 0 0 16px;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .journey-wrapper {
     flex-direction: column;
     height: 100%;
+    overflow: hidden;
   }
 
   .journey-hero {
@@ -353,20 +371,33 @@
   .journey-timeline-viewport {
     flex: 1;
     margin-left: 0;
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
     -webkit-overflow-scrolling: touch;
+    touch-action: auto;
     width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .journey-timeline-viewport::-webkit-scrollbar {
+    display: none;
   }
 
   .journey-timeline {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
     height: 100%;
-    width: max-content;
+    width: max-content !important;
   }
 
   .journey-step {
-    width: 220px;
-    height: 100%;
+    width: 230px !important;
+    height: 100% !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
   }
 
   .journey-step__top {
