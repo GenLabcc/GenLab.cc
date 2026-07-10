@@ -1,0 +1,178 @@
+/* EnrollModal.module.css */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal {
+  background: #101010;
+  border: 0.5px solid #2a2a2a;
+  border-radius: 16px;
+  padding: 2rem 2.2rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.8rem;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 500;
+  color: #eaeaea;
+  letter-spacing: 0.01em;
+}
+
+.closeBtn {
+  background: none;
+  border: 0.5px solid #333;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #888;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.closeBtn:hover {
+  border-color: #BCF000;
+  color: #BCF000;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 1.2rem;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 1.2rem;
+}
+
+.group label {
+  font-size: 12px;
+  color: #888;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.group label span {
+  text-transform: none;
+  letter-spacing: 0;
+  color: #555;
+  font-size: 11px;
+}
+
+.group input,
+.group select,
+.group textarea {
+  width: 100%;
+  padding: 11px 14px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0;
+  color: #eaeaea;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.group input::placeholder,
+.group textarea::placeholder {
+  color: #444;
+}
+
+.group input:focus,
+.group select:focus,
+.group textarea:focus {
+  border-bottom-color: #BCF000;
+  background: #ffffff08;
+}
+
+.group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23BCF000' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  padding-right: 28px;
+  cursor: pointer;
+}
+
+.group select option {
+  background: #151515;
+  color: #eaeaea;
+}
+
+.group textarea {
+  resize: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+
+.group textarea:focus {
+  border-color: #BCF000;
+  background: #ffffff08;
+}
+
+.divider {
+  height: 0.5px;
+  background: #1e1e1e;
+  margin: 1.2rem 0;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 13px;
+  background: #BCF000;
+  color: #101010;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.75rem;
+  transition: background 0.2s, transform 0.15s;
+  letter-spacing: 0.02em;
+}
+
+.submitBtn:hover {
+  background: #c9ff1a;
+  transform: translateY(-1px);
+}
+
+.submitBtn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  .modal {
+    padding: 1.5rem;
+  }
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

@@ -224,7 +224,7 @@ export default function Courses({ registerGoToPage, registerPageRef, registerTot
                       </svg>
                       Syllabus
                     </button>
-                    <button className="courses-btn-enroll">Enroll Now</button>
+                    <button className="courses-btn-enroll" onClick={() => navigate('/tracks')}>Enroll Now</button>
                   </div>
                 </div>
               </div>
