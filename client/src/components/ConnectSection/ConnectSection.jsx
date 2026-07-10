@@ -179,11 +179,8 @@ const ConnectSection = () => {
                   }`}
               >
                 <option value="" disabled>Reason</option>
-                <option value="careers">business enquiry</option>
-                <option value="internships">internship enquiry</option>
-                <option value="training_programs_courses">courses enquiry</option>
-                <option value="incubation_support">careers enquiry</option>
-
+                <option value="careers">Career enquiry</option>
+                <option value="courses">Courses enquiry</option>
 
               </select>
               {errors.reason && (

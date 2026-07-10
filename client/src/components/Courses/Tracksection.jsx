@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Tracksection.css";
+import EnrollModal from "./Enroll";
 import courseThumbnail from "../../assets/Course_logo.png";
 import ConnectSection from "../ConnectSection/ConnectSection";
 
@@ -95,6 +96,9 @@ const GrowthBadge = ({ type }) => {
 };
 
 const CourseCard = ({ course }) => {
+  const [enrollOpen, setEnrollOpen] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState("");
+
   return (
     <div className="track-card">
       <div className="course-image">
@@ -127,9 +131,15 @@ const CourseCard = ({ course }) => {
             Syllabus
           </button>
 
-          <button className="enroll-btn" type="button">
+          <button className="enroll-btn" type="button" onClick={() => {
+            setSelectedCourse(course.title);
+            setEnrollOpen(true)}}>
             Enroll Now
           </button>
+          <EnrollModal 
+            isOpen={enrollOpen} 
+            onClose={() => setEnrollOpen(false)} 
+            courseName ={selectedCourse}/>
         </div>
       </div>
     </div>
