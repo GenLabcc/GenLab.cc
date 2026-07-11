@@ -302,7 +302,8 @@
 .nav-dropdown-wrapper {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items:center;
+  justify-content: flex-start;
 }
 
 .nav-dropdown-trigger {
@@ -328,8 +329,8 @@
 .nav-dropdown-menu {
   position: absolute;
   top: calc(100% + 14px);
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  transform: none;
   min-width: 180px;
   background-color: rgba(28, 28, 28, 0.92);
   backdrop-filter: blur(20px);
@@ -358,6 +359,8 @@
   text-decoration: none;
   transition: background 0.2s ease, color 0.2s ease;
   white-space: nowrap;
+  text-align: left;
+  display: block;
 }
 
 .nav-dropdown-item:hover {

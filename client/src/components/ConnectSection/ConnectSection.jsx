@@ -9,6 +9,7 @@ const ConnectSection = () => {
     email: "",
     phone: "",
     reason: "",
+    experience: "",
     project: "",
     consent: false,
   });
@@ -86,11 +87,15 @@ const ConnectSection = () => {
       }
 
       console.log('Submitting to:', contactUrl);
+      const params = new URLSearchParams({
+        ...formData,
+        formType: "contact",
+      });
       await fetch(contactUrl, {
         method: "POST",
         mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, formType: "contact" }),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: params.toString(),
       });
 
       setStatus("success");
@@ -99,6 +104,7 @@ const ConnectSection = () => {
         email: "",
         phone: "",
         reason: "",
+        experience:"",
         project: "",
         consent: false,
       });
@@ -180,9 +186,29 @@ const ConnectSection = () => {
               >
                 <option value="" disabled>Reason</option>
                 <option value="careers">Career enquiry</option>
-                <option value="courses">Courses enquiry</option>
-
+                <option value="business">Business enquiry</option>
               </select>
+                {formData.reason === "careers" && (
+                  <div className={styles.row}>
+                    <div>
+                      <select
+                        name = "experience"
+                        value = {formData.experience}
+                        onChange={handleChange}
+                        className={`${styles.select} ${errors.experience ? styles.inputError : ""}`}
+                        style={{ width: "100%", marginTop: "16px" }}
+                      >
+                      <option value="" disabled>Experience</option>
+                      <option value="0">0 years (Fresher)</option>
+                      <option value="1-2">1 to 2 years</option>
+                      <option value="2+">More than 2 years</option>
+                      </select>
+                      {errors.experience && (
+                        <span className={styles.fieldError}>{errors.experience}</span>
+                      )}
+                    </div>
+                  </div>
+                )}
               {errors.reason && (
                 <span className={styles.fieldError}>{errors.reason}</span>
               )}
