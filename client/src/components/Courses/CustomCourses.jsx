@@ -1,18 +1,12 @@
-import { useEffect, useState } from "react";
-import styles from "./Enroll.module.css";
+import { useState } from "react";
+import styles from "./CustomCourses.module.css";
 
-const EnrollModal = ({ isOpen, onClose, courseName }) => {
+const CustomCourseModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
-    name: "", phone: "", email: "",
-    course: "", status: "", comments: "",
+    name: "", phone: "",
+    course: "", duration: "",
+    mode: "", status: "",
   });
-  const [status, setStatus] = useState("");
-
-  useEffect(() => {
-    if (courseName) {
-        setFormData((prev) => ({ ...prev, course: courseName}));
-    }
-  }, [courseName]);
 
   if (!isOpen) return null;
 
@@ -20,46 +14,49 @@ const EnrollModal = ({ isOpen, onClose, courseName }) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const handleRadio = (group, value) =>{
+    setFormData((prev) => ({ ...prev, [group]:value}));
+  };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const url = import.meta.env.VITE_CUSTOM_COURSE_URL;
+    const params = new URLSearchParams({
+      name: formData.name,
+      phone: formData.phone,
+      course: formData.course,
+      duration: formData.duration,
+      mode: formData.mode,
+      status: formData.status,
+    });
 
-    const url = import.meta.env.VITE_ENROLL_FORM_URL;
-
-    try {
-        const params = new URLSearchParams({
-            name: formData.name,
-            phone: formData.phone,
-            email: formData.email,
-            course: formData.course,
-            status: formData.status,
-            comments: formData.comments,
-            formType: "enrollment",
-        });
-        await fetch(url, {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: params.toString(),
-        });
-
-        setStatus("success");
-        setTimeout(() => {
-          setFormData({ name: "", phone: "", email: "", course: "", status: "", comments: "" });
-          onClose();
-          setStatus("");
-       },  1500);
-
-    }   catch (error) {
-        console.error("Enrollment submission error:", error);
-        setStatus("error")
-    }
+    await fetch(url, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: params.toString(),
+    });
+    onClose();
   };
+
+  const CheckPill = ({ group, value, label }) => (
+    <label className={`${styles.checkPill} ${formData[group].includes(value) ? styles.active : ""}`}>
+      <input
+        type="radio"
+        name= {group}
+        checked={formData[group].includes(value)}
+        onChange={() => handleRadio(group, value)}
+      />
+      <span>{label}</span>
+    </label>
+  );
 
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
-          <h2>Enroll now</h2>
+          <h2>Custom course enquiry</h2>
           <button className={styles.closeBtn} onClick={onClose}>✕</button>
         </div>
 
@@ -70,15 +67,12 @@ const EnrollModal = ({ isOpen, onClose, courseName }) => {
               <input name="name" type="text" placeholder="Your full name" value={formData.name} onChange={handleChange} required />
             </div>
             <div className={styles.group}>
-              <label>Phone number</label>
+              <label>Mobile number</label>
               <input name="phone" type="tel" placeholder="+91 00000 00000" value={formData.phone} onChange={handleChange} required />
             </div>
           </div>
 
-          <div className={styles.group}>
-            <label>Email address</label>
-            <input name="email" type="email" placeholder="you@example.com" value={formData.email} onChange={handleChange} required />
-          </div>
+          <div className={styles.divider} />
 
           <div className={styles.row}>
             <div className={styles.group}>
@@ -102,7 +96,6 @@ const EnrollModal = ({ isOpen, onClose, courseName }) => {
                 <option value='Software Testing'>Software Testing</option>
                 <option value= 'Cybersecurity'>Cybersecurity</option>
 
-
                 <option value='Robotics with AI & IoT'>Robotics with AI & IoT</option>
                 <option value='Arduino & Physical Computing'>Arduino & Physical Computing</option>
 
@@ -122,29 +115,42 @@ const EnrollModal = ({ isOpen, onClose, courseName }) => {
               </select>
             </div>
             <div className={styles.group}>
-              <label>Status</label>
-              <select name="status" value={formData.status} onChange={handleChange} required>
-                <option value="" disabled>Select status</option>
-                <option value="student">Student</option>
-                <option value="professional">Working professional</option>
+              <label>Duration</label>
+              <select name="duration" value={formData.duration} onChange={handleChange} required>
+                <option value="" disabled>Select duration</option>
+                <option value="1 Month">2 Weeks</option>
+                <option value="2 Months">1 Months</option>
+                <option value="3 Months">2 Months</option>
+                <option value="6 Months">3 Months</option>
               </select>
             </div>
           </div>
 
-          <div className={styles.group}>
-            <label>Comments <span>(optional)</span></label>
-            <textarea name="comments" rows={3} placeholder="Anything else you'd like us to know" value={formData.comments} onChange={handleChange} />
+          <div className={styles.divider} />
+
+          <div className={styles.checkGroup}>
+            <label className={styles.groupLabel}>Mode of class</label>
+            <div className={styles.checkRow}>
+              <CheckPill group="mode" value="Online" label="Online" />
+              <CheckPill group="mode" value="Offline" label="Offline" />
+              <CheckPill group="mode" value="Hybrid" label="Hybrid" />
+            </div>
           </div>
 
-          <button type="submit" className={styles.submitBtn} disabled={status === "loading"}>
-            {status === "loading" ? "Submitting..."
-            : status === "success" ? "Submitted ✓" 
-            : status === "error" ? "Failed ✕"
-            : "Submit"}</button>
+          <div className={styles.checkGroup}>
+            <label className={styles.groupLabel}>Status</label>
+            <div className={styles.checkRow}>
+              <CheckPill group="status" value="Job seeker" label="Job seeker" />
+              <CheckPill group="status" value="Fresher" label="Fresher" />
+              <CheckPill group="status" value="Experienced" label="Experienced" />
+            </div>
+          </div>
+
+          <button type="submit" className={styles.submitBtn}>Submit enquiry</button>
         </form>
       </div>
     </div>
   );
 };
 
-export default EnrollModal;
+export default CustomCourseModal;

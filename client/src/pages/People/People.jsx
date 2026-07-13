@@ -18,7 +18,7 @@ const people = [
   { id: 1, name: "Henrich", role: "Visionary", image: personImg1 },
   { id: 2, name: "Ashvin", role: "Chief Operating Officer", image: personImg2 },
   { id: 4, name: "Bency", role: "Operations Manager", image: personImg4 },
-  { id: 5, name: "Esther Beni", role: "HR Executive", image: personImg5 },
+  { id: 5, name: "Esther Benila", role: "HR Executive", image: personImg5 },
   { id: 6, name: "Reshma", role: "Senior Developer", image: personImg6 },
   { id: 7, name: "Akshen", role: "AI/ML Engineer", image: personImg7 },
   { id: 8, name: "Gowri", role: "UI/UX Designer", image: personImg8 },

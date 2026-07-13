@@ -1,15 +1,49 @@
 import { useState } from "react";
 import "./Tracksection.css";
 import EnrollModal from "./Enroll";
-import courseThumbnail from "../../assets/Course_logo.png";
+
+import courseThumbnail from "../../assets/courses_icons/DS.png";
+import da from "../../assets/courses_icons/DA.png";
+
+import aiml from "../../assets/courses_icons/AIML.png";
+import agenticAi from "../../assets/courses_icons/AgenticAI.png";
+import ConEng from "../../assets/courses_icons/ConEngineer.png";
+
+import fullStack from "../../assets/courses_icons/fullStack.png";
+import pythonFull from "../../assets/courses_icons/PythonFull.png";
+import javaFull from "../../assets/courses_icons/JavaFull.png";
+import flutter from "../../assets/courses_icons/Flutter.png";
+import frontend from "../../assets/courses_icons/Front_end.png";
+
+import devops from "../../assets/courses_icons/DevOps.png";
+import cloudCom from "../../assets/courses_icons/CloudCom.png";
+import softTesting from "../../assets/courses_icons/SoftwareTest.png";
+import cySec from "../../assets/courses_icons/CySec.png";
+
+import robAi from "../../assets/courses_icons/RobAi.png";
+import audrino from "../../assets/courses_icons/Audrino.png";
+
+import ui from "../../assets/courses_icons/UI.png";
+import ux from "../../assets/courses_icons/UX.png";
+import uiux from "../../assets/courses_icons/UIUX.png";
+import graph from "../../assets/courses_icons/Graphic.png";
+import designEng from "../../assets/courses_icons/DesignP.png"; 
+
+import banalytics from "../../assets/courses_icons/BA.png";
+import digitalMar from "../../assets/courses_icons/DigitalMar.png";
+import perMar from "../../assets/courses_icons/PerMar.png";
+
+import proMar from "../../assets/courses_icons/ProMan.png";
+import hrmPay from "../../assets/courses_icons/HRM&Pay.png";
+import finMar from "../../assets/courses_icons/FinMar.png";
+
 import ConnectSection from "../ConnectSection/ConnectSection";
+import CustomCourseModal from "./CustomCourses";
+
 
 const trackOneCourses = [
-  { id: 1, growth: "advance", title: "Data Science", description: "Build statistical and predictive modelling skills with hands-on Python projects and real datasets.", tags: ["Python", "Statistical Modelling", "Data Wrangling", "Predictive Analysis"], duration: "4 - 6 Months", support: "Job Offer Support" },
-  { id: 2, growth: "medium", title: "Data Analytics", description: "Turn raw data into business insights with dashboards and modern visualisation tools.", tags: ["SQL", "Dashboards", "Visualization Tools"], duration: "4 - 6 Months", support: "Job Offer Support" },
-  { id: 3, growth: "advance", title: "AI & Machine Learning", description: "Learn to build and deploy intelligent models with supervised and unsupervised learning techniques.", tags: ["Supervised & Unsupervised Learning", "Model Building", "Deployment"], duration: "4 - 6 Months", support: "Job Offer Support" },
-  { id: 4, growth: "advance", title: "Agentic AI", description: "Design AI agents that automate workflows and integrate seamlessly with modern LLM tools.", tags: ["AI Agents", "Workflow Automation", "LLM Integration", "Tool Use"], duration: "4 - 6 Months", support: "Job Offer Support" },
-  { id: 5, growth: "advance", title: "Conversational Engineer", description: "Design and build intelligent conversational systems that power natural, human-like AI interactions.", tags: ["Conversational AI", "Prompt Engineering", "LLM Integration", "Chatbot Frameworks"], duration: "4 - 6 Months", support: "Job Offer Support" },
+  { id: 1, growth: "advance", icon: courseThumbnail, title: "Data Science", description: "Build statistical and predictive modelling skills with hands-on Python projects and real datasets.", tags: ["Python", "Statistical Modelling", "Data Wrangling", "Predictive Analysis"], duration: "4 - 6 Months", support: "Job Offer Support" },
+  { id: 2, growth: "medium", icon: da, title: "Data Analytics", description: "Turn raw data into business insights with dashboards and modern visualisation tools.", tags: ["SQL", "Dashboards", "Visualization Tools"], duration: "4 - 6 Months", support: "Job Offer Support" },
   // { id: 6, growth: "advance", title: "Full Stack Web Development (MERN)", description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
   // { id: 7, growth: "advance", title: "Full Stack Web Development (MERN)", description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
   // { id: 8, growth: "medium", title: "Full Stack Web Development (MERN)", description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
@@ -17,26 +51,33 @@ const trackOneCourses = [
 ];
 
 const trackTwoCourses = [
-  { id: 10, growth: "advance", title: "Full Stack Web Development (MERN)", description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "4 - 6 Months", support: "Job Offer Support" },
-  { id: 11, growth: "medium", title: "Python Django Full Stack", description: "Master end-to-end web development with Python and Django, from APIs to deployment.", tags: ["Python", "Django", "REST APIs", "Databases", "Deployment"], duration: "4 - 6 Months", support: "Job Offer Support" },
-  { id: 12, growth: "advance", title: "Java Full Stack", description: "Build enterprise-grade applications with Java and Spring Boot, backed by hands-on projects.", tags: ["Core Java", "Spring Boot", "REST APIs", "Hibernate", "MySQL", "Deployment"], duration: "4 - 6 Months", support: "Job Offer Support" },
-  { id: 13, growth: "medium", title: "Flutter Mobile App Development", description: "Create cross-platform mobile apps for iOS and Android with a single Flutter codebase.", tags: ["Flutter", "Dart"], duration: "4 - 6 Months", support: "Job Offer Support" },
-  { id: 14, growth: "medium", title: "Front End Development", description: "Craft responsive, modern web interfaces with strong front-end fundamentals and React.", tags: ["HTML", "CSS", "JavaScript", "React"], duration: "4 - 6 Months", support: "Job Offer Support" },
-  // { id: 15, growth: "advance", title: "Full Stack Web Development (MERN)", description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
+  { id: 1, growth: "advance", icon: aiml, title: "AI & Machine Learning", description: "Learn to build and deploy intelligent models with supervised and unsupervised learning techniques.", tags: ["Supervised & Unsupervised Learning", "Model Building", "Deployment"], duration: "4 - 6 Months", support: "Job Offer Support" },
+  { id: 2, growth: "advance", icon: agenticAi, title: "Agentic AI", description: "Design AI agents that automate workflows and integrate seamlessly with modern LLM tools.", tags: ["AI Agents", "Workflow Automation", "LLM Integration", "Tool Use"], duration: "4 - 6 Months", support: "Job Offer Support" },
+  { id: 3, growth: "advance", icon: ConEng, title: "Conversational Engineer", description: "Design and build intelligent conversational systems that power natural, human-like AI interactions.", tags: ["Conversational AI", "Prompt Engineering", "LLM Integration", "Chatbot Frameworks"], duration: "4 - 6 Months", support: "Job Offer Support" },
+
 ];
 
 const trackThreeCourses = [
-  { id: 16, growth: "advance", title: "DevOps Engineering", description: "Automate delivery pipelines and manage cloud infrastructure with industry-standard DevOps tools.", tags: ["CI/CD Pipelines", "Docker", "Kubernetes", "Cloud Infrastructure"], duration: "4 - 6 Months", support: "Job Offer Support" },
-  { id: 17, growth: "medium", title: "Cloud Computing", description: "Get hands-on with cloud architecture, deployment, and cost management across major platforms.", tags: ["AWS", "Azure", "GCP", "Cloud Architecture", "Deployment", "Cost Management"], duration: "4 - 6 Months", support: "Job Offer Support" },
-  { id: 18, growth: "advance", title: "Software Testing", description: "Build strong manual and automation testing skills using leading frameworks and tools.", tags: ["Selenium", "Test Frameworks", "Manual & Automation Testing"], duration: "4 - 6 Months", support: "Job Offer Support" },
-  { id: 19, growth: "advance", title: "Cybersecurity", description: "Learn to identify and defend against threats with ethical hacking and security best practices.", tags: ["Ethical Hacking", "Network Security", "Threat Analysis", "Compliance"], duration: "4 - 6 Months", support: "Job Offer Support" },
+  { id: 10, growth: "advance", icon:fullStack, title: "Full Stack Web Development (MERN)", description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "4 - 6 Months", support: "Job Offer Support" },
+  { id: 11, growth: "medium", icon:pythonFull, title: "Python Django Full Stack", description: "Master end-to-end web development with Python and Django, from APIs to deployment.", tags: ["Python", "Django", "REST APIs", "Databases", "Deployment"], duration: "4 - 6 Months", support: "Job Offer Support" },
+  { id: 12, growth: "advance", icon: javaFull, title: "Java Full Stack", description: "Build enterprise-grade applications with Java and Spring Boot, backed by hands-on projects.", tags: ["Core Java", "Spring Boot", "REST APIs", "Hibernate", "MySQL", "Deployment"], duration: "4 - 6 Months", support: "Job Offer Support" },
+  { id: 13, growth: "medium", icon: flutter,  title: "Flutter Mobile App Development", description: "Create cross-platform mobile apps for iOS and Android with a single Flutter codebase.", tags: ["Flutter", "Dart"], duration: "4 - 6 Months", support: "Job Offer Support" },
+  { id: 14, growth: "medium", icon: frontend, title: "Front End Development", description: "Craft responsive, modern web interfaces with strong front-end fundamentals and React.", tags: ["HTML", "CSS", "JavaScript", "React"], duration: "4 - 6 Months", support: "Job Offer Support" },
+  // { id: 15, growth: "advance", title: "Full Stack Web Development (MERN)", description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
+];
+
+const trackFourCourses = [
+  { id: 16, growth: "advance", icon: devops, title: "DevOps Engineering", description: "Automate delivery pipelines and manage cloud infrastructure with industry-standard DevOps tools.", tags: ["CI/CD Pipelines", "Docker", "Kubernetes", "Cloud Infrastructure"], duration: "4 - 6 Months", support: "Job Offer Support" },
+  { id: 17, growth: "medium", icon: cloudCom, title: "Cloud Computing", description: "Get hands-on with cloud architecture, deployment, and cost management across major platforms.", tags: ["AWS", "Azure", "GCP", "Cloud Architecture", "Deployment", "Cost Management"], duration: "4 - 6 Months", support: "Job Offer Support" },
+  { id: 18, growth: "advance", icon: softTesting, title: "Software Testing", description: "Build strong manual and automation testing skills using leading frameworks and tools.", tags: ["Selenium", "Test Frameworks", "Manual & Automation Testing"], duration: "4 - 6 Months", support: "Job Offer Support" },
+  { id: 19, growth: "advance", icon: cySec, title: "Cybersecurity", description: "Learn to identify and defend against threats with ethical hacking and security best practices.", tags: ["Ethical Hacking", "Network Security", "Threat Analysis", "Compliance"], duration: "4 - 6 Months", support: "Job Offer Support" },
   // { id: 20, growth: "medium", title: "Full Stack Web Development (MERN)", description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
   // { id: 21, growth: "advance", title: "Full Stack Web Development (MERN)", description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
 ];
 
-const trackFourCourses = [
-  { id: 22, growth: "medium", title: "Robotics with AI & IoT", description: "Combine embedded systems with AI to build smart, sensor-driven robotics solutions.", tags: ["Embedded Systems", "Sensors", "AI Integration", "Hardware Programming"], duration: "4 - 6 Months", support: "Job Offer Support" },
-  { id: 23, growth: "medium", title: "Arduino & Physical Computing", description: "Prototype real-world hardware projects using microcontrollers, sensors, and actuators.", tags: ["Microcontrollers", "Sensors", "Actuators", "Prototyping"], duration: "4 - 6 Months", support: "Job Offer Support" },
+const trackFiveCourses = [
+  { id: 22, growth: "medium", icon: robAi, title: "Robotics with AI & IoT", description: "Combine embedded systems with AI to build smart, sensor-driven robotics solutions.", tags: ["Embedded Systems", "Sensors", "AI Integration", "Hardware Programming"], duration: "4 - 6 Months", support: "Job Offer Support" },
+  { id: 23, growth: "medium", icon: audrino, title: "Arduino & Physical Computing", description: "Prototype real-world hardware projects using microcontrollers, sensors, and actuators.", tags: ["Microcontrollers", "Sensors", "Actuators", "Prototyping"], duration: "4 - 6 Months", support: "Job Offer Support" },
   // { id: 24, growth: "advance", title: "Full Stack Web Development (MERN)", description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
   // { id: 25, growth: "advance", title: "Full Stack Web Development (MERN)", description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
   // { id: 26, growth: "medium", title: "Full Stack Web Development (MERN)", description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
@@ -46,19 +87,19 @@ const trackFourCourses = [
   // { id: 30, growth: "advance", title: "Full Stack Web Development (MERN)", description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
 ];
 
-const trackFiveCourses = [
-  { id: 31, growth: "medium", title: "UI Design", description: "Master visual design principles and build polished, reusable design systems in Figma.", tags: ["Figma", "Design Systems", "Prototyping", "Visual Design Principles"], duration: "3 - 4 Months", support: "Job Offer Support" },
-  { id: 32, growth: "medium", title: "UX Research", description: "Uncover user needs through interviews, usability testing, and journey mapping.", tags: ["User Interviews", "Usability Testing", "Journey Mapping"], duration: "3 - 4 Months", support: "Job Offer Support" },
-  { id: 33, growth: "advance", title: "UX/UI Design", description: "Take products from research to prototype with combined UX and UI design expertise.", tags: ["Research", "Prototyping", "UI & UX Design"], duration: "3 - 6 Months", support: "Job Offer Support" },
-  { id: 34, growth: "medium", title: "Graphic Design & Video Editing", description: "Blend branding and layout design with motion graphics and professional video editing.", tags: ["Adobe Creative Suite", "Typography", "Motion Graphics", "Color Grading"], duration: "3 - 6 Months", support: "Job Offer Support" },
-  { id: 35, growth: "advance", title: "Design Engineer", description: "Bridge design and code to build polished, functional interfaces ready for production.", tags: ["Figma", "HTML", "CSS", "JavaScript", "Design Systems"], duration: "6 Months", support: "Job Offer Support" },
+const trackSixCourses = [
+  { id: 31, growth: "medium", icon: ui, title: "UI Design", description: "Master visual design principles and build polished, reusable design systems in Figma.", tags: ["Figma", "Design Systems", "Prototyping", "Visual Design Principles"], duration: "3 - 4 Months", support: "Job Offer Support" },
+  { id: 32, growth: "medium", icon: ux, title: "UX Research", description: "Uncover user needs through interviews, usability testing, and journey mapping.", tags: ["User Interviews", "Usability Testing", "Journey Mapping"], duration: "3 - 4 Months", support: "Job Offer Support" },
+  { id: 33, growth: "advance", icon: uiux, title: "UX/UI Design", description: "Take products from research to prototype with combined UX and UI design expertise.", tags: ["Research", "Prototyping", "UI & UX Design"], duration: "3 - 6 Months", support: "Job Offer Support" },
+  { id: 34, growth: "medium", icon: graph, title: "Graphic Design & Video Editing", description: "Blend branding and layout design with motion graphics and professional video editing.", tags: ["Adobe Creative Suite", "Typography", "Motion Graphics", "Color Grading"], duration: "3 - 6 Months", support: "Job Offer Support" },
+  { id: 35, growth: "advance", icon: designEng, title: "Design Engineer", description: "Bridge design and code to build polished, functional interfaces ready for production.", tags: ["Figma", "HTML", "CSS", "JavaScript", "Design Systems"], duration: "6 Months", support: "Job Offer Support" },
   // { id: 36, growth: "advance", title: "Full Stack Web Development (MERN)", description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
 ];
 
-const trackSixCourses = [
-  { id: 37, growth: "medium", title: "Business Analytics", description: "Drive smarter business decisions with data, dashboards, and reporting tools.", tags: ["Excel", "Power BI", "Reporting", "Data-Driven Decision Making"], duration: "4 Months", support: "Job Offer Support" },
-  { id: 38, growth: "advance", title: "Digital Marketing", description: "Plan and execute full-funnel digital strategies across SEO, social, and email.", tags: ["SEO", "Email Marketing", "Social Media Strategy", "Analytics"], duration: "4 Months", support: "Job Offer Support" },
-  { id: 39, growth: "medium", title: "Performance Marketing", description: "Run and optimise high-performing paid campaigns across major ad platforms.", tags: ["META Ads", "Google Ads", "Paid Campaigns", "ROAS Optimisation"], duration: "6 Months", support: "Job Offer Support" },
+const trackSevenCourses = [
+  { id: 37, growth: "medium", icon: banalytics, title: "Business Analytics", description: "Drive smarter business decisions with data, dashboards, and reporting tools.", tags: ["Excel", "Power BI", "Reporting", "Data-Driven Decision Making"], duration: "4 Months", support: "Job Offer Support" },
+  { id: 38, growth: "advance", icon: digitalMar, title: "Digital Marketing", description: "Plan and execute full-funnel digital strategies across SEO, social, and email.", tags: ["SEO", "Email Marketing", "Social Media Strategy", "Analytics"], duration: "4 Months", support: "Job Offer Support" },
+  { id: 39, growth: "medium", icon: perMar, title: "Performance Marketing", description: "Run and optimise high-performing paid campaigns across major ad platforms.", tags: ["META Ads", "Google Ads", "Paid Campaigns", "ROAS Optimisation"], duration: "6 Months", support: "Job Offer Support" },
   // { id: 40, growth: "advance", title: "Full Stack Web Development (MERN)", description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
   // { id: 41, growth: "medium", title: "Full Stack Web Development (MERN)", description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
   // { id: 42, growth: "advance", title: "Full Stack Web Development (MERN)", description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
@@ -66,20 +107,22 @@ const trackSixCourses = [
   // { id: 44, growth: "advance", title: "Full Stack Web Development (MERN)", description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "6 Months", support: "Job Offer Support" },
 ];
 
-const trackSevenCourses = [
-  { id: 43, growth: "medium", title: "Project Management", description: "Lead projects confidently with Agile and Scrum frameworks and modern planning tools.", tags: ["Agile", "Scrum", "Project Planning", "Risk Management", "Tools"], duration: "3 Months", support: "Job Offer Support" },
-  { id: 44, growth: "medium", title: "HRMS & Payroll", description: "Manage workforce operations end-to-end with HR systems and payroll compliance tools.", tags: ["HR Systems", "Payroll Processing", "Compliance", "Workforce Tools"], duration: "3 Months", support: "Job Offer Support" },
-  { id: 45, growth: "medium", title: "Financial Accounting", description: "Build core finance skills from bookkeeping to GST compliance and reporting.", tags: ["Tally", "GST", "Bookkeeping", "Balance Sheets", "Financial Reporting"], duration: "3 Months", support: "Job Offer Support" },
+const trackEightCourses = [
+  { id: 43, growth: "medium", icon: proMar, title: "Project Management", description: "Lead projects confidently with Agile and Scrum frameworks and modern planning tools.", tags: ["Agile", "Scrum", "Project Planning", "Risk Management", "Tools"], duration: "3 Months", support: "Job Offer Support" },
+  { id: 44, growth: "medium", icon: hrmPay, title: "HRMS & Payroll", description: "Manage workforce operations end-to-end with HR systems and payroll compliance tools.", tags: ["HR Systems", "Payroll Processing", "Compliance", "Workforce Tools"], duration: "3 Months", support: "Job Offer Support" },
+  { id: 45, growth: "medium", icon: finMar, title: "Financial Accounting", description: "Build core finance skills from bookkeeping to GST compliance and reporting.", tags: ["Tally", "GST", "Bookkeeping", "Balance Sheets", "Financial Reporting"], duration: "3 Months", support: "Job Offer Support" },
 ];
 
 const tracksData = [
   { id: 1, name: "Data & AI", courses: trackOneCourses },
-  { id: 2, name: "Development", courses: trackTwoCourses },
-  { id: 3, name: "DevOps & Security", courses: trackThreeCourses },
-  { id: 4, name: "Advanced Tech", courses: trackFourCourses },
-  { id: 5, name: "Design And UI UX", courses: trackFiveCourses },
-  { id: 6, name: "Business & Management", courses: trackSixCourses },
-  { id: 7, name: "Management & Finance", courses: trackSevenCourses },
+  { id: 2, name: "AI & Automation", courses: trackTwoCourses},
+  { id: 3, name: "Development", courses: trackThreeCourses },
+  { id: 4, name: "DevOps & Security", courses: trackFourCourses },
+  { id: 5, name: "Advanced Tech", courses: trackFiveCourses },
+  { id: 6, name: "Design And UI UX", courses: trackSixCourses },
+  { id: 7, name: "Business & Management", courses: trackSevenCourses },
+  { id: 8, name: "Management & Finance", courses: trackEightCourses },
+  { id : 9, name: "Custom Program", courses: []},
 ];
 
 const GrowthBadge = ({ type }) => {
@@ -102,7 +145,7 @@ const CourseCard = ({ course }) => {
   return (
     <div className="track-card">
       <div className="course-image">
-        <img src={courseThumbnail} alt={course.title} className="course-thumbnail" />
+        <img src={course.icon} alt={course.title} className="course-thumbnail" />
         <GrowthBadge type={course.growth} />
       </div>
 
@@ -146,9 +189,35 @@ const CourseCard = ({ course }) => {
   );
 };
 
+const CustomProgramCard = ({ onEnquire }) => (
+  <div className="track-card custom-program-card">
+    <div className="course-image">
+      <img src={courseThumbnail} alt="Custom Program" className="course-thumbnail" />
+    </div>
+    <div className="course-body">
+      <h3 className="course-track-title">Build Your Own Program</h3>
+      <p className="course-track-description">
+        Can't find what you're looking for? Tell us your goals and we'll craft a custom learning path just for you — your course, your pace, your outcome.
+      </p>
+      <div className="tag-row">
+        <span className="tag-pill">Flexible Duration</span>
+        <span className="tag-pill">Any Domain</span>
+        <span className="tag-pill">Online & Offline</span>
+      </div>
+      <div className="course-track-footer" style={{ justifyContent: 'center'}}>
+        <button className="enroll-btn" type="button" onClick={onEnquire}>
+          Enquire Now
+        </button>
+      </div>
+    </div>
+  </div>
+);
+
 const TrackSection = () => {
   const [activeTrack, setActiveTrack] = useState(0);
+  const [customOpen, setCustomOpen] = useState(false);
   const activeTrackData = tracksData[activeTrack];
+  const isCustom = activeTrackData.id === 9;
 
   return (
     <>
@@ -221,13 +290,23 @@ const TrackSection = () => {
           </div>
 
           <div className="track-grid">
-            {activeTrackData.courses.map((course) => (
-              <CourseCard course={course} key={course.id} />
-            ))}
+            {isCustom ? (
+              <CustomProgramCard onEnquire={() => setCustomOpen(true)}/>
+            ) :(
+              activeTrackData.courses.map((course) => (
+                <CourseCard course={course} key={course.id}/>
+              ))
+            )}
           </div>
         </div>
       </div>
     </section>
+
+    <CustomCourseModal
+      isOpen={customOpen}
+      onClose={() => setCustomOpen(false)}
+    />
+
     <ConnectSection/>
     </>
   );

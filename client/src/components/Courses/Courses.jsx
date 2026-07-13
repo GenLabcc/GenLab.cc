@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef, useCallback } from "react";
 import "./Courses.css";
-import logo from "../../assets/Course_logo.png";
+import logo from "../../assets/courses_icons/DS.png";
 
 const coursesData = [
   { id: 1, badge: "Advance Growth", badgeColor: "green",  title: "Full Stack Web Development (MERN)",  description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.", tags: ["Git", "MongoDB", "Express", "React", "Node.js"], duration: "4 - 6 Months", support: "Job Offer Support" },
