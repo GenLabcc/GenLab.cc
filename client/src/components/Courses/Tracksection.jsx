@@ -9,7 +9,7 @@ import aiml from "../../assets/courses_icons/AIML.png";
 import agenticAi from "../../assets/courses_icons/AgenticAI.png";
 import ConEng from "../../assets/courses_icons/ConEngineer.png";
 
-import fullStack from "../../assets/courses_icons/fullStack.png";
+import fullStack from "../../assets/courses_icons/FullStack.png";
 import pythonFull from "../../assets/courses_icons/PythonFull.png";
 import javaFull from "../../assets/courses_icons/JavaFull.png";
 import flutter from "../../assets/courses_icons/Flutter.png";
