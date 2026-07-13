@@ -147,8 +147,10 @@
 }
 
 .partner-one img {
-    height: 110px;
-    width: 110px;
+    height: 150px;
+    width: 150px;
+    max-width: 170px;
+    max-height: 170px;
     object-fit: contain;
 }
 
@@ -341,6 +343,15 @@
     display: block;
 }
 
+/* ─── Sponsors logo─────────────────────────────────────────────────── */
+.logo-size {
+    width: 125px;
+    height: auto;
+    max-width: 140px;
+    max-height: 140px;
+    object-fit: contain;
+}
+
 @keyframes marquee-up {
     0% {
         transform: translateY(0);
@@ -458,8 +469,10 @@
     }
 
     .partner-one img {
-        height: 35px !important;
-        width: 85px !important;
+        height: 110px !important;
+        width: 110px !important;
+        max-width: 120px !important;
+        max-height: 120px !important;
         object-fit: contain;
     }
 

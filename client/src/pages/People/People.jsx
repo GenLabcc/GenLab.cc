@@ -12,6 +12,7 @@ import personImg7 from "@/assets/images/people/Akshen.webp";
 import personImg8 from "@/assets/images/people/Gowri.webp";
 import personImg9 from "@/assets/images/people/Ashmi.webp";
 import personImg10 from "@/assets/images/people/Britta.webp";
+import personImg11 from "@/assets/images/people/kabil.webp";
 
 
 const people = [
@@ -19,11 +20,13 @@ const people = [
   { id: 2, name: "Ashvin", role: "Chief Operating Officer", image: personImg2 },
   { id: 4, name: "Bency", role: "Operations Manager", image: personImg4 },
   { id: 5, name: "Esther Beni", role: "HR Executive", image: personImg5 },
+   { id: 11, name: "Kabil", role: "Lead Product Developer", image: personImg11 },
   { id: 6, name: "Reshma", role: "Senior Developer", image: personImg6 },
   { id: 7, name: "Akshen", role: "AI/ML Engineer", image: personImg7 },
   { id: 8, name: "Gowri", role: "UI/UX Designer", image: personImg8 },
   { id: 9, name: "Ashmi", role: "Brand Growth Strategist", image: personImg9 },
   { id: 10, name: "Britta", role: "Software Engineer", image: personImg10 },
+ 
 ];
 
 const People = () => {
