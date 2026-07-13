@@ -129,18 +129,18 @@ export default function Launchpad() {
                         <img src={hindi} alt='Hindi'></img>
                         <img src={telugu} alt='Telugu'></img>
                         <img src={sit} alt='SIT'></img>
-                        <img src={christ} alt='Christ'></img>
-                        <img src={fatima} alt='Fatima'></img>
-                        <img src={fx} alt='FX'></img>
-                        <img src={sm} alt='SM'></img>
+                        <img src={christ} alt='Christ' className="logo-size"></img>
+                        <img src={fatima} alt='Fatima' className="logo-size"></img>
+                        <img src={fx} alt='FX' className="logo-size"></img>
+                        <img src={sm} alt='SM' className="logo-size"></img>
                         <img src={niche} alt='Niche'></img>
                         <img src={xavier} alt='Xavier'></img>
-                        <img src={dmi} alt='DMI'></img>
+                        <img src={dmi} alt='DMI' className="logo-size"></img>
                         <img src={mt} alt='MT'></img>
-                        <img src={scad} alt='SCAD'></img>
-                        <img src={appa} alt='APPA'></img>
-                        <img src={av} alt='AV'></img>
-                        <img src={sree} alt='Sree'></img>
+                        <img src={scad} alt='SCAD' className="logo-size"></img>
+                        <img src={appa} alt='APPA' className="logo-size"></img>
+                        <img src={av} alt='AV' className="logo-size"></img>
+                        <img src={sree} alt='Sree' className="logo-size"></img>
                     </div>
                 </div>
 
