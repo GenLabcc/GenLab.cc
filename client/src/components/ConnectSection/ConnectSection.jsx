@@ -190,13 +190,13 @@ const ConnectSection = () => {
               </select>
                 {formData.reason === "careers" && (
                   <div className={styles.row}>
-                    <div>
+                    <div style={{ gridColumn: "1 / -1" }}>
                       <select
                         name = "experience"
                         value = {formData.experience}
                         onChange={handleChange}
                         className={`${styles.select} ${errors.experience ? styles.inputError : ""}`}
-                        style={{ width: "120%", marginTop: "16px" }}
+                        style={{ width: "100%", marginTop: "16px" }}
                       >
                       <option value="" disabled>Experience</option>
                       <option value="0">0 years (Fresher)</option>

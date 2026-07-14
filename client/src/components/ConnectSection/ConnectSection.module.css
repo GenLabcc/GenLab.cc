@@ -102,16 +102,12 @@ input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
   background-color: #FFFFFF1A !important;
-  /* your semi-transparent background */
   -webkit-box-shadow: 0 0 0px 1000px #FFFFFF1A inset;
-  /* fill the entire field */
   -webkit-text-fill-color: #ffffff !important;
-  /* text stays white */
   transition: background-color 5000s ease-in-out 0s;
-  /* hack to keep bg persistent */
 }
 
-/* Add at the bottom of your ConnectSection.module.css */
+
 .inputError {
   border: 1px solid #ff4d4f !important;
   /* red border for invalid inputs */
@@ -119,13 +115,9 @@ select:-webkit-autofill {
 
 .fieldError {
   color: #ff4d4f;
-  /* red text */
   font-size: 14px;
-  /* slightly smaller text */
   margin-top: 6px;
-  /* space below input */
   display: block;
-  /* forces it under the field */
 }
 
 .customCheckbox .fieldError {
