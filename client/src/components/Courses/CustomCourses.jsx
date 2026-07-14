@@ -23,7 +23,7 @@ const CustomCourseModal = ({ isOpen, onClose }) => {
     e.preventDefault();
     const url = import.meta.env.VITE_ENROLL_FORM_URL;
     const params = new URLSearchParams({
-      sheet: "Custom Courses",
+      sheet: formData.course === "Others" ? "Custom Courses" : "Courses Enquiry",
       name: formData.name,
       phone: formData.phone,
       course: formData.course === "Others" ? formData.customCourse : formData.course,
@@ -120,10 +120,10 @@ const CustomCourseModal = ({ isOpen, onClose }) => {
               <label>Duration</label>
               <select name="duration" value={formData.duration} onChange={handleChange} required>
                 <option value="" disabled>Select duration</option>
-                <option value="1 Month">2 Weeks</option>
-                <option value="2 Months">1 Months</option>
-                <option value="3 Months">2 Months</option>
-                <option value="6 Months">3 Months</option>
+                <option value="2 Weeks">2 Weeks</option>
+                <option value="1 Months">1 Months</option>
+                <option value="2 Months">2 Months</option>
+                <option value="3 Months">3 Months</option>
               </select>
             </div>
           </div>
