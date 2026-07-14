@@ -3,7 +3,7 @@ import styles from "./ConnectSection.module.css";
 import ArrowIcon from "@/components/ui/ArrowIcon.jsx";
 
 const ConnectSection = () => {
-  // 1️⃣ Form state
+  // Form state
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,11 +14,11 @@ const ConnectSection = () => {
     consent: false,
   });
 
-  // 2️⃣ Error state
+  // Error state
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState(""); // "", "loading", "success", "error"
 
-  // 3️⃣ Handle input changes + clear field error
+  // Handle input changes + clear field error
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -35,7 +35,7 @@ const ConnectSection = () => {
     }));
   };
 
-  // 4️⃣ Validation function
+  // Validation function
   const validate = (data) => {
     const newErrors = {};
 
@@ -63,7 +63,7 @@ const ConnectSection = () => {
     return newErrors;
   };
 
-  // 5️⃣ Handle submit
+  //  Handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -196,7 +196,7 @@ const ConnectSection = () => {
                         value = {formData.experience}
                         onChange={handleChange}
                         className={`${styles.select} ${errors.experience ? styles.inputError : ""}`}
-                        style={{ width: "100%", marginTop: "16px" }}
+                        style={{ width: "120%", marginTop: "16px" }}
                       >
                       <option value="" disabled>Experience</option>
                       <option value="0">0 years (Fresher)</option>
