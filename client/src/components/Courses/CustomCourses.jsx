@@ -4,7 +4,7 @@ import styles from "./CustomCourses.module.css";
 const CustomCourseModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     name: "", phone: "",
-    course: "", duration: "",
+    course: "", customCourse: "", duration: "",
     mode: "", status: "",
   });
 
@@ -25,7 +25,7 @@ const CustomCourseModal = ({ isOpen, onClose }) => {
     const params = new URLSearchParams({
       name: formData.name,
       phone: formData.phone,
-      course: formData.course,
+      course: formData.course === "Others" ? formData.customCourse : formData.course,
       duration: formData.duration,
       mode: formData.mode,
       status: formData.status,
@@ -112,6 +112,7 @@ const CustomCourseModal = ({ isOpen, onClose }) => {
                 <option value='Project Management'>Project Management</option>
                 <option value ='HRMS & Payroll'>HRMS & Payroll</option>
                 <option value ='Financial Accounting'>Financial Accounting</option>
+                <option value='Others'>Others</option>
               </select>
             </div>
             <div className={styles.group}>
@@ -125,6 +126,20 @@ const CustomCourseModal = ({ isOpen, onClose }) => {
               </select>
             </div>
           </div>
+
+          {formData.course === "Others" && (
+            <div className={styles.group}>
+              <label>Custom Course Name</label>
+              <input
+                name="customCourse"
+                type="text"
+                placeholder="Enter custom course name"
+                value={formData.customCourse}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          )}
 
           <div className={styles.divider} />
 
