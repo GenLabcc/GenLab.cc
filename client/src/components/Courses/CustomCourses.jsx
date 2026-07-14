@@ -21,8 +21,9 @@ const CustomCourseModal = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = import.meta.env.VITE_CUSTOM_COURSE_URL;
+    const url = import.meta.env.VITE_ENROLL_FORM_URL;
     const params = new URLSearchParams({
+      sheet: "Custom Courses",
       name: formData.name,
       phone: formData.phone,
       course: formData.course === "Others" ? formData.customCourse : formData.course,
