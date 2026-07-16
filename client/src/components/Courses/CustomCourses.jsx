@@ -7,6 +7,7 @@ const CustomCourseModal = ({ isOpen, onClose }) => {
     course: "", customCourse: "", duration: "",
     mode: "", status: "",
   });
+  const [submitStatus, setSubmitStatus] = useState("");
 
   if (!isOpen) return null;
 
@@ -21,24 +22,49 @@ const CustomCourseModal = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = import.meta.env.VITE_ENROLL_FORM_URL;
-    const params = new URLSearchParams({
-      sheet: "Custom Courses",
-      name: formData.name,
-      phone: formData.phone,
-      course: formData.course === "Others" ? formData.customCourse : formData.course,
-      duration: formData.duration,
-      mode: formData.mode,
-      status: formData.status,
-    });
+    if (submitStatus === "loading") return;
 
-    await fetch(url, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: params.toString(),
-    });
-    onClose();
+    const url = import.meta.env.VITE_ENROLL_FORM_URL;
+    setSubmitStatus("loading");
+    const delay = new Promise((resolve) => setTimeout(resolve, 1500));
+
+    try {
+      const params = new URLSearchParams({
+        sheet: "Custom Courses",
+        name: formData.name,
+        phone: formData.phone,
+        course: formData.course === "Others" ? formData.customCourse : formData.course,
+        duration: formData.duration,
+        mode: formData.mode,
+        status: formData.status,
+      });
+
+      await fetch(url, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: params.toString(),
+      });
+
+      await delay;
+      setSubmitStatus("success");
+      setTimeout(() => {
+        setFormData({
+          name: "", phone: "",
+          course: "", customCourse: "", duration: "",
+          mode: "", status: "",
+        });
+        onClose();
+        setSubmitStatus("");
+      }, 1500);
+    } catch (error) {
+      console.error("Custom course submission error:", error);
+      await delay;
+      setSubmitStatus("error");
+      setTimeout(() => {
+        setSubmitStatus("");
+      }, 1500);
+    }
   };
 
   const CheckPill = ({ group, value, label }) => (
@@ -121,7 +147,7 @@ const CustomCourseModal = ({ isOpen, onClose }) => {
               <select name="duration" value={formData.duration} onChange={handleChange} required>
                 <option value="" disabled>Select duration</option>
                 <option value="2 Weeks">2 Weeks</option>
-                <option value="1 Months">1 Months</option>
+                <option value="1 Month">1 Month</option>
                 <option value="2 Months">2 Months</option>
                 <option value="3 Months">3 Months</option>
               </select>
@@ -162,7 +188,16 @@ const CustomCourseModal = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          <button type="submit" className={styles.submitBtn}>Submit enquiry</button>
+          <button 
+            type="submit" 
+            className={styles.submitBtn}
+            disabled={submitStatus === "loading"}
+          >
+            {submitStatus === "loading" ? "Submitting..."
+            : submitStatus === "success" ? "Submitted ✓"
+            : submitStatus === "error" ? "Failed ✕"
+            : "Submit"}
+          </button>
         </form>
       </div>
     </div>

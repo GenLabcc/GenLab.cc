@@ -22,8 +22,11 @@ const EnrollModal = ({ isOpen, onClose, courseName }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (status === "loading") return;
 
     const url = import.meta.env.VITE_ENROLL_FORM_URL;
+    setStatus("loading");
+    const delay = new Promise((resolve) => setTimeout(resolve, 1500));
 
     try {
         const params = new URLSearchParams({
@@ -42,6 +45,7 @@ const EnrollModal = ({ isOpen, onClose, courseName }) => {
             body: params.toString(),
         });
 
+        await delay;
         setStatus("success");
         setTimeout(() => {
           setFormData({ name: "", phone: "", email: "", course: "", status: "", comments: "" });
@@ -51,7 +55,11 @@ const EnrollModal = ({ isOpen, onClose, courseName }) => {
 
     }   catch (error) {
         console.error("Enrollment submission error:", error);
-        setStatus("error")
+        await delay;
+        setStatus("error");
+        setTimeout(() => {
+          setStatus("");
+        }, 1500);
     }
   };
 

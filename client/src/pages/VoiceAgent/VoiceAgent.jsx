@@ -117,6 +117,7 @@ const VoiceAgent = () => {
 
     // Find full category name for the spreadsheet
     const catName = categories.find(c => c.id === selectedCategory)?.title || selectedCategory;
+    const delay = new Promise((resolve) => setTimeout(resolve, 1500));
 
     try {
       const scriptUrl = import.meta.env.VITE_USER_voice_DATA_COLLECTION_URL;
@@ -135,11 +136,12 @@ const VoiceAgent = () => {
         timestamp: new Date().toISOString()
       });
 
-      const response = await fetch(`${scriptUrl}?${params.toString()}`, {
+      await fetch(`${scriptUrl}?${params.toString()}`, {
         method: 'GET', // Apps Script often works best with GET for simple data entry
         mode: 'no-cors' // Use no-cors if the Apps Script doesn't have CORS headers enabled
       });
 
+      await delay;
       // Since 'no-cors' doesn't return success/fail info, we assume success after the fetch succeeds
       setSubmitStatus('success');
       setActiveCategoryName('Request Received!');
@@ -154,6 +156,7 @@ const VoiceAgent = () => {
 
     } catch (error) {
       console.error('Submission Error:', error);
+      await delay;
       setSubmitStatus('error');
       setActiveCategoryName('Retrying...');
       
@@ -336,9 +339,15 @@ const VoiceAgent = () => {
                   <button 
                     type="submit" 
                     className={styles.phoneStartBtn}
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || submitStatus === 'success'}
                   >
-                     {isSubmitting ? 'Connecting...' : 'Start Call'}
+                     {submitStatus === 'success' 
+                       ? 'Call Scheduled ✓' 
+                       : submitStatus === 'error'
+                         ? 'Failed ✕'
+                         : isSubmitting 
+                           ? 'Connecting...' 
+                           : 'Start Call'}
                      <div className={styles.phoneIcon}>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                            <path d="M12 4L13.5 9.5L19 11L13.5 12.5L12 18L10.5 12.5L5 11L10.5 9.5L12 4Z" fill="black" />

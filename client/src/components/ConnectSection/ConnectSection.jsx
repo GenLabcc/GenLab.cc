@@ -77,6 +77,7 @@ const ConnectSection = () => {
 
     setErrors({});
     setStatus("loading");
+    const delay = new Promise((resolve) => setTimeout(resolve, 1500));
 
     try {
       const contactUrl = import.meta.env.VITE_USER_DATA_COLLECTION_URL;
@@ -98,6 +99,7 @@ const ConnectSection = () => {
         body: params.toString(),
       });
 
+      await delay;
       setStatus("success");
       setFormData({
         name: "",
@@ -116,6 +118,7 @@ const ConnectSection = () => {
         stack: error.stack,
         env_url: import.meta.env.VITE_USER_DATA_COLLECTION_URL
       });
+      await delay;
       setStatus("error");
       setTimeout(() => setStatus(""), 4000);
     }
