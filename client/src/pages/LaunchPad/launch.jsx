@@ -94,6 +94,9 @@ export default function Launchpad() {
             <div className='launchpad-page'>
                 <div className='launch-title'>
                     <h1>Launchpad</h1>
+                    <a href="https://gen-system.vercel.app" className="onboarding_sys">
+                    Onboarding
+                    </a>
                 </div>
                 <div className='launch-dis'>
                     <div className='launch-left'>

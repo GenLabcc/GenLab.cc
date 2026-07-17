@@ -14,11 +14,11 @@
     max-width: 1520px;
     height: 158px;
     padding-bottom: 10px;
-    gap: 120px;
     opacity: 1;
     border-bottom: 1px solid #F0F0F033;
     display: flex;
     align-items: flex-end;
+    justify-content: space-between;
 }
 
 .launch-title h1 {
@@ -34,6 +34,28 @@
     font-size: clamp(32px, 5vw, 72px);
     line-height: 1;
     margin: 0;
+}
+
+.onboarding_sys {
+  display: inline-block;
+  background: black;
+  color: white;
+  border: 1px solid white;
+  border-radius: 50px;
+  padding: clamp(8px, 1vw, 12px) clamp(24px, 2.5vw, 40px);
+  letter-spacing: 1px;
+  font-weight: 300;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.onboarding_sys:hover {
+  background: #BCF000;
+  border-color: #BCF000;
+  color: #010101;
+  font-weight: 500;
+  transform: translateY(-2px);
 }
 
 /* ─── Discription ─────────────────────────────────────────────────── */
