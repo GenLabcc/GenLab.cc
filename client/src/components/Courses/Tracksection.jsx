@@ -225,7 +225,7 @@ const TrackSection = () => {
       <header className="page-header">
         <h1 className="track-title">Leading Upskilling Platform <br/> Built For Students And Job Seekers</h1>
         <span className="choose-from-label">Choose From</span>
-        <h1 className="page-title">Industry-Relevant Free Courses</h1>
+        <h1 className="page-title">Industry-Relevant Courses</h1>
         <p className="page-subtitle">
           9 Divisions &middot; 26 Courses &middot; Online and Offline &middot; 3 to 6 Month Programs
         </p>
