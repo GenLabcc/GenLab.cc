@@ -40,8 +40,9 @@
   display: inline-block;
   background: black;
   color: white;
-  border: 1px solid white;
+  border: 1px solid whitesmoke;
   border-radius: 50px;
+  margin-bottom: 13px;
   padding: clamp(8px, 1vw, 12px) clamp(24px, 2.5vw, 40px);
   letter-spacing: 1px;
   font-weight: 300;
@@ -406,8 +407,17 @@
         padding-top: 40px;
         height: auto;
         padding-bottom: 15px;
+        gap: 15px;
         border-bottom: 1px solid #F0F0F033;
     }
+      .onboarding_sys {
+        width: auto;
+        padding: 7px 15px;
+        font-size: 0.70rem;
+        white-space: nowrap;
+        margin-bottom: 10px;
+        align-self: flex-end;
+   }
 
     .launch-title h1 {
         font-size: 40px !important;
