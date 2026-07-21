@@ -1,11 +1,27 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar/Navbar.jsx";
 import LogoMark from "@/components/LogoMark.jsx";
 import GridTrail from "@/components/GridTrail.jsx";
 import "@/components/LandingHero/LandingHero.css";
 
 export default function HeroSection() {
+  const navigate = useNavigate();
+
+  const handleTagClick = (target) => {
+    if (target === "launchpad") {
+      navigate("/launchpad");
+    } else {
+      const section = document.getElementById(target);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      } else {
+        navigate(`/#${target}`);
+      }
+    }
+  };
+
   return (
     <div className="home-hero-shell">
       <GridTrail />
@@ -38,9 +54,15 @@ export default function HeroSection() {
         {/* Tags and Subtitle */}
         <div className="middle-bar stagger-item delay-3">
           <div className="tags-container">
-            <div className="tag"><span className="dot"></span> Launchpad<span className="dot"></span></div>
-            <div className="tag"><span className="dot"></span> AI Forge<span className="dot"></span></div>
-            <div className="tag"><span className="dot"></span> Brand Studio<span className="dot"></span></div>
+            <button type="button" className="tag" onClick={() => handleTagClick("launchpad")}>
+              <span className="dot"></span> Launchpad<span className="dot"></span>
+            </button>
+            <button type="button" className="tag" onClick={() => handleTagClick("ai")}>
+              <span className="dot"></span> AI Forge<span className="dot"></span>
+            </button>
+            <button type="button" className="tag" onClick={() => handleTagClick("brand")}>
+              <span className="dot"></span> Brand Studio<span className="dot"></span>
+            </button>
           </div>
           <div className="subtitle-wrapper">
             <p className="subtitle">World's First Gen Z &amp; AI</p>

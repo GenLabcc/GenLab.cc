@@ -1,9 +1,25 @@
 import "./LandingHero.css";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import LogoMark from "../LogoMark.jsx";
 import Navbar from "../Navbar/Navbar.jsx";
 
 export default function LandingHero() {
+  const navigate = useNavigate();
+
+  const handleTagClick = (target) => {
+    if (target === "launchpad") {
+      navigate("/launchpad");
+    } else {
+      const section = document.getElementById(target);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      } else {
+        navigate(`/#${target}`);
+      }
+    }
+  };
+
   return (
     <div className="home-hero-shell">
       <section className="hero-section">
@@ -33,21 +49,21 @@ export default function LandingHero() {
 
         <div className="middle-bar stagger-item delay-3">
           <div className="tags-container">
-            <div className="tag">
+            <button type="button" className="tag" onClick={() => handleTagClick("launchpad")}>
               <span className="dot" />
               Launchpad
               <span className="dot" />
-            </div>
-            <div className="tag">
+            </button>
+            <button type="button" className="tag" onClick={() => handleTagClick("ai")}>
               <span className="dot" />
               AI Forge
               <span className="dot" />
-            </div>
-            <div className="tag">
+            </button>
+            <button type="button" className="tag" onClick={() => handleTagClick("brand")}>
               <span className="dot" />
               Brand Studio
               <span className="dot" />
-            </div>
+            </button>
           </div>
           <div className="subtitle-wrapper">
             <p className="subtitle">World&apos;s First Gen Z &amp; AI</p>

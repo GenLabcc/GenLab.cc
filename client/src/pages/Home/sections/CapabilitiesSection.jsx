@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./CapabilitiesSection.module.css";
@@ -9,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function CapabilitiesSection() {
   const galleryRef = useRef(null);
+  const navigate = useNavigate();
 
   const sections = [
     {
@@ -240,6 +242,18 @@ export default function CapabilitiesSection() {
                       className={`${styles.listItem} ${
                         section.clickableList ? styles.clickable : ""
                       }`}
+                      onClick={() => {
+                        if (section.clickableList) {
+                          const targets = ["launchpad", "ai", "brand"];
+                          const target = targets[i];
+                          if (target === "launchpad") {
+                            navigate("/launchpad");
+                          } else {
+                            const el = document.getElementById(target);
+                            el?.scrollIntoView({ behavior: "smooth" });
+                          }
+                        }
+                      }}
                     >
                       <span className={styles.number}>
                         {String(i + 1).padStart(2, "0")}
