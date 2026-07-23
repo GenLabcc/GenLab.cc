@@ -92,6 +92,7 @@
   pointer-events: auto;
   white-space: nowrap;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 .mobile-menu-btn {

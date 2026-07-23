@@ -2,16 +2,17 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef, useCallback } from "react";
 import "./Courses.css";
 import logo from "../../assets/courses_icons/DS.png";
+<div className="courses-footer"></div>
 
 const coursesData = [
-  { id: 1, badge: "Advance Growth", badgeColor: "green",  title: "Full Stack Web Development (MERN)",description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.",       tags: ["Git", "MongoDB", "Express", "React", "Node.js"],                            duration: "4 - 6 Months", support: "Job Offer Support" },
-  { id: 2, badge: "Advance Growth", badgeColor: "green", title: "AI & Machine Learning",             description: "Learn to build and deploy intelligent models with supervised and unsupervised learning techniques.", tags: ["Supervised & Unsupervised Learning", "Model Building", "Deployment"],       duration: "4 - 6 Months", support: "Job Offer Support" },
-  { id: 3, badge: "Medium Growth",  badgeColor: "yellow",  title: "Python Django Full Stack",        description: "Master end-to-end web development with Python and Django, from APIs to deployment.",                 tags: ["Python", "Django", "REST APIs", "Databases", "Deployment"],                 duration: "4 - 6 Months", support: "Job Offer Support" },
-  { id: 4, badge: "Advance Growth", badgeColor: "green",  title: "UI/UX Design Fundamentals",        description: "Master design thinking, Figma, and prototyping with real-world projects and mentorship.",            tags: ["Figma", "Adobe XD", "Prototyping", "Research"],                             duration: "3 Months", support: "Job Offer Support" },
-  { id: 5, badge: "Medium Growth",  badgeColor: "yellow", title: "Data Science & ML",                description: "Dive into data analysis, ML algorithms, and Python for real-world data challenges with expert mentors.",     tags: ["Python", "Pandas", "Scikit-learn", "TensorFlow"],                   duration: "6 Months", support: "Job Offer Support" },
-  { id: 6, badge: "Advance Growth", badgeColor: "green",  title: "DevOps & Cloud Engineering",       description: "Learn CI/CD, Docker, Kubernetes, and AWS for scalable cloud infrastructure with expert mentors",             tags: ["Docker", "AWS", "Kubernetes", "CI/CD Pipeline"],                    duration: "4 Months", support: "Job Offer Support" },
-  { id: 7, badge: "Medium Growth", badgeColor: "yellow",  title: "Robotics with AI & IoT",           description: "Learn the fundamentals of robotics, AI, and IoT integration.",                                        tags: ["Embedded Systems", "Sensors", "AI Integration", "Hardware Programming"],   duration: "4 Months", support: "Job Offer Support" },
-  { id: 8, badge: "Medium Growth", badgeColor: "yellow",  title: "Business Analytics",               description: "Drive smarter business decisions with data, dashboards, and reporting tools.",                        tags: ["EExcel", "Power BI", "Reporting", "Data-Driven Decision Making"],          duration: "4 Months", support: "Job Offer Support" },
+  { id: 1,track: 2,badge: "Advance Growth", badgeColor: "green",  title: "Full Stack Web Development (MERN)",description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.",       tags: ["Git", "MongoDB", "Express", "React", "Node.js"],                            duration: "4 - 6 Months", support: "Job Offer Support" },
+  { id: 2,track: 1,badge: "Advance Growth", badgeColor: "green", title: "AI & Machine Learning",             description: "Learn to build and deploy intelligent models with supervised and unsupervised learning techniques.", tags: ["Supervised & Unsupervised Learning", "Model Building", "Deployment"],       duration: "4 - 6 Months", support: "Job Offer Support" },
+  { id: 3,track: 7,badge: "Medium Growth",  badgeColor: "yellow",  title: "Project Management",               description: "Lead projects confidently with Agile and Scrum frameworks and modern planning tools. ",             tags: ["Agile", "Scrum", "Project Planning","Risk Management","Tools"],         duration : "3 Months", support: "Job Offer Support" },                        
+  { id: 4,track: 5,badge: "Advance Growth", badgeColor: "green",  title: "UX/UI Design",                     description: "Master design thinking, Figma, and prototyping with real-world projects and mentorship.",            tags: ["Figma", "Adobe XD", "Prototyping", "Research"],                             duration: "3 Months", support: "Job Offer Support" },
+  { id: 5,track: 0,badge: "Medium Growth",  badgeColor: "yellow", title: "Data Science",                    description: "Dive into data analysis, ML algorithms, and Python for real-world data challenges with expert mentors.",     tags: ["Python", "Pandas", "Scikit-learn", "TensorFlow"],                   duration: "6 Months", support: "Job Offer Support" },
+  { id: 6,track: 3,badge: "Advance Growth", badgeColor: "green",  title: "DevOps Engineering",               description: "Automate delivery pipelines and manage cloud infrastructure with industry-standard DevOps tools.",             tags: ["Docker", "AWS", "Kubernetes", "CI/CD Pipeline"],                    duration: "4 Months", support: "Job Offer Support" },
+  { id: 7,track: 4,badge: "Medium Growth", badgeColor: "yellow",  title: "Robotics with AI & IoT",           description: "Learn the fundamentals of robotics, AI, and IoT integration.",                                        tags: ["Embedded Systems", "Sensors", "AI Integration", "Hardware Programming"],   duration: "4 Months", support: "Job Offer Support" },
+  { id: 8,track: 6,badge: "Medium Growth", badgeColor: "yellow",  title: "Business Analytics",               description: "Drive smarter business decisions with data, dashboards, and reporting tools.",                        tags: ["EExcel", "Power BI", "Reporting", "Data-Driven Decision Making"],          duration: "4 Months", support: "Job Offer Support" },
   
 ];
 
@@ -227,7 +228,19 @@ export default function Courses({ registerGoToPage, registerPageRef, registerTot
                       </svg>
                       Syllabus
                     </button>
-                    <button className="courses-btn-enroll" onClick={() => navigate('/tracks')}>Enroll Now</button>
+                    <button
+                      className="courses-btn-enroll"
+                      onClick={() =>
+                       navigate("/tracks", {
+                          state: {
+                            activeTrack: course.track,
+                            selectedCourse: course.title,
+                         },
+                       })
+                      }
+                    >
+                      Enroll Now
+                   </button>
                   </div>
                 </div>
               </div>
@@ -264,7 +277,14 @@ export default function Courses({ registerGoToPage, registerPageRef, registerTot
       <div className="courses-explore">
         <button
           className="btn-explore"
-          onClick={() => navigate('/tracks')}
+          onClick={() =>
+             navigate("/tracks", {
+              state: {
+            activeTrack: course.track,
+            selectedCourse: course.title,
+            },
+          })
+        }
         >Explore All Programs</button>
       </div>
     </section>

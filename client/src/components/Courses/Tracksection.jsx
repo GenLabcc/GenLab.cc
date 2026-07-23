@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Tracksection.css";
 import EnrollModal from "./Enroll";
+import { useLocation } from "react-router-dom";
 
 import courseThumbnail from "../../assets/courses_icons/DS.png";
 import da from "../../assets/courses_icons/DA.png";
@@ -214,7 +215,11 @@ const CustomProgramCard = ({ onEnquire }) => (
 );
 
 const TrackSection = () => {
-  const [activeTrack, setActiveTrack] = useState(0);
+  const location = useLocation();
+
+  const [activeTrack, setActiveTrack] = useState(
+  location.state?.activeTrack ?? 0
+);
   const [customOpen, setCustomOpen] = useState(false);
   const activeTrackData = tracksData[activeTrack];
   const isCustom = activeTrackData.id === 9;
