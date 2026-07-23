@@ -1,5 +1,6 @@
 import ConnectSection from "@/components/ConnectSection/ConnectSection";
 import MeetSection from "@/pages/People/sections/MeetSection.jsx";
+import JobsSection from "@/pages/Jobs/JobsSection.jsx";
 
 import styles from "./People.module.css";
 
@@ -57,6 +58,7 @@ const People = () => {
       </section>
 
       <MeetSection />
+      <JobsSection/>
       <ConnectSection />
     </div>
   );
