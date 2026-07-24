@@ -28,8 +28,8 @@ const JOBS = [
     location: "On-site",
     experience: "1-2 years",
     description:
-      "Design user flows, wireframes, and polished interfaces for web and mobile products, working closely with engineering to ship them.",
-    tags: ["Canva", "Design Systems", "SEO"],
+      "Support content creation, social media scheduling, and campaign tracking while learning the fundamentals of digital marketing.",
+    tags: ["Social Media", "SEO", "SEM"],
     pdfUrl: DigitalMarPDF
   },
   {
@@ -39,7 +39,7 @@ const JOBS = [
     location: "On-Site",
     experience: "1-2 years",
     description:
-      "Support content creation, social media scheduling, and campaign tracking while learning the fundamentals of digital marketing.",
+      "Design user flows, wireframes, and polished interfaces for web and mobile products, working closely with engineering to ship them.",
     tags: ["Photoshop", "Figma",  "Illustrator", "Premiere Pro"],
     pdfUrl: DesignerPDF
   },
@@ -108,7 +108,7 @@ export default function JobsSection({ onApplySubmit }) {
   return (
     <section className="jobs-section">
       <div className="jobs-section__header">
-        <h2 className="jobs-section__title">Open Positions</h2>
+        <h2 className="jobs-section__title">Grow with GenLab</h2>
         <p className="jobs-section__subtitle">
           Join our team — explore current openings below.
         </p>

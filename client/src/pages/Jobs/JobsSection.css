@@ -14,12 +14,12 @@
   font-size: 32px;
   font-weight: 700;
   margin-bottom: 8px;
-  color: #111;
+  color: white;
 }
 
 .jobs-section__subtitle {
   font-size: 15px;
-  color: #666;
+  color: whitesmoke;
 }
 
 .jobs-section__grid {
@@ -35,6 +35,7 @@
   border: 1px solid #e5e5e5;
   border-radius: 14px;
   padding: 24px;
+  min-height: 350px;
   display: flex;
   flex-direction: column;
   gap: 14px;
