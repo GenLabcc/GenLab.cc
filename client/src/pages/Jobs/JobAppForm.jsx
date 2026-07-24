@@ -62,23 +62,67 @@ export default function JobApplicationForm({ job, onClose, onSubmit }) {
 
   const handleBack = () => setStep(1);
 
+  const fileToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(",")[1])
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateStep2()) return;
 
     setSubmitting(true);
     try {
-      if (onSubmit) {
-        await onSubmit({ ...form, jobTitle: job?.title || "" });
-      }
-      setSubmitted(true);
-    } catch (err) {
-      console.error("Application submit failed:", err);
-      alert("Something went wrong submitting your application. Please try again.");
-    } finally {
-      setSubmitting(false);
-    }
+        const resumeBase64 = form.resume ? await fileToBase64(form.resume) : null;
+
+        if (onSubmit) {
+            await onSubmit({ ...form, jobTitle: job?.title || "",
+                resumeBase64,
+                resumeFileName: form.resume?.name || "",
+                resumeMimeType: form.resume?.type || "application/octet-stream",
+             });
+        }
+        setSubmitted(true);
+        } catch (err) {
+            console.error("Application submit failed:", err);
+            alert("Something went wrong submitting your application. Please try again.");
+        } finally {
+            setSubmitting(false);
+        }
   };
+
+  const handleApplySubmit = async (data) => {
+  const url = import.meta.env.VITE_JOB_APPLICATIONS_URL;
+  const params = new URLSearchParams({
+    sheet: "Job Applications",
+    jobTitle: data.jobTitle,
+    fullName: data.fullName,
+    dob: data.dob,
+    gender: data.gender,
+    address: data.address,
+    location: data.location,
+    phone: data.phone,
+    email: data.email,
+    expectedSalary: data.expectedSalary,
+    currentCTC: data.currentCTC,
+    previousCompany: data.previousCompany,
+    previousRole: data.previousRole,
+    resumeBase64: data.resumeBase64 || "",
+    resumeFileName: data.resumeFileName || "",
+    resumeMimeType: data.resumeMimeType || "",
+  });
+
+  await fetch(url, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: params.toString(),
+  });
+};
 
   if (submitted) {
     return (

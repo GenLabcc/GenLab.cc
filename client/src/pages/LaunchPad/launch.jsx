@@ -56,7 +56,13 @@ import review15 from "../../assets/launchpad_reviews/review_15_1x.webp";
 import Courses from "../../components/Courses/Courses";
 
 export default function Launchpad() {
+
     const imgRef = useRef(null);
+
+    const handleTabClick = (tabName) => {
+        setActiveTab(tabName);
+        document.getElementById(tabName)?.scrollIntoView({ behavior: 'smooth', block: 'start'})
+    }
 
     useEffect(() => {
         const handleScroll = () => {
@@ -105,9 +111,9 @@ export default function Launchpad() {
                             designers and AI builders.</h4>
                     </div>
                     <div className='launch-right'>
-                        <h3 className={activeTab === 'Bootcamp' ? 'active' : ''} onClick={() => setActiveTab('Bootcamp')}>• Bootcamp •</h3>
-                        <h3 className={activeTab === 'Hackathon' ? 'active' : ''} onClick={() => setActiveTab('Hackathon')}>• Hackathon •</h3>
-                        <h3 className={activeTab === 'Incubation' ? 'active' : ''} onClick={() => setActiveTab('Incubation')}>• Incubation •</h3>
+                        <h3 className={activeTab === 'Bootcamp' ? 'active' : ''} onClick={() => handleTabClick('Bootcamp')}>• Bootcamp •</h3>
+                        <h3 className={activeTab === 'Hackathon' ? 'active' : ''} onClick={() => handleTabClick('Hackathon')}>• Hackathon •</h3>
+                        <h3 className={activeTab === 'Incubation' ? 'active' : ''} onClick={() => handleTabClick('Incubation')}>• Incubation •</h3>
                     </div>
                 </div>
             </div>
@@ -160,7 +166,7 @@ export default function Launchpad() {
                         </div>
 
                         <div className="ev-row ev-row-right">
-                            <img className="ev-img ev-img-big" src={event3} alt="event3" />
+                            <img className="ev-img ev-img-big" src={event3} alt="event3" id = 'Hackathon'/>
                             <img className="ev-img ev-img-small" src={event4} alt="event4" />
                             <div className="ev-text">
                                 <h3>Hackathon</h3>
@@ -169,7 +175,7 @@ export default function Launchpad() {
                         </div>
 
                         <div className="ev-row ev-row-left">
-                            <img className="ev-img ev-img-small" src={event5} alt="event5" />
+                            <img className="ev-img ev-img-small" src={event5} alt="event5" id = "Bootcamp"/>
                             <img className="ev-img ev-img-big" src={event6} alt="event6" />
                             <div className="ev-text">
                                 <h3>Bootcamp</h3>
@@ -179,7 +185,7 @@ export default function Launchpad() {
                         </div>
 
                         <div className="ev-row ev-row-right">
-                            <img className="ev-img ev-img-big" src={event7} alt="event7" />
+                            <img className="ev-img ev-img-big" src={event7} alt="event7"  id = "Incubation"/>
                             <img className="ev-img ev-img-small" src={event8} alt="event8" />
                             <div className="ev-text">
                                 <h3>Incubation</h3>

@@ -30,7 +30,37 @@ const people = [
  
 ];
 
+ 
 const People = () => {
+  const handleApplySubmit = async (data) => {
+    const url = import.meta.env.VITE_JOB_APPLICATIONS_URL;
+    const params = new URLSearchParams({
+      sheet: "Job Applications",
+      jobTitle: data.jobTitle,
+      fullName: data.fullName,
+      dob: data.dob,
+      gender: data.gender,
+      address: data.address,
+      location: data.location,
+      phone: data.phone,
+      email: data.email,
+      expectedSalary: data.expectedSalary,
+      currentCTC: data.currentCTC,
+      previousCompany: data.previousCompany,
+      previousRole: data.previousRole,
+      resumeBase64: data.resumeBase64 || "",
+      resumeFileName: data.resumeFileName || "",
+      resumeMimeType: data.resumeMimeType || "",
+    });
+
+    await fetch(url, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: params.toString(),
+    });
+  };
+
   return (
     <div>
       <section className={styles.peopleSection}>
@@ -58,7 +88,7 @@ const People = () => {
       </section>
 
       <MeetSection />
-      <JobsSection/>
+      <JobsSection onApplySubmit={handleApplySubmit} />
       <ConnectSection />
     </div>
   );
