@@ -34,8 +34,10 @@ const people = [
 const People = () => {
   const handleApplySubmit = async (data) => {
     const url = import.meta.env.VITE_JOB_APPLICATIONS_URL;
+    console.log("Submitting to:", url);
+    console.log("Payload:", data);
     const params = new URLSearchParams({
-      sheet: "Job Applications",
+      sheet: "Hiring",
       jobTitle: data.jobTitle,
       fullName: data.fullName,
       dob: data.dob,

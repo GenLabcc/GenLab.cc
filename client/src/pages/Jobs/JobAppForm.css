@@ -149,6 +149,21 @@
   color: #4c7a10;
 }
 
+.jaf-file-button {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #f9f9f9;
+}
+.jaf-file-button:hover {
+  background: #f0f0f0;
+}
+
 /* ── Footer buttons ─────────────────────────────────────────── */
 
 .jaf-footer {

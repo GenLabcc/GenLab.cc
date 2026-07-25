@@ -18,7 +18,7 @@ const JOBS = [
     experience: "1-2 years",
     description:
       "Develop, test, and maintain scalable software and web applications, working closely with the team on new features, debugging, API integrations, and code reviews.",
-    tags: ["Java", "Python", "React"],
+    tags: ["Java", "Python", "JavaScript"],
     pdfUrl: SoftwareDeveloperPDF,
   },
   {
@@ -29,7 +29,7 @@ const JOBS = [
     experience: "1-2 years",
     description:
       "Support content creation, social media scheduling, and campaign tracking while learning the fundamentals of digital marketing.",
-    tags: ["Social Media", "SEO", "SEM"],
+    tags: ["SMM", "SEO", "SEM", "Meta Ads"],
     pdfUrl: DigitalMarPDF
   },
   {

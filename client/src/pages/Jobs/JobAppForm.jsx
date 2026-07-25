@@ -13,6 +13,7 @@ const EMPTY_FORM = {
   currentCTC: "",
   previousCompany: "",
   previousRole: "",
+  linkedin: "",
   resume: null,
 };
 
@@ -201,9 +202,19 @@ export default function JobApplicationForm({ job, onClose, onSubmit }) {
                   <input value={form.location} onChange={set("location")} placeholder="City, State" />
                   {errors.location && <span className="jaf-error">{errors.location}</span>}
                 </div>
+
                 <div className="jaf-field">
                   <label>Phone Number</label>
-                  <input type="tel" value={form.phone} onChange={set("phone")} placeholder="+91 00000 00000" />
+                  <input 
+                    type="tel" 
+                    value={form.phone} 
+                    onChange = {(e) =>{
+                        const digitsOnly = e.target.value.replace(/\D/g, "").slice(0, 10)
+                        set("phone")({ target: { value: digitsOnly } });
+                    }}
+                    placeholder="+91 00000 00000" 
+                    maxLength={10}
+                  />
                   {errors.phone && <span className="jaf-error">{errors.phone}</span>}
                 </div>
               </div>
@@ -226,7 +237,7 @@ export default function JobApplicationForm({ job, onClose, onSubmit }) {
             <div className="jaf-page">
               <div className="jaf-row">
                 <div className="jaf-field">
-                  <label>Expected Salary</label>
+                  <label>Expected CTC</label>
                   <input value={form.expectedSalary} onChange={set("expectedSalary")} placeholder="e.g. 6 LPA" />
                   {errors.expectedSalary && <span className="jaf-error">{errors.expectedSalary}</span>}
                 </div>
@@ -238,19 +249,43 @@ export default function JobApplicationForm({ job, onClose, onSubmit }) {
 
               <div className="jaf-row">
                 <div className="jaf-field">
-                  <label>Previous Company Name</label>
+                  <label>Current Designation</label>
                   <input value={form.previousCompany} onChange={set("previousCompany")} placeholder="Optional" />
                 </div>
                 <div className="jaf-field">
-                  <label>Previous Role</label>
+                  <label>Current Role</label>
                   <input value={form.previousRole} onChange={set("previousRole")} placeholder="Optional" />
                 </div>
               </div>
 
               <div className="jaf-field">
-                <label>Resume</label>
-                <input type="file" accept=".pdf,.doc,.docx" onChange={setFile} />
-                {form.resume && <span className="jaf-file-name">Attached: {form.resume.name}</span>}
+                <label>LinkedIn Profile</label>
+                <input
+                    type="url"
+                    value={form.linkedin}
+                    onChange={set("linkedin")}
+                    placeholder="https://www.linkedin.com/in/yourname"
+                />
+                {errors.linkedin && <span className="jaf-error">{errors.linkedin}</span>}
+              </div>
+
+              <div className="jaf-field">
+                <label>
+                    Upload Resume<span style={{ color: "red" }}>*</span>
+                </label>
+                <label htmlFor="resume-upload" className="jaf-file-button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M12 3v12m0-12l-4 4m4-4l4 4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
+                    </svg>
+                    {form.resume ? form.resume.name : "Upload a file"}
+                </label>
+                <input
+                    id="resume-upload"
+                    type="file"
+                    accept=".pdf,.doc,.docx"
+                    onChange={setFile}
+                    style={{ display: "none" }}
+                />
                 {errors.resume && <span className="jaf-error">{errors.resume}</span>}
               </div>
 
