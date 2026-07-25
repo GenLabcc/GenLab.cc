@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef, useCallback } from "react";
 import "./Courses.css";
 import logo from "../../assets/courses_icons/DS.png";
-<div className="courses-footer"></div>
+{/* <div className="courses-footer"></div> */}
 
 const coursesData = [
   { id: 1,track: 2,badge: "Advance Growth", badgeColor: "green",  title: "Full Stack Web Development (MERN)",description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.",       tags: ["Git", "MongoDB", "Express", "React", "Node.js"],                            duration: "4 - 6 Months", support: "Job Offer Support" },
@@ -12,7 +12,7 @@ const coursesData = [
   { id: 5,track: 0,badge: "Medium Growth",  badgeColor: "yellow", title: "Data Science",                    description: "Dive into data analysis, ML algorithms, and Python for real-world data challenges with expert mentors.",     tags: ["Python", "Pandas", "Scikit-learn", "TensorFlow"],                   duration: "6 Months", support: "Job Offer Support" },
   { id: 6,track: 3,badge: "Advance Growth", badgeColor: "green",  title: "DevOps Engineering",               description: "Automate delivery pipelines and manage cloud infrastructure with industry-standard DevOps tools.",             tags: ["Docker", "AWS", "Kubernetes", "CI/CD Pipeline"],                    duration: "4 Months", support: "Job Offer Support" },
   { id: 7,track: 4,badge: "Medium Growth", badgeColor: "yellow",  title: "Robotics with AI & IoT",           description: "Learn the fundamentals of robotics, AI, and IoT integration.",                                        tags: ["Embedded Systems", "Sensors", "AI Integration", "Hardware Programming"],   duration: "4 Months", support: "Job Offer Support" },
-  { id: 8,track: 6,badge: "Medium Growth", badgeColor: "yellow",  title: "Business Analytics",               description: "Drive smarter business decisions with data, dashboards, and reporting tools.",                        tags: ["EExcel", "Power BI", "Reporting", "Data-Driven Decision Making"],          duration: "4 Months", support: "Job Offer Support" },
+  { id: 8,track: 6,badge: "Medium Growth", badgeColor: "yellow",  title: "Business Analytics",               description: "Drive smarter business decisions with data, dashboards, and reporting tools.",                        tags: ["Excel", "Power BI", "Reporting", "Data-Driven Decision Making"],          duration: "4 Months", support: "Job Offer Support" },
   
 ];
 
@@ -278,13 +278,7 @@ export default function Courses({ registerGoToPage, registerPageRef, registerTot
         <button
           className="btn-explore"
           onClick={() =>
-             navigate("/tracks", {
-              state: {
-            activeTrack: course.track,
-            selectedCourse: course.title,
-            },
-          })
-        }
+             navigate("/tracks")}
         >Explore All Programs</button>
       </div>
     </section>

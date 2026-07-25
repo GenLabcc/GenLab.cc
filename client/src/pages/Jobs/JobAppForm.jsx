@@ -11,6 +11,7 @@ const EMPTY_FORM = {
   email: "",
   expectedSalary: "",
   currentCTC: "",
+  experience:"",
   previousCompany: "",
   previousRole: "",
   linkedin: "",
@@ -110,8 +111,10 @@ export default function JobApplicationForm({ job, onClose, onSubmit }) {
     email: data.email,
     expectedSalary: data.expectedSalary,
     currentCTC: data.currentCTC,
+    experience: data.experience, 
     previousCompany: data.previousCompany,
     previousRole: data.previousRole,
+    linkedin: data.linkedin,
     resumeBase64: data.resumeBase64 || "",
     resumeFileName: data.resumeFileName || "",
     resumeMimeType: data.resumeMimeType || "",
@@ -244,6 +247,19 @@ export default function JobApplicationForm({ job, onClose, onSubmit }) {
                 <div className="jaf-field">
                   <label>Current CTC</label>
                   <input value={form.currentCTC} onChange={set("currentCTC")} placeholder="e.g. 4 LPA" />
+                </div>
+              </div>
+
+              <div className="jaf-row">
+                <div className="jaf-field">
+                    <label>Years of Experience</label>
+                    <select value={form.experience} onChange={set("experience")}>
+                        <option value="" disabled>Select experience</option>
+                        <option value="1-2 years">1 - 2 Years</option>
+                        <option value="2-3 years">2 - 3 Years</option>
+                        <option value="3-4 years">3 - 4 Years</option>
+                        <option value="4-5 years">4 - 5 Years</option> 
+                    </select>
                 </div>
               </div>
 
