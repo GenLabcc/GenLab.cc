@@ -16,9 +16,10 @@ const JOBS = [
     type: "Full-time",
     location: "On-site",
     experience: "1-2 years",
+    preferred: "Candidates preferred: Female",
     description:
       "Develop, test, and maintain scalable software and web applications, working closely with the team on new features, debugging, API integrations, and code reviews.",
-    tags: ["Java", "Python", "JavaScript"],
+    tags: ["Java", "Python", "JavaScript", "Mern Stack"],
     pdfUrl: SoftwareDeveloperPDF,
   },
   {
@@ -27,6 +28,7 @@ const JOBS = [
     type: "Full-time",
     location: "On-site",
     experience: "1-2 years",
+    preferred: "Candidates preferred: Female",
     description:
       "Support content creation, social media scheduling, and campaign tracking while learning the fundamentals of digital marketing.",
     tags: ["SMM", "SEO", "SEM", "Meta Ads"],
@@ -82,6 +84,10 @@ function JobCard({ job, onApply }) {
           </a>
         )}
       </p>
+
+      {job.preferred && (
+        <span className="job-preferred">{job.preferred}</span>
+      )}
 
       <div className="job-card__tags">
         {job.tags.map((tag) => (

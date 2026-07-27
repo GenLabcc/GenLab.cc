@@ -257,13 +257,12 @@ export default function JobApplicationForm({ job, onClose, onSubmit }) {
             <div className="jaf-page">
               <div className="jaf-row">
                 <div className="jaf-field">
-                  <label>Expected CTC</label>
-                  <input value={form.expectedSalary} onChange={set("expectedSalary")} placeholder="e.g. 6 LPA" />
-                  {errors.expectedSalary && <span className="jaf-error">{errors.expectedSalary}</span>}
+                  <label>Current Designation</label>
+                  <input value={form.previousCompany} onChange={set("previousCompany")} placeholder="Optional" />
                 </div>
                 <div className="jaf-field">
-                  <label>Current CTC</label>
-                  <input value={form.currentCTC} onChange={set("currentCTC")} placeholder="e.g. 4 LPA" />
+                  <label>Current Company</label>
+                  <input value={form.previousRole} onChange={set("previousRole")} placeholder="Optional" />
                 </div>
               </div>
 
@@ -272,22 +271,24 @@ export default function JobApplicationForm({ job, onClose, onSubmit }) {
                     <label>Years of Experience</label>
                     <select value={form.experience} onChange={set("experience")}>
                         <option value="" disabled>Select experience</option>
+                        <option value="1-2 years">0 - 1 Years</option>
                         <option value="1-2 years">1 - 2 Years</option>
                         <option value="2-3 years">2 - 3 Years</option>
-                        <option value="3-4 years">3 - 4 Years</option>
-                        <option value="4-5 years">4 - 5 Years</option> 
+                        <option value="3-4 years">3 - 5 Years</option>
+                        <option value="5+ years">5+ Years</option> 
                     </select>
                 </div>
               </div>
 
               <div className="jaf-row">
                 <div className="jaf-field">
-                  <label>Current Designation</label>
-                  <input value={form.previousCompany} onChange={set("previousCompany")} placeholder="Optional" />
+                  <label>Current CTC</label>
+                  <input value={form.currentCTC} onChange={set("currentCTC")} placeholder="e.g. 4 LPA" />
                 </div>
                 <div className="jaf-field">
-                  <label>Current Role</label>
-                  <input value={form.previousRole} onChange={set("previousRole")} placeholder="Optional" />
+                  <label>Expected CTC</label>
+                  <input value={form.expectedSalary} onChange={set("expectedSalary")} placeholder="e.g. 6 LPA" />
+                  {errors.expectedSalary && <span className="jaf-error">{errors.expectedSalary}</span>}
                 </div>
               </div>
 
