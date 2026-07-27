@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./JobAppForm.css";
 
+ 
+
 const EMPTY_FORM = {
   fullName: "",
   dob: "",
@@ -107,7 +109,7 @@ export default function JobApplicationForm({ job, onClose, onSubmit }) {
     gender: data.gender,
     address: data.address,
     location: data.location,
-    phone: data.phone,
+    phone: `+91${data.phone}`,
     email: data.email,
     expectedSalary: data.expectedSalary,
     currentCTC: data.currentCTC,
@@ -205,21 +207,36 @@ export default function JobApplicationForm({ job, onClose, onSubmit }) {
                   <input value={form.location} onChange={set("location")} placeholder="City, State" />
                   {errors.location && <span className="jaf-error">{errors.location}</span>}
                 </div>
+                
+          <div className="jaf-field phoneWrapper">
+            <label>Phone Number</label>
 
-                <div className="jaf-field">
-                  <label>Phone Number</label>
-                  <input 
-                    type="tel" 
-                    value={form.phone} 
-                    onChange = {(e) =>{
-                        const digitsOnly = e.target.value.replace(/\D/g, "").slice(0, 10)
-                        set("phone")({ target: { value: digitsOnly } });
-                    }}
-                    placeholder="+91 00000 00000" 
-                    maxLength={10}
-                  />
-                  {errors.phone && <span className="jaf-error">{errors.phone}</span>}
-                </div>
+            <span className="countryCode">+91</span>
+
+           <input
+             type="tel"
+             placeholder="99945 35120"
+             value={form.phone}
+             onChange={(e) => {
+              const value = e.target.value.replace(/\D/g, "").slice(0, 10);
+
+              setForm((prev) => ({
+                ...prev,
+                phone: value,
+              }));
+
+              setErrors((prev) => ({
+                ...prev,
+                phone: "",
+              }));
+             }}
+              className="phoneInput"
+            />
+
+            {errors.phone && (
+             <span className="jaf-error">{errors.phone}</span>
+             )}
+          </div>
               </div>
 
               <div className="jaf-field">

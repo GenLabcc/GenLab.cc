@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./ConnectSection.module.css";
 import ArrowIcon from "@/components/ui/ArrowIcon.jsx";
 
+
 const ConnectSection = () => {
   // Form state
   const [formData, setFormData] = useState({
@@ -57,8 +58,8 @@ const ConnectSection = () => {
 
     // Phone: required + validated
     if (!data.phone.trim()) newErrors.phone = "Phone number is required";
-    else if (!/^[0-9+\-\s()]{7,20}$/.test(data.phone))
-      newErrors.phone = "Invalid phone number";
+    else if (!/^\d{10}$/.test(data.phone))
+      newErrors.phone = "Enter a valid 10-digit mobile number";
 
     return newErrors;
   };
@@ -89,7 +90,8 @@ const ConnectSection = () => {
 
       console.log('Submitting to:', contactUrl);
       const params = new URLSearchParams({
-        ...formData,
+       ...formData,
+       phone: `+91${formData.phone}`,
         formType: "contact",
       });
       await fetch(contactUrl, {
@@ -165,20 +167,40 @@ const ConnectSection = () => {
           </div>
 
           <div className={styles.row}>
-            <div>
-              <input
-                type="text"
-                name="phone"
-                placeholder="Phone Number"
-                value={formData.phone}
-                onChange={handleChange}
-                className={errors.phone ? styles.inputError : ""}
-              />
-              {errors.phone && (
-                <span className={styles.fieldError}>{errors.phone}</span>
-              )}
-            </div>
 
+
+            <div className={styles.phoneWrapper}>
+
+              <span className={styles.countryCode}>+91</span>
+
+              <input
+                 type="tel"
+                 name="phone"
+                 placeholder="99945 35120"
+                 value={formData.phone}
+                 onChange={(e) => {
+                 // Allow only numbers and limit to 10 digits
+                  const value = e.target.value.replace(/\D/g, "").slice(0, 10);
+
+                   setFormData((prev) => ({
+                     ...prev,
+                     phone: value,
+                    }));
+
+                   setErrors((prev) => ({
+                      ...prev,
+                      phone: undefined,
+                   }));
+                  }}
+                  className={`${styles.phoneInput} ${
+                  errors.phone ? styles.inputError : ""
+                }`}
+              />
+
+                {errors.phone && (
+                  <span className={styles.fieldError}>{errors.phone}</span>
+                )}
+          </div>
             <div>
               <select
                 name="reason"

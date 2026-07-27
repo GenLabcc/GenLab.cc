@@ -49,6 +49,23 @@
   margin: 0;
 }
 
+
+.phoneWrapper {
+  position: relative;
+}
+
+.countryCode {
+  position: absolute;
+  left: 14px;
+  top: 34px;
+  color: #666;
+  font-weight: 500;
+}
+
+.phoneInput {
+  padding-left: 48px !important;
+}
+
 /* ── Progress indicator ─────────────────────────────────────── */
 
 .jaf-progress {

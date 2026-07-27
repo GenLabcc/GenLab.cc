@@ -2,17 +2,25 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef, useCallback } from "react";
 import "./Courses.css";
 import logo from "../../assets/courses_icons/DS.png";
+import fullStackLogo from "../../assets/courses_icons/FullStack.png";
+import aiLogo from "../../assets/courses_icons/AIML.png";
+import pmLogo from "../../assets/courses_icons/ProMan.png";
+import uiuxLogo from "../../assets/courses_icons/UIUX.png";
+import dsLogo from "../../assets/courses_icons/DS.png";
+import devopsLogo from "../../assets/courses_icons/DevOps.png";
+import roboticsLogo from "../../assets/courses_icons/RobAi.png";
+import baLogo from "../../assets/courses_icons/DA.png";
 {/* <div className="courses-footer"></div> */}
 
 const coursesData = [
-  { id: 1,track: 2,badge: "Advance Growth", badgeColor: "green",  title: "Full Stack Web Development (MERN)",description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.",       tags: ["Git", "MongoDB", "Express", "React", "Node.js"],                            duration: "4 - 6 Months", support: "Job Offer Support" },
-  { id: 2,track: 1,badge: "Advance Growth", badgeColor: "green", title: "AI & Machine Learning",             description: "Learn to build and deploy intelligent models with supervised and unsupervised learning techniques.", tags: ["Supervised & Unsupervised Learning", "Model Building", "Deployment"],       duration: "4 - 6 Months", support: "Job Offer Support" },
-  { id: 3,track: 7,badge: "Medium Growth",  badgeColor: "yellow",  title: "Project Management",               description: "Lead projects confidently with Agile and Scrum frameworks and modern planning tools. ",             tags: ["Agile", "Scrum", "Project Planning","Risk Management","Tools"],         duration : "3 Months", support: "Job Offer Support" },                        
-  { id: 4,track: 5,badge: "Advance Growth", badgeColor: "green",  title: "UX/UI Design",                     description: "Master design thinking, Figma, and prototyping with real-world projects and mentorship.",            tags: ["Figma", "Adobe XD", "Prototyping", "Research"],                             duration: "3 Months", support: "Job Offer Support" },
-  { id: 5,track: 0,badge: "Medium Growth",  badgeColor: "yellow", title: "Data Science",                    description: "Dive into data analysis, ML algorithms, and Python for real-world data challenges with expert mentors.",     tags: ["Python", "Pandas", "Scikit-learn", "TensorFlow"],                   duration: "6 Months", support: "Job Offer Support" },
-  { id: 6,track: 3,badge: "Advance Growth", badgeColor: "green",  title: "DevOps Engineering",               description: "Automate delivery pipelines and manage cloud infrastructure with industry-standard DevOps tools.",             tags: ["Docker", "AWS", "Kubernetes", "CI/CD Pipeline"],                    duration: "4 Months", support: "Job Offer Support" },
-  { id: 7,track: 4,badge: "Medium Growth", badgeColor: "yellow",  title: "Robotics with AI & IoT",           description: "Learn the fundamentals of robotics, AI, and IoT integration.",                                        tags: ["Embedded Systems", "Sensors", "AI Integration", "Hardware Programming"],   duration: "4 Months", support: "Job Offer Support" },
-  { id: 8,track: 6,badge: "Medium Growth", badgeColor: "yellow",  title: "Business Analytics",               description: "Drive smarter business decisions with data, dashboards, and reporting tools.",                        tags: ["Excel", "Power BI", "Reporting", "Data-Driven Decision Making"],          duration: "4 Months", support: "Job Offer Support" },
+  { id: 1,track: 2,badge: "Advance Growth", badgeColor: "green",  title: "Full Stack Web Development (MERN)",description: "Build full stack skills in MERN with expert guidance, hands-on projects, and career support.",       tags: ["Git", "MongoDB", "Express", "React", "Node.js"],                            duration: "4 - 6 Months", support: "Job Offer Support",logo: fullStackLogo },
+  { id: 2,track: 1,badge: "Advance Growth", badgeColor: "green", title: "AI & Machine Learning",             description: "Learn to build and deploy intelligent models with supervised and unsupervised learning techniques.", tags: ["Supervised & Unsupervised Learning", "Model Building", "Deployment"],       duration: "4 - 6 Months", support: "Job Offer Support",logo: aiLogo },
+  { id: 3,track: 7,badge: "Medium Growth",  badgeColor: "yellow",  title: "Project Management",               description: "Lead projects confidently with Agile and Scrum frameworks and modern planning tools. ",             tags: ["Agile", "Scrum", "Project Planning","Risk Management","Tools"],         duration : "3 Months", support: "Job Offer Support",logo: pmLogo },                        
+  { id: 4,track: 5,badge: "Advance Growth", badgeColor: "green",  title: "UX/UI Design",                     description: "Master design thinking, Figma, and prototyping with real-world projects and mentorship.",            tags: ["Figma", "Adobe XD", "Prototyping", "Research"],                             duration: "3 Months", support: "Job Offer Support",logo: uiuxLogo },
+  { id: 5,track: 0,badge: "Medium Growth",  badgeColor: "yellow", title: "Data Science",                    description: "Dive into data analysis, ML algorithms, and Python for real-world data challenges with expert mentors.",     tags: ["Python", "Pandas", "Scikit-learn", "TensorFlow"],                   duration: "6 Months", support: "Job Offer Support",logo: dsLogo },
+  { id: 6,track: 3,badge: "Advance Growth", badgeColor :"green",  title: "DevOps Engineering",               description: "Automate delivery pipelines and manage cloud infrastructure with industry-standard DevOps tools.",             tags: ["Docker", "AWS", "Kubernetes","CI/CD Pipeline"],                    duration: "4 Months", support: "Job Offer Support",logo: devopsLogo },
+  { id: 7,track: 4,badge: "Medium Growth", badgeColor: "yellow",  title: "Robotics with AI & IoT",           description: "Learn the fundamentals of robotics, AI, and IoT integration.",                                        tags: ["Embedded Systems", "Sensors", "AI Integration", "Hardware Programming"],   duration: "4 Months", support: "Job Offer Support",logo: roboticsLogo },
+  { id: 8,track: 6,badge: "Medium Growth", badgeColor: "yellow",  title: "Business Analytics",               description: "Drive smarter business decisions with data, dashboards, and reporting tools.",                        tags: ["Excel", "Power BI", "Reporting", "Data-Driven Decision Making"],          duration: "4 Months", support: "Job Offer Support",logo: baLogo }
   
 ];
 
@@ -205,7 +213,11 @@ export default function Courses({ registerGoToPage, registerPageRef, registerTot
                   <div className={`courses-badge badge-${course.badgeColor}`}>
                     <span>↗</span> {course.badge}
                   </div>
-                  <img src={logo} alt="GenLab Logo" className="courses-logo-img" />
+                  <img
+                    src={course.logo}
+                    alt={course.title}
+                    className="courses-logo-img"
+                  />
                 </div>
                 <div className="courses-card-bottom">
                   <div className="courses-card-text">
