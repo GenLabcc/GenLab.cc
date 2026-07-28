@@ -139,7 +139,7 @@ const ShabdamUI = () => {
           </div>
           <div className="live-badge">
             <span className="pulse-dot"></span>
-            Live
+            Under Developement
           </div>
         </header>
 

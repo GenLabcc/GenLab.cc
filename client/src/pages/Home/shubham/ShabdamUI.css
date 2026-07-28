@@ -80,9 +80,9 @@ body {
 .pulse-dot {
   width: 10px;
   height: 10px;
-  background: #4ade80;
+  background: red;
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(74, 222, 128, 0.6);
+  box-shadow: 0 0 10px rgba(222, 74, 74, 0.6);
 }
 
 .use-case-grid {

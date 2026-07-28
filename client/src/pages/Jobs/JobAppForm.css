@@ -66,6 +66,27 @@
   padding-left: 48px !important;
 }
 
+/* Normal background for all inputs */
+.jaf-field input,
+.jaf-field select,
+.jaf-field textarea {
+  background: #fff !important;
+  color: #111;
+}
+
+/* Remove Chrome/Edge autofill green/yellow background */
+.jaf-field input:-webkit-autofill,
+.jaf-field input:-webkit-autofill:hover,
+.jaf-field input:-webkit-autofill:focus,
+.jaf-field input:-webkit-autofill:active,
+.jaf-field select:-webkit-autofill,
+.jaf-field textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+  -webkit-text-fill-color: #111 !important;
+  border: 1px solid #ddd !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
 /* ── Progress indicator ─────────────────────────────────────── */
 
 .jaf-progress {

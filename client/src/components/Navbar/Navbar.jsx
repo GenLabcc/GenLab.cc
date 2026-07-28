@@ -60,7 +60,6 @@ export default function Navbar() {
         <div className="nav-pill">
           <div className="nav-links">
             <Link to="/" className="nav-link">Home</Link>
-            <Link to="/people" className="nav-link">People</Link>
 
             {/* Launchpad Dropdown */}
             <div
@@ -100,9 +99,10 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-
+            <Link to="/brand" className='nav-link'>Brand Studio</Link>
             <Link to="/products" className="nav-link">Product</Link>
-            <Link to="/verify-certificate" className="nav-link">Certificate</Link>
+            <Link to="/people" className="nav-link">People</Link>
+            <Link to="/verify-certificate" className="nav-link">Events</Link>
           </div>
 
           <button className="cta-btn" onClick={() => navigate('/shabdamui')}>
