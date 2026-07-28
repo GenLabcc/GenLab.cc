@@ -119,13 +119,19 @@ export default function Navbar() {
               : <Menu size={20} color={isLightNav ? "#111111" : "#E0E0E0"} />}
           </button>
         </div>
+          <button className="gen-login" onClick={() => navigate('/login')}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+          </button>
       </div>
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div className="mobile-menu-overlay">
           <Link to="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>Home</Link>
-          <Link to="/people" className="nav-link" onClick={() => setIsMenuOpen(false)}>People</Link>
+          <Link to="/brand" className="nav-link" onClick={() => setIsMenuOpen(false)}>Brand Studio</Link>
 
           {/* Mobile Launchpad accordion */}
           <div className="mobile-dropdown-wrapper">
@@ -160,16 +166,26 @@ export default function Navbar() {
           </div>
 
           <Link to="/products" className="nav-link" onClick={() => setIsMenuOpen(false)}>Product</Link>
-          <Link to="/verify-certificate" className="nav-link" onClick={() => setIsMenuOpen(false)}>Certificate</Link>
+          <Link to="/people" className="nav-link" onClick={() => setIsMenuOpen(false)}>People</Link>
+          <Link to="/verify-certificate" className="nav-link" onClick={() => setIsMenuOpen(false)}>Events</Link>
+          
+          <div className='mobile-cta-row'>
+            <button
+              className="cta-btn mobile-cta-overlay"
+              style={{ display: 'flex' }}
+              onClick={() => { setIsMenuOpen(false); navigate('/shabdamui'); }}
+            >
+              Shabdam AI
+              <CustomSparkle />
+            </button>
 
-          <button
-            className="cta-btn mobile-cta-overlay"
-            style={{ display: 'flex' }}
-            onClick={() => { setIsMenuOpen(false); navigate('/shabdamui'); }}
-          >
-            Shabdam AI
-            <CustomSparkle />
-          </button>
+            <button className="gen-login" onClick={() => navigate('/login')}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+              </svg>
+            </button>
+          </div>
         </div>
       )}
     </nav>
