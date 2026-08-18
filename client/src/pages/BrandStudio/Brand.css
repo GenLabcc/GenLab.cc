@@ -4,171 +4,1200 @@
   box-sizing: border-box;
 }
 
-.brand-hero {
-  position: relative;
-  min-height: 100vh;
+html {
+  scroll-behavior: smooth;
+}
+
+.brand-page {
+  cursor: none;
+}
+
+/* Custom circular cursor — follows the mouse across the whole page in
+   place of the default arrow. Position is set inline via transform in
+   BrandHero.jsx on every mousemove. */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  background: transparent;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.08s ease-out, border-color 0.2s ease;
+  mix-blend-mode: difference;
+}
+
+.custom-cursor.is-visible {
+  opacity: 1;
+}
+
+/* The center point/dot — sits inside the ring and tracks the same
+   transform, since it's positioned relative to .custom-cursor. */
+.custom-cursor-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+/* ==========================================================================
+   Site Header
+   Fixed bar — logo left, menu center, location meta right. Sits above
+   everything (including the custom cursor's z-index of 9999 is fine
+   since the cursor itself has pointer-events: none).
+   ========================================================================== */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 8%;
   background: #000;
-  overflow: hidden;
+  border-bottom: 2px solid #1a1a1a;
+}
+
+.site-header-logo {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   color: #fff;
-  display: flex;
-  align-items: center;
-  padding: 120px 8%;
 }
 
-.brand-hero-bg {
-  position: absolute;
-  inset: 0;
+.site-header-logo .brand-hero-accent-a,
+.site-header-logo .brand-hero-accent-b {
+  color: #fff;
 }
 
-.brand-hero-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
-  background-size: 80px 80px;
+.site-header-menu {
+  background: none;
+  border: none;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #fff;
+  cursor: pointer;
+  padding: 0;
 }
 
-.brand-hero-glow {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  background: rgba(212,255,0,.12);
-  border-radius: 50%;
-  filter: blur(120px);
-  top: -120px;
-  right: -120px;
-}
-
-.brand-hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 700px;
-}
-
-.brand-hero-label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #999;
-  font-size: 14px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 40px;
-}
-
-.brand-dot {
-  width: 8px;
-  height: 8px;
-  background: #d7ff00;
-  border-radius: 50%;
-}
-
-.brand-hero-title {
+.site-header-meta {
   display: flex;
   flex-direction: column;
-  font-size: clamp(3rem, 7vw, 6rem);
-  font-weight: 800;
-  line-height: .95;
+  align-items: flex-end;
+  text-align: right;
 }
 
-.brand-hero-title span {
+.site-header-meta-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: #fff;
+}
+
+.site-header-meta-sub {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 2px;
+}
+
+@media (max-width: 900px) {
+  .site-header {
+    padding: 16px 6%;
+  }
+  .site-header-meta-sub {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Full-screen menu overlay
+   Dimmed, blurred backdrop with a large centered numbered nav list,
+   mirroring the header (logo left) plus a CLOSE control top-right.
+   ========================================================================== */
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(10, 10, 10, 0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.menu-overlay-nav {
+  flex: 0 0 75vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.menu-overlay-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 8%;
+}
+
+.menu-overlay-close {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #fff;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu-overlay-close span {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.menu-overlay-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 10px 0;
+  transition: opacity 0.2s ease;
+}
+
+.menu-overlay-link:hover {
+  opacity: 0.7;
+}
+
+.menu-overlay-link-index {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.2px;
+}
+
+/* Small preview thumbnail that pops in beside the label on hover,
+   positioned inline right after the word (see reference screenshot). */
+.menu-overlay-link-preview {
+  display: inline-block;
+  width: 110px;
+  height: 70px;
+  border-radius: 6px;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.85) translateX(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.menu-overlay-link-preview.is-visible {
+  opacity: 1;
+  transform: scale(1) translateX(0);
+}
+
+.menu-overlay-link-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
-.brand-lime {
-  color: #d7ff00;
+@media (max-width: 900px) {
+  .menu-overlay-link-preview {
+    display: none;
+  }
 }
 
-.brand-hero-subtitle {
-  margin-top: 40px;
-  color: #9c9c9c;
-  font-size: 22px;
-  line-height: 1.7;
-  max-width: 650px;
+@media (max-width: 900px) {
+  .menu-overlay-header {
+    padding: 16px 6%;
+  }
+  .menu-overlay-link {
+    gap: 12px;
+  }
 }
 
-.brand-hero-buttons {
+/* ==========================================================================
+   Hero
+   Light, minimal statement layout — large left-aligned headline, short
+   supporting paragraph on the right, vertically centered in the viewport.
+   ========================================================================== */
+
+.brand-hero {
+  position: relative;
+  min-height: 100vh;
+  background: #f6f4f0;
+  color: #111;
   display: flex;
-  gap: 20px;
-  margin-top: 50px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  padding: 0 8%;
+  padding-top: 70px;
+}
+
+.brand-hero-headline {
+  max-width: 780px;
+}
+
+.brand-hero-headline h1 {
+  font-size: clamp(2.2rem, 5.2vw, 4.2rem);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: #111;
+}
+
+.brand-hero-reg {
+  font-size: 0.42em;
+  vertical-align: super;
+  font-weight: 300;
+}
+
+.brand-hero-side {
+  flex: 0 0 220px;
+  max-width: 220px;
+}
+
+.brand-hero-side p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #6b7280;
+}
+
+.brand-hero-accent-a {
+  color: #d8542f;
+  font-weight: 600;
+}
+
+.brand-hero-accent-b {
+  color: #3a5bdc;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .brand-hero {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 40px;
+    padding: 140px 8% 100px;
+  }
+  .brand-hero-side {
+    max-width: 100%;
+  }
+}
+
+/* Scroll-grow video section */
+.brand-logo-reveal {
+  position: relative;
+  min-height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.brand-logo-wrap {
+  position: relative;
+}
+
+/* The base clip — fills the growing wrap div and crops to it. Was
+   previously an <img> with no explicit size (it relied on natural
+   image dimensions); a <video> needs width/height set explicitly. */
+.brand-logo-big {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  will-change: width, height;
+}
+
+/* Blur circle that follows the cursor while hovering the section.
+   Renamed from .brand-logo-blur-mask to .brand-logo-blur to match the
+   class actually applied in BrandHero.jsx. Driven by --bx/--by custom
+   properties set on mousemove. */
+.brand-logo-blur {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+  pointer-events: none;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  -webkit-mask-image: radial-gradient(
+    circle 160px at var(--bx, 50%) var(--by, 50%),
+    black 0%,
+    black 55%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    circle 160px at var(--bx, 50%) var(--by, 50%),
+    black 0%,
+    black 55%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.brand-logo-blur.is-active {
+  opacity: 1;
+}
+
+.splash-cursor-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+  display: block;
+  filter: blur(8px);
+}
+
+/* ==========================================================================
+   Who We Are
+   Light editorial break from the dark hero/logo sections — photo left,
+   short label + statement right.
+   ========================================================================== */
+
+.who-we-are {
+  position: relative;
+  min-height: auto;
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 90px;
+  padding: 80px 8%;
   flex-wrap: wrap;
 }
 
-.brand-primary-btn {
-  background: #d7ff00;
-  color: #000;
-  border: none;
-  padding: 20px 36px;
-  border-radius: 50px;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  transition: .3s;
-}
-
-.brand-primary-btn:hover {
-  transform: translateY(-3px);
-}
-
-.brand-secondary-btn {
-  background: transparent;
-  color: #fff;
-  border: 1px solid #444;
-  padding: 20px 36px;
-  border-radius: 50px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: .3s;
-}
-
-.brand-secondary-btn:hover {
-  border-color: #d7ff00;
-  color: #d7ff00;
-}
-
-.brand-marquee {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  border-top: 1px solid #222;
+.who-we-are-image {
+  flex: 0 1 490px;
+  aspect-ratio: 4 / 5;
+  border-radius: 6px;
   overflow: hidden;
-  white-space: nowrap;
-  padding: 18px 0;
+  background: #2a2a2a;
 }
 
-.brand-marquee-track {
-  display: inline-block;
-  color: #555;
+.who-we-are-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.who-we-are-copy {
+  flex: 1 1 480px;
+  max-width: 640px;
+}
+
+.who-we-are-label {
+  display: block;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 4px;
-  animation: brandMarquee 25s linear infinite;
+  letter-spacing: 0.3px;
+  color: #fff;
+  margin-bottom: 22px;
 }
 
-@keyframes brandMarquee {
-  from { transform: translateX(0%); }
-  to { transform: translateX(-50%); }
+.who-we-are-text {
+  font-size: clamp(24px, 2.6vw, 30px);
+  line-height: 1.5;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -0.01em;
 }
 
-@media (max-width: 768px) {
-  .brand-hero {
-    padding: 80px 25px;
+@media (max-width: 900px) {
+  .who-we-are {
+    padding: 90px 8%;
+    gap: 50px;
   }
-  .brand-hero-title {
-    font-size: 54px;
+  .who-we-are-image {
+    flex: 1 1 100%;
+    max-width: 420px;
+    margin: 0 auto;
   }
-  .brand-hero-subtitle {
-    font-size: 18px;
+  .who-we-are-copy {
+    flex: 1 1 100%;
+    max-width: 100%;
+    text-align: left;
   }
-  .brand-hero-buttons {
-    flex-direction: column;
+}
+
+@media (max-width: 480px) {
+  .who-we-are-text {
+    font-size: 22px;
   }
-  .brand-primary-btn,
-  .brand-secondary-btn {
-    width: 100%;
+}
+
+/* ==========================================================================
+   What We Do
+   Big display heading + a divided list of services. Continues the light
+   editorial tone of Who We Are.
+   ========================================================================== */
+
+.what-we-do {
+  position: relative;
+  min-height: auto;
+  background: #000;
+  color: #fff;
+  padding: 30px 8% 60px;
+}
+
+.what-we-do-location {
+  position: absolute;
+  top: 24px;
+  right: 8%;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: #fff;
+}
+
+.what-we-do-title {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 20px 0 0;
+}
+
+.what-we-do-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  align-items: start;
+  gap: 70px;
+  margin-top: 20px;
+}
+
+.what-we-do-list {
+  list-style: none;
+  /* gap (70px) + media column width (400px) from .what-we-do-body above —
+     used below to stretch each divider line past the text column and
+     all the way across the media panel. Update if those values change. */
+}
+
+.what-we-do-list li {
+  position: relative;
+}
+
+.what-we-do-list li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: -470px;
+  bottom: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.what-we-do-list li:first-child::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: -470px;
+  top: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.what-we-do-row {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 34px 0;
+  transition: padding-left 0.25s ease;
+}
+
+.what-we-do-row:hover,
+.what-we-do-row.is-active {
+  padding-left: 14px;
+}
+
+.what-we-do-row-title {
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 500;
+  color: #6b6b6b;
+  transition: color 0.25s ease;
+}
+
+.what-we-do-row.is-active .what-we-do-row-title {
+  color: #fff;
+}
+
+.what-we-do-row-desc {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6b6b6b;
+  max-width: 460px;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.25s ease, max-height 0.25s ease, margin-top 0.25s ease;
+}
+
+.what-we-do-row.is-active .what-we-do-row-desc {
+  opacity: 1;
+  max-height: 80px;
+  color: #a8a8a8;
+}
+
+.what-we-do-media {
+  position: sticky;
+  top: 120px;
+  z-index: 1;
+  width: 100%;
+  height: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  opacity: 0;
+  transition: opacity 0.3s ease, height 0.3s ease, background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.what-we-do-media.is-visible {
+  opacity: 1;
+  height: 470px;
+  background: #000;
+  border-color: transparent;
+  box-shadow: 0 40px 60px -25px rgba(0, 0, 0, 0.6);
+}
+
+.what-we-do-media img,
+.what-we-do-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  animation: whatWeDoFade 0.35s ease;
+}
+
+@keyframes whatWeDoFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 900px) {
+  .what-we-do {
+    padding: 90px 6% 90px;
+  }
+  .what-we-do-location {
+    position: static;
+    display: block;
+    margin-bottom: 30px;
+  }
+  .what-we-do-title {
+    margin-top: 0;
+  }
+  .what-we-do-body {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .what-we-do-media {
+    position: static;
+    order: -1;
+    aspect-ratio: 16 / 10;
+  }
+  .what-we-do-row-desc,
+  .what-we-do-row.is-active .what-we-do-row-desc {
+    opacity: 1;
+    max-height: none;
+  }
+  .what-we-do-list li::after,
+  .what-we-do-list li:first-child::before {
+    right: 0;
+  }
+}
+
+/* ==========================================================================
+   Selected Projects
+   Staggered two-column layout: "Selected" + first card on the left,
+   "Projects" + second card offset lower on the right.
+   ========================================================================== */
+
+.selected-projects {
+  position: relative;
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
+  padding: 50px 8% 140px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 60px;
+}
+
+.selected-projects-col-right {
+  margin-top: 210px;
+}
+
+.selected-projects-title {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 50px;
+}
+
+.project-card-media {
+  border-radius: 4px;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: #000;
+  box-shadow: 0 40px 60px -25px rgba(0, 0, 0, 0.6);
+}
+
+.project-card-media img,
+.project-card-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-card-title {
+  margin-top: 26px;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.project-card-desc {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #a8a8a8;
+  max-width: 420px;
+}
+
+@media (max-width: 900px) {
+  .selected-projects {
+    grid-template-columns: 1fr;
+    padding: 80px 6% 100px;
+    row-gap: 70px;
+  }
+  .selected-projects-col-right {
+    margin-top: 0;
+  }
+}
+
+/* ==========================================================================
+   Growth, Our Way
+   Now shown as a full-screen overlay (opened via MENU → Growth) rather
+   than a section in the normal page scroll. Four "screenshot" cards
+   stand on stone pedestals in front of a softly blurred coliseum
+   silhouette. A rotated pink sticky note sits centered on top by
+   default; closing it (×) reveals the cards sharp and interactive,
+   exactly as the reference screenshot. A CLOSE button (top-right)
+   exits the overlay back to the page.
+   ========================================================================== */
+
+.growth-section {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #e9e2d2 0%, #cfc6b2 55%, #b9ae97 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 8% 60px;
+}
+
+/* Overlay mode — fixed above the whole page, scrollable if content
+   ever exceeds viewport height (e.g. small screens). Sits below the
+   main menu overlay's z-index (2000) so reopening the menu still
+   layers correctly on top. */
+.growth-section-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  overflow-y: auto;
+}
+
+.growth-overlay-close {
+  position: fixed;
+  top: 18px;
+  right: 8%;
+  z-index: 1501;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.growth-overlay-close span {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Colosseum/temple backdrop — real photo (assets/download.png), softly
+   blurred and faded top/bottom so the cards read clearly in front of it.
+   This background stays sharp/unaffected regardless of note state — only
+   the card row (.growth-cards) blurs when the pink note is open. */
+.growth-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.growth-bg-image {
+  position: absolute;
+  inset: -40px;
+  width: calc(100% + 80px);
+  height: calc(100% + 80px);
+  /* background-image is set inline in BrandHero.jsx via the imported
+     asset, so the bundler resolves the path correctly regardless of
+     this file's location. */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+
+/* Row of pedestal cards, evenly spaced across the section. Blurred and
+   dimmed while the pink note is open; sharp and clickable once closed. */
+.growth-cards {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  max-width: 1300px;
+  /* Always blurred — intentional, permanent effect, independent of the
+     pink note's open/closed state. Kept light (~85% clarity) so text
+     and shapes stay readable. */
+  filter: blur(1.5px);
+  opacity: 0.95;
+}
+
+/* Cards stay non-interactive while blurred (note open); once the note
+   is closed they're still visually blurred but become clickable again. */
+.growth-cards.is-blurred {
+  pointer-events: none;
+}
+
+.growth-cards.is-active {
+  pointer-events: auto;
+}
+
+.growth-card {
+  flex: 1 1 0;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.25s ease;
+}
+
+.growth-card:hover {
+  transform: translateY(-10px);
+}
+
+/* The "screenshot" window */
+.growth-card-window {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 12px 20px -10px rgba(40, 30, 15, 0.5);
+}
+
+.growth-card-topbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 10px;
+}
+
+.growth-card-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #e2e2e2;
+  flex-shrink: 0;
+}
+
+.growth-card-url {
+  flex: 1;
+  font-size: 9px;
+  color: #8a8a8a;
+  background: #f3f3f3;
+  border-radius: 20px;
+  padding: 4px 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.growth-card-url-label {
+  background: transparent;
+  color: #9a9a9a;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding-left: 2px;
+}
+
+.growth-card-tag {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  padding: 4px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.growth-card-tag-green {
+  background: #d9f7e2;
+  color: #1a8f4c;
+}
+
+.growth-card-tag-inline {
+  margin-left: auto;
+}
+
+.growth-card-badge {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #eef1ff;
+  border: 1px solid #dce1fb;
+  margin-left: auto;
+}
+
+.growth-card-preview {
+  position: relative;
+  margin: 0 10px 12px;
+  border-radius: 10px;
+  overflow: hidden;
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.growth-card-preview-seo {
+  background: #f4f4f4;
+}
+
+.growth-card-preview-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  background: #eafbf0;
+  border: 1px solid #cdf2da;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 10px;
+  color: #333;
+}
+
+.growth-card-check {
+  color: #1a8f4c;
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.growth-card-preview-uiux {
+  background: linear-gradient(135deg, #ece4ff, #d9c9ff);
+}
+
+.growth-card-blob {
+  position: absolute;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.growth-card-blob-1 {
+  width: 60%;
+  height: 10px;
+  top: 18px;
+  left: 10px;
+}
+
+.growth-card-blob-2 {
+  width: 40%;
+  height: 10px;
+  top: 36px;
+  left: 10px;
+}
+
+.growth-card-preview-strategy {
+  background: linear-gradient(135deg, #dff3ff, #d3f5e6);
+  justify-content: space-between;
+}
+
+.growth-card-chip {
+  background: #fff;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #333;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.growth-card-blob-3 {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  position: static;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.growth-card-preview-ai {
+  background: #f4f4f4;
+  gap: 8px;
+}
+
+.growth-card-bot {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.growth-card-info {
+  padding: 16px 16px 20px;
+  text-align: center;
+}
+
+.growth-card-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 6px;
+}
+
+.growth-card-desc {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #6b6b6b;
+}
+
+.growth-card-btn {
+  margin-top: 18px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  padding: 9px 18px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #111;
+  box-shadow: 0 10px 18px -6px rgba(0, 0, 0, 0.25);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+/* The centered pink sticky note */
+.growth-note {
+  position: absolute;
+  z-index: 2;
+  width: min(480px, 92%);
+  background: linear-gradient(160deg, #ff8fb3, #ef3f7c);
+  color: #1a1a1a;
+  border-radius: 6px;
+  padding: 34px 34px 38px;
+  transform: rotate(-2deg);
+  box-shadow: 0 40px 90px -20px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.growth-note-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.growth-note-close:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.growth-note-title {
+  font-size: clamp(30px, 4vw, 38px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.growth-note-rule {
+  display: block;
+  width: 170px;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.55);
+  margin: 14px 0 24px;
+}
+
+/* Polaroid-style frame around the experiment video */
+.growth-note-media {
+  position: relative;
+  background: #fff;
+  padding: 10px 10px 32px;
+  border-radius: 3px;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25);
+  margin-bottom: 24px;
+}
+
+.growth-note-media video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 2px;
+  background: #111;
+}
+
+.growth-note-media-caption {
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  font-size: 12px;
+  font-style: italic;
+  color: #333;
+}
+
+.growth-note-desc {
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(0, 0, 0, 0.75);
+  margin-bottom: 22px;
+}
+
+.growth-note-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1d3fd1;
+  text-decoration: none;
+}
+
+.growth-note-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .growth-cards {
+    flex-wrap: wrap;
     justify-content: center;
+  }
+  .growth-card {
+    max-width: 200px;
+  }
+  .growth-note {
+    transform: rotate(0deg);
+    width: 100%;
+    position: relative;
+  }
+}
+
+@media (max-width: 480px) {
+  .growth-section {
+    padding: 80px 6% 60px;
+  }
+  .growth-note {
+    padding: 26px 22px 30px;
+  }
+}
+
+/* ==========================================================================
+   Contact — "Let's Connect"
+   Full-screen overlay, opened via MENU → Contact, same pattern as the
+   Growth overlay above (fixed, full viewport, sits under the main menu
+   overlay's z-index of 2000). Renders <ConnectSection /> centered, on
+   a solid dark background, with its own CLOSE control top-right reusing
+   .growth-overlay-close.
+   ========================================================================== */
+
+.contact-section-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  background: #000;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 8% 60px;
+}
+
+@media (max-width: 900px) {
+  .contact-section-overlay {
+    padding: 90px 6% 60px;
+    align-items: flex-start;
   }
 }

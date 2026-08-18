@@ -50,6 +50,13 @@ export default function Navbar() {
     }, 150);
   };
 
+  // Brand Studio page has its own fixed header — don't render the
+  // global navbar there. Placed after all hooks above so hook order
+  // stays consistent across renders.
+  if (location.pathname === '/brand') {
+    return null;
+  }
+
   return (
     <nav className={`nav-container ${isLightNav ? 'light-nav' : ''}`}>
       <div className="nav-left-group">
