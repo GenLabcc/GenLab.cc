@@ -177,10 +177,34 @@ html {
 
 @media (max-width: 900px) {
   .menu-overlay-header {
-    padding: 16px 6%;
+    padding: 18px 6%;
   }
+
+  .site-header-logo {
+    font-size: 18px;
+  }
+
+  .menu-overlay-close {
+    font-size: 10px;
+  }
+
+  .menu-overlay-nav {
+    flex: 1;
+    width: 100%;
+    padding: 20px 6%;
+    gap: 2px;
+  }
+
   .menu-overlay-link {
-    gap: 12px;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 10px;
+    font-size: clamp(2rem, 11vw, 3.2rem);
+    padding: 8px 0;
+  }
+
+  .menu-overlay-link-index {
+    font-size: 10px;
   }
 }
 
@@ -244,14 +268,36 @@ html {
 
 @media (max-width: 900px) {
   .brand-hero {
+    min-height: 100svh;
+    width: 100%;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    gap: 40px;
-    padding: 100px 8% 100px;
+    gap: 24px;
+    padding: 40px 6% 60px;
   }
-  .brand-hero-side {
+
+  .brand-hero-headline {
+    width: 100%;
     max-width: 100%;
+  }
+
+  .brand-hero-headline h1 {
+    width: 100%;
+    font-size: clamp(2rem, 10vw, 3rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .brand-hero-side {
+    width: 100%;
+    max-width: 320px;
+    flex: none;
+  }
+
+  .brand-hero-side p {
+    font-size: 13px;
+    line-height: 1.6;
   }
 }
 
@@ -386,18 +432,34 @@ html {
 
 @media (max-width: 900px) {
   .who-we-are {
-    padding: 90px 8%;
-    gap: 50px;
+    width: 100%;
+    padding: 70px 6%;
+    gap: 35px;
+    flex-direction: column;
   }
+
   .who-we-are-image {
-    flex: 1 1 100%;
-    max-width: 420px;
+    width: 100%;
+    max-width: 360px;
+    flex: none;
     margin: 0 auto;
   }
+
   .who-we-are-copy {
-    flex: 1 1 100%;
+    width: 100%;
     max-width: 100%;
+    flex: none;
     text-align: left;
+  }
+
+  .who-we-are-label {
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+
+  .who-we-are-text {
+    font-size: clamp(20px, 6vw, 24px);
+    line-height: 1.45;
   }
 }
 
@@ -656,12 +718,37 @@ html {
 
 @media (max-width: 900px) {
   .selected-projects {
+    width: 100%;
+    min-height: auto;
     grid-template-columns: 1fr;
-    padding: 80px 6% 100px;
-    row-gap: 70px;
+    padding: 70px 6% 90px;
+    row-gap: 60px;
   }
+
   .selected-projects-col-right {
     margin-top: 0;
+  }
+
+  .selected-projects-title {
+    font-size: clamp(2.8rem, 12vw, 4.5rem);
+    line-height: 0.95;
+    margin-bottom: 30px;
+  }
+
+  .project-card-media {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+  }
+
+  .project-card-title {
+    margin-top: 18px;
+    font-size: 20px;
+  }
+
+  .project-card-desc {
+    margin-top: 8px;
+    font-size: 13px;
+    line-height: 1.6;
   }
 }
 
@@ -1103,12 +1190,68 @@ html {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 900px) {
   .growth-section {
+    min-height: 100svh;
     padding: 80px 6% 60px;
   }
+
+  .growth-cards {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .growth-card {
+    flex: 0 1 calc(50% - 8px);
+    max-width: none;
+    min-width: 0;
+  }
+
+  .growth-card-window {
+    border-radius: 10px;
+  }
+
+  .growth-card-topbar {
+    padding: 8px;
+  }
+
+  .growth-card-preview {
+    margin: 0 8px 8px;
+    min-height: 60px;
+  }
+
+  .growth-card-info {
+    padding: 12px 10px 16px;
+  }
+
+  .growth-card-title {
+    font-size: 15px;
+  }
+
+  .growth-card-desc {
+    font-size: 11px;
+  }
+
+  .growth-card-btn {
+    margin-top: 12px;
+    padding: 8px 14px;
+  }
+
   .growth-note {
+    width: calc(100% - 24px);
+    max-width: 420px;
     padding: 26px 22px 30px;
+    transform: rotate(0deg);
+  }
+
+  .growth-note-title {
+    font-size: 28px;
+  }
+
+  .growth-note-desc {
+    font-size: 13px;
   }
 }
 
@@ -1135,7 +1278,51 @@ html {
 
 @media (max-width: 900px) {
   .contact-section-overlay {
-    padding: 90px 6% 60px;
+    width: 100%;
+    min-height: 100svh;
+    padding: 80px 6% 50px;
     align-items: flex-start;
+    justify-content: center;
+    overflow-y: auto;
+  }
+}
+
+
+/* ==========================================================================
+   FINAL MOBILE RESPONSIVE FIXES
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .brand-page {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+  }
+
+  .menu-overlay {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .brand-hero,
+  .who-we-are,
+  .what-we-do,
+  .selected-projects,
+  .growth-section,
+  .contact-section-overlay {
+    width: 100%;
+    max-width: 100%;
   }
 }
