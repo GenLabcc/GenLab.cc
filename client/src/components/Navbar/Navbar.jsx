@@ -14,28 +14,36 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLaunchpadOpen, setIsLaunchpadOpen] = useState(false);
   const [isMobileLaunchpadOpen, setIsMobileLaunchpadOpen] = useState(false);
+  const [isBrandOpen, setIsBrandOpen] = useState(false);
+  const [isMobileBrandOpen, setIsMobileBrandOpen] = useState(false);
   const launchpadRef = useRef(null);
+  const brandRef = useRef(null);
   const closeTimerRef = useRef(null);
+  const brandCloseTimerRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
 
   const isLightNav = location.pathname === '/shabdamui';
 
-  // Close dropdown when clicking outside
+  // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (launchpadRef.current && !launchpadRef.current.contains(e.target)) {
         setIsLaunchpadOpen(false);
+      }
+      if (brandRef.current && !brandRef.current.contains(e.target)) {
+        setIsBrandOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Clear timer on unmount
+  // Clear timers on unmount
   useEffect(() => {
     return () => {
       if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+      if (brandCloseTimerRef.current) clearTimeout(brandCloseTimerRef.current);
     };
   }, []);
 
@@ -50,12 +58,22 @@ export default function Navbar() {
     }, 150);
   };
 
-  // Brand Studio page has its own fixed header — don't render the
-  // global navbar there. Placed after all hooks above so hook order
-  // stays consistent across renders.
-  if (location.pathname === '/brand') {
-    return null;
-  }
+  const handleBrandMouseEnter = () => {
+    if (brandCloseTimerRef.current) clearTimeout(brandCloseTimerRef.current);
+    setIsBrandOpen(true);
+  };
+
+  const handleBrandMouseLeave = () => {
+    brandCloseTimerRef.current = setTimeout(() => {
+      setIsBrandOpen(false);
+    }, 150);
+  };
+
+  // NOTE: Brand Studio ("/brand") used to have its own fixed header, so
+  // this component self-suppressed there. That header has been removed
+  // and Brand Studio now uses this global Navbar like every other page,
+  // so the pathname check that used to `return null` here has been
+  // removed too.
 
   return (
     <nav className={`nav-container ${isLightNav ? 'light-nav' : ''}`}>
@@ -106,7 +124,44 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-            <Link to="/brand" className='nav-link'>Brand Studio</Link>
+            {/* Brand Studio Dropdown */}
+            <div
+              className="nav-dropdown-wrapper"
+              ref={brandRef}
+              onMouseEnter={handleBrandMouseEnter}
+              onMouseLeave={handleBrandMouseLeave}
+            >
+              <button
+                className={`nav-link nav-dropdown-trigger ${isBrandOpen ? 'active' : ''}`}
+                onClick={() => setIsBrandOpen((prev) => !prev)}
+                aria-expanded={isBrandOpen}
+              >
+                Brand Studio
+                <ChevronDown
+                  size={14}
+                  className={`dropdown-chevron ${isBrandOpen ? 'rotated' : ''}`}
+                />
+              </button>
+
+              {isBrandOpen && (
+                <div className={`nav-dropdown-menu ${isLightNav ? 'light' : ''}`}>
+                  <Link
+                    to="/brand"
+                    className="nav-dropdown-item"
+                    onClick={() => setIsBrandOpen(false)}
+                  >
+                    Brand Studio
+                  </Link>
+                  <Link
+                    to="/brand-story"
+                    className="nav-dropdown-item"
+                    onClick={() => setIsBrandOpen(false)}
+                  >
+                    Brand Story
+                  </Link>
+                </div>
+              )}
+            </div>
             <Link to="/products" className="nav-link">Product</Link>
             <Link to="/people" className="nav-link">People</Link>
             <Link to="/verify-certificate" className="nav-link">Events</Link>
@@ -138,7 +193,38 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="mobile-menu-overlay">
           <Link to="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>Home</Link>
-          <Link to="/brand" className="nav-link" onClick={() => setIsMenuOpen(false)}>Brand Studio</Link>
+
+          {/* Mobile Brand Studio accordion */}
+          <div className="mobile-dropdown-wrapper">
+            <button
+              className={`nav-link mobile-dropdown-trigger ${isMobileBrandOpen ? 'active' : ''}`}
+              onClick={() => setIsMobileBrandOpen((prev) => !prev)}
+            >
+              Brand Studio
+              <ChevronDown
+                size={14}
+                className={`dropdown-chevron ${isMobileBrandOpen ? 'rotated' : ''}`}
+              />
+            </button>
+            {isMobileBrandOpen && (
+              <div className="mobile-dropdown-submenu">
+                <Link
+                  to="/brand"
+                  className="nav-link mobile-sub-link"
+                  onClick={() => { setIsMenuOpen(false); setIsMobileBrandOpen(false); }}
+                >
+                  Brand Studio
+                </Link>
+                <Link
+                  to="/brand-story"
+                  className="nav-link mobile-sub-link"
+                  onClick={() => { setIsMenuOpen(false); setIsMobileBrandOpen(false); }}
+                >
+                  Brand Story
+                </Link>
+              </div>
+            )}
+          </div>
 
           {/* Mobile Launchpad accordion */}
           <div className="mobile-dropdown-wrapper">
