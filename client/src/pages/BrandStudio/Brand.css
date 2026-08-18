@@ -50,85 +50,11 @@ html {
 }
 
 /* ==========================================================================
-   Site Header
-   Fixed bar — logo left, menu center, location meta right. Sits above
-   everything (including the custom cursor's z-index of 9999 is fine
-   since the cursor itself has pointer-events: none).
-   ========================================================================== */
-
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1600;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 18px 8%;
-  background: #000;
-  border-bottom: 2px solid #1a1a1a;
-}
-
-.site-header-logo {
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: #fff;
-}
-
-.site-header-logo .brand-hero-accent-a,
-.site-header-logo .brand-hero-accent-b {
-  color: #fff;
-}
-
-.site-header-menu {
-  background: none;
-  border: none;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  color: #fff;
-  cursor: pointer;
-  padding: 0;
-}
-
-.site-header-meta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  text-align: right;
-}
-
-.site-header-meta-title {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  color: #fff;
-}
-
-.site-header-meta-sub {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.2px;
-  color: rgba(255, 255, 255, 0.7);
-  margin-top: 2px;
-}
-
-@media (max-width: 900px) {
-  .site-header {
-    padding: 16px 6%;
-  }
-  .site-header-meta-sub {
-    display: none;
-  }
-}
-
-/* ==========================================================================
    Full-screen menu overlay
    Dimmed, blurred backdrop with a large centered numbered nav list,
    mirroring the header (logo left) plus a CLOSE control top-right.
+   The old fixed .site-header bar has been removed — this overlay's own
+   header row (.menu-overlay-header) now carries the logo/close controls.
    ========================================================================== */
 
 .menu-overlay {
@@ -157,6 +83,18 @@ html {
   align-items: center;
   justify-content: space-between;
   padding: 18px 8%;
+}
+
+.site-header-logo {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.site-header-logo .brand-hero-accent-a,
+.site-header-logo .brand-hero-accent-b {
+  color: #fff;
 }
 
 .menu-overlay-close {
@@ -250,6 +188,7 @@ html {
    Hero
    Light, minimal statement layout — large left-aligned headline, short
    supporting paragraph on the right, vertically centered in the viewport.
+   No longer offset for a fixed header (removed), so top padding is 0.
    ========================================================================== */
 
 .brand-hero {
@@ -262,7 +201,6 @@ html {
   justify-content: space-between;
   gap: 60px;
   padding: 0 8%;
-  padding-top: 70px;
 }
 
 .brand-hero-headline {
@@ -310,7 +248,7 @@ html {
     align-items: flex-start;
     justify-content: center;
     gap: 40px;
-    padding: 140px 8% 100px;
+    padding: 100px 8% 100px;
   }
   .brand-hero-side {
     max-width: 100%;

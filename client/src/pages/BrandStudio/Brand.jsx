@@ -67,7 +67,9 @@ const BrandHero = () => {
   const [activeService, setActiveService] = useState(null);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [cursorVisible, setCursorVisible] = useState(false);
-  // Full-screen menu overlay, toggled by the header's MENU button.
+  // Full-screen menu overlay. The site-header MENU button that used to
+  // toggle this has been removed — trigger setIsMenuOpen(true) from
+  // wherever the new nav lives (e.g. the global Navbar) if still needed.
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // Which menu item (by index) is currently hovered — drives the preview image.
   const [hoveredMenuIndex, setHoveredMenuIndex] = useState(null);
@@ -170,29 +172,6 @@ const BrandHero = () => {
       >
         <span className="custom-cursor-dot"></span>
       </div>
-
-      {/* Fixed site header — logo left, menu center, location right */}
-      <header className="site-header">
-        <span className="site-header-logo">
-          <span className="brand-hero-accent-a">Gen</span>
-          <span className="brand-hero-accent-b">Lab</span>
-        </span>
-
-        <button
-          type="button"
-          className="site-header-menu"
-          onClick={() => setIsMenuOpen(true)}
-        >
-          MENU
-        </button>
-
-        <div className="site-header-meta">
-          <span className="site-header-meta-title">Digital Agency</span>
-          <span className="site-header-meta-sub">
-            Based in Nagercoil &amp; Kanyakumari
-          </span>
-        </div>
-      </header>
 
       {/* Full-screen menu overlay */}
       {isMenuOpen && (
