@@ -1,0 +1,407 @@
+@import url("https://api.fontshare.com/v2/css?f[]=clash-display@1,200,300,400,500,600,700&display=swap");
+
+:root {
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --border: #2a2a2a;
+  --border-soft: rgba(255, 255, 255, 0.12);
+  --text-primary: #f5f5f5;
+  --text-secondary: #9a9a9a;
+  --accent: #D7FF00;
+  --accent-text: #101008;
+  --resend: #ff6b3d;
+  --radius-full: 999px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+.login-page {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: "Clash Display Variable", "Clash Display", "Segoe UI",
+    -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ---------- Main content ---------- */
+
+.login-main {
+  width: 100%;
+  max-width: 600px;
+  padding: 64px 16px 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.verify-bar {
+  width: 600px;
+  height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--border-soft);
+  border-radius: 50px;
+  padding: 12px;
+  opacity: 1;
+  margin-bottom: 56px;
+}
+
+.verify-bar__option {
+  flex: none;
+  width: 278px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--text-primary);
+  border: none;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  cursor: pointer;
+  opacity: 1;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.verify-bar__option:first-child {
+  width: 288px;
+}
+
+.verify-bar__option--active {
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+.login-title {
+  font-size: 3rem;
+  font-weight: 600;
+  margin: 0 0 12px;
+  letter-spacing: -0.02em;
+}
+
+.login-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  margin: 0 0 40px;
+}
+
+/* ---------- Role tabs ---------- */
+
+.role-tabs {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+
+.role-tab {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  padding: 0 0 16px;
+  cursor: pointer;
+  position: relative;
+}
+
+.role-tab--active {
+  color: var(--accent);
+}
+
+.role-tab--active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--accent);
+}
+
+/* ---------- Form ---------- */
+
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-field {
+  position: relative;
+  width: 100%;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.input-field input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 8px 0 12px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.input-field input:focus {
+  border-bottom-color: var(--accent);
+}
+
+.input-field input:-webkit-autofill,
+.input-field input:-webkit-autofill:hover,
+.input-field input:-webkit-autofill:focus,
+.input-field input:-webkit-autofill:active,
+.input-field input:autofill {
+  -webkit-text-fill-color: var(--text-primary) !important;
+  caret-color: var(--text-primary) !important;
+  transition: background-color 9999s ease-in-out 0s !important;
+  box-shadow: 0 0 0 1000px var(--bg) inset !important;
+  background-color: var(--bg) !important;
+}
+
+.otp-inputs__digit:-webkit-autofill,
+.otp-inputs__digit:autofill {
+  -webkit-text-fill-color: var(--text-primary) !important;
+  caret-color: var(--text-primary) !important;
+  transition: background-color 9999s ease-in-out 0s !important;
+  box-shadow: 0 0 0 1000px var(--bg) inset !important;
+  background-color: var(--bg) !important;
+}
+
+.input-field label {
+  position: absolute;
+  left: 0;
+  top: 8px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  pointer-events: none;
+  transition: all 0.15s ease;
+}
+
+.input-field input:focus + label,
+.input-field input:not(:placeholder-shown) + label {
+  top: -14px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.otp-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 8px 8px 8px 24px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.otp-button:hover {
+  border-color: var(--accent);
+}
+
+.form-error {
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  margin: -12px 0 24px;
+  text-align: center;
+}
+
+.otp-button:disabled,
+.confirm-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.otp-button:disabled:hover,
+.confirm-button:disabled:hover {
+  border-color: var(--border-soft);
+}
+
+.otp-button__icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ---------- OTP step ---------- */
+
+.otp-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 8px;
+}
+
+.otp-form__hint {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin: 0 0 48px;
+}
+
+.otp-form__hint span {
+  color: var(--text-primary);
+}
+
+.otp-inputs {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.otp-inputs__digit {
+  width: 48px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  text-align: center;
+  padding: 0 0 8px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.otp-inputs__digit:focus {
+  border-bottom-color: var(--accent);
+}
+
+.otp-form__resend {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.otp-form__resend p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: 0 0 6px;
+}
+
+.otp-form__timer {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.otp-form__resend button {
+  background: none;
+  border: none;
+  color: var(--resend);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.otp-form__resend button:disabled,
+.otp-form__resend-btn--disabled {
+  color: var(--text-secondary);
+  cursor: not-allowed;
+}
+
+.otp-form__actions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.otp-form__back {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+}
+
+.confirm-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 8px 8px 8px 24px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.confirm-button:hover {
+  border-color: var(--accent);
+}
+
+.confirm-button__icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #f5f5f5;
+  color: var(--accent-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 720px) {
+  .login-title {
+    font-size: 2.2rem;
+  }
+
+  .otp-inputs {
+    gap: 20px;
+  }
+
+  .verify-bar {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    border-radius: 20px;
+    padding: 16px;
+  }
+
+  .verify-bar__option,
+  .verify-bar__option:first-child {
+    width: 100%;
+  }
+}

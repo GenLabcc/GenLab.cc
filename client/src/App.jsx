@@ -12,6 +12,7 @@ import Tracksection from '@/components/Courses/Tracksection.jsx';
 import Upskilling from "@/pages/Upskilling/Upskilling.jsx";
 import VerifyCertificate from "@/pages/VerifyCertificate.jsx";
 import ShabdamUI from "@/pages/Home/shubham/ShabdamUI.jsx";
+import Login from "@/pages/login/Login.jsx";
 
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
@@ -26,6 +27,7 @@ import "./App.css";
 function App() {
   const location = useLocation();
   const isVerifyPage = location.pathname === "/verify-certificate";
+  const isLoginPage = location.pathname === "/login";
   const isHome = location.pathname === "/";
 
   useEffect(() => {
@@ -68,10 +70,11 @@ function App() {
           <Route path="/products/custom-website-chatbots" element={<ProductDetail />} />
           <Route path="/verify-certificate" element={<VerifyCertificate />} />
           <Route path="/shabdamui" element={<ShabdamUI />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
 
-      {!isVerifyPage && <Footer />}
+      {!isVerifyPage && !isLoginPage && <Footer />}
     </>
   );
 }
