@@ -12,12 +12,13 @@ import nodSpaShot from "../../assets/nod-travel.jpg.mp4";
 // Scroll-grow logo section — now plays a video instead of the static logo.
 import logoRevealClip from "../../assets/nod-travel.jpg.mp4";
 
-// What We Do — one clip per row for now. Swap these for dedicated
-// per-service clips whenever you have them.
-import webDesignClip from "../../assets/nod-travel.jpg.mp4";
-import filmPhotoClip from "../../assets/nod-travel.jpg.mp4";
-import brandIdentityClip from "../../assets/nod-travel.jpg.mp4";
-import marketingGrowthClip from "../../assets/nod-travel.jpg.mp4";
+// What We Do — one IMAGE per row (switched from video). Currently all four
+// reuse whoWeArePhoto as a placeholder — swap each for a dedicated
+// per-service photo whenever you have them.
+import webDesignImg from "../../assets/who-we-are.jpg.webp";
+import filmPhotoImg from "../../assets/who-we-are.jpg.webp";
+import brandIdentityImg from "../../assets/who-we-are.jpg.webp";
+import marketingGrowthImg from "../../assets/who-we-are.jpg.webp";
 
 // Growth, our way — the "experiment" clip shown inside the pink note.
 // TODO: swap for the real Growth/experiment preview clip when ready.
@@ -31,22 +32,22 @@ const WHAT_WE_DO_ITEMS = [
   {
     title: "Web Design",
     desc: "Websites and interfaces — fast, tactile and built to convert.",
-    media: webDesignClip,
+    media: webDesignImg,
   },
   {
     title: "Film & Photo",
     desc: "Motion and stills that give a brand its atmosphere, on set and on screen.",
-    media: filmPhotoClip,
+    media: filmPhotoImg,
   },
   {
     title: "Brand Identity",
     desc: "Names, logos and visual systems — the language a brand is known by.",
-    media: brandIdentityClip,
+    media: brandIdentityImg,
   },
   {
     title: "Marketing & Growth",
     desc: "Strategy, content and campaigns that turn attention into revenue.",
-    media: marketingGrowthClip,
+    media: marketingGrowthImg,
   },
 ];
 
@@ -336,14 +337,10 @@ const BrandHero = () => {
             }`}
           >
             {activeService !== null && (
-              <video
+              <img
                 key={WHAT_WE_DO_ITEMS[activeService].media}
                 src={WHAT_WE_DO_ITEMS[activeService].media}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
+                alt={WHAT_WE_DO_ITEMS[activeService].title}
               />
             )}
           </div>

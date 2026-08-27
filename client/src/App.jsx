@@ -4,6 +4,7 @@ import Footer from "@/components/Footer/Footer.jsx";
 import ScrollToTop from "@/components/ScrollToTop";
 import Home from "@/pages/Home/Home.jsx";
 import BrandStudio from "@/pages/BrandStudio/Brand.jsx";
+import BrandStory from "@/pages/Brandstory/brandstory.jsx";
 import People from "@/pages/People/People.jsx";
 import Products from "@/pages/Products.jsx";
 import ProductDetail from "@/pages/ProductDetail/ProductDetail.jsx";
@@ -61,6 +62,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/brand" element={<BrandStudio/>}/>
+          <Route path="/brand-story" element={<BrandStory/>}/>
           <Route path="/people" element={<People />} />
           {/* <Route path="/voice-agent" element={<VoiceAgent />} /> */}
           <Route path="/products" element={<Products />} />

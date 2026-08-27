@@ -1,0 +1,243 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #080808;
+  font-family: Arial, sans-serif;
+}
+
+.brand-story {
+  width: 100%;
+  background: #080808;
+}
+
+/* =========================
+   SCROLL STAGE
+   This is the tall spacer that gives us scroll distance to drive the
+   animation. Its height is set inline (SCROLL_LENGTH_VH in the JS).
+========================= */
+
+.scroll-stage {
+  position: relative;
+  width: 100%;
+}
+
+/* =========================
+   HERO (pinned)
+   Stays fixed in the viewport for the entire height of .scroll-stage,
+   while scroll position drives the draw + logo animation via JS.
+========================= */
+
+.arch-hero {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: #080808;
+  overflow: hidden;
+}
+
+/* =========================
+   ARCH GRID (drawing lines)
+   No CSS animation here anymore — stroke-dashoffset and opacity are set
+   inline from scroll progress in BrandStory.jsx.
+========================= */
+
+.arch-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.arch-path {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-width: 1.5;
+  stroke-dasharray: 1;
+  /* stroke-dashoffset is set inline per-path from scroll progress */
+}
+
+/* =========================
+   LOGO
+   opacity + --scroll-scale are set inline from scroll progress.
+========================= */
+
+.arch-logo-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(var(--scroll-scale, 1));
+  z-index: 3;
+
+  width: fit-content;
+  height: fit-content;
+}
+
+.arch-logo {
+  width: 240px;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .arch-logo {
+    width: 160px;
+  }
+}
+
+/* =========================================================
+   FEATURED PRESS (card stack section)
+========================================================= */
+
+.featured-press__stage {
+  position: relative;
+  width: 100%;
+}
+
+.featured-press__hero {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #080808;
+}
+
+/* --- Intro (eyebrow + heading) --- */
+
+.featured-press__intro {
+  position: absolute;
+  top: 8vh;
+  left: 6vw;
+  max-width: 640px;
+  z-index: 1;
+  transition: opacity 0.2s linear;
+}
+
+.featured-press__eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 28px;
+}
+
+.featured-press__heading {
+  position: relative;
+  padding-left: 28px;
+  font-size: clamp(32px, 4.2vw, 56px);
+  line-height: 1.08;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.featured-press__heading-bar {
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  width: 6px;
+  height: 1.05em;
+  background: #ffffff;
+}
+
+.featured-press__heading-accent {
+  color: #b08d6a;
+  font-weight: 600;
+}
+
+/* --- Card stack --- */
+
+.featured-press__stack {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.featured-press__card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(34vw, 380px);
+  aspect-ratio: 3 / 4;
+  margin: 0;
+  margin-left: calc(min(34vw, 380px) / -2);
+  margin-top: calc(min(34vw, 380px) * 4 / 3 / -2);
+  transform-origin: center center;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+  will-change: transform, opacity;
+}
+
+.featured-press__card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.featured-press__card-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* --- Closing line --- */
+
+.featured-press__closing {
+  position: absolute;
+  left: 50%;
+  bottom: 30vh;
+  transform: translateX(-50%);
+  max-width: 420px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  z-index: 3;
+  transition: opacity 0.2s linear;
+}
+
+.featured-press__closing strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .featured-press__intro {
+    left: 5vw;
+    top: 6vh;
+  }
+
+  .featured-press__card {
+    width: min(60vw, 320px);
+    margin-left: calc(min(60vw, 320px) / -2);
+    margin-top: calc(min(60vw, 320px) * 4 / 3 / -2);
+  }
+
+  .featured-press__card-placeholder {
+    font-size: 16px;
+  }
+
+  .featured-press__closing {
+    max-width: 82vw;
+    bottom: 22vh;
+  }
+}
