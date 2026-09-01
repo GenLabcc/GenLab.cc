@@ -13,7 +13,7 @@ import Tracksection from '@/components/Courses/Tracksection.jsx';
 import Upskilling from "@/pages/Upskilling/Upskilling.jsx";
 import VerifyCertificate from "@/pages/VerifyCertificate.jsx";
 import ShabdamUI from "@/pages/Home/shubham/ShabdamUI.jsx";
-import Login from "@/pages/login/Login.jsx";
+import Login from "@/pages/Login/Login.jsx";
 
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
