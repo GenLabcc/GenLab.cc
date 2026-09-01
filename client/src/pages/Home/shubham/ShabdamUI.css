@@ -3,10 +3,8 @@
 :root {
   --page-bg: #ffffff;
   --container-bg: #ffffff;
-  --text-primary: #000000;
   --text-secondary: #666666;
   --accent-color: #000000;
-  --accent-text: #ffffff;
   --font-family: 'Outfit', sans-serif;
 }
 
@@ -55,7 +53,7 @@ body {
   font-weight: 500;
   letter-spacing: 0.02em;
   margin-bottom: 0.75rem;
-  color: var(--text-primary);
+  color: black;
 }
 
 .header-left p {
@@ -121,7 +119,7 @@ body {
 
 .start-button {
   background: #111111;
-  color: var(--accent-text);
+  color: white;
   border: none;
   width: 145px;
   height: 44px;
@@ -155,6 +153,145 @@ body {
   width: 32px;
   height: 32px;
   object-fit: contain;
+}
+
+/* Demo Voice */
+
+.voice-selector {
+  width: 100%;
+  margin-top: 4rem;
+}
+
+.voice-selector-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 1.5rem;
+}
+
+.voice-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.voice-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1.5px solid #eeeeee;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #fff;
+}
+
+.voice-card:hover {
+  border-color: #ccc;
+}
+
+.voice-card.selected {
+  border-color: #111111;
+  background: #fafafa;
+}
+
+.voice-play-button {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #111111;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.voice-play-button:hover {
+  background: #333;
+}
+
+.voice-play-button.playing {
+  background: #bcf000;
+  color: #111111;
+}
+
+.voice-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.voice-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1a1a1a;
+}
+
+.voice-language {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.voice-selected-badge {
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  background: #111111;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.voice-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+.voice-progress-track {
+  flex: 1;
+  height: 4px;
+  background: #eeeeee;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.voice-progress-fill {
+  height: 100%;
+  background: #bcf000;
+  border-radius: 2px;
+  transition: width 0.1s linear;
+}
+
+.voice-time-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  min-width: 62px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 900px) {
+  .voice-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .voice-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @keyframes pulse-red {
