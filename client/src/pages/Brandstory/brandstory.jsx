@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from "react";
-import "./BrandStory.css";
+import "./brandstory.css";
 import logoWhite from "../../assets/logo-white.svg";
 import whoWeArePhoto from "../../assets/who-we-are.jpg.webp";
 
