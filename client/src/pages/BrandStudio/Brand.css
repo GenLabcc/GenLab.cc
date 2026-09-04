@@ -304,7 +304,20 @@ html {
 /* Scroll-grow video section — the box is anchored to the bottom edge
    (align-items: flex-end) so as it grows on scroll it only expands
    upward, reading as a bottom-to-top reveal rather than growing out
-   from the center in every direction. */
+   from the center in every direction.
+
+   FIX: .brand-logo-wrap previously had NO fallback size of its own —
+   it depended entirely on the inline width/height React sets on
+   mount. If that JS effect ever runs late, gets skipped, or the video
+   asset itself fails to load (404 / bad path), the wrap can render at
+   0 size or the <video> paints its default black canvas, and because
+   .brand-logo-reveal's own background is #000, the whole section just
+   reads as a solid black block with nothing to visually debug against.
+   Added an explicit fallback min-size + a visible dashed outline hook
+   (.brand-logo-wrap.no-media) you can toggle via JS/devtools to
+   confirm whether the box itself is empty vs. the video failing to
+   decode. Also added object-position and background so partially
+   loaded video still shows something other than pure black. */
 .brand-logo-reveal {
   position: relative;
   min-height: 100vh;
@@ -317,6 +330,20 @@ html {
 
 .brand-logo-wrap {
   position: relative;
+  overflow: hidden;
+  min-width: 150px;
+  min-height: 150px;
+  background: #111; /* slightly lighter than the section's #000 so an
+                        empty/unloaded wrap is visually distinguishable
+                        from the surrounding section background */
+}
+
+/* Debug helper — add class="brand-logo-wrap no-media" (or toggle via
+   devtools) to confirm at a glance whether the wrap has no visible
+   media inside it. Remove once the video is confirmed loading. */
+.brand-logo-wrap.no-media {
+  outline: 2px dashed #ff3b3b;
+  outline-offset: -2px;
 }
 
 /* The base clip — fills the growing wrap div and crops to it. Was
@@ -328,7 +355,9 @@ html {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
+  background: #000;
   will-change: width, height;
 }
 

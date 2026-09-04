@@ -3,14 +3,17 @@ import "./Brand.css";
 import genlabLogo from "../../assets/Genlab.png";
 import SplashCursor from "../../components/SplashCursor/SplashCursor";
 import whoWeArePhoto from "../../assets/who-we-are.jpg.webp";
-// TODO: point these at your real project preview videos (.mp4)
-// NOTE: both currently point to the same file (nod-travel.jpg.mp4) —
-// if Nod Spa has its own clip, update nodSpaShot to that filename.
-import nodTravelShot from "../../assets/nod-travel.jpg.mp4";
-import nodSpaShot from "../../assets/nod-travel.jpg.mp4";
+// Selected Projects preview images — now static mockup images, so the
+// <img> tags below (in the Selected Projects section) were switched
+// from <video> to match, same as the scroll-grow section above.
+import nodTravelShot from "../../assets/Anika mockup.webp";
+import nodSpaShot from "../../assets/Apollo Mockuo.webp";
 
-// Scroll-grow logo section — now plays a video instead of the static logo.
-import logoRevealClip from "../../assets/nod-travel.jpg.mp4";
+// Scroll-grow logo section — now shows a static image (was a video).
+// logoRevealClip currently points at a .png, so the two elements below
+// were switched from <video> to <img> to match — a <video> tag can't
+// play an image file, which is why the section was rendering blank.
+import logoRevealClip from "../../assets/First Mockup (2).png";
 
 // What We Do — one IMAGE per row (switched from video). Currently all four
 // reuse whoWeArePhoto as a placeholder — swap each for a dedicated
@@ -63,7 +66,7 @@ const MENU_ITEMS = [
 const BrandHero = () => {
   const sectionRef = useRef(null);
   const wrapRef = useRef(null);
-  const [size, setSize] = useState({ width: 150, height: 150 });
+  const [size, setSize] = useState({ width: 420, height: 420 });
   const [isHovering, setIsHovering] = useState(false);
   const [activeService, setActiveService] = useState(null);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -115,15 +118,21 @@ const BrandHero = () => {
       const viewportCenter = windowHeight / 2;
       const offset = Math.abs(sectionCenter - viewportCenter);
 
-      const progress = 1 - offset / (windowHeight / 2);
+      // SCROLL_GROWTH_SPEED: how much faster the reveal completes vs.
+      // scroll distance. 1 = original (needs ~half a viewport of scroll
+      // to go from small to full size). Raise this to reach full size
+      // with less scrolling (feels faster); lower it to slow it back down.
+      const SCROLL_GROWTH_SPEED = 2.2;
+      const growthRange = windowHeight / 2 / SCROLL_GROWTH_SPEED;
+      const progress = 1 - offset / growthRange;
       const clamped = Math.min(Math.max(progress, 0), 1);
 
       // Grow all the way to the full viewport (not just 90% of the
       // smaller dimension), and track width/height separately so the
-      // video ends up covering the whole screen edge-to-edge, not just
+      // image ends up covering the whole screen edge-to-edge, not just
       // a centered square.
-      const newWidth = 150 + clamped * (window.innerWidth - 150);
-      const newHeight = 150 + clamped * (window.innerHeight - 150);
+      const newWidth = 420 + clamped * (window.innerWidth - 420);
+      const newHeight = 420 + clamped * (window.innerHeight - 420);
       setSize({ width: newWidth, height: newHeight });
     };
 
@@ -241,7 +250,11 @@ const BrandHero = () => {
         </div>
       </section>
 
-      {/* Scroll-grow video section */}
+      {/* Scroll-grow image section — logoRevealClip is a static image
+          (First Mockup (2).png), so these are <img> tags, not <video>.
+          If you switch back to a video clip later, revert these two
+          elements to <video src={logoRevealClip} autoPlay muted loop
+          playsInline preload="metadata" /> and drop the alt attributes. */}
       <section
         className="brand-logo-reveal"
         ref={sectionRef}
@@ -262,24 +275,16 @@ const BrandHero = () => {
           ref={wrapRef}
           style={{ width: `${size.width}px`, height: `${size.height}px` }}
         >
-          <video
+          <img
             src={logoRevealClip}
             className="brand-logo-big"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
+            alt=""
           />
-          <video
+          <img
             src={logoRevealClip}
             aria-hidden="true"
             className={`brand-logo-blur${isHovering ? " is-active" : ""}`}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
+            alt=""
           />
         </div>
       </section>
@@ -354,14 +359,7 @@ const BrandHero = () => {
 
           <div className="project-card">
             <div className="project-card-media">
-              <video
-                src={nodTravelShot}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-              />
+              <img src={nodTravelShot} alt="GenLab E-Commerce project preview" />
             </div>
             <h3 className="project-card-title">GenLab E-Commerce</h3>
             <p className="project-card-desc">
@@ -375,14 +373,7 @@ const BrandHero = () => {
 
           <div className="project-card">
             <div className="project-card-media">
-              <video
-                src={nodSpaShot}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-              />
+              <img src={nodSpaShot} alt="GenLab End-to-End Branding project preview" />
             </div>
             <h3 className="project-card-title">GenLab End-to-End Branding</h3>
             <p className="project-card-desc">

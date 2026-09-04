@@ -1,28 +1,13 @@
 import { useEffect, useState, useRef, useCallback } from "react";
-import "./brandstory.css";
-import logoWhite from "../../assets/logo-white.svg";
+import "./BrandStory.css";
 import whoWeArePhoto from "../../assets/who-we-are.jpg.webp";
-
-const CELL_W = 90;
-const CELL_H = 150;
-
-// Diagonal stagger (in real ms now, since this phase is time-based again).
-const COL_STAGGER = 140;
-const ROW_STAGGER = 100;
-const DRAW_LEN = 2600; // how long each individual arch takes to draw
-const FADE_LEN = 900; // logo fade-in duration, after the grid finishes
-
-const LOGO_SCALE = 1; // fixed size — logo no longer zooms on scroll
-
-// Scroll distance (in viewport heights) the arch-hero section holds
-// for while its intro (grid draw + logo fade-in) plays out.
-const SCROLL_LENGTH_VH = 150;
+import firstMockupPhoto from "../../assets/First Mockup.png";
 
 // =========================================================
 // Featured press stack (section 2)
 // =========================================================
 // Drop real cover images in src/assets/press/ and import them the same
-// way logoWhite is imported above, e.g.:
+// way logoWhite was imported before, e.g.:
 //   import cover1 from "../../assets/press/cover-1.jpg";
 // then set `src: cover1` below. Any card left with `src: null` just
 // renders a placeholder box (with `label`) so the section works before
@@ -49,110 +34,8 @@ function easeOutCubic(t) {
 }
 
 function BrandStory() {
-  const [grid, setGrid] = useState([]);
-  const [maxDelay, setMaxDelay] = useState(0);
-  const [timeline, setTimeline] = useState(0); // draw progress, in ms
-  const [logoOpacity, setLogoOpacity] = useState(0);
-  const [gridOpacity, setGridOpacity] = useState(1);
-
-  const stageRef = useRef(null);
-  const hasBuiltGrid = useRef(false);
-  const playRafId = useRef(null);
-
-  useEffect(() => {
-    const buildGrid = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-
-      const cols = Math.ceil(width / CELL_W) + 1;
-      const rows = Math.ceil(height / CELL_H) + 2;
-
-      const cells = [];
-      let max = 0;
-
-      for (let col = 0; col < cols; col++) {
-        const offsetY = (col % 2) * (CELL_H / 2);
-        for (let row = -1; row < rows; row++) {
-          const rowIndex = row + 1;
-          const delay = col * COL_STAGGER + rowIndex * ROW_STAGGER;
-          if (delay > max) max = delay;
-
-          cells.push({
-            key: `${col}-${row}`,
-            x: col * CELL_W,
-            y: row * CELL_H + offsetY,
-            delay,
-          });
-        }
-      }
-
-      setGrid(cells);
-      setMaxDelay(max);
-      hasBuiltGrid.current = true;
-    };
-
-    const initTimer = setTimeout(buildGrid, 50);
-
-    let resizeTimer;
-    const handleResize = () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(buildGrid, 200);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => {
-      clearTimeout(initTimer);
-      clearTimeout(resizeTimer);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const drawTotal = maxDelay + DRAW_LEN;
-
-  // --- Autoplay: draw grid + fade in logo the moment the section is visible ---
-  const playIntro = useCallback(() => {
-    if (playRafId.current) cancelAnimationFrame(playRafId.current);
-
-    const start = performance.now();
-
-    const tick = (now) => {
-      const elapsed = now - start;
-
-      const drawElapsed = clamp(elapsed, 0, drawTotal);
-      setTimeline(drawElapsed);
-
-      const fadeElapsed = clamp((elapsed - drawTotal) / FADE_LEN, 0, 1);
-      setLogoOpacity(fadeElapsed);
-      setGridOpacity(1 - fadeElapsed);
-
-      if (elapsed < drawTotal + FADE_LEN) {
-        playRafId.current = requestAnimationFrame(tick);
-      }
-    };
-
-    playRafId.current = requestAnimationFrame(tick);
-  }, [drawTotal]);
-
-  useEffect(() => {
-    if (!stageRef.current || drawTotal <= DRAW_LEN) return; // wait for grid to build
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && hasBuiltGrid.current) {
-            playIntro();
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(stageRef.current);
-    return () => observer.disconnect();
-  }, [drawTotal, playIntro]);
-
   // =========================================================
-  // Section 2: featured-press card stack (scroll-driven)
+  // Featured-press card stack (scroll-driven)
   // =========================================================
   const pressStageRef = useRef(null);
   const pressRafId = useRef(null);
@@ -197,56 +80,14 @@ function BrandStory() {
 
   return (
     <div className="brand-story">
-      <div
-        className="scroll-stage"
-        ref={stageRef}
-        style={{ height: `${SCROLL_LENGTH_VH}vh` }}
-      >
-        <section className="arch-hero">
-          <svg
-            className="arch-grid"
-            preserveAspectRatio="none"
-            style={{ opacity: gridOpacity }}
-          >
-            {grid.map((cell) => {
-              const cellProgress = clamp(
-                (timeline - cell.delay) / DRAW_LEN,
-                0,
-                1
-              );
-              return (
-                <path
-                  key={cell.key}
-                  className="arch-path"
-                  pathLength={1}
-                  style={{ strokeDashoffset: 1 - cellProgress }}
-                  transform={`translate(${cell.x}, ${cell.y})`}
-                  d={`
-                    M0,${CELL_W / 2}
-                    A${CELL_W / 2},${CELL_W / 2} 0 0 1 ${CELL_W / 2},0
-                    L${CELL_W / 2},0
-                    A${CELL_W / 2},${CELL_W / 2} 0 0 1 ${CELL_W},${CELL_W / 2}
-                    L${CELL_W},${CELL_H - CELL_W / 2}
-                    A${CELL_W / 2},${CELL_W / 2} 0 0 1 ${CELL_W / 2},${CELL_H}
-                    A${CELL_W / 2},${CELL_W / 2} 0 0 1 0,${CELL_H - CELL_W / 2}
-                    Z
-                  `}
-                />
-              );
-            })}
-          </svg>
-
-          <div
-            className="arch-logo-wrap"
-            style={{
-              opacity: logoOpacity,
-              "--scroll-scale": LOGO_SCALE,
-            }}
-          >
-            <img src={logoWhite} alt="GenLab Logo" className="arch-logo" />
-          </div>
-        </section>
-      </div>
+      {/* =========================================================
+          Image + text section (now first)
+      ========================================================= */}
+      <section className="image-feature">
+        <div className="image-feature__media">
+          <img src={firstMockupPhoto} alt="Featured mockup" />
+        </div>
+      </section>
 
       <div
         className="featured-press__stage"
