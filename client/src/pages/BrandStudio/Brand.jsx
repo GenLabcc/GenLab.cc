@@ -1,23 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Brand.css";
-import genlabLogo from "../../assets/Genlab.png";
 import SplashCursor from "../../components/SplashCursor/SplashCursor";
 import whoWeArePhoto from "../../assets/who-we-are.jpg.webp";
-// Selected Projects preview images — now static mockup images, so the
-// <img> tags below (in the Selected Projects section) were switched
-// from <video> to match, same as the scroll-grow section above.
 import nodTravelShot from "../../assets/Anika mockup.webp";
 import nodSpaShot from "../../assets/Apollo Mockuo.webp";
 
-// Scroll-grow logo section — now shows a static image (was a video).
-// logoRevealClip currently points at a .png, so the two elements below
-// were switched from <video> to <img> to match — a <video> tag can't
-// play an image file, which is why the section was rendering blank.
 import logoRevealClip from "../../assets/First Mockup (2).png";
 
-// What We Do — one IMAGE per row (switched from video). Currently all four
-// reuse whoWeArePhoto as a placeholder — swap each for a dedicated
-// per-service photo whenever you have them.
 import webDesignImg from "../../assets/who-we-are.jpg.webp";
 import filmPhotoImg from "../../assets/who-we-are.jpg.webp";
 import brandIdentityImg from "../../assets/who-we-are.jpg.webp";
@@ -66,7 +55,9 @@ const MENU_ITEMS = [
 const BrandHero = () => {
   const sectionRef = useRef(null);
   const wrapRef = useRef(null);
-  const [size, setSize] = useState({ width: 420, height: 420 });
+
+  const BASE_LOGO_SIZE = 600;
+  const [size, setSize] = useState({ width: BASE_LOGO_SIZE, height: BASE_LOGO_SIZE });
   const [isHovering, setIsHovering] = useState(false);
   const [activeService, setActiveService] = useState(null);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -84,8 +75,7 @@ const BrandHero = () => {
   // appears as a full-screen overlay when "Growth" is clicked in the menu.
   const [showGrowthOverlay, setShowGrowthOverlay] = useState(false);
 
-  // Custom circular cursor that follows the mouse across the whole page,
-  // replacing the default arrow (see .brand-page { cursor: none } in CSS).
+  
   useEffect(() => {
     const handleMove = (e) => {
       setCursorPos({ x: e.clientX, y: e.clientY });
@@ -109,30 +99,20 @@ const BrandHero = () => {
       const rect = sectionRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      // Distance between the section's center and the viewport's center.
-      // 0 = perfectly centered (full size). This grows as the section
-      // scrolls toward center from either direction, then shrinks again
-      // once it moves past center and heads back out — whether that's
-      // by scrolling further down or scrolling back up.
+
       const sectionCenter = rect.top + rect.height / 2;
       const viewportCenter = windowHeight / 2;
       const offset = Math.abs(sectionCenter - viewportCenter);
 
-      // SCROLL_GROWTH_SPEED: how much faster the reveal completes vs.
-      // scroll distance. 1 = original (needs ~half a viewport of scroll
-      // to go from small to full size). Raise this to reach full size
-      // with less scrolling (feels faster); lower it to slow it back down.
+
       const SCROLL_GROWTH_SPEED = 2.2;
       const growthRange = windowHeight / 2 / SCROLL_GROWTH_SPEED;
       const progress = 1 - offset / growthRange;
       const clamped = Math.min(Math.max(progress, 0), 1);
 
-      // Grow all the way to the full viewport (not just 90% of the
-      // smaller dimension), and track width/height separately so the
-      // image ends up covering the whole screen edge-to-edge, not just
-      // a centered square.
-      const newWidth = 420 + clamped * (window.innerWidth - 420);
-      const newHeight = 420 + clamped * (window.innerHeight - 420);
+      
+      const newWidth = BASE_LOGO_SIZE + clamped * (window.innerWidth - BASE_LOGO_SIZE);
+      const newHeight = BASE_LOGO_SIZE + clamped * (window.innerHeight - BASE_LOGO_SIZE);
       setSize({ width: newWidth, height: newHeight });
     };
 
@@ -146,9 +126,7 @@ const BrandHero = () => {
     };
   }, []);
 
-  // Tracks cursor position relative to the logo wrap itself, so the
-  // blur circle (clip-path) lines up with the cursor regardless of how
-  // large the wrap currently is (it grows on scroll).
+  
   const handleMouseMove = (e) => {
     if (!wrapRef.current) return;
     const rect = wrapRef.current.getBoundingClientRect();
@@ -230,8 +208,7 @@ const BrandHero = () => {
         </div>
       )}
 
-      {/* Hero — light, minimal statement layout: a large left-aligned
-          headline with a short supporting paragraph on the right. */}
+      
       <section className="brand-hero">
         <div className="brand-hero-headline">
           <h1>
@@ -250,11 +227,6 @@ const BrandHero = () => {
         </div>
       </section>
 
-      {/* Scroll-grow image section — logoRevealClip is a static image
-          (First Mockup (2).png), so these are <img> tags, not <video>.
-          If you switch back to a video clip later, revert these two
-          elements to <video src={logoRevealClip} autoPlay muted loop
-          playsInline preload="metadata" /> and drop the alt attributes. */}
       <section
         className="brand-logo-reveal"
         ref={sectionRef}

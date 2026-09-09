@@ -1,17 +1,21 @@
 import { useEffect, useState, useRef, useCallback } from "react";
-import "./BrandStory.css";
+import "./brandStory.css";
 import whoWeArePhoto from "../../assets/who-we-are.jpg.webp";
 import firstMockupPhoto from "../../assets/First Mockup.png";
+import brandLogo from "../../assets/logo-mark.png";
+
+// =========================================================
+// Intro reveal (section 1): black -> logo -> photo
+// =========================================================
+const BRAND_LOGO_SRC = brandLogo;
+
+const REVEAL_SCROLL_VH = 220; // total scroll distance (vh) for the whole intro
+const REVEAL_LOGO_IN = 0.35; // 0..this: logo mark wipes in, line by line
+const REVEAL_HOLD_END = 0.55; // this..1: logo fades out, photo fades in
 
 // =========================================================
 // Featured press stack (section 2)
 // =========================================================
-// Drop real cover images in src/assets/press/ and import them the same
-// way logoWhite was imported before, e.g.:
-//   import cover1 from "../../assets/press/cover-1.jpg";
-// then set `src: cover1` below. Any card left with `src: null` just
-// renders a placeholder box (with `label`) so the section works before
-// real assets exist.
 const PRESS_CARDS = [
   { key: "cover-1", src: whoWeArePhoto, label: "VOGUE", alt: "Press feature 1" },
   { key: "cover-2", src: whoWeArePhoto, label: "AD", alt: "Press feature 2" },
@@ -19,8 +23,6 @@ const PRESS_CARDS = [
   { key: "cover-4", src: whoWeArePhoto, label: "ELLE DECORATION", alt: "Press feature 4" },
 ];
 
-// How much scroll (in vh) is spent on each card, and how much extra
-// scroll is held at the end for the closing line to sit on screen.
 const PRESS_SCROLL_PER_CARD_VH = 90;
 const PRESS_CLOSING_HOLD_VH = 60;
 
@@ -28,17 +30,29 @@ function clamp(v, min = 0, max = 1) {
   return Math.min(max, Math.max(min, v));
 }
 
-// easeOutCubic — used for the press cards' settle-in / push-out motion.
 function easeOutCubic(t) {
   return 1 - Math.pow(1 - t, 3);
 }
 
 function BrandStory() {
   // =========================================================
+  // Intro reveal (scroll-driven)
+  // =========================================================
+  const revealStageRef = useRef(null);
+  const [revealProgress, setRevealProgress] = useState(0); // 0..1 across the pinned intro
+
+  const updateRevealProgress = useCallback(() => {
+    if (!revealStageRef.current) return;
+    const rect = revealStageRef.current.getBoundingClientRect();
+    const scrollable = rect.height - window.innerHeight;
+    if (scrollable <= 0) return;
+    setRevealProgress(clamp(-rect.top / scrollable, 0, 1));
+  }, []);
+
+  // =========================================================
   // Featured-press card stack (scroll-driven)
   // =========================================================
   const pressStageRef = useRef(null);
-  const pressRafId = useRef(null);
   const [pressProgress, setPressProgress] = useState(0); // 0..1 across the pinned section
 
   const updatePressProgress = useCallback(() => {
@@ -49,29 +63,47 @@ function BrandStory() {
     setPressProgress(clamp(-rect.top / scrollable, 0, 1));
   }, []);
 
+  const rafId = useRef(null);
   useEffect(() => {
     const onScroll = () => {
-      if (pressRafId.current) return;
-      pressRafId.current = requestAnimationFrame(() => {
+      if (rafId.current) return;
+      rafId.current = requestAnimationFrame(() => {
+        updateRevealProgress();
         updatePressProgress();
-        pressRafId.current = null;
+        rafId.current = null;
       });
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    updateRevealProgress();
     updatePressProgress();
 
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
-      if (pressRafId.current) cancelAnimationFrame(pressRafId.current);
+      if (rafId.current) cancelAnimationFrame(rafId.current);
     };
-  }, [updatePressProgress]);
+  }, [updateRevealProgress, updatePressProgress]);
+
+  // Whole-mark exit fade: [REVEAL_HOLD_END, 1] as the photo takes over.
+  const revealLogoOutT = clamp(
+    (revealProgress - REVEAL_HOLD_END) / (1 - REVEAL_HOLD_END),
+    0,
+    1
+  );
+
+  // Line-by-line wipe: the logo reveals top -> bottom, 1:1 with scroll
+  // (linear, no easing) across [0, REVEAL_LOGO_IN], then the whole mark
+  // fades out over [REVEAL_HOLD_END, 1] via revealLogoOutT.
+  const revealLinePercent = clamp(revealProgress / REVEAL_LOGO_IN, 0, 1) * 100;
+  const revealLogoOpacity = 1 - revealLogoOutT;
+
+  // Photo: fades/scales in over [REVEAL_HOLD_END, 1].
+  const revealImageOpacity = revealLogoOutT;
+  const revealImageScale = 1.08 - 0.08 * easeOutCubic(revealLogoOutT);
 
   const pressCount = PRESS_CARDS.length;
-  // Total "units" of progress: one per card, plus a fraction reserved
-  // for holding the closing line on screen at the end.
   const pressTotalUnits =
     pressCount + PRESS_CLOSING_HOLD_VH / PRESS_SCROLL_PER_CARD_VH;
   const pressStageHeight =
@@ -81,13 +113,41 @@ function BrandStory() {
   return (
     <div className="brand-story">
       {/* =========================================================
-          Image + text section (now first)
+          Intro reveal: black -> logo -> photo
       ========================================================= */}
-      <section className="image-feature">
-        <div className="image-feature__media">
-          <img src={firstMockupPhoto} alt="Featured mockup" />
-        </div>
-      </section>
+      <div
+        className="brand-reveal__stage"
+        ref={revealStageRef}
+        style={{ height: `${REVEAL_SCROLL_VH}vh` }}
+      >
+        <section className="brand-reveal__hero">
+          <div
+            className="brand-reveal__logo"
+            style={{ opacity: revealLogoOpacity }}
+          >
+            <div className="brand-reveal__logo-mark" aria-hidden="true">
+              <img
+                src={BRAND_LOGO_SRC}
+                alt=""
+                className="brand-reveal__logo-img"
+                style={{
+                  clipPath: `inset(0 0 ${100 - revealLinePercent}% 0)`,
+                }}
+              />
+            </div>
+          </div>
+
+          <div
+            className="brand-reveal__media"
+            style={{
+              opacity: revealImageOpacity,
+              transform: `scale(${revealImageScale})`,
+            }}
+          >
+            <img src={firstMockupPhoto} alt="Featured mockup" />
+          </div>
+        </section>
+      </div>
 
       <div
         className="featured-press__stage"
@@ -116,16 +176,12 @@ function BrandStory() {
 
           <div className="featured-press__stack">
             {PRESS_CARDS.map((card, i) => {
-              // t <= 0        not entered yet
-              // 0 < t < 1     entering / settling
-              // 1 <= t < 2    resting, then pushed out as the next card arrives
-              // t >= 2        fully gone
               const t = pressTimeline - i;
 
               let opacity = 0;
-              let x = 55; // vw offscreen right
-              let y = 55; // vh offscreen bottom
-              let rotate = 16; // deg
+              let x = 55;
+              let y = 55;
+              let rotate = 16;
               let scale = 0.88;
 
               if (t <= 0) {
@@ -133,7 +189,7 @@ function BrandStory() {
               } else if (t < 1) {
                 const e = easeOutCubic(clamp(t, 0, 1));
                 opacity = clamp(t / 0.2, 0, 1);
-                x = 55 - 55 * e - 8 * e; // settle slightly left-of-center
+                x = 55 - 55 * e - 8 * e;
                 y = 55 - 55 * e;
                 rotate = 16 - 16 * e;
                 scale = 0.88 + 0.14 * e;
