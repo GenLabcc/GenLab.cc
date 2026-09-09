@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from "react";
-import "./brandStory.css";
+import "./brandstory.css";
 import whoWeArePhoto from "../../assets/who-we-are.jpg.webp";
 import firstMockupPhoto from "../../assets/First Mockup.png";
 import brandLogo from "../../assets/logo-mark.png";
