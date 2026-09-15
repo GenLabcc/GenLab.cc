@@ -69,11 +69,7 @@ export default function Navbar() {
     }, 150);
   };
 
-  // NOTE: Brand Studio ("/brand") used to have its own fixed header, so
-  // this component self-suppressed there. That header has been removed
-  // and Brand Studio now uses this global Navbar like every other page,
-  // so the pathname check that used to `return null` here has been
-  // removed too.
+
 
   return (
     <nav className={`nav-container ${isLightNav ? 'light-nav' : ''}`}>
@@ -164,7 +160,7 @@ export default function Navbar() {
             </div>
             <Link to="/products" className="nav-link">Product</Link>
             <Link to="/people" className="nav-link">People</Link>
-            <Link to="/verify-certificate" className="nav-link">Events</Link>
+            <Link to="/verify-certificate" className="nav-link">verify certificate</Link>
           </div>
 
           <button className="cta-btn" onClick={() => navigate('/shabdamui')}>
@@ -189,7 +185,7 @@ export default function Navbar() {
           </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      
       {isMenuOpen && (
         <div className="mobile-menu-overlay">
           <Link to="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>Home</Link>
@@ -226,7 +222,7 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Mobile Launchpad accordion */}
+         
           <div className="mobile-dropdown-wrapper">
             <button
               className={`nav-link mobile-dropdown-trigger ${isMobileLaunchpadOpen ? 'active' : ''}`}
@@ -260,7 +256,7 @@ export default function Navbar() {
 
           <Link to="/products" className="nav-link" onClick={() => setIsMenuOpen(false)}>Product</Link>
           <Link to="/people" className="nav-link" onClick={() => setIsMenuOpen(false)}>People</Link>
-          <Link to="/verify-certificate" className="nav-link" onClick={() => setIsMenuOpen(false)}>Events</Link>
+          <Link to="/verify-certificate" className="nav-link" onClick={() => setIsMenuOpen(false)}>verify certificate</Link>
           
           <div className='mobile-cta-row'>
             <button

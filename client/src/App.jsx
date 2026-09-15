@@ -4,6 +4,7 @@ import Footer from "@/components/Footer/Footer.jsx";
 import ScrollToTop from "@/components/ScrollToTop";
 import Home from "@/pages/Home/Home.jsx";
 import BrandStudio from "@/pages/BrandStudio/Brand.jsx";
+import BrandStory from "@/pages/Brandstory/brandstory.jsx";
 import People from "@/pages/People/People.jsx";
 import Products from "@/pages/Products.jsx";
 import ProductDetail from "@/pages/ProductDetail/ProductDetail.jsx";
@@ -12,7 +13,7 @@ import Tracksection from '@/components/Courses/Tracksection.jsx';
 import Upskilling from "@/pages/Upskilling/Upskilling.jsx";
 import VerifyCertificate from "@/pages/VerifyCertificate.jsx";
 import ShabdamUI from "@/pages/Home/shubham/ShabdamUI.jsx";
-import Login from "@/pages/login/Login.jsx";
+import Login from "@/pages/Login/Login.jsx";
 
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
@@ -61,6 +62,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/brand" element={<BrandStudio/>}/>
+          <Route path="/brand-story" element={<BrandStory/>}/>
           <Route path="/people" element={<People />} />
           {/* <Route path="/voice-agent" element={<VoiceAgent />} /> */}
           <Route path="/products" element={<Products />} />

@@ -6,15 +6,19 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge (Chromium) */
 }
 
 .brand-page {
   cursor: none;
 }
 
-/* Custom circular cursor — follows the mouse across the whole page in
-   place of the default arrow. Position is set inline via transform in
-   BrandHero.jsx on every mousemove. */
+
 .custom-cursor {
   position: fixed;
   top: 0;
@@ -35,8 +39,6 @@ html {
   opacity: 1;
 }
 
-/* The center point/dot — sits inside the ring and tracks the same
-   transform, since it's positioned relative to .custom-cursor. */
 .custom-cursor-dot {
   position: absolute;
   top: 50%;
@@ -49,13 +51,7 @@ html {
   mix-blend-mode: difference;
 }
 
-/* ==========================================================================
-   Full-screen menu overlay
-   Dimmed, blurred backdrop with a large centered numbered nav list,
-   mirroring the header (logo left) plus a CLOSE control top-right.
-   The old fixed .site-header bar has been removed — this overlay's own
-   header row (.menu-overlay-header) now carries the logo/close controls.
-   ========================================================================== */
+
 
 .menu-overlay {
   position: fixed;
@@ -208,12 +204,6 @@ html {
   }
 }
 
-/* ==========================================================================
-   Hero
-   Light, minimal statement layout — large left-aligned headline, short
-   supporting paragraph on the right, vertically centered in the viewport.
-   No longer offset for a fixed header (removed), so top padding is 0.
-   ========================================================================== */
 
 .brand-hero {
   position: relative;
@@ -301,38 +291,45 @@ html {
   }
 }
 
-/* Scroll-grow video section */
+
 .brand-logo-reveal {
   position: relative;
   min-height: 100vh;
   background: #000;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   overflow: hidden;
 }
 
 .brand-logo-wrap {
   position: relative;
+  overflow: hidden;
+  min-width: 150px;
+  min-height: 150px;
+  background: #111; 
 }
 
-/* The base clip — fills the growing wrap div and crops to it. Was
-   previously an <img> with no explicit size (it relied on natural
-   image dimensions); a <video> needs width/height set explicitly. */
+
+.brand-logo-wrap.no-media {
+  outline: 2px dashed #ff3b3b;
+  outline-offset: -2px;
+}
+
+
 .brand-logo-big {
   position: relative;
   z-index: 1;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
+  background: #000;
   will-change: width, height;
 }
 
-/* Blur circle that follows the cursor while hovering the section.
-   Renamed from .brand-logo-blur-mask to .brand-logo-blur to match the
-   class actually applied in BrandHero.jsx. Driven by --bx/--by custom
-   properties set on mousemove. */
+
 .brand-logo-blur {
   position: absolute;
   inset: 0;
@@ -374,11 +371,7 @@ html {
   filter: blur(8px);
 }
 
-/* ==========================================================================
-   Who We Are
-   Light editorial break from the dark hero/logo sections — photo left,
-   short label + statement right.
-   ========================================================================== */
+
 
 .who-we-are {
   position: relative;
@@ -469,11 +462,7 @@ html {
   }
 }
 
-/* ==========================================================================
-   What We Do
-   Big display heading + a divided list of services. Continues the light
-   editorial tone of Who We Are.
-   ========================================================================== */
+
 
 .what-we-do {
   position: relative;
@@ -611,18 +600,25 @@ html {
   box-shadow: 0 40px 60px -25px rgba(0, 0, 0, 0.6);
 }
 
+
 .what-we-do-media img,
 .what-we-do-media video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
-  animation: whatWeDoFade 0.35s ease;
+  animation: whatWeDoRiseIn 3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@keyframes whatWeDoFade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes whatWeDoRiseIn {
+  from {
+    clip-path: inset(100% 0 0 0);
+    -webkit-clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    -webkit-clip-path: inset(0 0 0 0);
+  }
 }
 
 @media (max-width: 900px) {
@@ -657,11 +653,7 @@ html {
   }
 }
 
-/* ==========================================================================
-   Selected Projects
-   Staggered two-column layout: "Selected" + first card on the left,
-   "Projects" + second card offset lower on the right.
-   ========================================================================== */
+
 
 .selected-projects {
   position: relative;
@@ -752,16 +744,7 @@ html {
   }
 }
 
-/* ==========================================================================
-   Growth, Our Way
-   Now shown as a full-screen overlay (opened via MENU → Growth) rather
-   than a section in the normal page scroll. Four "screenshot" cards
-   stand on stone pedestals in front of a softly blurred coliseum
-   silhouette. A rotated pink sticky note sits centered on top by
-   default; closing it (×) reveals the cards sharp and interactive,
-   exactly as the reference screenshot. A CLOSE button (top-right)
-   exits the overlay back to the page.
-   ========================================================================== */
+
 
 .growth-section {
   position: relative;
@@ -774,10 +757,7 @@ html {
   padding: 100px 8% 60px;
 }
 
-/* Overlay mode — fixed above the whole page, scrollable if content
-   ever exceeds viewport height (e.g. small screens). Sits below the
-   main menu overlay's z-index (2000) so reopening the menu still
-   layers correctly on top. */
+
 .growth-section-overlay {
   position: fixed;
   inset: 0;
@@ -811,10 +791,7 @@ html {
   line-height: 1;
 }
 
-/* Colosseum/temple backdrop — real photo (assets/download.png), softly
-   blurred and faded top/bottom so the cards read clearly in front of it.
-   This background stays sharp/unaffected regardless of note state — only
-   the card row (.growth-cards) blurs when the pink note is open. */
+
 .growth-bg {
   position: fixed;
   inset: 0;
@@ -826,17 +803,14 @@ html {
   inset: -40px;
   width: calc(100% + 80px);
   height: calc(100% + 80px);
-  /* background-image is set inline in BrandHero.jsx via the imported
-     asset, so the bundler resolves the path correctly regardless of
-     this file's location. */
+  
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   opacity: 1;
 }
 
-/* Row of pedestal cards, evenly spaced across the section. Blurred and
-   dimmed while the pink note is open; sharp and clickable once closed. */
+
 .growth-cards {
   position: relative;
   z-index: 1;
@@ -846,15 +820,12 @@ html {
   gap: 24px;
   width: 100%;
   max-width: 1300px;
-  /* Always blurred — intentional, permanent effect, independent of the
-     pink note's open/closed state. Kept light (~85% clarity) so text
-     and shapes stay readable. */
+
   filter: blur(1.5px);
   opacity: 0.95;
 }
 
-/* Cards stay non-interactive while blurred (note open); once the note
-   is closed they're still visually blurred but become clickable again. */
+
 .growth-cards.is-blurred {
   pointer-events: none;
 }
@@ -1076,7 +1047,7 @@ html {
   cursor: pointer;
 }
 
-/* The centered pink sticky note */
+
 .growth-note {
   position: absolute;
   z-index: 2;
@@ -1255,14 +1226,7 @@ html {
   }
 }
 
-/* ==========================================================================
-   Contact — "Let's Connect"
-   Full-screen overlay, opened via MENU → Contact, same pattern as the
-   Growth overlay above (fixed, full viewport, sits under the main menu
-   overlay's z-index of 2000). Renders <ConnectSection /> centered, on
-   a solid dark background, with its own CLOSE control top-right reusing
-   .growth-overlay-close.
-   ========================================================================== */
+
 
 .contact-section-overlay {
   position: fixed;
@@ -1288,9 +1252,6 @@ html {
 }
 
 
-/* ==========================================================================
-   FINAL MOBILE RESPONSIVE FIXES
-   ========================================================================== */
 
 @media (max-width: 600px) {
 
