@@ -93,11 +93,20 @@ const BrandHero = () => {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
+    let rafId = null;
+
+    // Prefer visualViewport height on mobile — window.innerHeight jumps
+    // around as the browser chrome (address bar) shows/hides mid-scroll,
+    // which made the zoom feel broken/jumpy on phones.
+    const getViewportHeight = () =>
+      window.visualViewport ? window.visualViewport.height : window.innerHeight;
+
+    const updateSize = () => {
+      rafId = null;
       if (!sectionRef.current) return;
 
       const rect = sectionRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
+      const windowHeight = getViewportHeight();
 
 
       const sectionCenter = rect.top + rect.height / 2;
@@ -112,17 +121,27 @@ const BrandHero = () => {
 
       
       const newWidth = BASE_LOGO_SIZE + clamped * (window.innerWidth - BASE_LOGO_SIZE);
-      const newHeight = BASE_LOGO_SIZE + clamped * (window.innerHeight - BASE_LOGO_SIZE);
+      const newHeight = BASE_LOGO_SIZE + clamped * (windowHeight - BASE_LOGO_SIZE);
       setSize({ width: newWidth, height: newHeight });
     };
 
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleScroll);
-    handleScroll();
+    // Throttle with requestAnimationFrame so rapid touch-scroll and
+    // resize events (common on mobile) don't queue up redundant work.
+    const handleScroll = () => {
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(updateSize);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+    window.addEventListener("touchmove", handleScroll, { passive: true });
+    updateSize();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
+      window.removeEventListener("touchmove", handleScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, []);
 
@@ -300,6 +319,11 @@ const BrandHero = () => {
                   }`}
                   onMouseEnter={() => setActiveService(index)}
                   onFocus={() => setActiveService(index)}
+                  onClick={() =>
+                    setActiveService((current) =>
+                      current === index ? null : index
+                    )
+                  }
                 >
                   <h3 className="what-we-do-row-title">{item.title}</h3>
                   <p className="what-we-do-row-desc">{item.desc}</p>

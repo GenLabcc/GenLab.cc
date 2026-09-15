@@ -208,6 +208,7 @@ html::-webkit-scrollbar {
 .brand-hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   background: #f6f4f0;
   color: #111;
   display: flex;
@@ -295,6 +296,7 @@ html::-webkit-scrollbar {
 .brand-logo-reveal {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   background: #000;
   display: flex;
   align-items: flex-end;
@@ -638,9 +640,27 @@ html::-webkit-scrollbar {
     gap: 40px;
   }
   .what-we-do-media {
+    /* Reserve this box's height (via aspect-ratio) at all times instead of
+       animating height 0 -> 470px. Toggling only opacity/transform means
+       showing the image never shifts the row list below it — which is
+       what was kicking the mouse out from under a hovered row and causing
+       an open/close flicker loop. Now hover behaves the same as desktop. */
     position: static;
     order: -1;
+    width: 100%;
     aspect-ratio: 16 / 10;
+    height: auto;
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .what-we-do-media.is-visible {
+    height: auto;
+    opacity: 1;
+    transform: scale(1);
+    background: #000;
+    border-color: transparent;
+    box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.6);
   }
   .what-we-do-row-desc,
   .what-we-do-row.is-active .what-we-do-row-desc {
