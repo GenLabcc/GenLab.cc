@@ -99,7 +99,7 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-            <Link to="/brand" className='nav-link'>Brand Studio</Link>
+            <a href='https://www.mark9.cc/' className='nav-link'>BrandStudio</a>
             <Link to="/products" className="nav-link">Product</Link>
             <Link to="/people" className="nav-link">People</Link>
             <Link to="/verify-certificate" className="nav-link">verify certificate</Link>
