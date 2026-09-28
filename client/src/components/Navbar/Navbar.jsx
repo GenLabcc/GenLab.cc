@@ -164,7 +164,7 @@ export default function Navbar() {
             </div>
             <Link to="/products" className="nav-link">Product</Link>
             <Link to="/people" className="nav-link">People</Link>
-            <Link to="/verify-certificate" className="nav-link">Events</Link>
+            <Link to="/verify-certificate" className="nav-link">verify certificate</Link>
           </div>
 
           <button className="cta-btn" onClick={() => navigate('/shabdamui')}>
@@ -181,7 +181,7 @@ export default function Navbar() {
               : <Menu size={20} color={isLightNav ? "#111111" : "#E0E0E0"} />}
           </button>
         </div>
-          <button className="gen-login" onClick={() => navigate('/login')}>
+          <button className="gen-login" onClick={() => navigate('/verify-certificate')}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="white" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="8" r="4" />
               <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
@@ -193,38 +193,6 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="mobile-menu-overlay">
           <Link to="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>Home</Link>
-
-          {/* Mobile Brand Studio accordion */}
-          <div className="mobile-dropdown-wrapper">
-            <button
-              className={`nav-link mobile-dropdown-trigger ${isMobileBrandOpen ? 'active' : ''}`}
-              onClick={() => setIsMobileBrandOpen((prev) => !prev)}
-            >
-              Brand Studio
-              <ChevronDown
-                size={14}
-                className={`dropdown-chevron ${isMobileBrandOpen ? 'rotated' : ''}`}
-              />
-            </button>
-            {isMobileBrandOpen && (
-              <div className="mobile-dropdown-submenu">
-                <Link
-                  to="/brand"
-                  className="nav-link mobile-sub-link"
-                  onClick={() => { setIsMenuOpen(false); setIsMobileBrandOpen(false); }}
-                >
-                  Brand Studio
-                </Link>
-                <Link
-                  to="/brand-story"
-                  className="nav-link mobile-sub-link"
-                  onClick={() => { setIsMenuOpen(false); setIsMobileBrandOpen(false); }}
-                >
-                  Brand Story
-                </Link>
-              </div>
-            )}
-          </div>
 
           {/* Mobile Launchpad accordion */}
           <div className="mobile-dropdown-wrapper">
@@ -257,10 +225,10 @@ export default function Navbar() {
               </div>
             )}
           </div>
-
+          <Link to="/brand" className="nav-link" onClick={() => setIsMenuOpen(false)}>Brand Studio</Link>
           <Link to="/products" className="nav-link" onClick={() => setIsMenuOpen(false)}>Product</Link>
           <Link to="/people" className="nav-link" onClick={() => setIsMenuOpen(false)}>People</Link>
-          <Link to="/verify-certificate" className="nav-link" onClick={() => setIsMenuOpen(false)}>Events</Link>
+          <Link to="/verify-certificate" className="nav-link" onClick={() => setIsMenuOpen(false)}>verify certificate</Link>
           
           <div className='mobile-cta-row'>
             <button
@@ -272,7 +240,10 @@ export default function Navbar() {
               <CustomSparkle />
             </button>
 
-            <button className="gen-login" onClick={() => navigate('/login')}>
+            <button
+              className="gen-login"
+              onClick={() => { setIsMenuOpen(false); navigate('/verify-certificate'); }}
+            >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="white" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="8" r="4" />
                 <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
