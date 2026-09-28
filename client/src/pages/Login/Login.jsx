@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { ArrowRight } from "lucide-react";
 
@@ -7,7 +8,7 @@ const OTP_LENGTH = 4;
 const RESEND_COOLDOWN = 30;
 
 export default function Login() {
-  const [view, setView] = useState("signin"); // "signin" | "certificate"
+  const navigate = useNavigate();
 
   // ----- Sign in flow state -----
   const [activeRole, setActiveRole] = useState("Admin");
@@ -66,41 +67,26 @@ export default function Login() {
     // Hook up your OTP verification here
   };
 
-  // ----- Certificate verification flow state -----
-  const [certificateId, setCertificateId] = useState("");
-  const [studentEmail, setStudentEmail] = useState("");
-
-  const handleVerifyCertificate = (e) => {
-    e.preventDefault();
-    if (!certificateId || !studentEmail) return;
-    // Hook up your certificate verification request here
-  };
-
   return (
     <div className="login-page">
       <main className="login-main">
         <div className="verify-bar">
           <button
             type="button"
-            className={`verify-bar__option ${
-              view === "certificate" ? "verify-bar__option--active" : ""
-            }`}
-            onClick={() => setView("certificate")}
+            className="verify-bar__option"
+            onClick={() => navigate("/verify-certificate")}
           >
             Verify a certificate
           </button>
           <button
             type="button"
-            className={`verify-bar__option ${
-              view === "signin" ? "verify-bar__option--active" : ""
-            }`}
-            onClick={() => setView("signin")}
+            className="verify-bar__option verify-bar__option--active"
           >
             Sign in
           </button>
         </div>
 
-        {view === "signin" && step === "email" && (
+        {step === "email" && (
           <>
             <h1 className="login-title">Welcome Back</h1>
             <p className="login-subtitle">Sign in to your GenLab account</p>
@@ -140,7 +126,7 @@ export default function Login() {
           </>
         )}
 
-        {view === "signin" && step === "otp" && (
+        {step === "otp" && (
           <form className="otp-form" onSubmit={handleConfirm}>
             <p className="otp-form__hint">
               4-digit code sent to <span>{email}</span>
@@ -196,48 +182,6 @@ export default function Login() {
               </button>
             </div>
           </form>
-        )}
-
-        {view === "certificate" && (
-          <>
-            <h1 className="login-title">Verify A Certificate</h1>
-            <p className="login-subtitle">
-              Enter the certificate ID to confirm authenticity
-            </p>
-
-            <form className="login-form" onSubmit={handleVerifyCertificate}>
-              <div className="input-field">
-                <input
-                  id="certificateId"
-                  type="text"
-                  value={certificateId}
-                  onChange={(e) => setCertificateId(e.target.value)}
-                  placeholder=" "
-                  required
-                />
-                <label htmlFor="certificateId">Certificate ID</label>
-              </div>
-
-              <div className="input-field">
-                <input
-                  id="studentEmail"
-                  type="email"
-                  value={studentEmail}
-                  onChange={(e) => setStudentEmail(e.target.value)}
-                  placeholder=" "
-                  required
-                />
-                <label htmlFor="studentEmail">Student Email Id</label>
-              </div>
-
-              <button type="submit" className="otp-button">
-                <span>Verify Now</span>
-                <span className="otp-button__icon">
-                  <ArrowRight size={14} strokeWidth={2.5} />
-                </span>
-              </button>
-            </form>
-          </>
         )}
       </main>
     </div>

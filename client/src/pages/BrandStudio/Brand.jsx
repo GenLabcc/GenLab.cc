@@ -1,20 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Brand.css";
-import genlabLogo from "../../assets/Genlab.png";
 import SplashCursor from "../../components/SplashCursor/SplashCursor";
 import whoWeArePhoto from "../../assets/who-we-are.jpg.webp";
-// TODO: point these at your real project preview videos (.mp4)
-// NOTE: both currently point to the same file (nod-travel.jpg.mp4) —
-// if Nod Spa has its own clip, update nodSpaShot to that filename.
-import nodTravelShot from "../../assets/nod-travel.jpg.mp4";
-import nodSpaShot from "../../assets/nod-travel.jpg.mp4";
+import nodTravelShot from "../../assets/Anika mockup.webp";
+import nodSpaShot from "../../assets/Apollo Mockuo.webp";
 
-// Scroll-grow logo section — now plays a video instead of the static logo.
-import logoRevealClip from "../../assets/nod-travel.jpg.mp4";
+import logoRevealClip from "../../assets/First Mockup (2).png";
 
-// What We Do — one IMAGE per row (switched from video). Currently all four
-// reuse whoWeArePhoto as a placeholder — swap each for a dedicated
-// per-service photo whenever you have them.
 import webDesignImg from "../../assets/who-we-are.jpg.webp";
 import filmPhotoImg from "../../assets/who-we-are.jpg.webp";
 import brandIdentityImg from "../../assets/who-we-are.jpg.webp";
@@ -63,7 +55,9 @@ const MENU_ITEMS = [
 const BrandHero = () => {
   const sectionRef = useRef(null);
   const wrapRef = useRef(null);
-  const [size, setSize] = useState({ width: 150, height: 150 });
+
+  const BASE_LOGO_SIZE = 600;
+  const [size, setSize] = useState({ width: BASE_LOGO_SIZE, height: BASE_LOGO_SIZE });
   const [isHovering, setIsHovering] = useState(false);
   const [activeService, setActiveService] = useState(null);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -81,8 +75,7 @@ const BrandHero = () => {
   // appears as a full-screen overlay when "Growth" is clicked in the menu.
   const [showGrowthOverlay, setShowGrowthOverlay] = useState(false);
 
-  // Custom circular cursor that follows the mouse across the whole page,
-  // replacing the default arrow (see .brand-page { cursor: none } in CSS).
+  
   useEffect(() => {
     const handleMove = (e) => {
       setCursorPos({ x: e.clientX, y: e.clientY });
@@ -100,46 +93,59 @@ const BrandHero = () => {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
+    let rafId = null;
+
+    // Prefer visualViewport height on mobile — window.innerHeight jumps
+    // around as the browser chrome (address bar) shows/hides mid-scroll,
+    // which made the zoom feel broken/jumpy on phones.
+    const getViewportHeight = () =>
+      window.visualViewport ? window.visualViewport.height : window.innerHeight;
+
+    const updateSize = () => {
+      rafId = null;
       if (!sectionRef.current) return;
 
       const rect = sectionRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
+      const windowHeight = getViewportHeight();
 
-      // Distance between the section's center and the viewport's center.
-      // 0 = perfectly centered (full size). This grows as the section
-      // scrolls toward center from either direction, then shrinks again
-      // once it moves past center and heads back out — whether that's
-      // by scrolling further down or scrolling back up.
+
       const sectionCenter = rect.top + rect.height / 2;
       const viewportCenter = windowHeight / 2;
       const offset = Math.abs(sectionCenter - viewportCenter);
 
-      const progress = 1 - offset / (windowHeight / 2);
+
+      const SCROLL_GROWTH_SPEED = 2.2;
+      const growthRange = windowHeight / 2 / SCROLL_GROWTH_SPEED;
+      const progress = 1 - offset / growthRange;
       const clamped = Math.min(Math.max(progress, 0), 1);
 
-      // Grow all the way to the full viewport (not just 90% of the
-      // smaller dimension), and track width/height separately so the
-      // video ends up covering the whole screen edge-to-edge, not just
-      // a centered square.
-      const newWidth = 150 + clamped * (window.innerWidth - 150);
-      const newHeight = 150 + clamped * (window.innerHeight - 150);
+      
+      const newWidth = BASE_LOGO_SIZE + clamped * (window.innerWidth - BASE_LOGO_SIZE);
+      const newHeight = BASE_LOGO_SIZE + clamped * (windowHeight - BASE_LOGO_SIZE);
       setSize({ width: newWidth, height: newHeight });
     };
 
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleScroll);
-    handleScroll();
+    // Throttle with requestAnimationFrame so rapid touch-scroll and
+    // resize events (common on mobile) don't queue up redundant work.
+    const handleScroll = () => {
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(updateSize);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+    window.addEventListener("touchmove", handleScroll, { passive: true });
+    updateSize();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
+      window.removeEventListener("touchmove", handleScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, []);
 
-  // Tracks cursor position relative to the logo wrap itself, so the
-  // blur circle (clip-path) lines up with the cursor regardless of how
-  // large the wrap currently is (it grows on scroll).
+  
   const handleMouseMove = (e) => {
     if (!wrapRef.current) return;
     const rect = wrapRef.current.getBoundingClientRect();
@@ -221,8 +227,7 @@ const BrandHero = () => {
         </div>
       )}
 
-      {/* Hero — light, minimal statement layout: a large left-aligned
-          headline with a short supporting paragraph on the right. */}
+      
       <section className="brand-hero">
         <div className="brand-hero-headline">
           <h1>
@@ -241,7 +246,6 @@ const BrandHero = () => {
         </div>
       </section>
 
-      {/* Scroll-grow video section */}
       <section
         className="brand-logo-reveal"
         ref={sectionRef}
@@ -262,24 +266,16 @@ const BrandHero = () => {
           ref={wrapRef}
           style={{ width: `${size.width}px`, height: `${size.height}px` }}
         >
-          <video
+          <img
             src={logoRevealClip}
             className="brand-logo-big"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
+            alt=""
           />
-          <video
+          <img
             src={logoRevealClip}
             aria-hidden="true"
             className={`brand-logo-blur${isHovering ? " is-active" : ""}`}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
+            alt=""
           />
         </div>
       </section>
@@ -323,6 +319,11 @@ const BrandHero = () => {
                   }`}
                   onMouseEnter={() => setActiveService(index)}
                   onFocus={() => setActiveService(index)}
+                  onClick={() =>
+                    setActiveService((current) =>
+                      current === index ? null : index
+                    )
+                  }
                 >
                   <h3 className="what-we-do-row-title">{item.title}</h3>
                   <p className="what-we-do-row-desc">{item.desc}</p>
@@ -354,14 +355,7 @@ const BrandHero = () => {
 
           <div className="project-card">
             <div className="project-card-media">
-              <video
-                src={nodTravelShot}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-              />
+              <img src={nodTravelShot} alt="GenLab E-Commerce project preview" />
             </div>
             <h3 className="project-card-title">GenLab E-Commerce</h3>
             <p className="project-card-desc">
@@ -375,14 +369,7 @@ const BrandHero = () => {
 
           <div className="project-card">
             <div className="project-card-media">
-              <video
-                src={nodSpaShot}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-              />
+              <img src={nodSpaShot} alt="GenLab End-to-End Branding project preview" />
             </div>
             <h3 className="project-card-title">GenLab End-to-End Branding</h3>
             <p className="project-card-desc">

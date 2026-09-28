@@ -69,11 +69,7 @@ export default function Navbar() {
     }, 150);
   };
 
-  // NOTE: Brand Studio ("/brand") used to have its own fixed header, so
-  // this component self-suppressed there. That header has been removed
-  // and Brand Studio now uses this global Navbar like every other page,
-  // so the pathname check that used to `return null` here has been
-  // removed too.
+
 
   return (
     <nav className={`nav-container ${isLightNav ? 'light-nav' : ''}`}>
@@ -189,12 +185,44 @@ export default function Navbar() {
           </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      
       {isMenuOpen && (
         <div className="mobile-menu-overlay">
           <Link to="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>Home</Link>
 
-          {/* Mobile Launchpad accordion */}
+          {/* Mobile Brand Studio accordion */}
+          <div className="mobile-dropdown-wrapper">
+            <button
+              className={`nav-link mobile-dropdown-trigger ${isMobileBrandOpen ? 'active' : ''}`}
+              onClick={() => setIsMobileBrandOpen((prev) => !prev)}
+            >
+              Brand Studio
+              <ChevronDown
+                size={14}
+                className={`dropdown-chevron ${isMobileBrandOpen ? 'rotated' : ''}`}
+              />
+            </button>
+            {isMobileBrandOpen && (
+              <div className="mobile-dropdown-submenu">
+                <Link
+                  to="/brand"
+                  className="nav-link mobile-sub-link"
+                  onClick={() => { setIsMenuOpen(false); setIsMobileBrandOpen(false); }}
+                >
+                  Brand Studio
+                </Link>
+                <Link
+                  to="/brand-story"
+                  className="nav-link mobile-sub-link"
+                  onClick={() => { setIsMenuOpen(false); setIsMobileBrandOpen(false); }}
+                >
+                  Brand Story
+                </Link>
+              </div>
+            )}
+          </div>
+
+         
           <div className="mobile-dropdown-wrapper">
             <button
               className={`nav-link mobile-dropdown-trigger ${isMobileLaunchpadOpen ? 'active' : ''}`}
