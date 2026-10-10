@@ -102,7 +102,7 @@ export default function Navbar() {
             <a href='https://www.mark9.cc/' className='nav-link'>BrandStudio</a>
             <Link to="/products" className="nav-link">Product</Link>
             <Link to="/people" className="nav-link">People</Link>
-            <Link to="/verify-certificate" className="nav-link">verify certificate</Link>
+            <Link to="/verify-certificate" className="nav-link">Verify Certificate</Link>
           </div>
 
           <button className="cta-btn" onClick={() => navigate('/shabdamui')}>
@@ -166,7 +166,7 @@ export default function Navbar() {
           <Link to="/brand" className="nav-link" onClick={() => setIsMenuOpen(false)}>Brand Studio</Link>
           <Link to="/products" className="nav-link" onClick={() => setIsMenuOpen(false)}>Product</Link>
           <Link to="/people" className="nav-link" onClick={() => setIsMenuOpen(false)}>People</Link>
-          <Link to="/verify-certificate" className="nav-link" onClick={() => setIsMenuOpen(false)}>verify certificate</Link>
+          <Link to="/verify-certificate" className="nav-link" onClick={() => setIsMenuOpen(false)}>Verify Certificate</Link>
           
           <div className='mobile-cta-row'>
             <button
