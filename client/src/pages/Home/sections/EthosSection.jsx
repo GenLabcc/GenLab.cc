@@ -16,7 +16,7 @@ const style = `
   .ethos-page {
     font-family: 'Clash Display Variable', 'Clash Display', sans-serif;
     background: #e8e8e4;
-    width: 100vw;
+    width: 100%;
     height: 100dvh;
     position: relative;
     overflow: hidden;
@@ -150,7 +150,7 @@ const style = `
       top: clamp(30px, 6%, 80px);
       left: clamp(16px, 6%, 80px);
       right: clamp(16px, 6%, 80px);
-      xbottom: clamp(30px, 6%, 80px);
+      bottom: clamp(30px, 6%, 80px);
     }
     .body-wrap p {
       font-size : 20px;

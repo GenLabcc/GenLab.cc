@@ -7,16 +7,21 @@
 
 #root {
   width: 100%;
+  max-width: 100%;
   min-height: 100vh;
   margin: 0;
   padding: 0;
   letter-spacing: 2px;
+  overflow-x: hidden;
 }
 
 .page-wrapper {
   position: relative;
   z-index: 10; /* Above footer */
   background: #101010; /* Important; change to white for footer bug fixes */
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 button, h1, h2, h3, h4, input, textarea, select {

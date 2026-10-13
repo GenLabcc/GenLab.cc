@@ -389,12 +389,8 @@
   background-color: #f6f6f6;
   color: #000000;
   padding: 100px 4%;
-  width: 100vw;
+  width: 100%;
   position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
 }
 
 .journey-grid {
@@ -852,12 +848,8 @@
   background-color: #f6f6f6;
   color: #000000;
   padding: 100px 4%;
-  width: 100vw;
+  width: 100%;
   position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
 }
 
 .testimonials-grid {

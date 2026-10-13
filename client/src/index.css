@@ -20,6 +20,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 @font-face {
@@ -33,6 +35,9 @@ body {
   /* font-family: Inter, system-ui, sans-serif; */
   font-family: "Clash Display", sans-serif;
   background-color: black;
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
 }
 
 /* Global autofill styles: green background (#BCF000) and black text (#101010) */

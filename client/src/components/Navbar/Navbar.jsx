@@ -14,8 +14,12 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLaunchpadOpen, setIsLaunchpadOpen] = useState(false);
   const [isMobileLaunchpadOpen, setIsMobileLaunchpadOpen] = useState(false);
+  const [isEventOpen, setIsEventOpen] = useState(false);
+  const [isMobileEventOpen, setIsMobileEventOpen] = useState(false);
   const launchpadRef = useRef(null);
+  const eventRef = useRef(null);
   const closeTimerRef = useRef(null);
+  const eventCloseTimerRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -27,6 +31,9 @@ export default function Navbar() {
       if (launchpadRef.current && !launchpadRef.current.contains(e.target)) {
         setIsLaunchpadOpen(false);
       }
+      if (eventRef.current && !eventRef.current.contains(e.target)) {
+        setIsEventOpen(false);
+      }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
@@ -36,17 +43,33 @@ export default function Navbar() {
   useEffect(() => {
     return () => {
       if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+      if (eventCloseTimerRef.current) clearTimeout(eventCloseTimerRef.current);
     };
   }, []);
 
   const handleMouseEnter = () => {
     if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    if (eventCloseTimerRef.current) clearTimeout(eventCloseTimerRef.current);
+    setIsEventOpen(false);
     setIsLaunchpadOpen(true);
   };
 
   const handleMouseLeave = () => {
     closeTimerRef.current = setTimeout(() => {
       setIsLaunchpadOpen(false);
+    }, 150);
+  };
+
+  const handleEventMouseEnter = () => {
+    if (eventCloseTimerRef.current) clearTimeout(eventCloseTimerRef.current);
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    setIsLaunchpadOpen(false);
+    setIsEventOpen(true);
+  };
+
+  const handleEventMouseLeave = () => {
+    eventCloseTimerRef.current = setTimeout(() => {
+      setIsEventOpen(false);
     }, 150);
   };
 
@@ -70,7 +93,10 @@ export default function Navbar() {
             >
               <button
                 className={`nav-link nav-dropdown-trigger ${isLaunchpadOpen ? 'active' : ''}`}
-                onClick={() => setIsLaunchpadOpen((prev) => !prev)}
+                onClick={() => {
+                  setIsLaunchpadOpen((prev) => !prev);
+                  setIsEventOpen(false);
+                }}
                 aria-expanded={isLaunchpadOpen}
               >
                 Launchpad
@@ -103,6 +129,41 @@ export default function Navbar() {
             <Link to="/products" className="nav-link">Product</Link>
             <Link to="/people" className="nav-link">People</Link>
             <Link to="/verify-certificate" className="nav-link">Verify Certificate</Link>
+
+            {/* Event Dropdown */}
+            <div
+              className="nav-dropdown-wrapper"
+              ref={eventRef}
+              onMouseEnter={handleEventMouseEnter}
+              onMouseLeave={handleEventMouseLeave}
+            >
+              <button
+                className={`nav-link nav-dropdown-trigger ${isEventOpen ? 'active' : ''}`}
+                onClick={() => {
+                  setIsEventOpen((prev) => !prev);
+                  setIsLaunchpadOpen(false);
+                }}
+                aria-expanded={isEventOpen}
+              >
+                Event
+                <ChevronDown
+                  size={14}
+                  className={`dropdown-chevron ${isEventOpen ? 'rotated' : ''}`}
+                />
+              </button>
+
+              {isEventOpen && (
+                <div className={`nav-dropdown-menu ${isLightNav ? 'light' : ''}`}>
+                  <Link
+                    to="https://fot-pi.vercel.app/"
+                    className="nav-dropdown-item"
+                    onClick={() => setIsEventOpen(false)}
+                  >
+                    FOT
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
 
           <button className="cta-btn" onClick={() => navigate('/shabdamui')}>
@@ -167,6 +228,31 @@ export default function Navbar() {
           <Link to="/products" className="nav-link" onClick={() => setIsMenuOpen(false)}>Product</Link>
           <Link to="/people" className="nav-link" onClick={() => setIsMenuOpen(false)}>People</Link>
           <Link to="/verify-certificate" className="nav-link" onClick={() => setIsMenuOpen(false)}>Verify Certificate</Link>
+
+          {/* Mobile Event accordion */}
+          <div className="mobile-dropdown-wrapper">
+            <button
+              className={`nav-link mobile-dropdown-trigger ${isMobileEventOpen ? 'active' : ''}`}
+              onClick={() => setIsMobileEventOpen((prev) => !prev)}
+            >
+              Event
+              <ChevronDown
+                size={14}
+                className={`dropdown-chevron ${isMobileEventOpen ? 'rotated' : ''}`}
+              />
+            </button>
+            {isMobileEventOpen && (
+              <div className="mobile-dropdown-submenu">
+                <Link
+                  to="https://fot-pi.vercel.app/"
+                  className="nav-link mobile-sub-link"
+                  onClick={() => { setIsMenuOpen(false); setIsMobileEventOpen(false); }}
+                >
+                  FOT
+                </Link>
+              </div>
+            )}
+          </div>
           
           <div className='mobile-cta-row'>
             <button
